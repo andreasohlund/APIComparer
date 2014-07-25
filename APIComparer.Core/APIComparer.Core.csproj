@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CecilExtensions.cs" />
     <Compile Include="CollectionExtensions.cs" />
     <Compile Include="ComparerEngine.cs" />
     <Compile Include="Outputters\APIUpgradeToMarkdownFormatter.cs" />

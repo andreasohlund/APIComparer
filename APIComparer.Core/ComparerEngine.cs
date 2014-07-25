@@ -56,10 +56,16 @@ namespace APIComparer
             IList<MethodDefinition> rightOrphanMethods;
             IList<Tuple<MethodDefinition, MethodDefinition>> matchingMethods;
 
-            Diff(leftType.Methods, rightType.Methods, EqualityCompare<MethodDefinition>.EquateBy(f => f.FullName), out leftOrphanMethods, out rightOrphanMethods, out matchingMethods);
+            var methodComparer = EqualityCompare<MethodDefinition>
+                .EquateBy(f => f.FullName);
+
+            Diff(leftType.Methods, rightType.Methods, methodComparer, out leftOrphanMethods, out rightOrphanMethods, out matchingMethods);
 
             return new TypeDiff()
             {
+                LeftType = leftType,
+                RightType = rightType,
+
                 LeftOrphanFields = leftOrphanFields,
                 RightOrphanFields = rightOrphanFields,
                 MatchingFields = matchingFields,
@@ -153,6 +159,9 @@ namespace APIComparer
 
     public class TypeDiff
     {
+        public TypeDefinition LeftType { get; set; }
+        public TypeDefinition RightType { get; set; }
+
         public IList<FieldDefinition> LeftOrphanFields { get; set; }
         public IList<FieldDefinition> RightOrphanFields { get; set; }
         public IList<Tuple<FieldDefinition, FieldDefinition>> MatchingFields { get; set; }

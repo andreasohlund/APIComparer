@@ -1,13 +1,17 @@
 ﻿using System;
 using System.IO;
 using APIComparer.Outputters;
+using ApprovalTests;
 using NuGet;
+using NUnit.Framework;
 
-namespace APIComparer
+namespace APIComparer.Tests
 {
-    class Program
+    [TestFixture]
+    public class ApprovalTests
     {
-        static void Main(string[] args)
+        [Test]
+        public void ApproveMarkdown()
         {
             var packages = new[] { "4.6.3", "5.0.0-beta0002" };
 
@@ -28,13 +32,15 @@ namespace APIComparer
             var file2 = Path.Combine("packages", "NServiceBus." + packages[1], "lib", "net45", "NServiceBus.Core.dll");
 
             var engine = new ComparerEngine();
-            engine.Filter = new NServiceBusAPIFilter();
+            //engine.Filter = new NServiceBusAPIFilter();
 
             var diff = engine.CreateDiff(file1, file2);
 
             var formatter = new APIUpgradeToMarkdownFormatter("Result.md");
 
             formatter.WriteOut(diff);
+
+            Approvals.VerifyFile("Result.md");
         }
     }
 }

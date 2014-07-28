@@ -1,14 +1,21 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using EqualityComparers;
+using APIComparer.Filters;
 using Mono.Cecil;
 
 namespace APIComparer
 {
     public class ComparerEngine
     {
-        public static Diff CreateDiff(string leftAssembly, string rightAssembly)
+        public ComparerEngine()
+        {
+            Filter = new BaseAPIFilter();
+        }
+
+        public BaseAPIFilter Filter { get; set; }
+
+        public Diff CreateDiff(string leftAssembly, string rightAssembly)
         {
             var l = AssemblyDefinition.ReadAssembly(leftAssembly);
             var r = AssemblyDefinition.ReadAssembly(rightAssembly);
@@ -16,15 +23,13 @@ namespace APIComparer
             return Diff(l, r);
         }
 
-        private static Diff Diff(AssemblyDefinition leftAssembly, AssemblyDefinition rightAssembly)
+        private Diff Diff(AssemblyDefinition leftAssembly, AssemblyDefinition rightAssembly)
         {
             IList<TypeDefinition> leftOrphans;
             IList<TypeDefinition> rightOrphans;
             IList<Tuple<TypeDefinition, TypeDefinition>> diffs;
 
-            var typeEquality = EqualityCompare<TypeDefinition>.EquateBy(t => t.FullName);
-
-            Diff(leftAssembly.MainModule.Types, rightAssembly.MainModule.Types, typeEquality, out leftOrphans, out rightOrphans, out diffs);
+            Diff(leftAssembly.MainModule.Types, rightAssembly.MainModule.Types, Filter.TypeComparer, out leftOrphans, out rightOrphans, out diffs);
 
             var typeDiffs = diffs.Select(t => DiffTypes(t.Item1, t.Item2)).ToList();
 
@@ -32,51 +37,48 @@ namespace APIComparer
             {
                 LeftAssembly = leftAssembly,
                 RightAssembly = rightAssembly,
-                LeftOrphanTypes = leftOrphans,
-                RightOrphanTypes = rightOrphans,
-                MatchingTypeDiffs = typeDiffs
+                LeftOrphanTypes = leftOrphans.Where(Filter.FilterLeftType).ToList(),
+                RightOrphanTypes = rightOrphans.Where(Filter.FilterRightType).ToList(),
+                MatchingTypeDiffs = typeDiffs.Where(Filter.FilterMatchedType).ToList()
             };
         }
 
-        private static TypeDiff DiffTypes(TypeDefinition leftType, TypeDefinition rightType)
+        private TypeDiff DiffTypes(TypeDefinition leftType, TypeDefinition rightType)
         {
             IList<FieldDefinition> leftOrphanFields;
             IList<FieldDefinition> rightOrphanFields;
             IList<Tuple<FieldDefinition, FieldDefinition>> matchingFields;
 
-            Diff(leftType.Fields, rightType.Fields, EqualityCompare<FieldDefinition>.EquateBy(f => f.FullName), out leftOrphanFields, out rightOrphanFields, out matchingFields);
+            Diff(leftType.Fields, rightType.Fields, Filter.FieldComparer, out leftOrphanFields, out rightOrphanFields, out matchingFields);
 
             IList<PropertyDefinition> leftOrphanProperties;
             IList<PropertyDefinition> rightOrphanProperties;
             IList<Tuple<PropertyDefinition, PropertyDefinition>> matchingProperties;
 
-            Diff(leftType.Properties, rightType.Properties, EqualityCompare<PropertyDefinition>.EquateBy(f => f.FullName), out leftOrphanProperties, out rightOrphanProperties, out matchingProperties);
+            Diff(leftType.Properties, rightType.Properties, Filter.PropertyComparer, out leftOrphanProperties, out rightOrphanProperties, out matchingProperties);
 
             IList<MethodDefinition> leftOrphanMethods;
             IList<MethodDefinition> rightOrphanMethods;
             IList<Tuple<MethodDefinition, MethodDefinition>> matchingMethods;
 
-            var methodComparer = EqualityCompare<MethodDefinition>
-                .EquateBy(f => f.FullName);
-
-            Diff(leftType.Methods, rightType.Methods, methodComparer, out leftOrphanMethods, out rightOrphanMethods, out matchingMethods);
+            Diff(leftType.Methods, rightType.Methods, Filter.MethodComparer, out leftOrphanMethods, out rightOrphanMethods, out matchingMethods);
 
             return new TypeDiff()
             {
                 LeftType = leftType,
                 RightType = rightType,
 
-                LeftOrphanFields = leftOrphanFields,
-                RightOrphanFields = rightOrphanFields,
-                MatchingFields = matchingFields,
+                LeftOrphanFields = leftOrphanFields.Where(Filter.FilterLeftField).ToList(),
+                RightOrphanFields = rightOrphanFields.Where(Filter.FilterRightField).ToList(),
+                MatchingFields = matchingFields.Where(t => Filter.FilterMatchedField(t.Item1, t.Item2)).ToList(),
 
-                LeftOrphanProperties = leftOrphanProperties,
-                RightOrphanProperties = rightOrphanProperties,
-                MatchingProperties = matchingProperties,
+                LeftOrphanProperties = leftOrphanProperties.Where(Filter.FilterLeftProperty).ToList(),
+                RightOrphanProperties = rightOrphanProperties.Where(Filter.FilterRightProperty).ToList(),
+                MatchingProperties = matchingProperties.Where(t => Filter.FilterMatchedProperty(t.Item1, t.Item2)).ToList(),
 
-                LeftOrphanMethods = leftOrphanMethods,
-                RightOrphanMethods = rightOrphanMethods,
-                MatchingMethods = matchingMethods,
+                LeftOrphanMethods = leftOrphanMethods.Where(Filter.FilterLeftMethod).ToList(),
+                RightOrphanMethods = rightOrphanMethods.Where(Filter.FilterRightMethod).ToList(),
+                MatchingMethods = matchingMethods.Where(t => Filter.FilterMatchedMethod(t.Item1, t.Item2)).ToList(),
             };
         }
 
@@ -144,34 +146,5 @@ namespace APIComparer
                 }
             }
         }
-    }
-
-    public class Diff
-    {
-        public AssemblyDefinition LeftAssembly { get; set; }
-        public AssemblyDefinition RightAssembly { get; set; }
-
-        public IList<TypeDefinition> LeftOrphanTypes { get; set; }
-        public IList<TypeDefinition> RightOrphanTypes { get; set; }
-
-        public IList<TypeDiff> MatchingTypeDiffs { get; set; }
-    }
-
-    public class TypeDiff
-    {
-        public TypeDefinition LeftType { get; set; }
-        public TypeDefinition RightType { get; set; }
-
-        public IList<FieldDefinition> LeftOrphanFields { get; set; }
-        public IList<FieldDefinition> RightOrphanFields { get; set; }
-        public IList<Tuple<FieldDefinition, FieldDefinition>> MatchingFields { get; set; }
-
-        public IList<PropertyDefinition> LeftOrphanProperties { get; set; }
-        public IList<PropertyDefinition> RightOrphanProperties { get; set; }
-        public IList<Tuple<PropertyDefinition, PropertyDefinition>> MatchingProperties { get; set; }
-
-        public IList<MethodDefinition> LeftOrphanMethods { get; set; }
-        public IList<MethodDefinition> RightOrphanMethods { get; set; }
-        public IList<Tuple<MethodDefinition, MethodDefinition>> MatchingMethods { get; set; }
     }
 }

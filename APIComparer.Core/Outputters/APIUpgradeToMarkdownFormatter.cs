@@ -71,13 +71,14 @@ namespace APIComparer.Outputters
             return members
                 .Where(m => m.IsPublic() && !m.HasObsoleteAttribute())
                 .Concat(matching
-                    .Where(t => t.Item1.IsPublic() && !t.Item1.HasObsoleteAttribute() && !t.Item2.IsPublic())
+                    .Where(t => (t.Item1.IsPublic() && !t.Item1.HasObsoleteAttribute() && !t.Item2.IsPublic()))
                     .Select(t => t.Item1));
         }
 
         private bool FilterMethods(MethodDefinition method)
         {
-            return !method.IsConstructor && (!method.IsVirtual || !method.IsReuseSlot);
+            return !method.IsConstructor // Not constructors
+                && (!method.IsVirtual || !method.IsReuseSlot); // Not public overrides
         }
     }
 }

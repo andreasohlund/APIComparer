@@ -3,7 +3,7 @@ using Mono.Cecil;
 
 namespace APIComparer
 {
-    static class CecilExtensions
+    public static class CecilExtensions
     {
         public static bool HasObsoleteAttribute(this ICustomAttributeProvider value)
         {

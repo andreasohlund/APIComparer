@@ -46,7 +46,7 @@ namespace APIComparer.Outputters
         private void WriteOut(TypeDiff typeDiff, StringBuilder sb)
         {
             var missingFields = MissingMembers(typeDiff.LeftOrphanFields, typeDiff.MatchingFields).Select(f => f.FullName).OrderBy(s => s);
-            var missingMethods = MissingMembers(typeDiff.LeftOrphanMethods.Where(FilterMethods), typeDiff.MatchingMethods.Where(m => FilterMethods(m.Item1))).Select(f => f.FullName).OrderBy(s => s);
+            var missingMethods = MissingMembers(typeDiff.LeftOrphanMethods, typeDiff.MatchingMethods).Select(f => f.FullName).OrderBy(s => s);
 
             if (missingFields.Any() || missingMethods.Any())
             {
@@ -69,16 +69,7 @@ namespace APIComparer.Outputters
         private IEnumerable<T> MissingMembers<T>(IEnumerable<T> members, IEnumerable<Tuple<T, T>> matching) where T : IMemberDefinition
         {
             return members
-                .Where(m => m.IsPublic() && !m.HasObsoleteAttribute())
-                .Concat(matching
-                    .Where(t => (t.Item1.IsPublic() && !t.Item1.HasObsoleteAttribute() && !t.Item2.IsPublic()))
-                    .Select(t => t.Item1));
-        }
-
-        private bool FilterMethods(MethodDefinition method)
-        {
-            return !method.IsConstructor // Not constructors
-                && (!method.IsVirtual || !method.IsReuseSlot); // Not public overrides
+                .Concat(matching.Select(t => t.Item1));
         }
     }
 }

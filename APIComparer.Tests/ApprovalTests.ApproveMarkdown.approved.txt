@@ -1,4 +1,4 @@
-The following types are missing in the new API.
+﻿The following types are missing in the new API.
 
     NServiceBus.Audit.MessageAuditer
     NServiceBus.AutomaticSubscriptions.AutoSubscriber
@@ -178,14 +178,6 @@ The following types are missing in the new API.
     NServiceBus.Unicast.Transport.TransportMessageExtensions
 
 The following members are missing on the public types.
-
-    <>f__AnonymousType2`2
-        <Id>j__TPar <>f__AnonymousType2`2::get_Id()
-        <Time>j__TPar <>f__AnonymousType2`2::get_Time()
-
-    <>f__AnonymousType3`2
-        <handlers>j__TPar <>f__AnonymousType3`2::get_handlers()
-        <typeHandled>j__TPar <>f__AnonymousType3`2::get_typeHandled()
 
     NServiceBus.Audit.AuditBehavior
         NServiceBus.Audit.MessageAuditer NServiceBus.Audit.AuditBehavior::get_MessageAuditer()

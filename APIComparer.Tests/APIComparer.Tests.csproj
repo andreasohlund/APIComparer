@@ -66,6 +66,10 @@
       <Project>{800763b7-c4f3-44eb-af5a-c1d211fce18f}</Project>
       <Name>APIComparer.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\APIComparer\APIComparer.csproj">
+      <Project>{52bd5b46-5a1b-4d59-87f2-4d9d3533a220}</Project>
+      <Name>APIComparer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

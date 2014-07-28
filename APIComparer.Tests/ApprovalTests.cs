@@ -32,7 +32,7 @@ namespace APIComparer.Tests
             var file2 = Path.Combine("packages", "NServiceBus." + packages[1], "lib", "net45", "NServiceBus.Core.dll");
 
             var engine = new ComparerEngine();
-            //engine.Filter = new NServiceBusAPIFilter();
+            engine.Filter = new NServiceBusAPIFilter();
 
             var diff = engine.CreateDiff(file1, file2);
 
@@ -40,7 +40,7 @@ namespace APIComparer.Tests
 
             formatter.WriteOut(diff);
 
-            Approvals.VerifyFile("Result.md");
+            Approvals.Verify(File.ReadAllText("Result.md"));
         }
     }
 }

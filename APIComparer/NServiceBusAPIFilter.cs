@@ -7,7 +7,7 @@ namespace APIComparer
     {
         public override bool FilterLeftType(TypeDefinition type)
         {
-            return !type.Name.StartsWith("<>") && type.IsPublic && !type.HasObsoleteAttribute();
+            return !IsAnonymousType(type) && type.IsPublic && !type.HasObsoleteAttribute();
         }
 
         public override bool FilterRightType(TypeDefinition type)
@@ -17,7 +17,11 @@ namespace APIComparer
 
         public override bool FilterMatchedType(TypeDiff diff)
         {
-            return !diff.LeftType.Name.StartsWith("<>") && diff.LeftType.IsPublic && !diff.LeftType.HasObsoleteAttribute() && !diff.RightType.IsPublic;
+            return
+                !IsAnonymousType(diff.LeftType) &&
+                diff.LeftType.IsPublic &&
+                (!diff.RightType.IsPublic || !diff.RightType.HasObsoleteAttribute()) &&
+                (diff.RightType.IsPublic || !diff.LeftType.HasObsoleteAttribute());
         }
 
         public override bool FilterLeftField(FieldDefinition field)
@@ -49,6 +53,11 @@ namespace APIComparer
         {
             return !method.IsConstructor // Not constructors
                 && (!method.IsVirtual || !method.IsReuseSlot); // Not public overrides
+        }
+
+        private bool IsAnonymousType(TypeDefinition type)
+        {
+            return type.Name.StartsWith("<>");
         }
     }
 }

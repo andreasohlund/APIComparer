@@ -1,37 +1,94 @@
 ﻿The following types are missing in the new API.
 
+    NServiceBus.AllAssemblies
     NServiceBus.Audit.MessageAuditer
     NServiceBus.AutomaticSubscriptions.AutoSubscriber
+    NServiceBus.AutomaticSubscriptions.Config.AutoSubscribeSettings
     NServiceBus.AutomaticSubscriptions.DefaultAutoSubscriptionStrategy
     NServiceBus.AutomaticSubscriptions.IAutoSubscriptionStrategy
+    NServiceBus.AutoSubscribeSettingsExtensions
+    NServiceBus.BinarySerializerConfigurationExtensions
     NServiceBus.CircuitBreakers.CircuitBreaker
+    NServiceBus.CircuitBreakers.RepeatedFailuresOverTimeCircuitBreaker
     NServiceBus.Config.AddressInitializer
+    NServiceBus.Config.AuditConfig
     NServiceBus.Config.ChannelCollection
     NServiceBus.Config.ChannelConfig
+    NServiceBus.Config.ConfigurationSource.DefaultConfigurationSource
+    NServiceBus.Config.ConfigurationSource.IConfigurationSource
+    NServiceBus.Config.ConfigurationSource.IProvideConfiguration`1
+    NServiceBus.Config.Conventions.EndpointHelper
     NServiceBus.Config.DisplayInfrastructureServicesStatus
     NServiceBus.Config.GatewayConfig
     NServiceBus.Config.InfrastructureServices
+    NServiceBus.Config.IWantToRunWhenConfigurationIsComplete
+    NServiceBus.Config.Logging
+    NServiceBus.Config.MasterNodeConfig
+    NServiceBus.Config.MessageEndpointMapping
+    NServiceBus.Config.MessageEndpointMappingCollection
+    NServiceBus.Config.MessageForwardingInCaseOfFaultConfig
+    NServiceBus.Config.MsmqSubscriptionStorageConfig
+    NServiceBus.Config.RijndaelEncryptionServiceConfig
     NServiceBus.Config.SatelliteConfigurer
+    NServiceBus.Config.SecondLevelRetriesConfig
     NServiceBus.Config.SiteCollection
     NServiceBus.Config.SiteConfig
+    NServiceBus.Config.TransportConfig
+    NServiceBus.Config.UnicastBusConfig
     NServiceBus.Config.WindowsInstallerRunner
+    NServiceBus.Configure
+    NServiceBus.ConfigureCriticalErrorAction
+    NServiceBus.ConfigureDefaultBuilder
+    NServiceBus.ConfigureExtensions
+    NServiceBus.ConfigureFaultsForwarder
+    NServiceBus.ConfigureFileShareDataBus
     NServiceBus.ConfigureGateway
+    NServiceBus.ConfigureInMemoryFaultManagement
+    NServiceBus.ConfigureInMemorySagaPersister
+    NServiceBus.ConfigureInMemorySubscriptionStorage
+    NServiceBus.ConfigureLicenseExtensions
+    NServiceBus.ConfigurePurging
+    NServiceBus.ConfigureQueueCreation
+    NServiceBus.ConfigureRijndaelEncryptionService
     NServiceBus.ConfigureSagas
     NServiceBus.ConfigureSecondLevelRetriesExtensions
+    NServiceBus.ConfigureSettingLocalAddressNameAction
     NServiceBus.DataBus.Config.Bootstrapper
     NServiceBus.DataBus.DefaultDataBusSerializer
     NServiceBus.DataBus.FileShare.FileShareDataBus
+    NServiceBus.DataBus.IDataBus
+    NServiceBus.DataBus.IDataBusSerializer
     NServiceBus.DataBus.InMemory.InMemoryDataBus
+    NServiceBus.DateTimeExtensions
+    NServiceBus.DependencyLifecycle
     NServiceBus.Encryption.EncryptionMessageMutator
+    NServiceBus.Encryption.IEncryptionService
+    NServiceBus.Encryption.Rijndael.EncryptionService
+    NServiceBus.EndpointNameAttribute
+    NServiceBus.EndpointSLAAttribute
+    NServiceBus.Faults.FaultsHeaderKeys
     NServiceBus.Faults.Forwarder.Config.FaultsQueueCreator
     NServiceBus.Faults.Forwarder.FaultManager
+    NServiceBus.Faults.IManageMessageFailures
     NServiceBus.Faults.InMemory.FaultManager
+    NServiceBus.Features.Audit
+    NServiceBus.Features.AutoSubscribe
+    NServiceBus.Features.BinarySerialization
+    NServiceBus.Features.BsonSerialization
     NServiceBus.Features.Categories.Serializers
     NServiceBus.Features.EnableDefaultFeatures
+    NServiceBus.Features.Feature
     NServiceBus.Features.Feature`1
     NServiceBus.Features.FeatureCategory
     NServiceBus.Features.FeatureInitializer
     NServiceBus.Features.Gateway
+    NServiceBus.Features.JsonSerialization
+    NServiceBus.Features.MessageDrivenSubscriptions
+    NServiceBus.Features.MsmqTransport
+    NServiceBus.Features.Sagas
+    NServiceBus.Features.SecondLevelRetries
+    NServiceBus.Features.TimeoutManager
+    NServiceBus.Features.XmlSerialization
     NServiceBus.FeatureSettingsExtensions
     NServiceBus.Gateway.Channels.Channel
     NServiceBus.Gateway.Channels.ChannelFactory
@@ -48,6 +105,7 @@
     NServiceBus.Gateway.Channels.IChannelSender
     NServiceBus.Gateway.Channels.ReceiveChannel
     NServiceBus.Gateway.Deduplication.GatewayMessage
+    NServiceBus.Gateway.Deduplication.IDeduplicateMessages
     NServiceBus.Gateway.Deduplication.InMemoryDeduplication
     NServiceBus.Gateway.Deduplication.RavenDBDeduplication
     NServiceBus.Gateway.DefaultInputAddress
@@ -84,14 +142,56 @@
     NServiceBus.Gateway.Sending.SingleCallChannelForwarder
     NServiceBus.Gateway.Utils.Hasher
     NServiceBus.Hosting.Configuration.ConfigManager
+    NServiceBus.Hosting.Helpers.AssemblyScanner
+    NServiceBus.Hosting.Helpers.AssemblyScannerResults
+    NServiceBus.Hosting.Helpers.SkippedFile
+    NServiceBus.Hosting.HostInformation
+    NServiceBus.Hosting.Profiles.IHandleAnyProfile
+    NServiceBus.Hosting.Profiles.IHandleProfile
+    NServiceBus.Hosting.Profiles.IHandleProfile`1
+    NServiceBus.Hosting.Profiles.ProfileActivator
+    NServiceBus.Hosting.Profiles.ProfileManager
+    NServiceBus.Hosting.Roles.IConfigureRole
+    NServiceBus.Hosting.Roles.IConfigureRole`1
+    NServiceBus.Hosting.Roles.IRole
+    NServiceBus.Hosting.Roles.RoleManager
+    NServiceBus.Hosting.Wcf.WcfManager
     NServiceBus.Hosting.Wcf.WcfServiceHost
+    NServiceBus.IConfigureLogging
+    NServiceBus.IConfigureLoggingForProfile`1
+    NServiceBus.IConfigureThisEndpoint
+    NServiceBus.IExcludesBuilder
+    NServiceBus.IIncludesBuilder
     NServiceBus.Impersonation.Windows.WindowsIdentityEnricher
     NServiceBus.Installation.GatewayHttpListenerInstaller
+    NServiceBus.Installation.INeedToInstallSomething
     NServiceBus.Installation.PerformanceMonitorUsersInstaller
+    NServiceBus.IProfile
+    NServiceBus.IWantTheListOfActiveProfiles
+    NServiceBus.IWantToRunBeforeConfigurationIsFinalized
+    NServiceBus.IWcfService`2
+    NServiceBus.JsonSerializerConfigurationExtensions
+    NServiceBus.Logging.ILog
+    NServiceBus.Logging.ILoggerFactory
+    NServiceBus.Logging.LogManager
     NServiceBus.Management.Retries.SecondLevelRetries
+    NServiceBus.MessageConventions
+    NServiceBus.MessageInterfaces.IMessageMapper
+    NServiceBus.MessageInterfaces.MessageMapper.Reflection.MessageMapper
+    NServiceBus.MessageMutator.IMutateIncomingTransportMessages
+    NServiceBus.MessageMutator.IMutateOutgoingTransportMessages
+    NServiceBus.MessageMutator.IMutateTransportMessages
+    NServiceBus.MonitoringConfig
+    NServiceBus.Msmq
     NServiceBus.ObjectBuilder.Common.CommonObjectBuilder
     NServiceBus.ObjectBuilder.Common.Config.ConfigureCommon
+    NServiceBus.ObjectBuilder.Common.Config.ConfigureContainer
+    NServiceBus.ObjectBuilder.Common.IContainer
     NServiceBus.ObjectBuilder.Common.SynchronizedInvoker
+    NServiceBus.ObjectBuilder.IBuilder
+    NServiceBus.ObjectBuilder.IComponentConfig
+    NServiceBus.ObjectBuilder.IComponentConfig`1
+    NServiceBus.ObjectBuilder.IConfigureComponents
     NServiceBus.Persistence.InMemory.InMemoryPersistence
     NServiceBus.Persistence.InMemory.SagaPersister.InMemorySagaPersister
     NServiceBus.Persistence.InMemory.SubscriptionStorage.InMemorySubscriptionStorage
@@ -112,13 +212,20 @@
     NServiceBus.Persistence.Raven.SubscriptionStorage.Subscription
     NServiceBus.Persistence.Raven.TimeoutPersister.RavenTimeoutPersistence
     NServiceBus.Persistence.SetupDefaultPersistence
+    NServiceBus.Pipeline.BehaviorContext
+    NServiceBus.Pipeline.IBehavior`1
+    NServiceBus.Pipeline.PipelineExecutor
+    NServiceBus.Sagas.ActiveSagaInstance
     NServiceBus.Sagas.ConfigureHowToFindSagaWithMessageDispatcher
     NServiceBus.Sagas.ConfigureTimeoutAsSystemMessages
     NServiceBus.Sagas.Finders.HeaderSagaIdFinder`1
     NServiceBus.Sagas.Finders.PropertySagaFinder`2
     NServiceBus.Satellites.Config.SatelliteContext
+    NServiceBus.Satellites.IAdvancedSatellite
+    NServiceBus.Satellites.ISatellite
     NServiceBus.Satellites.SatelliteLauncher
     NServiceBus.Satellites.SatellitesQueuesCreator
+    NServiceBus.Schedule
     NServiceBus.Scheduling.Configuration.ConfigureScheduledTaskAsSystemMessages
     NServiceBus.Scheduling.Configuration.SchedulerConfiguration
     NServiceBus.Scheduling.DefaultScheduler
@@ -127,35 +234,76 @@
     NServiceBus.Scheduling.IScheduler
     NServiceBus.Scheduling.Messages.ScheduledTask
     NServiceBus.Scheduling.ScheduledTaskMessageHandler
+    NServiceBus.SecondLevelRetries.Config.SecondLevelRetriesSettings
     NServiceBus.SecondLevelRetries.Helpers.SecondLevelRetriesHeaders
     NServiceBus.SecondLevelRetries.Helpers.TransportMessageHelpers
     NServiceBus.SecondLevelRetries.SecondLevelRetriesProcessor
+    NServiceBus.Serializers.Binary.BinaryMessageSerializer
+    NServiceBus.Serializers.Binary.SimpleMessageMapper
+    NServiceBus.Serializers.Json.BsonMessageSerializer
     NServiceBus.Serializers.Json.Internal.MessageContractResolver
     NServiceBus.Serializers.Json.Internal.MessageSerializationBinder
     NServiceBus.Serializers.Json.Internal.XContainerConverter
+    NServiceBus.Serializers.Json.JsonMessageSerializer
+    NServiceBus.Serializers.Json.JsonMessageSerializerBase
     NServiceBus.Serializers.XML.Config.MessageTypesInitializer
+    NServiceBus.Serializers.XML.Config.XmlSerializationSettings
+    NServiceBus.Serializers.XML.XmlMessageSerializer
     NServiceBus.Serializers.XML.XmlSanitizingStream
     NServiceBus.ServiceAsyncResult
     NServiceBus.Settings.Endpoint
     NServiceBus.Settings.ISetDefaultSettings
+    NServiceBus.Settings.ScaleOutSettings
+    NServiceBus.Settings.SerializationSettings
+    NServiceBus.Settings.SettingsHolder
+    NServiceBus.Settings.TransactionSettings
     NServiceBus.Settings.TransportSettings
     NServiceBus.SyncConfig
     NServiceBus.Timeout.Core.DefaultTimeoutManager
+    NServiceBus.Timeout.Core.IPersistTimeouts
+    NServiceBus.Timeout.Core.TimeoutData
     NServiceBus.Timeout.Core.TimeoutManagerDefaults
     NServiceBus.Timeout.Hosting.Windows.TimeoutDispatcherProcessor
     NServiceBus.Timeout.Hosting.Windows.TimeoutMessageProcessor
     NServiceBus.Timeout.Hosting.Windows.TimeoutPersisterReceiver
     NServiceBus.Timeout.TimeoutManagerDeferrer
     NServiceBus.Timeout.TimeoutManagerHeaders
+    NServiceBus.TransportMessage
+    NServiceBus.Transports.ConfigureTransport`1
+    NServiceBus.Transports.IConfigureTransport
+    NServiceBus.Transports.IConfigureTransport`1
+    NServiceBus.Transports.ICreateQueues
+    NServiceBus.Transports.IDeferMessages
+    NServiceBus.Transports.IDequeueMessages
+    NServiceBus.Transports.IManageSubscriptions
+    NServiceBus.Transports.IPublishMessages
+    NServiceBus.Transports.ISendMessages
     NServiceBus.Transports.Msmq.Config.CheckMachineNameForComplianceWithDtcLimitation
+    NServiceBus.Transports.Msmq.Config.MsmqSettings
+    NServiceBus.Transports.Msmq.HeaderInfo
     NServiceBus.Transports.Msmq.MsmqDequeueStrategy
     NServiceBus.Transports.Msmq.MsmqMessageSender
     NServiceBus.Transports.Msmq.MsmqQueueCreator
+    NServiceBus.Transports.Msmq.MsmqUnitOfWork
+    NServiceBus.Transports.TransportDefinition
+    NServiceBus.Unicast.Behaviors.MessageHandler
+    NServiceBus.Unicast.BuilderExtensions
+    NServiceBus.Unicast.BusAsyncResult
     NServiceBus.Unicast.BusAsyncResultEventArgs
     NServiceBus.Unicast.Config.DefaultToTimeoutManagerBasedDeferal
     NServiceBus.Unicast.Config.DefaultTransportForHost
     NServiceBus.Unicast.DefaultDispatcherFactory
+    NServiceBus.Unicast.HandlerInvocationCache
     NServiceBus.Unicast.IMessageDispatcherFactory
+    NServiceBus.Unicast.IMessageHandlerRegistry
+    NServiceBus.Unicast.MessageContext
+    NServiceBus.Unicast.MessageEventArgs
+    NServiceBus.Unicast.MessageHandlerRegistry
+    NServiceBus.Unicast.Messages.LogicalMessage
+    NServiceBus.Unicast.Messages.LogicalMessageFactory
+    NServiceBus.Unicast.Messages.MessageMetadata
+    NServiceBus.Unicast.Messages.MessageMetadataRegistry
+    NServiceBus.Unicast.MessagesEventArgs
     NServiceBus.Unicast.MessagingBestPractices
     NServiceBus.Unicast.Monitoring.CausationMutator
     NServiceBus.Unicast.Monitoring.CriticalTimeCalculator
@@ -166,32 +314,192 @@
     NServiceBus.Unicast.Queuing.Installers.AuditQueueCreator
     NServiceBus.Unicast.Queuing.Installers.EndpointInputQueueCreator
     NServiceBus.Unicast.Queuing.Installers.ForwardReceivedMessagesToQueueCreator
+    NServiceBus.Unicast.Queuing.IWantQueueCreated
+    NServiceBus.Unicast.Queuing.QueueNotFoundException
     NServiceBus.Unicast.Queuing.QueuesCreator
+    NServiceBus.Unicast.Routing.StaticMessageRouter
+    NServiceBus.Unicast.SendOptions
     NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions.EnableMessageDrivenPublisherIfStorageIsFound
+    NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions.ISubscriptionStorage
     NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions.MessageDrivenSubscriptionManager
     NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions.NoopSubscriptionAuthorizer
     NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions.SubcriberSideFiltering.FilteringMutator
     NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions.SubcriberSideFiltering.SubscriptionPredicatesEvaluator
+    NServiceBus.Unicast.Subscriptions.MessageType
+    NServiceBus.Unicast.Subscriptions.SubscriptionEventArgs
     NServiceBus.Unicast.Transport.Config.Bootstrapper
+    NServiceBus.Unicast.Transport.ControlMessage
+    NServiceBus.Unicast.Transport.FailedMessageProcessingEventArgs
+    NServiceBus.Unicast.Transport.FinishedMessageProcessingEventArgs
+    NServiceBus.Unicast.Transport.ITransport
+    NServiceBus.Unicast.Transport.StartedMessageProcessingEventArgs
     NServiceBus.Unicast.Transport.Transactional.Config.AdvancedTransactionalConfig
+    NServiceBus.Unicast.Transport.TransactionSettings
     NServiceBus.Unicast.Transport.TransportConnectionString
+    NServiceBus.Unicast.Transport.TransportMessageAvailableEventArgs
     NServiceBus.Unicast.Transport.TransportMessageExtensions
+    NServiceBus.Unicast.Transport.TransportMessageHandlingFailedException
+    NServiceBus.Unicast.Transport.TransportMessageReceivedEventArgs
+    NServiceBus.Unicast.Transport.TransportReceiver
+    NServiceBus.Unicast.UnicastBus
+    NServiceBus.UnitOfWork.IManageUnitsOfWork
+    NServiceBus.WcfService`2
+    NServiceBus.XmlSerializerConfigurationExtensions
 
 The following members are missing on the public types.
+
+    NServiceBus.AutomaticSubscriptions.Config.AutoSubscribeSettings
+        NServiceBus.AutomaticSubscriptions.Config.AutoSubscribeSettings NServiceBus.AutomaticSubscriptions.Config.AutoSubscribeSettings::AutoSubscribePlainMessages()
+        NServiceBus.AutomaticSubscriptions.Config.AutoSubscribeSettings NServiceBus.AutomaticSubscriptions.Config.AutoSubscribeSettings::CustomAutoSubscriptionStrategy()
+        NServiceBus.AutomaticSubscriptions.Config.AutoSubscribeSettings NServiceBus.AutomaticSubscriptions.Config.AutoSubscribeSettings::DoNotAutoSubscribeSagas()
+        NServiceBus.AutomaticSubscriptions.Config.AutoSubscribeSettings NServiceBus.AutomaticSubscriptions.Config.AutoSubscribeSettings::DoNotRequireExplicitRouting()
+
+    NServiceBus.AutoSubscribeSettingsExtensions
+        NServiceBus.Features.FeatureSettings NServiceBus.AutoSubscribeSettingsExtensions::AutoSubscribe(NServiceBus.Features.FeatureSettings,System.Action`1<NServiceBus.AutomaticSubscriptions.Config.AutoSubscribeSettings>)
+
+    NServiceBus.BinarySerializerConfigurationExtensions
+        NServiceBus.Settings.SerializationSettings NServiceBus.BinarySerializerConfigurationExtensions::Binary(NServiceBus.Settings.SerializationSettings)
+
+    NServiceBus.Config.IWantToRunWhenConfigurationIsComplete
+        System.Void NServiceBus.Config.IWantToRunWhenConfigurationIsComplete::Run()
 
     NServiceBus.Config.SatelliteConfigurer
         System.Void NServiceBus.Config.SatelliteConfigurer::Init()
 
+    NServiceBus.Configure
+        System.Func`1<System.String> NServiceBus.Configure::DefineEndpointVersionRetriever
+        NServiceBus.Config.ConfigurationSource.IConfigurationSource NServiceBus.Configure::get_ConfigurationSource()
+        NServiceBus.Settings.Endpoint NServiceBus.Configure::get_Endpoint()
+        NServiceBus.Settings.TransportSettings NServiceBus.Configure::get_Transports()
+        System.Boolean NServiceBus.Configure::BuilderIsConfigured()
+        System.Boolean NServiceBus.Configure::get_SendOnlyMode()
+        System.Boolean NServiceBus.Configure::WithHasBeenCalled()
+        System.Void NServiceBus.Configure::add_ConfigurationComplete(System.Action)
+        System.Void NServiceBus.Configure::Initialize()
+        System.Void NServiceBus.Configure::remove_ConfigurationComplete(System.Action)
+        System.Void NServiceBus.Configure::ScaleOut(System.Action`1<NServiceBus.Settings.ScaleOutSettings>)
+        System.Void NServiceBus.Configure::set_Builder(NServiceBus.ObjectBuilder.IBuilder)
+        System.Void NServiceBus.Configure::set_ConfigurationSource(NServiceBus.Config.ConfigurationSource.IConfigurationSource)
+        System.Void NServiceBus.Configure::set_Configurer(NServiceBus.ObjectBuilder.IConfigureComponents)
+
+    NServiceBus.ConfigureCriticalErrorAction
+        System.Void NServiceBus.ConfigureCriticalErrorAction::RaiseCriticalError(NServiceBus.Configure,System.String,System.Exception)
+
     NServiceBus.Faults.Forwarder.Config.FaultsQueueCreator
         System.Boolean NServiceBus.Faults.Forwarder.Config.FaultsQueueCreator::get_IsDisabled()
 
+    NServiceBus.Features.Feature
+        NServiceBus.Features.FeatureCategory NServiceBus.Features.Feature::get_Category()
+        System.Boolean NServiceBus.Features.Feature::get_Enabled()
+        System.Boolean NServiceBus.Features.Feature::IsEnabled()
+        System.Boolean NServiceBus.Features.Feature::IsEnabled(System.Type)
+        System.Boolean NServiceBus.Features.Feature::op_Equality(NServiceBus.Features.Feature,NServiceBus.Features.Feature)
+        System.Boolean NServiceBus.Features.Feature::op_Inequality(NServiceBus.Features.Feature,NServiceBus.Features.Feature)
+        System.Boolean NServiceBus.Features.Feature::ShouldBeEnabled()
+        System.Collections.Generic.IEnumerable`1<NServiceBus.Features.Feature> NServiceBus.Features.Feature::ByCategory(NServiceBus.Features.FeatureCategory)
+        System.Void NServiceBus.Features.Feature::Disable()
+        System.Void NServiceBus.Features.Feature::Disable(System.Type)
+        System.Void NServiceBus.Features.Feature::DisableByDefault(System.Type)
+        System.Void NServiceBus.Features.Feature::Enable()
+        System.Void NServiceBus.Features.Feature::Enable(System.Type)
+        System.Void NServiceBus.Features.Feature::EnableByDefault()
+        System.Void NServiceBus.Features.Feature::EnableByDefault(System.Type)
+        System.Void NServiceBus.Features.Feature::Initialize()
+
+    NServiceBus.Features.Sagas
+        System.Collections.Generic.IDictionary`2<System.Type,System.Collections.Generic.IDictionary`2<System.Type,System.Collections.Generic.KeyValuePair`2<System.Reflection.PropertyInfo,System.Reflection.PropertyInfo>>> NServiceBus.Features.Sagas::SagaEntityToMessageToPropertyLookup
+        System.Boolean NServiceBus.Features.Sagas::FindAndConfigureSagasIn(System.Collections.Generic.IEnumerable`1<System.Type>)
+        System.Boolean NServiceBus.Features.Sagas::IsSagaType(System.Type)
+        System.Boolean NServiceBus.Features.Sagas::ShouldMessageStartSaga(System.Type,System.Type)
+        System.Collections.Generic.IEnumerable`1<System.Type> NServiceBus.Features.Sagas::GetFindersForMessageAndEntity(System.Type,System.Type)
+        System.Collections.Generic.IEnumerable`1<System.Type> NServiceBus.Features.Sagas::GetSagaDataTypes()
+        System.Reflection.MethodInfo NServiceBus.Features.Sagas::GetFindByMethodForFinder(NServiceBus.Saga.IFinder,System.Object)
+        System.Type NServiceBus.Features.Sagas::GetSagaEntityTypeForSagaType(System.Type)
+        System.Type NServiceBus.Features.Sagas::GetSagaTypeForSagaEntityType(System.Type)
+        System.Void NServiceBus.Features.Sagas::ConfigureFinder(System.Type)
+        System.Void NServiceBus.Features.Sagas::ConfigureSaga(System.Type)
+
+    NServiceBus.Features.TimeoutManager
+        NServiceBus.Address NServiceBus.Features.TimeoutManager::get_DispatcherAddress()
+        NServiceBus.Address NServiceBus.Features.TimeoutManager::get_InputAddress()
+
+    NServiceBus.Hosting.HostInformation
+        NServiceBus.Hosting.HostInformation NServiceBus.Hosting.HostInformation::CreateDefault()
+        System.String NServiceBus.Hosting.HostInformation::get_DisplayInstanceIdentifier()
+
+    NServiceBus.Hosting.Profiles.IHandleProfile
+        System.Void NServiceBus.Hosting.Profiles.IHandleProfile::ProfileActivated()
+
+    NServiceBus.Hosting.Profiles.ProfileActivator
+        System.Void NServiceBus.Hosting.Profiles.ProfileActivator::Run()
+
+    NServiceBus.Hosting.Profiles.ProfileManager
+        System.Void NServiceBus.Hosting.Profiles.ProfileManager::ActivateProfileHandlers()
+
+    NServiceBus.Hosting.Roles.IConfigureRole
+        NServiceBus.Unicast.Config.ConfigUnicastBus NServiceBus.Hosting.Roles.IConfigureRole::ConfigureRole(NServiceBus.IConfigureThisEndpoint)
+
+    NServiceBus.Hosting.Roles.RoleManager
+        System.Void NServiceBus.Hosting.Roles.RoleManager::ConfigureBusForEndpoint(NServiceBus.IConfigureThisEndpoint)
+
+    NServiceBus.Hosting.Wcf.WcfManager
+        System.Void NServiceBus.Hosting.Wcf.WcfManager::Startup()
+
+    NServiceBus.Installation.INeedToInstallSomething
+        System.Void NServiceBus.Installation.INeedToInstallSomething::Install(System.String)
+
     NServiceBus.Installation.PerformanceMonitorUsersInstaller
         System.Void NServiceBus.Installation.PerformanceMonitorUsersInstaller::Install(System.String)
+
+    NServiceBus.IWantToRunBeforeConfigurationIsFinalized
+        System.Void NServiceBus.IWantToRunBeforeConfigurationIsFinalized::Run()
+
+    NServiceBus.JsonSerializerConfigurationExtensions
+        NServiceBus.Settings.SerializationSettings NServiceBus.JsonSerializerConfigurationExtensions::Bson(NServiceBus.Settings.SerializationSettings)
+        NServiceBus.Settings.SerializationSettings NServiceBus.JsonSerializerConfigurationExtensions::Json(NServiceBus.Settings.SerializationSettings)
+
+    NServiceBus.MessageInterfaces.MessageMapper.Reflection.MessageMapper
+        System.String NServiceBus.MessageInterfaces.MessageMapper.Reflection.MessageMapper::GetNewTypeName(System.Type)
+        System.Type NServiceBus.MessageInterfaces.MessageMapper.Reflection.MessageMapper::CreateTypeFrom(System.Type,System.Reflection.Emit.ModuleBuilder)
+        System.Void NServiceBus.MessageInterfaces.MessageMapper.Reflection.MessageMapper::InitType(System.Type,System.Reflection.Emit.ModuleBuilder)
+
+    NServiceBus.MessageMutator.IMutateOutgoingTransportMessages
+        System.Void NServiceBus.MessageMutator.IMutateOutgoingTransportMessages::MutateOutgoing(System.Object[],NServiceBus.TransportMessage)
+
+    NServiceBus.MonitoringConfig
+        System.Boolean NServiceBus.MonitoringConfig::PerformanceCountersEnabled(NServiceBus.Configure)
+        System.TimeSpan NServiceBus.MonitoringConfig::EndpointSLA(NServiceBus.Configure)
 
     NServiceBus.ObjectBuilder.Common.CommonObjectBuilder
         NServiceBus.ObjectBuilder.IComponentConfig NServiceBus.ObjectBuilder.Common.CommonObjectBuilder::ConfigureComponent(System.Type,NServiceBus.ObjectBuilder.ComponentCallModelEnum)
         NServiceBus.ObjectBuilder.IComponentConfig`1<T> NServiceBus.ObjectBuilder.Common.CommonObjectBuilder::ConfigureComponent(NServiceBus.ObjectBuilder.ComponentCallModelEnum)
         System.Void NServiceBus.ObjectBuilder.Common.CommonObjectBuilder::DisposeManaged()
+
+    NServiceBus.ObjectBuilder.IConfigureComponents
+        System.Boolean NServiceBus.ObjectBuilder.IConfigureComponents::HasComponent(System.Type)
+
+    NServiceBus.Pipeline.BehaviorContext
+        System.Boolean NServiceBus.Pipeline.BehaviorContext::get_ChainAborted()
+        System.Void NServiceBus.Pipeline.BehaviorContext::AbortChain()
+
+    NServiceBus.Pipeline.IBehavior`1
+        System.Void NServiceBus.Pipeline.IBehavior`1::Invoke(T,System.Action)
+
+    NServiceBus.Pipeline.PipelineExecutor
+        NServiceBus.Pipeline.Contexts.HandlerInvocationContext NServiceBus.Pipeline.PipelineExecutor::InvokeHandlerPipeline(NServiceBus.Unicast.Behaviors.MessageHandler)
+        NServiceBus.Pipeline.Contexts.SendLogicalMessageContext NServiceBus.Pipeline.PipelineExecutor::InvokeSendPipeline(NServiceBus.Unicast.SendOptions,NServiceBus.Unicast.Messages.LogicalMessage)
+        NServiceBus.Pipeline.Contexts.SendLogicalMessagesContext NServiceBus.Pipeline.PipelineExecutor::InvokeSendPipeline(NServiceBus.Unicast.SendOptions,System.Collections.Generic.IEnumerable`1<NServiceBus.Unicast.Messages.LogicalMessage>)
+        System.Void NServiceBus.Pipeline.PipelineExecutor::CompletePhysicalMessagePipelineContext()
+        System.Void NServiceBus.Pipeline.PipelineExecutor::DisposeManaged()
+        System.Void NServiceBus.Pipeline.PipelineExecutor::InvokeLogicalMessagePipeline(NServiceBus.Unicast.Messages.LogicalMessage)
+        System.Void NServiceBus.Pipeline.PipelineExecutor::InvokeReceivePhysicalMessagePipeline()
+        System.Void NServiceBus.Pipeline.PipelineExecutor::InvokeSendPipeline(NServiceBus.Unicast.SendOptions,NServiceBus.TransportMessage)
+        System.Void NServiceBus.Pipeline.PipelineExecutor::PreparePhysicalMessagePipelineContext(NServiceBus.TransportMessage,System.Boolean)
+
+    NServiceBus.Sagas.ActiveSagaInstance
+        NServiceBus.Saga.ISaga NServiceBus.Sagas.ActiveSagaInstance::get_Instance()
+        System.Void NServiceBus.Sagas.ActiveSagaInstance::AttachExistingEntity(NServiceBus.Saga.IContainSagaData)
+        System.Void NServiceBus.Sagas.ActiveSagaInstance::MarkAsNotFound()
 
     NServiceBus.Sagas.Finders.PropertySagaFinder`2
         System.Reflection.PropertyInfo NServiceBus.Sagas.Finders.PropertySagaFinder`2::get_MessageProperty()
@@ -210,12 +518,42 @@ The following members are missing on the public types.
     NServiceBus.Scheduling.DefaultScheduler
         System.Void NServiceBus.Scheduling.DefaultScheduler::Schedule(NServiceBus.Scheduling.ScheduledTask)
 
+    NServiceBus.Serializers.Binary.BinaryMessageSerializer
+        System.Void NServiceBus.Serializers.Binary.BinaryMessageSerializer::Serialize(System.Object[],System.IO.Stream)
+
+    NServiceBus.Serializers.Json.JsonMessageSerializer
+        T NServiceBus.Serializers.Json.JsonMessageSerializer::DeserializeObject(System.String)
+
+    NServiceBus.Serializers.Json.JsonMessageSerializerBase
+        System.Void NServiceBus.Serializers.Json.JsonMessageSerializerBase::Serialize(System.Object[],System.IO.Stream)
+
     NServiceBus.Serializers.XML.Config.MessageTypesInitializer
         System.Void NServiceBus.Serializers.XML.Config.MessageTypesInitializer::Run()
+
+    NServiceBus.Serializers.XML.XmlMessageSerializer
+        System.Boolean NServiceBus.Serializers.XML.XmlMessageSerializer::get_SkipWrappingElementForSingleMessages()
+        System.Void NServiceBus.Serializers.XML.XmlMessageSerializer::Serialize(System.Object[],System.IO.Stream)
+        System.Void NServiceBus.Serializers.XML.XmlMessageSerializer::set_SkipWrappingElementForSingleMessages(System.Boolean)
+
+    NServiceBus.Settings.ScaleOutSettings
+        NServiceBus.Settings.ScaleOutSettings NServiceBus.Settings.ScaleOutSettings::UseSingleBrokerQueue()
+        NServiceBus.Settings.ScaleOutSettings NServiceBus.Settings.ScaleOutSettings::UseUniqueBrokerQueuePerMachine()
+
+    NServiceBus.Settings.SettingsHolder
+        System.Void NServiceBus.Settings.SettingsHolder::ApplyTo()
+        System.Void NServiceBus.Settings.SettingsHolder::PreventChanges()
+        System.Void NServiceBus.Settings.SettingsHolder::Reset()
 
     NServiceBus.Timeout.Core.DefaultTimeoutManager
         System.Void NServiceBus.Timeout.Core.DefaultTimeoutManager::add_TimeoutPushed(System.EventHandler`1<NServiceBus.Timeout.Core.TimeoutData>)
         System.Void NServiceBus.Timeout.Core.DefaultTimeoutManager::remove_TimeoutPushed(System.EventHandler`1<NServiceBus.Timeout.Core.TimeoutData>)
+
+    NServiceBus.Timeout.Core.IPersistTimeouts
+        System.Collections.Generic.List`1<System.Tuple`2<System.String,System.DateTime>> NServiceBus.Timeout.Core.IPersistTimeouts::GetNextChunk(System.DateTime,System.DateTime&)
+
+    NServiceBus.Timeout.Core.TimeoutData
+        System.String NServiceBus.Timeout.Core.TimeoutData::get_CorrelationId()
+        System.Void NServiceBus.Timeout.Core.TimeoutData::set_CorrelationId(System.String)
 
     NServiceBus.Timeout.Hosting.Windows.TimeoutMessageProcessor
         NServiceBus.Timeout.Core.IManageTimeouts NServiceBus.Timeout.Hosting.Windows.TimeoutMessageProcessor::get_TimeoutManager()
@@ -228,8 +566,50 @@ The following members are missing on the public types.
     NServiceBus.Timeout.TimeoutManagerDeferrer
         System.Void NServiceBus.Timeout.TimeoutManagerDeferrer::Defer(NServiceBus.TransportMessage,System.DateTime,NServiceBus.Address)
 
+    NServiceBus.TransportMessage
+        System.String NServiceBus.TransportMessage::get_IdForCorrelation()
+        System.Void NServiceBus.TransportMessage::set_ReplyToAddress(NServiceBus.Address)
+
+    NServiceBus.Transports.IDeferMessages
+        System.Void NServiceBus.Transports.IDeferMessages::Defer(NServiceBus.TransportMessage,System.DateTime,NServiceBus.Address)
+
+    NServiceBus.Transports.IPublishMessages
+        System.Boolean NServiceBus.Transports.IPublishMessages::Publish(NServiceBus.TransportMessage,System.Collections.Generic.IEnumerable`1<System.Type>)
+
+    NServiceBus.Transports.ISendMessages
+        System.Void NServiceBus.Transports.ISendMessages::Send(NServiceBus.TransportMessage,NServiceBus.Address)
+
     NServiceBus.Transports.Msmq.MsmqMessageSender
         System.Void NServiceBus.Transports.Msmq.MsmqMessageSender::Send(NServiceBus.TransportMessage,NServiceBus.Address)
+
+    NServiceBus.Transports.Msmq.MsmqUnitOfWork
+        System.Void NServiceBus.Transports.Msmq.MsmqUnitOfWork::ClearTransaction()
+        System.Void NServiceBus.Transports.Msmq.MsmqUnitOfWork::SetTransaction(System.Messaging.MessageQueueTransaction)
+
+    NServiceBus.Unicast.Messages.LogicalMessageFactory
+        NServiceBus.MessageInterfaces.IMessageMapper NServiceBus.Unicast.Messages.LogicalMessageFactory::get_MessageMapper()
+        NServiceBus.Pipeline.PipelineExecutor NServiceBus.Unicast.Messages.LogicalMessageFactory::get_PipelineExecutor()
+        NServiceBus.Unicast.Messages.LogicalMessage NServiceBus.Unicast.Messages.LogicalMessageFactory::Create(System.Object)
+        NServiceBus.Unicast.Messages.LogicalMessage NServiceBus.Unicast.Messages.LogicalMessageFactory::Create(System.Type,System.Object)
+        NServiceBus.Unicast.Messages.LogicalMessage NServiceBus.Unicast.Messages.LogicalMessageFactory::Create(System.Type,System.Object,System.Collections.Generic.Dictionary`2<System.String,System.String>)
+        NServiceBus.Unicast.Messages.MessageMetadataRegistry NServiceBus.Unicast.Messages.LogicalMessageFactory::get_MessageMetadataRegistry()
+        System.Void NServiceBus.Unicast.Messages.LogicalMessageFactory::set_MessageMapper(NServiceBus.MessageInterfaces.IMessageMapper)
+        System.Void NServiceBus.Unicast.Messages.LogicalMessageFactory::set_MessageMetadataRegistry(NServiceBus.Unicast.Messages.MessageMetadataRegistry)
+        System.Void NServiceBus.Unicast.Messages.LogicalMessageFactory::set_PipelineExecutor(NServiceBus.Pipeline.PipelineExecutor)
+
+    NServiceBus.Unicast.Messages.MessageMetadata
+        System.Void NServiceBus.Unicast.Messages.MessageMetadata::set_MessageHierarchy(System.Collections.Generic.IEnumerable`1<System.Type>)
+        System.Void NServiceBus.Unicast.Messages.MessageMetadata::set_MessageType(System.Type)
+        System.Void NServiceBus.Unicast.Messages.MessageMetadata::set_Recoverable(System.Boolean)
+        System.Void NServiceBus.Unicast.Messages.MessageMetadata::set_TimeToBeReceived(System.TimeSpan)
+
+    NServiceBus.Unicast.Messages.MessageMetadataRegistry
+        NServiceBus.Unicast.Messages.MessageMetadata NServiceBus.Unicast.Messages.MessageMetadataRegistry::GetMessageDefinition(System.Type)
+        System.Boolean NServiceBus.Unicast.Messages.MessageMetadataRegistry::get_DefaultToNonPersistentMessages()
+        System.Boolean NServiceBus.Unicast.Messages.MessageMetadataRegistry::HasDefinitionFor(System.Type)
+        System.Collections.Generic.IEnumerable`1<NServiceBus.Unicast.Messages.MessageMetadata> NServiceBus.Unicast.Messages.MessageMetadataRegistry::GetAllMessages()
+        System.Void NServiceBus.Unicast.Messages.MessageMetadataRegistry::RegisterMessageType(System.Type)
+        System.Void NServiceBus.Unicast.Messages.MessageMetadataRegistry::set_DefaultToNonPersistentMessages(System.Boolean)
 
     NServiceBus.Unicast.MessagingBestPractices
         System.Void NServiceBus.Unicast.MessagingBestPractices::AssertIsValidForPubSub(System.Type)
@@ -266,12 +646,119 @@ The following members are missing on the public types.
     NServiceBus.Unicast.Queuing.Installers.ForwardReceivedMessagesToQueueCreator
         System.Boolean NServiceBus.Unicast.Queuing.Installers.ForwardReceivedMessagesToQueueCreator::get_IsDisabled()
 
+    NServiceBus.Unicast.Queuing.IWantQueueCreated
+        System.Boolean NServiceBus.Unicast.Queuing.IWantQueueCreated::get_IsDisabled()
+
     NServiceBus.Unicast.Queuing.QueuesCreator
         System.Void NServiceBus.Unicast.Queuing.QueuesCreator::Init()
         System.Void NServiceBus.Unicast.Queuing.QueuesCreator::Install(System.String)
+
+    NServiceBus.Unicast.SendOptions
+        NServiceBus.Address NServiceBus.Unicast.SendOptions::get_ReplyToAddress()
+        NServiceBus.MessageIntentEnum NServiceBus.Unicast.SendOptions::get_Intent()
+        NServiceBus.Unicast.SendOptions NServiceBus.Unicast.SendOptions::ReplyTo(NServiceBus.Address)
+        System.Boolean NServiceBus.Unicast.SendOptions::get_EnforceMessagingBestPractices()
+        System.Nullable`1<System.TimeSpan> NServiceBus.Unicast.SendOptions::get_DelayDeliveryWith()
+        System.Void NServiceBus.Unicast.SendOptions::set_DelayDeliveryWith(System.Nullable`1<System.TimeSpan>)
+        System.Void NServiceBus.Unicast.SendOptions::set_EnforceMessagingBestPractices(System.Boolean)
+        System.Void NServiceBus.Unicast.SendOptions::set_Intent(NServiceBus.MessageIntentEnum)
+        System.Void NServiceBus.Unicast.SendOptions::set_ReplyToAddress(NServiceBus.Address)
+
+    NServiceBus.Unicast.Transport.ControlMessage
+        NServiceBus.TransportMessage NServiceBus.Unicast.Transport.ControlMessage::Create(NServiceBus.Address)
+
+    NServiceBus.Unicast.Transport.ITransport
+        System.Int32 NServiceBus.Unicast.Transport.ITransport::get_MaxThroughputPerSecond()
+        System.Int32 NServiceBus.Unicast.Transport.ITransport::get_NumberOfWorkerThreads()
+        System.Void NServiceBus.Unicast.Transport.ITransport::AbortHandlingCurrentMessage()
+        System.Void NServiceBus.Unicast.Transport.ITransport::add_FailedMessageProcessing(System.EventHandler`1<NServiceBus.Unicast.Transport.FailedMessageProcessingEventArgs>)
+        System.Void NServiceBus.Unicast.Transport.ITransport::remove_FailedMessageProcessing(System.EventHandler`1<NServiceBus.Unicast.Transport.FailedMessageProcessingEventArgs>)
+        System.Void NServiceBus.Unicast.Transport.ITransport::set_MaxThroughputPerSecond(System.Int32)
+        System.Void NServiceBus.Unicast.Transport.ITransport::Stop()
+
+    NServiceBus.Unicast.Transport.TransactionSettings
+        NServiceBus.Unicast.Transport.TransactionSettings NServiceBus.Unicast.Transport.TransactionSettings::get_Default()
+        System.Boolean NServiceBus.Unicast.Transport.TransactionSettings::get_DontUseDistributedTransactions()
+        System.Void NServiceBus.Unicast.Transport.TransactionSettings::set_DontUseDistributedTransactions(System.Boolean)
 
     NServiceBus.Unicast.Transport.TransportConnectionString
         System.String NServiceBus.Unicast.Transport.TransportConnectionString::DefaultConnectionStringName
         System.String NServiceBus.Unicast.Transport.TransportConnectionString::GetConnectionStringOrNull(System.String)
         System.Void NServiceBus.Unicast.Transport.TransportConnectionString::Override(System.Func`1<System.String>)
+
+    NServiceBus.Unicast.Transport.TransportReceiver
+        System.Int32 NServiceBus.Unicast.Transport.TransportReceiver::get_MaxThroughputPerSecond()
+        System.Int32 NServiceBus.Unicast.Transport.TransportReceiver::get_NumberOfWorkerThreads()
+        System.Void NServiceBus.Unicast.Transport.TransportReceiver::ChangeNumberOfWorkerThreads(System.Int32)
+        System.Void NServiceBus.Unicast.Transport.TransportReceiver::DisposeManaged()
+        System.Void NServiceBus.Unicast.Transport.TransportReceiver::set_MaximumConcurrencyLevel(System.Int32)
+        System.Void NServiceBus.Unicast.Transport.TransportReceiver::set_MaxThroughputPerSecond(System.Int32)
+        System.Void NServiceBus.Unicast.Transport.TransportReceiver::set_Receiver(NServiceBus.Transports.IDequeueMessages)
+        System.Void NServiceBus.Unicast.Transport.TransportReceiver::set_TransactionSettings(NServiceBus.Unicast.Transport.TransactionSettings)
+        System.Void NServiceBus.Unicast.Transport.TransportReceiver::Start(System.String)
+
+    NServiceBus.Unicast.UnicastBus
+        NServiceBus.Address NServiceBus.Unicast.UnicastBus::get_ForwardReceivedMessagesTo()
+        NServiceBus.Address NServiceBus.Unicast.UnicastBus::get_InputAddress()
+        NServiceBus.Address NServiceBus.Unicast.UnicastBus::get_MasterNodeAddress()
+        NServiceBus.Audit.MessageAuditer NServiceBus.Unicast.UnicastBus::get_MessageAuditer()
+        NServiceBus.IBus NServiceBus.Unicast.UnicastBus::Start()
+        NServiceBus.IBus NServiceBus.Unicast.UnicastBus::Start(System.Action)
+        NServiceBus.ICallback NServiceBus.Unicast.UnicastBus::Defer(System.DateTime,System.Object)
+        NServiceBus.ICallback NServiceBus.Unicast.UnicastBus::Defer(System.DateTime,System.Object[])
+        NServiceBus.ICallback NServiceBus.Unicast.UnicastBus::Defer(System.TimeSpan,System.Object[])
+        NServiceBus.ICallback NServiceBus.Unicast.UnicastBus::Send(NServiceBus.Address,System.Object[])
+        NServiceBus.ICallback NServiceBus.Unicast.UnicastBus::Send(NServiceBus.Address,System.String,System.Object[])
+        NServiceBus.ICallback NServiceBus.Unicast.UnicastBus::Send(System.Object[])
+        NServiceBus.ICallback NServiceBus.Unicast.UnicastBus::Send(System.String,System.Object[])
+        NServiceBus.ICallback NServiceBus.Unicast.UnicastBus::Send(System.String,System.String,System.Object[])
+        NServiceBus.ICallback NServiceBus.Unicast.UnicastBus::SendLocal(System.Object[])
+        NServiceBus.ICallback NServiceBus.Unicast.UnicastBus::SendToSites(System.Collections.Generic.IEnumerable`1<System.String>,System.Object[])
+        NServiceBus.IInMemoryOperations NServiceBus.Unicast.UnicastBus::get_InMemory()
+        NServiceBus.IMessageContext NServiceBus.Unicast.UnicastBus::get_CurrentMessageContext()
+        NServiceBus.Serialization.IMessageSerializer NServiceBus.Unicast.UnicastBus::get_MessageSerializer()
+        NServiceBus.Transports.IDeferMessages NServiceBus.Unicast.UnicastBus::get_MessageDeferrer()
+        NServiceBus.Transports.IPublishMessages NServiceBus.Unicast.UnicastBus::get_MessagePublisher()
+        NServiceBus.Unicast.Messages.MessageMetadataRegistry NServiceBus.Unicast.UnicastBus::get_MessageMetadataRegistry()
+        NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions.SubcriberSideFiltering.SubscriptionPredicatesEvaluator NServiceBus.Unicast.UnicastBus::get_SubscriptionPredicatesEvaluator()
+        System.Boolean NServiceBus.Unicast.UnicastBus::get_DoNotStartTransport()
+        System.Boolean NServiceBus.Unicast.UnicastBus::get_SkipDeserialization()
+        System.Collections.Generic.IDictionary`2<System.String,System.String> NServiceBus.Unicast.UnicastBus::get_OutgoingHeaders()
+        System.Collections.Generic.IDictionary`2<System.Type,System.Type> NServiceBus.Unicast.UnicastBus::get_MessageDispatcherMappings()
+        System.TimeSpan NServiceBus.Unicast.UnicastBus::get_TimeToBeReceivedOnForwardedMessages()
+        System.Void NServiceBus.Unicast.UnicastBus::add_MessageReceived(NServiceBus.Unicast.UnicastBus/MessageReceivedDelegate)
+        System.Void NServiceBus.Unicast.UnicastBus::add_MessagesSent(System.EventHandler`1<NServiceBus.Unicast.MessagesEventArgs>)
+        System.Void NServiceBus.Unicast.UnicastBus::add_NoSubscribersForMessage(System.EventHandler`1<NServiceBus.Unicast.MessageEventArgs>)
+        System.Void NServiceBus.Unicast.UnicastBus::add_Started(System.EventHandler)
+        System.Void NServiceBus.Unicast.UnicastBus::Dispose()
+        System.Void NServiceBus.Unicast.UnicastBus::DisposeManaged()
+        System.Void NServiceBus.Unicast.UnicastBus::DoNotContinueDispatchingCurrentMessageToHandlers()
+        System.Void NServiceBus.Unicast.UnicastBus::Publish(T[])
+        System.Void NServiceBus.Unicast.UnicastBus::Raise(System.Action`1<T>)
+        System.Void NServiceBus.Unicast.UnicastBus::Raise(T)
+        System.Void NServiceBus.Unicast.UnicastBus::remove_MessageReceived(NServiceBus.Unicast.UnicastBus/MessageReceivedDelegate)
+        System.Void NServiceBus.Unicast.UnicastBus::remove_MessagesSent(System.EventHandler`1<NServiceBus.Unicast.MessagesEventArgs>)
+        System.Void NServiceBus.Unicast.UnicastBus::remove_NoSubscribersForMessage(System.EventHandler`1<NServiceBus.Unicast.MessageEventArgs>)
+        System.Void NServiceBus.Unicast.UnicastBus::remove_Started(System.EventHandler)
+        System.Void NServiceBus.Unicast.UnicastBus::Reply(System.Object[])
+        System.Void NServiceBus.Unicast.UnicastBus::set_DisableMessageHandling(System.Boolean)
+        System.Void NServiceBus.Unicast.UnicastBus::set_DoNotStartTransport(System.Boolean)
+        System.Void NServiceBus.Unicast.UnicastBus::set_ForwardReceivedMessagesTo(NServiceBus.Address)
+        System.Void NServiceBus.Unicast.UnicastBus::set_InputAddress(NServiceBus.Address)
+        System.Void NServiceBus.Unicast.UnicastBus::set_MasterNodeAddress(NServiceBus.Address)
+        System.Void NServiceBus.Unicast.UnicastBus::set_MessageAuditer(NServiceBus.Audit.MessageAuditer)
+        System.Void NServiceBus.Unicast.UnicastBus::set_MessageDeferrer(NServiceBus.Transports.IDeferMessages)
+        System.Void NServiceBus.Unicast.UnicastBus::set_MessageDispatcherMappings(System.Collections.Generic.IDictionary`2<System.Type,System.Type>)
+        System.Void NServiceBus.Unicast.UnicastBus::set_MessageMetadataRegistry(NServiceBus.Unicast.Messages.MessageMetadataRegistry)
+        System.Void NServiceBus.Unicast.UnicastBus::set_MessagePublisher(NServiceBus.Transports.IPublishMessages)
+        System.Void NServiceBus.Unicast.UnicastBus::set_MessageSerializer(NServiceBus.Serialization.IMessageSerializer)
+        System.Void NServiceBus.Unicast.UnicastBus::set_SkipDeserialization(System.Boolean)
+        System.Void NServiceBus.Unicast.UnicastBus::set_SubscriptionPredicatesEvaluator(NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions.SubcriberSideFiltering.SubscriptionPredicatesEvaluator)
+        System.Void NServiceBus.Unicast.UnicastBus::set_TimeToBeReceivedOnForwardedMessages(System.TimeSpan)
+        System.Void NServiceBus.Unicast.UnicastBus::Shutdown()
+        System.Void NServiceBus.Unicast.UnicastBus::Subscribe(System.Predicate`1<T>)
+        System.Void NServiceBus.Unicast.UnicastBus::Subscribe(System.Type,System.Predicate`1<System.Object>)
+
+    NServiceBus.XmlSerializerConfigurationExtensions
+        NServiceBus.Settings.SerializationSettings NServiceBus.XmlSerializerConfigurationExtensions::Xml(NServiceBus.Settings.SerializationSettings,System.Action`1<NServiceBus.Serializers.XML.Config.XmlSerializationSettings>)
 

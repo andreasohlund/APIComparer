@@ -33,7 +33,7 @@ namespace APIComparer
 
             var typeDiffs = diffs.Select(t => DiffTypes(t.Item1, t.Item2)).ToList();
 
-            return new Diff()
+            return new Diff
             {
                 LeftAssembly = leftAssembly,
                 RightAssembly = rightAssembly,

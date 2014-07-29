@@ -87,7 +87,7 @@ namespace APIComparer.Outputters
             if (genericParams.Any())
                 result = result + "<" + string.Join(", ", genericParams) + ">";
 
-            return FormatType(method.ReturnType) + " " + method.Name + "(" + string.Join(", ", methodParams) + ")";
+            return result + "(" + string.Join(", ", methodParams) + ")";
         }
 
         private string FormatType(TypeReference type)

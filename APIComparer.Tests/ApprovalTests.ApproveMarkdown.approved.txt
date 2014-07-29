@@ -145,7 +145,6 @@
     NServiceBus.Hosting.Helpers.AssemblyScanner
     NServiceBus.Hosting.Helpers.AssemblyScannerResults
     NServiceBus.Hosting.Helpers.SkippedFile
-    NServiceBus.Hosting.HostInformation
     NServiceBus.Hosting.Profiles.IHandleAnyProfile
     NServiceBus.Hosting.Profiles.IHandleProfile
     NServiceBus.Hosting.Profiles.IHandleProfile<T>
@@ -212,10 +211,6 @@
     NServiceBus.Persistence.Raven.SubscriptionStorage.Subscription
     NServiceBus.Persistence.Raven.TimeoutPersister.RavenTimeoutPersistence
     NServiceBus.Persistence.SetupDefaultPersistence
-    NServiceBus.Pipeline.BehaviorContext
-    NServiceBus.Pipeline.IBehavior<T>
-    NServiceBus.Pipeline.PipelineExecutor
-    NServiceBus.Sagas.ActiveSagaInstance
     NServiceBus.Sagas.ConfigureHowToFindSagaWithMessageDispatcher
     NServiceBus.Sagas.ConfigureTimeoutAsSystemMessages
     NServiceBus.Sagas.Finders.HeaderSagaIdFinder<T>
@@ -286,7 +281,6 @@
     NServiceBus.Transports.Msmq.MsmqQueueCreator
     NServiceBus.Transports.Msmq.MsmqUnitOfWork
     NServiceBus.Transports.TransportDefinition
-    NServiceBus.Unicast.Behaviors.MessageHandler
     NServiceBus.Unicast.BuilderExtensions
     NServiceBus.Unicast.BusAsyncResult
     NServiceBus.Unicast.BusAsyncResultEventArgs
@@ -299,10 +293,7 @@
     NServiceBus.Unicast.MessageContext
     NServiceBus.Unicast.MessageEventArgs
     NServiceBus.Unicast.MessageHandlerRegistry
-    NServiceBus.Unicast.Messages.LogicalMessage
-    NServiceBus.Unicast.Messages.LogicalMessageFactory
     NServiceBus.Unicast.Messages.MessageMetadata
-    NServiceBus.Unicast.Messages.MessageMetadataRegistry
     NServiceBus.Unicast.MessagesEventArgs
     NServiceBus.Unicast.MessagingBestPractices
     NServiceBus.Unicast.Monitoring.CausationMutator
@@ -318,7 +309,6 @@
     NServiceBus.Unicast.Queuing.QueueNotFoundException
     NServiceBus.Unicast.Queuing.QueuesCreator
     NServiceBus.Unicast.Routing.StaticMessageRouter
-    NServiceBus.Unicast.SendOptions
     NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions.EnableMessageDrivenPublisherIfStorageIsFound
     NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions.ISubscriptionStorage
     NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions.MessageDrivenSubscriptionManager
@@ -350,7 +340,7 @@ The following members are missing on the public types.
 
     NServiceBus.AutomaticSubscriptions.Config.AutoSubscribeSettings
         NServiceBus.AutomaticSubscriptions.Config.AutoSubscribeSettings AutoSubscribePlainMessages()
-        NServiceBus.AutomaticSubscriptions.Config.AutoSubscribeSettings CustomAutoSubscriptionStrategy()
+        NServiceBus.AutomaticSubscriptions.Config.AutoSubscribeSettings CustomAutoSubscriptionStrategy<T>()
         NServiceBus.AutomaticSubscriptions.Config.AutoSubscribeSettings DoNotAutoSubscribeSagas()
         NServiceBus.AutomaticSubscriptions.Config.AutoSubscribeSettings DoNotRequireExplicitRouting()
 
@@ -390,17 +380,17 @@ The following members are missing on the public types.
 
     NServiceBus.Features.Feature
         System.Collections.Generic.IEnumerable<NServiceBus.Features.Feature> ByCategory(NServiceBus.Features.FeatureCategory)
-        void Disable()
+        void Disable<T>()
         void Disable(System.Type)
         void DisableByDefault(System.Type)
-        void Enable()
+        void Enable<T>()
         void Enable(System.Type)
         void EnableByDefault(System.Type)
-        void EnableByDefault()
+        void EnableByDefault<T>()
         NServiceBus.Features.FeatureCategory get_Category()
         bool get_Enabled()
         void Initialize()
-        bool IsEnabled()
+        bool IsEnabled<T>()
         bool IsEnabled(System.Type)
         bool op_Equality(NServiceBus.Features.Feature, NServiceBus.Features.Feature)
         bool op_Inequality(NServiceBus.Features.Feature, NServiceBus.Features.Feature)
@@ -422,10 +412,6 @@ The following members are missing on the public types.
     NServiceBus.Features.TimeoutManager
         NServiceBus.Address get_DispatcherAddress()
         NServiceBus.Address get_InputAddress()
-
-    NServiceBus.Hosting.HostInformation
-        NServiceBus.Hosting.HostInformation CreateDefault()
-        string get_DisplayInstanceIdentifier()
 
     NServiceBus.Hosting.Profiles.IHandleProfile
         void ProfileActivated()
@@ -472,34 +458,11 @@ The following members are missing on the public types.
 
     NServiceBus.ObjectBuilder.Common.CommonObjectBuilder
         NServiceBus.ObjectBuilder.IComponentConfig ConfigureComponent(System.Type, NServiceBus.ObjectBuilder.ComponentCallModelEnum)
-        NServiceBus.ObjectBuilder.IComponentConfig<T> ConfigureComponent(NServiceBus.ObjectBuilder.ComponentCallModelEnum)
+        NServiceBus.ObjectBuilder.IComponentConfig<T> ConfigureComponent<T>(NServiceBus.ObjectBuilder.ComponentCallModelEnum)
         void DisposeManaged()
 
     NServiceBus.ObjectBuilder.IConfigureComponents
         bool HasComponent(System.Type)
-
-    NServiceBus.Pipeline.BehaviorContext
-        void AbortChain()
-        bool get_ChainAborted()
-
-    NServiceBus.Pipeline.IBehavior<T>
-        void Invoke(T, System.Action)
-
-    NServiceBus.Pipeline.PipelineExecutor
-        void CompletePhysicalMessagePipelineContext()
-        void DisposeManaged()
-        NServiceBus.Pipeline.Contexts.HandlerInvocationContext InvokeHandlerPipeline(NServiceBus.Unicast.Behaviors.MessageHandler)
-        void InvokeLogicalMessagePipeline(NServiceBus.Unicast.Messages.LogicalMessage)
-        void InvokeReceivePhysicalMessagePipeline()
-        NServiceBus.Pipeline.Contexts.SendLogicalMessagesContext InvokeSendPipeline(NServiceBus.Unicast.SendOptions, System.Collections.Generic.IEnumerable<NServiceBus.Unicast.Messages.LogicalMessage>)
-        NServiceBus.Pipeline.Contexts.SendLogicalMessageContext InvokeSendPipeline(NServiceBus.Unicast.SendOptions, NServiceBus.Unicast.Messages.LogicalMessage)
-        void InvokeSendPipeline(NServiceBus.Unicast.SendOptions, NServiceBus.TransportMessage)
-        void PreparePhysicalMessagePipelineContext(NServiceBus.TransportMessage, bool)
-
-    NServiceBus.Sagas.ActiveSagaInstance
-        void AttachExistingEntity(NServiceBus.Saga.IContainSagaData)
-        NServiceBus.Saga.ISaga get_Instance()
-        void MarkAsNotFound()
 
     NServiceBus.Sagas.Finders.PropertySagaFinder<TSaga, TMessage>
         TSaga FindBy(TMessage)
@@ -522,7 +485,7 @@ The following members are missing on the public types.
         void Serialize(object[], System.IO.Stream)
 
     NServiceBus.Serializers.Json.JsonMessageSerializer
-        T DeserializeObject(string)
+        T DeserializeObject<T>(string)
 
     NServiceBus.Serializers.Json.JsonMessageSerializerBase
         void Serialize(object[], System.IO.Stream)
@@ -540,7 +503,7 @@ The following members are missing on the public types.
         NServiceBus.Settings.ScaleOutSettings UseUniqueBrokerQueuePerMachine()
 
     NServiceBus.Settings.SettingsHolder
-        void ApplyTo()
+        void ApplyTo<T>()
         void PreventChanges()
         void Reset()
 
@@ -586,30 +549,11 @@ The following members are missing on the public types.
         void ClearTransaction()
         void SetTransaction(System.Messaging.MessageQueueTransaction)
 
-    NServiceBus.Unicast.Messages.LogicalMessageFactory
-        NServiceBus.Unicast.Messages.LogicalMessage Create(object)
-        NServiceBus.Unicast.Messages.LogicalMessage Create(System.Type, object)
-        NServiceBus.Unicast.Messages.LogicalMessage Create(System.Type, object, System.Collections.Generic.Dictionary<string, string>)
-        NServiceBus.MessageInterfaces.IMessageMapper get_MessageMapper()
-        NServiceBus.Unicast.Messages.MessageMetadataRegistry get_MessageMetadataRegistry()
-        NServiceBus.Pipeline.PipelineExecutor get_PipelineExecutor()
-        void set_MessageMapper(NServiceBus.MessageInterfaces.IMessageMapper)
-        void set_MessageMetadataRegistry(NServiceBus.Unicast.Messages.MessageMetadataRegistry)
-        void set_PipelineExecutor(NServiceBus.Pipeline.PipelineExecutor)
-
     NServiceBus.Unicast.Messages.MessageMetadata
         void set_MessageHierarchy(System.Collections.Generic.IEnumerable<System.Type>)
         void set_MessageType(System.Type)
         void set_Recoverable(bool)
         void set_TimeToBeReceived(System.TimeSpan)
-
-    NServiceBus.Unicast.Messages.MessageMetadataRegistry
-        bool get_DefaultToNonPersistentMessages()
-        System.Collections.Generic.IEnumerable<NServiceBus.Unicast.Messages.MessageMetadata> GetAllMessages()
-        NServiceBus.Unicast.Messages.MessageMetadata GetMessageDefinition(System.Type)
-        bool HasDefinitionFor(System.Type)
-        void RegisterMessageType(System.Type)
-        void set_DefaultToNonPersistentMessages(bool)
 
     NServiceBus.Unicast.MessagingBestPractices
         void AssertIsValidForPubSub(System.Type)
@@ -652,17 +596,6 @@ The following members are missing on the public types.
     NServiceBus.Unicast.Queuing.QueuesCreator
         void Init()
         void Install(string)
-
-    NServiceBus.Unicast.SendOptions
-        System.Nullable<System.TimeSpan> get_DelayDeliveryWith()
-        bool get_EnforceMessagingBestPractices()
-        NServiceBus.MessageIntentEnum get_Intent()
-        NServiceBus.Address get_ReplyToAddress()
-        NServiceBus.Unicast.SendOptions ReplyTo(NServiceBus.Address)
-        void set_DelayDeliveryWith(System.Nullable<System.TimeSpan>)
-        void set_EnforceMessagingBestPractices(bool)
-        void set_Intent(NServiceBus.MessageIntentEnum)
-        void set_ReplyToAddress(NServiceBus.Address)
 
     NServiceBus.Unicast.Transport.ControlMessage
         NServiceBus.TransportMessage Create(NServiceBus.Address)
@@ -724,9 +657,9 @@ The following members are missing on the public types.
         bool get_SkipDeserialization()
         NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions.SubcriberSideFiltering.SubscriptionPredicatesEvaluator get_SubscriptionPredicatesEvaluator()
         System.TimeSpan get_TimeToBeReceivedOnForwardedMessages()
-        void Publish(T[])
-        void Raise(System.Action<T>)
-        void Raise(T)
+        void Publish<T>(T[])
+        void Raise<T>(System.Action<T>)
+        void Raise<T>(T)
         void remove_MessageReceived(MessageReceivedDelegate)
         void remove_MessagesSent(System.EventHandler<NServiceBus.Unicast.MessagesEventArgs>)
         void remove_NoSubscribersForMessage(System.EventHandler<NServiceBus.Unicast.MessageEventArgs>)
@@ -756,7 +689,7 @@ The following members are missing on the public types.
         void Shutdown()
         NServiceBus.IBus Start()
         NServiceBus.IBus Start(System.Action)
-        void Subscribe(System.Predicate<T>)
+        void Subscribe<T>(System.Predicate<T>)
         void Subscribe(System.Type, System.Predicate<object>)
 
     NServiceBus.XmlSerializerConfigurationExtensions

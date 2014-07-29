@@ -7,7 +7,12 @@ namespace APIComparer
     {
         public override bool FilterLeftType(TypeDefinition type)
         {
-            return !IsAnonymousType(type) && type.IsPublic && !type.HasObsoleteAttribute();
+            return
+                !IsAnonymousType(type) &&
+
+                type.IsPublic &&
+                !type.EditorBrowsableStateNever() &&
+                !type.HasObsoleteAttribute();
         }
 
         public override bool FilterRightType(TypeDefinition type)
@@ -19,34 +24,55 @@ namespace APIComparer
         {
             return
                 !IsAnonymousType(diff.LeftType) &&
+
                 diff.LeftType.IsPublic &&
+                !diff.LeftType.EditorBrowsableStateNever() &&
+
                 (!diff.RightType.IsPublic || !diff.RightType.HasObsoleteAttribute()) &&
                 (diff.RightType.IsPublic || !diff.LeftType.HasObsoleteAttribute());
         }
 
         public override bool FilterLeftField(FieldDefinition field)
         {
-            return field.IsPublic && !field.HasObsoleteAttribute();
+            return
+                field.IsPublic &&
+                !field.EditorBrowsableStateNever() &&
+                !field.HasObsoleteAttribute();
         }
 
         public override bool FilterMatchedField(FieldDefinition left, FieldDefinition right)
         {
-            return left.IsPublic && !left.HasObsoleteAttribute() && !right.IsPublic;
+            return
+                left.IsPublic &&
+                !left.EditorBrowsableStateNever() &&
+                !left.HasObsoleteAttribute() &&
+                !right.IsPublic;
         }
 
         public override bool FilterLeftProperty(PropertyDefinition property)
         {
-            return property.IsPublic() && !property.HasObsoleteAttribute();
+            return
+                property.IsPublic() &&
+                !property.EditorBrowsableStateNever() &&
+                !property.HasObsoleteAttribute();
         }
 
         public override bool FilterLeftMethod(MethodDefinition method)
         {
-            return method.IsPublic && !method.HasObsoleteAttribute() && FilterMethods(method);
+            return
+                method.IsPublic &&
+                !method.EditorBrowsableStateNever() &&
+                !method.HasObsoleteAttribute() &&
+                FilterMethods(method);
         }
 
         public override bool FilterMatchedMethod(MethodDefinition left, MethodDefinition right)
         {
-            return left.IsPublic && !left.HasObsoleteAttribute() && !right.IsPublic && FilterMethods(left);
+            return
+                left.IsPublic &&
+                !left.EditorBrowsableStateNever() &&
+                !left.HasObsoleteAttribute() &&
+                !right.IsPublic && FilterMethods(left);
         }
 
         private bool FilterMethods(MethodDefinition method)

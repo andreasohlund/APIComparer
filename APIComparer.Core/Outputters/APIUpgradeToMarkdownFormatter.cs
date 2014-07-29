@@ -79,15 +79,24 @@ namespace APIComparer.Outputters
 
         private string FormatMethod(MethodDefinition method)
         {
+            var genericParams = method.GenericParameters.Select(FormatType);
             var methodParams = method.Parameters.Select(p => FormatType(p.ParameterType));
+
+            var result = FormatType(method.ReturnType) + " " + method.Name;
+
+            if (genericParams.Any())
+                result = result + "<" + string.Join(", ", genericParams) + ">";
 
             return FormatType(method.ReturnType) + " " + method.Name + "(" + string.Join(", ", methodParams) + ")";
         }
 
         private string FormatType(TypeReference type)
         {
-            var name = type.Namespace + "." + type.Name;
+            var name = type.Name;
             var genericParams = Enumerable.Empty<string>();
+
+            if (!string.IsNullOrEmpty(type.Namespace))
+                name = type.Namespace + "." + name;
 
             if (type.IsArray)
                 name = name.Substring(0, name.Length - 2);

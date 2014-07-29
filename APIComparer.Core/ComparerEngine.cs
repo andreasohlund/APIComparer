@@ -17,8 +17,10 @@ namespace APIComparer
 
         public Diff CreateDiff(string leftAssembly, string rightAssembly)
         {
-            var l = AssemblyDefinition.ReadAssembly(leftAssembly);
-            var r = AssemblyDefinition.ReadAssembly(rightAssembly);
+            var readerParams = new ReaderParameters { ReadSymbols = true };
+
+            var l = AssemblyDefinition.ReadAssembly(leftAssembly, readerParams);
+            var r = AssemblyDefinition.ReadAssembly(rightAssembly, readerParams);
 
             return Diff(l, r);
         }

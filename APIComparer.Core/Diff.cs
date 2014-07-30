@@ -12,5 +12,7 @@ namespace APIComparer
         public IList<TypeDefinition> RightOrphanTypes { get; set; }
 
         public IList<TypeDiff> MatchingTypeDiffs { get; set; }
+
+        public IList<TypeDiff> MemberTypeDiffs { get; set; }
     }
 }

@@ -22,14 +22,26 @@ namespace APIComparer
 
         public override bool FilterMatchedType(TypeDiff diff)
         {
-            return
-                !IsAnonymousType(diff.LeftType) &&
+            return !(
+                IsAnonymousType(diff.LeftType) ||
 
+                !diff.LeftType.IsPublic ||
+                diff.LeftType.EditorBrowsableStateNever() ||
+
+                diff.RightType.IsPublic ||
+
+                diff.LeftType.HasObsoleteAttribute()
+
+                );
+        }
+
+        public override bool FilterMemberTypeDiff(TypeDiff diff)
+        {
+            return !IsAnonymousType(diff.LeftType) &&
                 diff.LeftType.IsPublic &&
                 !diff.LeftType.EditorBrowsableStateNever() &&
-
-                (!diff.RightType.IsPublic || !diff.RightType.HasObsoleteAttribute()) &&
-                (diff.RightType.IsPublic || !diff.LeftType.HasObsoleteAttribute());
+                diff.RightType.IsPublic &&
+                !diff.RightType.HasObsoleteAttribute();
         }
 
         public override bool FilterLeftField(FieldDefinition field)
@@ -38,6 +50,11 @@ namespace APIComparer
                 field.IsPublic &&
                 !field.EditorBrowsableStateNever() &&
                 !field.HasObsoleteAttribute();
+        }
+
+        public override bool FilterRightField(FieldDefinition field)
+        {
+            return false;
         }
 
         public override bool FilterMatchedField(FieldDefinition left, FieldDefinition right)
@@ -57,6 +74,18 @@ namespace APIComparer
                 !property.HasObsoleteAttribute();
         }
 
+        public override bool FilterRightProperty(PropertyDefinition property)
+        {
+            return false;
+        }
+
+        public override bool FilterMatchedProperty(PropertyDefinition left, PropertyDefinition right)
+        {
+            return
+                (left.GetMethod != null && right.GetMethod != null && FilterMatchedMethod(left.GetMethod, right.GetMethod)) &&
+                (left.SetMethod != null && right.SetMethod != null && FilterMatchedMethod(left.SetMethod, right.SetMethod));
+        }
+
         public override bool FilterLeftMethod(MethodDefinition method)
         {
             return
@@ -66,19 +95,26 @@ namespace APIComparer
                 FilterMethods(method);
         }
 
+        public override bool FilterRightMethod(MethodDefinition method)
+        {
+            return false;
+        }
+
         public override bool FilterMatchedMethod(MethodDefinition left, MethodDefinition right)
         {
             return
                 left.IsPublic &&
                 !left.EditorBrowsableStateNever() &&
                 !left.HasObsoleteAttribute() &&
-                !right.IsPublic && FilterMethods(left);
+                !right.IsPublic &&
+                FilterMethods(left);
         }
 
         private bool FilterMethods(MethodDefinition method)
         {
-            return !method.IsConstructor // Not constructors
-                && (!method.IsVirtual || !method.IsReuseSlot); // Not public overrides
+            return !method.IsConstructor // not constructors
+                && (!method.IsVirtual || !method.IsReuseSlot) // not public overrides
+                && !method.IsGetter && !method.IsSetter; // not property methods
         }
 
         private bool IsAnonymousType(TypeDefinition type)

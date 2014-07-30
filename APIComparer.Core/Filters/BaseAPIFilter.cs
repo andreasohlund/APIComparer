@@ -34,6 +34,11 @@ namespace APIComparer.Filters
             return true;
         }
 
+        public virtual bool FilterMemberTypeDiff(TypeDiff diff)
+        {
+            return true;
+        }
+
         public virtual bool FilterLeftField(FieldDefinition field)
         {
             return true;

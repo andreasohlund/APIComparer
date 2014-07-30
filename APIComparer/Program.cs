@@ -32,7 +32,7 @@ namespace APIComparer
 
             var diff = engine.CreateDiff(file1, file2);
 
-            var formatter = new APIUpgradeToMarkdownFormatter("Result.md");
+            var formatter = new APIUpgradeToMarkdownFormatter("Result.md", "https://github.com/Particular/NServiceBus/blob/4.6.3/", "https://github.com/Particular/NServiceBus/blob/5.0.0-beta2/");
 
             formatter.WriteOut(diff);
         }

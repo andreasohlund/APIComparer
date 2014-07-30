@@ -17,8 +17,10 @@ namespace APIComparer
 
         public Diff CreateDiff(string leftAssembly, string rightAssembly)
         {
-            var l = AssemblyDefinition.ReadAssembly(leftAssembly);
-            var r = AssemblyDefinition.ReadAssembly(rightAssembly);
+            var readerParams = new ReaderParameters { ReadSymbols = true };
+
+            var l = AssemblyDefinition.ReadAssembly(leftAssembly, readerParams);
+            var r = AssemblyDefinition.ReadAssembly(rightAssembly, readerParams);
 
             return Diff(l, r);
         }
@@ -39,7 +41,8 @@ namespace APIComparer
                 RightAssembly = rightAssembly,
                 LeftOrphanTypes = leftOrphans.Where(Filter.FilterLeftType).ToList(),
                 RightOrphanTypes = rightOrphans.Where(Filter.FilterRightType).ToList(),
-                MatchingTypeDiffs = typeDiffs.Where(Filter.FilterMatchedType).ToList()
+                MatchingTypeDiffs = typeDiffs.Where(Filter.FilterMatchedType).ToList(),
+                MemberTypeDiffs = typeDiffs.Where(Filter.FilterMemberTypeDiff).ToList()
             };
         }
 

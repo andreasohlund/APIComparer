@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Linq;
 using Mono.Cecil;
 
@@ -38,7 +39,12 @@ namespace APIComparer
             if (method != null)
                 return method.IsPublic;
 
-            return false;
+            var property = memberDefinition as PropertyDefinition;
+            if (property != null)
+                return (property.GetMethod != null && property.GetMethod.IsPublic) ||
+                    (property.SetMethod != null && property.SetMethod.IsPublic);
+
+            throw new NotSupportedException("Type '" + memberDefinition.GetType() + "' is not supported by this method.");
         }
     }
 }

@@ -11,7 +11,7 @@ namespace APIComparer.Tests
     public class ApprovalTests
     {
         [Test]
-        public void ApproveMarkdown()
+        public void ApproveNServiceBus()
         {
             var packages = new[] { "4.6.3", "5.0.0-beta0002" };
 
@@ -36,11 +36,29 @@ namespace APIComparer.Tests
 
             var diff = engine.CreateDiff(file1, file2);
 
-            var formatter = new APIUpgradeToMarkdownFormatter("Result.md");
+            var formatter = new RawOutputFormatter();
 
             formatter.WriteOut(diff);
 
-            Approvals.Verify(File.ReadAllText("Result.md"));
+            Approvals.Verify(formatter.ToString());
+        }
+
+        [Test]
+        public void ApproveExample()
+        {
+            var file1 = "ExampleV1.dll";
+            var file2 = "ExampleV2.dll";
+
+            var engine = new ComparerEngine();
+            engine.Filter = new NServiceBusAPIFilter();
+
+            var diff = engine.CreateDiff(file1, file2);
+
+            var formatter = new RawOutputFormatter();
+
+            formatter.WriteOut(diff);
+
+            Approvals.Verify(formatter.ToString());
         }
     }
 }

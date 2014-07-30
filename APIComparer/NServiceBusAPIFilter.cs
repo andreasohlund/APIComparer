@@ -1,10 +1,18 @@
 using APIComparer.Filters;
+using EqualityComparers;
 using Mono.Cecil;
 
 namespace APIComparer
 {
     public class NServiceBusAPIFilter : BaseAPIFilter
     {
+        public NServiceBusAPIFilter()
+        {
+            MethodComparer = EqualityCompare<MethodDefinition>
+                .EquateBy(m => m.DeclaringType.FullName)
+                .ThenEquateBy(m => m.Name);
+        }
+
         public override bool FilterLeftType(TypeDefinition type)
         {
             return
@@ -82,8 +90,10 @@ namespace APIComparer
         public override bool FilterMatchedProperty(PropertyDefinition left, PropertyDefinition right)
         {
             return
-                (left.GetMethod != null && right.GetMethod != null && FilterMatchedMethod(left.GetMethod, right.GetMethod)) &&
-                (left.SetMethod != null && right.SetMethod != null && FilterMatchedMethod(left.SetMethod, right.SetMethod));
+                !left.EditorBrowsableStateNever() &&
+                !left.HasObsoleteAttribute() &&
+                (left.GetMethod != null && right.GetMethod != null && CommonFilterMatchedMethod(left.GetMethod, right.GetMethod)) &&
+                (left.SetMethod != null && right.SetMethod != null && CommonFilterMatchedMethod(left.SetMethod, right.SetMethod));
         }
 
         public override bool FilterLeftMethod(MethodDefinition method)
@@ -102,12 +112,17 @@ namespace APIComparer
 
         public override bool FilterMatchedMethod(MethodDefinition left, MethodDefinition right)
         {
+            return CommonFilterMatchedMethod(left, right) &&
+                FilterMethods(left);
+        }
+
+        private bool CommonFilterMatchedMethod(MethodDefinition left, MethodDefinition right)
+        {
             return
                 left.IsPublic &&
                 !left.EditorBrowsableStateNever() &&
                 !left.HasObsoleteAttribute() &&
-                !right.IsPublic &&
-                FilterMethods(left);
+                !right.IsPublic;
         }
 
         private bool FilterMethods(MethodDefinition method)

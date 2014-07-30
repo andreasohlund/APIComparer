@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIComparer.Core", "APIComp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIComparer.Tests", "APIComparer.Tests\APIComparer.Tests.csproj", "{4D201F63-B5F4-40BF-A095-B5A3C9D4B1A1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleV1", "ExampleV1\ExampleV1.csproj", "{BA355065-B2A3-4F08-B5CD-FC6D5009A21F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleV2", "ExampleV2\ExampleV2.csproj", "{122B2478-B674-4EB5-B260-1984386D8D34}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{4D201F63-B5F4-40BF-A095-B5A3C9D4B1A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D201F63-B5F4-40BF-A095-B5A3C9D4B1A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D201F63-B5F4-40BF-A095-B5A3C9D4B1A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA355065-B2A3-4F08-B5CD-FC6D5009A21F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA355065-B2A3-4F08-B5CD-FC6D5009A21F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA355065-B2A3-4F08-B5CD-FC6D5009A21F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA355065-B2A3-4F08-B5CD-FC6D5009A21F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{122B2478-B674-4EB5-B260-1984386D8D34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{122B2478-B674-4EB5-B260-1984386D8D34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{122B2478-B674-4EB5-B260-1984386D8D34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{122B2478-B674-4EB5-B260-1984386D8D34}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

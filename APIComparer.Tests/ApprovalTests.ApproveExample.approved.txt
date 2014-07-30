@@ -1,0 +1,34 @@
+﻿Public -> [MISSING]
+
+Example.MissingNextVersionClass
+[MISSING]
+
+Public -> Internal
+
+Example.InternalNextVersionClass
+Example.InternalNextVersionClass
+
+Members
+
+- Example.MemberInternalNextVersion
+  - 
+[Public] string StringField
+[Assembly] string StringField
+  - 
+[CompilerControlled, Public, HideBySig] void Method()
+[CompilerControlled, Assembly, HideBySig] void Method()
+  - 
+[None][CompilerControlled, Public, HideBySig, SpecialName][CompilerControlled, Public, HideBySig, SpecialName] string StringProperty { get; set; }
+[None][CompilerControlled, Assembly, HideBySig, SpecialName][CompilerControlled, Assembly, HideBySig, SpecialName] string StringProperty { get; set; }
+
+- Example.MemberMissingNextVersion
+  - 
+[Public] string StringField
+[MISSING]
+  - 
+[CompilerControlled, Public, HideBySig] void Method()
+[MISSING]
+  - 
+[None][CompilerControlled, Public, HideBySig, SpecialName][CompilerControlled, Public, HideBySig, SpecialName] string StringProperty { get; set; }
+[MISSING]
+

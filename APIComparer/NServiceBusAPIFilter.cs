@@ -1,4 +1,3 @@
-using APIComparer.Filters;
 using EqualityComparers;
 using Mono.Cecil;
 

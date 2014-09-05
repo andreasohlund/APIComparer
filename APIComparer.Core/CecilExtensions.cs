@@ -15,6 +15,24 @@ namespace APIComparer
         }
 
 
+        public static string GetName(this PropertyDefinition property)
+        {
+            return String.Format("{0} {1} {{ {2} {3} }}", property.PropertyType.GetName(), property.Name, property.GetMethod != null ? "get;" : "", property.SetMethod != null ? "set;" : "");
+        }
+
+
+        public static string GetName(this MethodDefinition method)
+        {
+            var genericParams = method.GenericParameters.Select(x => x.GetName()).ToList();
+            var methodParams = method.Parameters.Select(p => p.ParameterType.GetName());
+
+            var result = method.ReturnType.GetName() + " " + method.Name;
+
+            if (genericParams.Any())
+                result = String.Format("{0}<{1}>", result, string.Join(", ", genericParams));
+
+            return String.Format("{0}({1})", result, string.Join(", ", methodParams));
+        }
         public static SequencePoint GetValidSequencePoint(this PropertyDefinition property)
         {
             var gsp = property.GetMethod != null ? property.GetMethod.GetValidSequencePoint() : null;

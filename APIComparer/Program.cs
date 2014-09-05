@@ -7,7 +7,7 @@ namespace APIComparer
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             var packages = new[] { "4.6.4", "5.0.0-beta0004" };
 

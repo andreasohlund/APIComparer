@@ -9,11 +9,11 @@ namespace APIComparer
 {
     public static class CecilExtensions
     {
+
         public static bool HasObsoleteAttribute(this ICustomAttributeProvider value)
         {
-            return value.CustomAttributes.Any(a => a.AttributeType.Name == "ObsoleteAttribute" || a.AttributeType.Name == "ObsoleteExAttribute");
+            return value.CustomAttributes.Any(a => a.AttributeType.Name == "ObsoleteAttribute");
         }
-
 
         public static string GetName(this PropertyDefinition property)
         {

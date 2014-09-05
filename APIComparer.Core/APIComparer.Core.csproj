@@ -61,6 +61,7 @@
     <Compile Include="Diff.cs" />
     <Compile Include="Filters\BaseAPIFilter.cs" />
     <Compile Include="Outputters\APIUpgradeToMarkdownFormatter.cs" />
+    <Compile Include="Outputters\RawOutputFormatter.cs" />
     <Compile Include="Outputters\StringBuilderFormatter.cs" />
     <Compile Include="Outputters\IOutputter.cs" />
     <Compile Include="AssemblyInfo.cs" />

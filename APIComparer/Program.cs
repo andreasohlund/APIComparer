@@ -40,5 +40,6 @@ namespace APIComparer
 
             formatter.WriteOut(diff);
         }
+
     }
 }

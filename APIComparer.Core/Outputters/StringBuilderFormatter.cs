@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -8,94 +7,6 @@ using Mono.Cecil.Cil;
 
 namespace APIComparer.Outputters
 {
-    public class RawOutputFormatter : StringBuilderFormatter
-    {
-        StringBuilder stringBuilder;
-
-        public RawOutputFormatter()
-            : base(null, null)
-        {
-            stringBuilder = new StringBuilder();
-        }
-
-        public override void WriteOut(Diff diff)
-        {
-            stringBuilder.Clear();
-
-            WriteOut(diff, stringBuilder);
-        }
-
-        public override string ToString()
-        {
-            return stringBuilder.ToString();
-        }
-
-        protected override void WriteOut(Diff diff, StringBuilder sb)
-        {
-            var missingTypes = diff.LeftOrphanTypes.Select(t => new Tuple<TypeDefinition, TypeDefinition>(t, null))
-                .OrderBy(t => t.Item1.FullName)
-                .Select(t => FormatTypes(t.Item1, t.Item2));
-
-            sb.AppendLine("Public -> [MISSING]");
-            foreach (var missingType in missingTypes)
-            {
-                sb.AppendLine(missingType);
-            }
-
-            sb.AppendLine();
-
-            missingTypes = diff.MatchingTypeDiffs.Select(td => Tuple.Create(td.LeftType, td.RightType))
-                .OrderBy(t => t.Item1.FullName)
-                .Select(t => FormatTypes(t.Item1, t.Item2));
-
-            sb.AppendLine("Public -> Internal");
-            foreach (var missingType in missingTypes)
-            {
-                sb.AppendLine(missingType);
-            }
-
-            sb.AppendLine();
-
-            sb.AppendLine("Members");
-            sb.AppendLine();
-            foreach (var typeDiff in diff.MemberTypeDiffs.OrderBy(m => m.LeftType.FullName))
-            {
-                WriteOut(typeDiff, sb);
-            }
-        }
-
-        protected override string CreateLinkedLine<T>(Func<T, string> formatter, Func<T, SequencePoint> getSequencePoint, T left, T right,
-            TypeDefinition fallbackRightType = null, int offset = 0)
-        {
-            return Environment.NewLine + formatter(left) + Environment.NewLine + (right != null ? formatter(right) : "[MISSING]");
-        }
-
-        protected override string FormatField(FieldDefinition field)
-        {
-            return "[" + field.Attributes + "] " + base.FormatField(field);
-        }
-
-        protected override string FormatMethod(MethodDefinition method)
-        {
-            return "[" + method.Attributes + "] " + base.FormatMethod(method);
-        }
-
-        protected override string FormatProperty(PropertyDefinition property)
-        {
-            return String.Format(
-                       "[{0}][{1}][{2}] {3}",
-                       property.Attributes,
-                       (property.GetMethod != null ? property.GetMethod.Attributes.ToString() : "MISSING"),
-                       (property.SetMethod != null ? property.SetMethod.Attributes.ToString() : "MISSING"),
-                       base.FormatProperty(property));
-        }
-
-        protected override string FormatFields(FieldDefinition left, FieldDefinition right, TypeDefinition fallbackRightType)
-        {
-            return Environment.NewLine + FormatField(left) + Environment.NewLine + (right != null ? FormatField(right) : "[MISSING]");
-        }
-    }
-
     public abstract class StringBuilderFormatter : IOutputter
     {
         string leftUrl;
@@ -164,7 +75,7 @@ namespace APIComparer.Outputters
 
             if (missingFields.Any() || missingMethods.Any() || missingProperties.Any())
             {
-                sb.AppendLine("- " + HttpUtility.HtmlEncode(FormatType(typeDiff.LeftType)));
+                sb.AppendLine("- " + HttpUtility.HtmlEncode(typeDiff.LeftType.GetName()));
 
                 foreach (var missingField in missingFields)
                 {
@@ -187,32 +98,30 @@ namespace APIComparer.Outputters
 
         protected virtual string FormatField(FieldDefinition field)
         {
-            return FormatType(field.FieldType) + " " + field.Name;
+            return field.FieldType.GetName() + " " + field.Name;
         }
 
         protected virtual string FormatMethod(MethodDefinition method)
         {
-            var genericParams = method.GenericParameters.Select(FormatType);
-            var methodParams = method.Parameters.Select(p => FormatType(p.ParameterType));
+            var genericParams = method.GenericParameters.Select(x=>x.GetName()).ToList();
+            var methodParams = method.Parameters.Select(p => p.ParameterType.GetName());
 
-            var result = FormatType(method.ReturnType) + " " + method.Name;
+            var result = method.ReturnType.GetName() + " " + method.Name;
 
             if (genericParams.Any())
                 result = String.Format("{0}<{1}>", result, string.Join(", ", genericParams));
 
-            result = String.Format("{0}({1})", result, string.Join(", ", methodParams));
-
-            return result;
+            return String.Format("{0}({1})", result, string.Join(", ", methodParams));
         }
 
         protected virtual string FormatProperty(PropertyDefinition property)
         {
-            return String.Format("{0} {1} {{ {2} {3} }}", FormatType(property.PropertyType), property.Name, property.GetMethod != null ? "get;" : "", property.SetMethod != null ? "set;" : "");
+            return String.Format("{0} {1} {{ {2} {3} }}", property.PropertyType.GetName(), property.Name, property.GetMethod != null ? "get;" : "", property.SetMethod != null ? "set;" : "");
         }
 
         protected virtual string FormatTypes(TypeDefinition left, TypeDefinition right)
         {
-            return CreateLinkedLine(FormatType, GetValidSequencePoint, left, right);
+            return CreateLinkedLine(CecilExtensions.GetName, CecilExtensions.GetValidSequencePoint, left, right);
         }
 
         protected virtual string FormatFields(FieldDefinition left, FieldDefinition right, TypeDefinition fallbackRightType)
@@ -222,12 +131,12 @@ namespace APIComparer.Outputters
 
         protected virtual string FormatMethods(MethodDefinition left, MethodDefinition right, TypeDefinition fallbackRightType)
         {
-            return CreateLinkedLine(FormatMethod, GetValidSequencePoint, left, right, fallbackRightType, 2);
+            return CreateLinkedLine(FormatMethod, CecilExtensions.GetValidSequencePoint, left, right, fallbackRightType, 2);
         }
 
         protected virtual string FormatProperties(PropertyDefinition left, PropertyDefinition right, TypeDefinition fallbackRightType)
         {
-            return CreateLinkedLine(FormatProperty, GetValidSequencePoint, left, right, fallbackRightType, 2);
+            return CreateLinkedLine(FormatProperty, CecilExtensions.GetValidSequencePoint, left, right, fallbackRightType, 2);
         }
 
         protected virtual string CreateLinkedLine<T>(Func<T, string> formatter, Func<T, SequencePoint> getSequencePoint, T left, T right, TypeDefinition fallbackRightType = null, int offset = 0) where T : class
@@ -236,7 +145,7 @@ namespace APIComparer.Outputters
 
             var leftSP = getSequencePoint(left);
             var rightSP = right != null ? getSequencePoint(right) :
-                fallbackRightType != null ? GetValidSequencePoint(fallbackRightType) : null;
+                fallbackRightType != null ? fallbackRightType.GetValidSequencePoint() : null;
 
             var leftSPUrl = CreateSequencePointUrl(leftUrl, leftSP, offset);
             var rightSPUrl = rightSP != null ? CreateSequencePointUrl(rightUrl, rightSP, offset) : null;
@@ -263,80 +172,7 @@ namespace APIComparer.Outputters
 
             return String.Format("[{0}]({1})", text, url);
         }
-
-        protected virtual SequencePoint GetValidSequencePoint(MethodDefinition method)
-        {
-            return method.HasBody ? method.Body.Instructions.Select(i => i.SequencePoint).FirstOrDefault(s => s != null && s.StartLine != 16707566) : null;
-        }
-
-        protected virtual SequencePoint GetValidSequencePoint(PropertyDefinition property)
-        {
-            var gsp = property.GetMethod != null ? GetValidSequencePoint(property.GetMethod) : null;
-            var ssp = property.SetMethod != null ? GetValidSequencePoint(property.SetMethod) : null;
-
-            return GetFirstSequencePoint(new[] { gsp, ssp });
-        }
-
-        protected virtual SequencePoint GetValidSequencePoint(TypeDefinition type)
-        {
-            var sp = GetFirstSequencePoint(
-                type.Methods.Select(GetValidSequencePoint)
-                .Concat(type.Properties.Select(GetValidSequencePoint)));
-
-            if (sp == null)
-                return null;
-
-            return new SequencePoint(sp.Document);
-        }
-
-        protected virtual SequencePoint GetFirstSequencePoint(IEnumerable<SequencePoint> sequencePoints)
-        {
-            return sequencePoints.Where(sp => sp != null).DefaultIfEmpty().Aggregate((a, sp) => sp.StartLine < a.StartLine ? sp : a);
-        }
-
-        protected virtual string FormatType(TypeReference type)
-        {
-            var name = type.Name;
-            var genericParams = Enumerable.Empty<string>();
-
-            if (!string.IsNullOrEmpty(type.Namespace))
-                name = type.Namespace + "." + name;
-
-            if (type.IsArray)
-                name = name.Substring(0, name.Length - 2);
-
-            if (name == "System.Void")
-                name = "void";
-            if (name == "System.Boolean")
-                name = "bool";
-            if (name == "System.String")
-                name = "string";
-            if (name == "System.Int32")
-                name = "int";
-            if (name == "System.Object")
-                name = "object";
-
-            var genericType = type as GenericInstanceType;
-            if (genericType != null)
-            {
-                name = type.FullName.Split('`')[0];
-                genericParams = genericType.GenericArguments.Select(FormatType);
-            }
-
-            if (type.HasGenericParameters)
-            {
-                name = type.FullName.Split('`')[0];
-                genericParams = type.GenericParameters.Select(FormatType);
-            }
-
-            if (genericParams.Any())
-                name = name + "<" + string.Join(", ", genericParams) + ">";
-
-            if (type.IsArray)
-                name = name + "[]";
-
-            return name;
-        }
+        
 
         protected virtual string CreateSequencePointUrl(string githubBase, SequencePoint sequencePoint, int offset = 0)
         {

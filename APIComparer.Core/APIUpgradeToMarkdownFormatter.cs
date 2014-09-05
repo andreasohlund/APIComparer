@@ -68,7 +68,7 @@ namespace APIComparer.Outputters
             sb.AppendLine();
             foreach (var missingType in missingTypes)
             {
-                sb.AppendLine(HttpUtility.HtmlEncode(missingType) + "  ");
+                sb.AppendLine("- " + HttpUtility.HtmlEncode(missingType) + "  ");
             }
 
             sb.AppendLine();
@@ -81,7 +81,7 @@ namespace APIComparer.Outputters
             sb.AppendLine();
             foreach (var missingType in missingTypes)
             {
-                sb.AppendLine(HttpUtility.HtmlEncode(missingType) + "  ");
+                sb.AppendLine("- " + HttpUtility.HtmlEncode(missingType) + "  ");
             }
 
             sb.AppendLine();
@@ -110,7 +110,6 @@ namespace APIComparer.Outputters
         string FormatProperties(PropertyDefinition left, PropertyDefinition right, TypeDefinition fallbackRightType)
         {
             var format = String.Format("{0} {1} {{ {2} {3} }}", left.PropertyType.GetName(), left.Name, left.GetMethod != null ? "get;" : "", left.SetMethod != null ? "set;" : "");
-            Func<PropertyDefinition, SequencePoint> getSequencePoint = CecilExtensions.GetValidSequencePoint;
             var leftSP = left.GetValidSequencePoint();
             var rightSP = right != null ? right.GetValidSequencePoint() :
                 fallbackRightType != null ? fallbackRightType.GetValidSequencePoint() : null;

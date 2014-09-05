@@ -33,6 +33,7 @@ namespace APIComparer
 
             return String.Format("{0}({1})", result, string.Join(", ", methodParams));
         }
+
         public static SequencePoint GetValidSequencePoint(this PropertyDefinition property)
         {
             var gsp = property.GetMethod != null ? property.GetMethod.GetValidSequencePoint() : null;
@@ -126,13 +127,11 @@ namespace APIComparer
             return name;
         }
 
-
         static bool IsSystemType(this TypeReference type)
         {
             var assemblyNameReference = type.Scope as AssemblyNameReference;
             return assemblyNameReference != null && assemblyNameReference.FullName.Contains("b77a5c561934e089");
         }
-
 
         public static bool EditorBrowsableStateNever(this ICustomAttributeProvider value)
         {
@@ -147,26 +146,10 @@ namespace APIComparer
             return false;
         }
 
-        public static bool IsPublic(this IMemberDefinition memberDefinition)
+        public static bool IsPublic(this PropertyDefinition property)
         {
-            var type = memberDefinition as TypeDefinition;
-            if (type != null)
-                return type.IsPublic;
-
-            var field = memberDefinition as FieldDefinition;
-            if (field != null)
-                return field.IsPublic;
-
-            var method = memberDefinition as MethodDefinition;
-            if (method != null)
-                return method.IsPublic;
-
-            var property = memberDefinition as PropertyDefinition;
-            if (property != null)
-                return (property.GetMethod != null && property.GetMethod.IsPublic) ||
-                    (property.SetMethod != null && property.SetMethod.IsPublic);
-
-            throw new NotSupportedException("Type '" + memberDefinition.GetType() + "' is not supported by this method.");
+            return (property.GetMethod != null && property.GetMethod.IsPublic) ||
+                   (property.SetMethod != null && property.SetMethod.IsPublic);
         }
     }
 }

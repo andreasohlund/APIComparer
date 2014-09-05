@@ -2,7 +2,7 @@
 using EqualityComparers;
 using Mono.Cecil;
 
-namespace APIComparer.Filters
+namespace APIComparer
 {
     public class BaseAPIFilter
     {

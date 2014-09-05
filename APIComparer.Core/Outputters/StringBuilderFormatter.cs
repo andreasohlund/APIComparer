@@ -61,17 +61,20 @@ namespace APIComparer.Outputters
             var missingFields = typeDiff.LeftOrphanFields.Select(f => new Tuple<FieldDefinition, FieldDefinition>(f, null))
                 .Concat(typeDiff.MatchingFields)
                 .OrderBy(f => f.Item1.Name)
-                .Select(t => FormatFields(t.Item1, t.Item2, typeDiff.RightType));
+                .Select(t => FormatFields(t.Item1, t.Item2, typeDiff.RightType))
+                .ToList();
 
             var missingMethods = typeDiff.LeftOrphanMethods.Select(m => new Tuple<MethodDefinition, MethodDefinition>(m, null))
                 .Concat(typeDiff.MatchingMethods)
                 .OrderBy(t => t.Item1.Name)
-                .Select(t => FormatMethods(t.Item1, t.Item2, typeDiff.RightType));
+                .Select(t => FormatMethods(t.Item1, t.Item2, typeDiff.RightType))
+                .ToList();
 
             var missingProperties = typeDiff.LeftOrphanProperties.Select(p => new Tuple<PropertyDefinition, PropertyDefinition>(p, null))
                 .Concat(typeDiff.MatchingProperties)
                 .OrderBy(t => t.Item1.Name)
-                .Select(t => FormatProperties(t.Item1, t.Item2, typeDiff.RightType));
+                .Select(t => FormatProperties(t.Item1, t.Item2, typeDiff.RightType))
+                .ToList();
 
             if (missingFields.Any() || missingMethods.Any() || missingProperties.Any())
             {

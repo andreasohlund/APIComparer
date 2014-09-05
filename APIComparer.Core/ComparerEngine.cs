@@ -30,7 +30,9 @@ namespace APIComparer
             List<TypeDefinition> rightOrphans;
             List<Tuple<TypeDefinition, TypeDefinition>> diffs;
 
-            Diff(leftAssembly.MainModule.Types, rightAssembly.MainModule.Types, Filter.TypeComparer, out leftOrphans, out rightOrphans, out diffs);
+            var right = rightAssembly.MainModule.Types.ToList();
+            var left = leftAssembly.MainModule.Types.ToList();
+            Diff(left, right, Filter.TypeComparer, out leftOrphans, out rightOrphans, out diffs);
 
             var typeDiffs = diffs.Select(t => DiffTypes(t.Item1, t.Item2)).ToList();
 
@@ -84,7 +86,7 @@ namespace APIComparer
             };
         }
 
-        static void Diff<TSource>(IEnumerable<TSource> left, IEnumerable<TSource> right, IEqualityComparer<TSource> comparer, out List<TSource> leftOrphans, out List<TSource> rightOrphans, out List<Tuple<TSource, TSource>> diffs)
+        static void Diff<TSource>(IEnumerable<TSource> left, IEnumerable<TSource> right, IEqualityComparer<TSource> comparer, out List<TSource> leftOrphans, out List<TSource> rightOrphans, out List<Tuple<TSource, TSource>> diffs) where TSource : IMemberDefinition
         {
             comparer = comparer ?? EqualityComparer<TSource>.Default;
 

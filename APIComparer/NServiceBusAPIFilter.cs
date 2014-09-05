@@ -2,7 +2,7 @@ using APIComparer;
 using EqualityComparers;
 using Mono.Cecil;
 
-class NServiceBusAPIFilter : BaseAPIFilter
+public class NServiceBusAPIFilter : BaseAPIFilter
 {
     public NServiceBusAPIFilter()
     {

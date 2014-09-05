@@ -13,11 +13,13 @@ namespace APIComparer.Tests
         [Test]
         public void ApproveNServiceBus()
         {
-            var packages = new[] { "4.6.3", "5.0.0-beta0002" };
+            var packages = new[] { "4.6.4", "5.0.0-beta0004" };
 
+            var nugetCacheDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "NuGet", "Cache");
             var repo = new AggregateRepository(new[] {
+                PackageRepositoryFactory.Default.CreateRepository(nugetCacheDirectory),
                 PackageRepositoryFactory.Default.CreateRepository("https://www.nuget.org/api/v2"),
-                PackageRepositoryFactory.Default.CreateRepository(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "NuGet", "Cache"))
+                PackageRepositoryFactory.Default.CreateRepository("https://www.myget.org/F/particular/"),
             });
 
             var packageManager = new PackageManager(repo, "packages");

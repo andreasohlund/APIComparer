@@ -9,11 +9,13 @@ namespace APIComparer
     {
         static void Main(string[] args)
         {
-            var packages = new[] { "4.6.3", "5.0.0-beta0002" };
+            var packages = new[] { "4.6.4", "5.0.0-beta0004" };
 
+            var nugetCacheDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "NuGet", "Cache");
             var repo = new AggregateRepository(new[] {
+                PackageRepositoryFactory.Default.CreateRepository(nugetCacheDirectory),
                 PackageRepositoryFactory.Default.CreateRepository("https://www.nuget.org/api/v2"),
-                PackageRepositoryFactory.Default.CreateRepository(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "NuGet", "Cache"))
+                PackageRepositoryFactory.Default.CreateRepository("https://www.myget.org/F/particular/"),
             });
 
             var packageManager = new PackageManager(repo, "packages");
@@ -34,7 +36,7 @@ namespace APIComparer
 
             var diff = engine.CreateDiff(file1, file2);
 
-            var formatter = new APIUpgradeToMarkdownFormatter("Result.md", "https://github.com/Particular/NServiceBus/blob/4.6.3/", "https://github.com/Particular/NServiceBus/blob/5.0.0-beta2/");
+            var formatter = new APIUpgradeToMarkdownFormatter("Result.md", "https://github.com/Particular/NServiceBus/blob/4.6.4/", "https://github.com/Particular/NServiceBus/blob/5.0.0-beta4/");
 
             formatter.WriteOut(diff);
         }

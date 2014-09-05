@@ -115,7 +115,7 @@ namespace APIComparer.Outputters
                 .OrderBy(t => t.Item1.FullName)
                 .Select(t => FormatTypes(t.Item1, t.Item2));
 
-            sb.AppendLine("####The following public types are missing in the new API.");
+            sb.AppendLine("#### The following public types are missing in the new API.");
             sb.AppendLine();
             foreach (var missingType in missingTypes)
             {
@@ -128,7 +128,7 @@ namespace APIComparer.Outputters
                 .OrderBy(t => t.Item1.FullName)
                 .Select(t => FormatTypes(t.Item1, t.Item2));
 
-            sb.AppendLine("####The following types changed visibility in the new API.");
+            sb.AppendLine("#### The following types changed visibility in the new API.");
             sb.AppendLine();
             foreach (var missingType in missingTypes)
             {
@@ -137,7 +137,7 @@ namespace APIComparer.Outputters
 
             sb.AppendLine();
 
-            sb.AppendLine("####The following members are missing on the public types.");
+            sb.AppendLine("#### The following members are missing on the public types.");
             sb.AppendLine();
             foreach (var typeDiff in diff.MemberTypeDiffs.OrderBy(m => m.LeftType.FullName))
             {
@@ -241,7 +241,19 @@ namespace APIComparer.Outputters
             var leftSPUrl = CreateSequencePointUrl(leftUrl, leftSP, offset);
             var rightSPUrl = rightSP != null ? CreateSequencePointUrl(rightUrl, rightSP, offset) : null;
 
-            return String.Format("[ {1} | {2} ] {0}", format, CreateMarkdownUrl("old", leftSPUrl), CreateMarkdownUrl("new", rightSPUrl));
+            if (leftSPUrl != null && rightSPUrl != null)
+            {
+                return String.Format("{0} [ {1} | {2} ]", format, CreateMarkdownUrl("old", leftSPUrl), CreateMarkdownUrl("new", rightSPUrl));
+            }
+            if (leftSPUrl != null)
+            {
+                return String.Format("{0} [ {1} ]", format, CreateMarkdownUrl("old", leftSPUrl));
+            }
+            if (rightSPUrl != null)
+            {
+                return String.Format("{0} [ {1} ]", format, CreateMarkdownUrl("new", rightSPUrl));
+            }
+            return format;
         }
 
         protected virtual string CreateMarkdownUrl(string text, string url = null)
@@ -329,7 +341,7 @@ namespace APIComparer.Outputters
         protected virtual string CreateSequencePointUrl(string githubBase, SequencePoint sequencePoint, int offset = 0)
         {
             if (sequencePoint == null)
-                return "";
+                return null;
 
             var line = sequencePoint.StartLine - offset;
 
@@ -338,7 +350,7 @@ namespace APIComparer.Outputters
             var url = githubBase + string.Join("/", sequencePoint.Document.Url.Split('\\').Skip(buildPathElementCount));
 
             if (line > 0)
-                url = url + "#L" + line.ToString();
+                url = url + "#L" + line;
 
             return url;
         }

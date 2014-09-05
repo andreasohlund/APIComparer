@@ -10,16 +10,11 @@ namespace APIComparer.Outputters
 {
     public class RawOutputFormatter : StringBuilderFormatter
     {
-        private readonly string leftUrl;
-        private readonly string rightUrl;
-        private readonly StringBuilder stringBuilder;
+        StringBuilder stringBuilder;
 
         public RawOutputFormatter()
             : base(null, null)
         {
-            this.leftUrl = leftUrl;
-            this.rightUrl = rightUrl;
-
             stringBuilder = new StringBuilder();
         }
 
@@ -103,8 +98,8 @@ namespace APIComparer.Outputters
 
     public abstract class StringBuilderFormatter : IOutputter
     {
-        private readonly string leftUrl;
-        private readonly string rightUrl;
+        string leftUrl;
+        string rightUrl;
 
         public StringBuilderFormatter(string leftUrl = null, string rightUrl = null)
         {

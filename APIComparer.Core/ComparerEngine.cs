@@ -25,7 +25,7 @@ namespace APIComparer
             return Diff(l, r);
         }
 
-        private Diff Diff(AssemblyDefinition leftAssembly, AssemblyDefinition rightAssembly)
+        Diff Diff(AssemblyDefinition leftAssembly, AssemblyDefinition rightAssembly)
         {
             IList<TypeDefinition> leftOrphans;
             IList<TypeDefinition> rightOrphans;
@@ -46,7 +46,7 @@ namespace APIComparer
             };
         }
 
-        private TypeDiff DiffTypes(TypeDefinition leftType, TypeDefinition rightType)
+        TypeDiff DiffTypes(TypeDefinition leftType, TypeDefinition rightType)
         {
             IList<FieldDefinition> leftOrphanFields;
             IList<FieldDefinition> rightOrphanFields;
@@ -66,7 +66,7 @@ namespace APIComparer
 
             Diff(leftType.Methods, rightType.Methods, Filter.MethodComparer, out leftOrphanMethods, out rightOrphanMethods, out matchingMethods);
 
-            return new TypeDiff()
+            return new TypeDiff
             {
                 LeftType = leftType,
                 RightType = rightType,
@@ -85,7 +85,7 @@ namespace APIComparer
             };
         }
 
-        private static void Diff<TSource>(IEnumerable<TSource> left, IEnumerable<TSource> right, IEqualityComparer<TSource> comparer, out IList<TSource> leftOrphans, out IList<TSource> rightOrphans, out IList<Tuple<TSource, TSource>> diffs)
+        static void Diff<TSource>(IEnumerable<TSource> left, IEnumerable<TSource> right, IEqualityComparer<TSource> comparer, out IList<TSource> leftOrphans, out IList<TSource> rightOrphans, out IList<Tuple<TSource, TSource>> diffs)
         {
             comparer = comparer ?? EqualityComparer<TSource>.Default;
 

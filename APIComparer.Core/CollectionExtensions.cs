@@ -9,7 +9,7 @@
             if (comparer == null)
                 throw new ArgumentNullException("comparer", "comparer is null.");
 
-            for (int i = 0; i < list.Count; i++)
+            for (var i = 0; i < list.Count; i++)
             {
                 if (comparer.Equals(item, list[i]))
                     return i;

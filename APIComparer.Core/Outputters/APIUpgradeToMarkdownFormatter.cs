@@ -5,7 +5,7 @@ namespace APIComparer.Outputters
 {
     public class APIUpgradeToMarkdownFormatter : StringBuilderFormatter
     {
-        private readonly string markdownFilePath;
+        string markdownFilePath;
 
         public APIUpgradeToMarkdownFormatter(string markdownFilePath, string leftUrl = null, string rightUrl = null)
             : base(leftUrl, rightUrl)

@@ -116,7 +116,7 @@ namespace APIComparer
                 FilterMethods(left);
         }
 
-        private bool CommonFilterMatchedMethod(MethodDefinition left, MethodDefinition right)
+        bool CommonFilterMatchedMethod(MethodDefinition left, MethodDefinition right)
         {
             return
                 left.IsPublic &&
@@ -125,14 +125,14 @@ namespace APIComparer
                 !right.IsPublic;
         }
 
-        private bool FilterMethods(MethodDefinition method)
+        bool FilterMethods(MethodDefinition method)
         {
             return !method.IsConstructor // not constructors
                 && (!method.IsVirtual || !method.IsReuseSlot) // not public overrides
                 && !method.IsGetter && !method.IsSetter; // not property methods
         }
 
-        private bool IsAnonymousType(TypeDefinition type)
+        bool IsAnonymousType(TypeDefinition type)
         {
             return type.Name.StartsWith("<>");
         }

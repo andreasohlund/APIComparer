@@ -7,7 +7,7 @@ using Mono.Cecil.Cil;
 
 namespace APIComparer.Outputters
 {
-    public abstract class StringBuilderFormatter : IOutputter
+    public abstract class StringBuilderFormatter 
     {
         string leftUrl;
         string rightUrl;

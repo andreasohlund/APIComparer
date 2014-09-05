@@ -44,7 +44,13 @@ namespace APIComparer
 
         public static SequencePoint GetValidSequencePoint(this MethodDefinition method)
         {
-            return method.HasBody ? method.Body.Instructions.Select(i => i.SequencePoint).FirstOrDefault(s => s != null && s.StartLine != 16707566) : null;
+            if (!method.HasBody)
+            {
+                return null;
+            }
+            return method.Body.Instructions
+                .Select(i => i.SequencePoint)
+                .FirstOrDefault(s => s != null && s.StartLine != 16707566);
         }
 
         public static string GetName(this TypeReference self)

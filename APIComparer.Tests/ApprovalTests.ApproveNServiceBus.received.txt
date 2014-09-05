@@ -1,0 +1,958 @@
+﻿Public -> [MISSING]
+
+NServiceBus.Audit.MessageAuditer
+[MISSING]
+
+NServiceBus.AutomaticSubscriptions.AutoSubscriber
+[MISSING]
+
+NServiceBus.AutomaticSubscriptions.DefaultAutoSubscriptionStrategy
+[MISSING]
+
+NServiceBus.AutomaticSubscriptions.IAutoSubscriptionStrategy
+[MISSING]
+
+NServiceBus.Config.AddressInitializer
+[MISSING]
+
+NServiceBus.Config.ChannelCollection
+[MISSING]
+
+NServiceBus.Config.ChannelConfig
+[MISSING]
+
+NServiceBus.Config.DisplayInfrastructureServicesStatus
+[MISSING]
+
+NServiceBus.Config.GatewayConfig
+[MISSING]
+
+NServiceBus.Config.InfrastructureServices
+[MISSING]
+
+NServiceBus.Config.SiteCollection
+[MISSING]
+
+NServiceBus.Config.SiteConfig
+[MISSING]
+
+NServiceBus.Config.WindowsInstallerRunner
+[MISSING]
+
+NServiceBus.ConfigureGateway
+[MISSING]
+
+NServiceBus.ConfigureSagas
+[MISSING]
+
+NServiceBus.ConfigureSecondLevelRetriesExtensions
+[MISSING]
+
+NServiceBus.DataBus.Config.Bootstrapper
+[MISSING]
+
+NServiceBus.DataBus.DefaultDataBusSerializer
+[MISSING]
+
+NServiceBus.DataBus.FileShare.FileShareDataBus
+[MISSING]
+
+NServiceBus.DataBus.InMemory.InMemoryDataBus
+[MISSING]
+
+NServiceBus.Encryption.EncryptionMessageMutator
+[MISSING]
+
+NServiceBus.Features.Categories.Serializers
+[MISSING]
+
+NServiceBus.Features.EnableDefaultFeatures
+[MISSING]
+
+NServiceBus.Features.Feature<T>
+[MISSING]
+
+NServiceBus.Features.FeatureCategory
+[MISSING]
+
+NServiceBus.Features.FeatureInitializer
+[MISSING]
+
+NServiceBus.Features.Gateway
+[MISSING]
+
+NServiceBus.Features.MsmqTransport
+[MISSING]
+
+NServiceBus.FeatureSettingsExtensions
+[MISSING]
+
+NServiceBus.Gateway.Channels.Channel
+[MISSING]
+
+NServiceBus.Gateway.Channels.ChannelFactory
+[MISSING]
+
+NServiceBus.Gateway.Channels.ChannelTypeAttribute
+[MISSING]
+
+NServiceBus.Gateway.Channels.DataReceivedOnChannelArgs
+[MISSING]
+
+NServiceBus.Gateway.Channels.Http.DefaultResponder
+[MISSING]
+
+NServiceBus.Gateway.Channels.Http.HttpChannelReceiver
+[MISSING]
+
+NServiceBus.Gateway.Channels.Http.HttpChannelSender
+[MISSING]
+
+NServiceBus.Gateway.Channels.Http.HttpHeaders
+[MISSING]
+
+NServiceBus.Gateway.Channels.Http.IHttpResponder
+[MISSING]
+
+NServiceBus.Gateway.Channels.Http.SetDefaultResponder
+[MISSING]
+
+NServiceBus.Gateway.Channels.IChannelFactory
+[MISSING]
+
+NServiceBus.Gateway.Channels.IChannelReceiver
+[MISSING]
+
+NServiceBus.Gateway.Channels.IChannelSender
+[MISSING]
+
+NServiceBus.Gateway.Channels.ReceiveChannel
+[MISSING]
+
+NServiceBus.Gateway.Deduplication.GatewayMessage
+[MISSING]
+
+NServiceBus.Gateway.Deduplication.InMemoryDeduplication
+[MISSING]
+
+NServiceBus.Gateway.Deduplication.RavenDBDeduplication
+[MISSING]
+
+NServiceBus.Gateway.DefaultInputAddress
+[MISSING]
+
+NServiceBus.Gateway.HeaderManagement.DataBusHeaderManager
+[MISSING]
+
+NServiceBus.Gateway.HeaderManagement.GatewayHeaderManager
+[MISSING]
+
+NServiceBus.Gateway.HeaderManagement.GatewayHeaders
+[MISSING]
+
+NServiceBus.Gateway.HeaderManagement.HeaderMapper
+[MISSING]
+
+NServiceBus.Gateway.Notifications.IMessageNotifier
+[MISSING]
+
+NServiceBus.Gateway.Notifications.INotifyAboutMessages
+[MISSING]
+
+NServiceBus.Gateway.Notifications.MessageNotifier
+[MISSING]
+
+NServiceBus.Gateway.Notifications.MessageReceivedOnChannelArgs
+[MISSING]
+
+NServiceBus.Gateway.Persistence.InMemoryPersistence
+[MISSING]
+
+NServiceBus.Gateway.Persistence.MessageInfo
+[MISSING]
+
+NServiceBus.Gateway.Persistence.Raven.GatewayMessage
+[MISSING]
+
+NServiceBus.Gateway.Persistence.Raven.RavenDbPersistence
+[MISSING]
+
+NServiceBus.Gateway.Receiving.ChannelException
+[MISSING]
+
+NServiceBus.Gateway.Receiving.ConfigurationBasedChannelManager
+[MISSING]
+
+NServiceBus.Gateway.Receiving.ConventionBasedChannelManager
+[MISSING]
+
+NServiceBus.Gateway.Receiving.GatewayReceiver
+[MISSING]
+
+NServiceBus.Gateway.Receiving.IManageReceiveChannels
+[MISSING]
+
+NServiceBus.Gateway.Receiving.IReceiveMessagesFromSites
+[MISSING]
+
+NServiceBus.Gateway.Receiving.SingleCallChannelReceiver
+[MISSING]
+
+NServiceBus.Gateway.Routing.Endpoints.DefaultEndpointRouter
+[MISSING]
+
+NServiceBus.Gateway.Routing.IRouteMessagesToEndpoints
+[MISSING]
+
+NServiceBus.Gateway.Routing.IRouteMessagesToSites
+[MISSING]
+
+NServiceBus.Gateway.Routing.Site
+[MISSING]
+
+NServiceBus.Gateway.Routing.Sites.ConfigurationBasedSiteRouter
+[MISSING]
+
+NServiceBus.Gateway.Routing.Sites.KeyPrefixConventionSiteRouter
+[MISSING]
+
+NServiceBus.Gateway.Routing.Sites.OriginatingSiteHeaderRouter
+[MISSING]
+
+NServiceBus.Gateway.Sending.CallInfo
+[MISSING]
+
+NServiceBus.Gateway.Sending.CallType
+[MISSING]
+
+NServiceBus.Gateway.Sending.GatewaySender
+[MISSING]
+
+NServiceBus.Gateway.Sending.IForwardMessagesToSites
+[MISSING]
+
+NServiceBus.Gateway.Sending.SingleCallChannelForwarder
+[MISSING]
+
+NServiceBus.Gateway.Utils.Hasher
+[MISSING]
+
+NServiceBus.Hosting.Configuration.ConfigManager
+[MISSING]
+
+NServiceBus.Hosting.Profiles.IHandleAnyProfile
+[MISSING]
+
+NServiceBus.Hosting.Profiles.IHandleProfile
+[MISSING]
+
+NServiceBus.Hosting.Profiles.IHandleProfile<T>
+[MISSING]
+
+NServiceBus.Hosting.Profiles.ProfileActivator
+[MISSING]
+
+NServiceBus.Hosting.Profiles.ProfileManager
+[MISSING]
+
+NServiceBus.Hosting.Roles.IConfigureRole
+[MISSING]
+
+NServiceBus.Hosting.Roles.IConfigureRole<T>
+[MISSING]
+
+NServiceBus.Hosting.Roles.IRole
+[MISSING]
+
+NServiceBus.Hosting.Roles.RoleManager
+[MISSING]
+
+NServiceBus.Hosting.Wcf.WcfManager
+[MISSING]
+
+NServiceBus.Hosting.Wcf.WcfServiceHost
+[MISSING]
+
+NServiceBus.Installation.GatewayHttpListenerInstaller
+[MISSING]
+
+NServiceBus.Installation.PerformanceMonitorUsersInstaller
+[MISSING]
+
+NServiceBus.IProfile
+[MISSING]
+
+NServiceBus.IWantTheListOfActiveProfiles
+[MISSING]
+
+NServiceBus.IWcfService<TRequest, TResponse>
+[MISSING]
+
+NServiceBus.Management.Retries.SecondLevelRetries
+[MISSING]
+
+NServiceBus.Msmq
+[MISSING]
+
+NServiceBus.ObjectBuilder.Common.Config.ConfigureCommon
+[MISSING]
+
+NServiceBus.Persistence.InMemory.InMemoryPersistence
+[MISSING]
+
+NServiceBus.Persistence.InMemory.SagaPersister.InMemorySagaPersister
+[MISSING]
+
+NServiceBus.Persistence.InMemory.SubscriptionStorage.InMemorySubscriptionStorage
+[MISSING]
+
+NServiceBus.Persistence.InMemory.TimeoutPersister.InMemoryTimeoutPersistence
+[MISSING]
+
+NServiceBus.Persistence.Msmq.SubscriptionStorage.Config.SubscriptionsQueueCreator
+[MISSING]
+
+NServiceBus.Persistence.Msmq.SubscriptionStorage.MsmqSubscriptionStorage
+[MISSING]
+
+NServiceBus.Persistence.Raven.RavenConventions
+[MISSING]
+
+NServiceBus.Persistence.Raven.RavenPersistenceConstants
+[MISSING]
+
+NServiceBus.Persistence.Raven.RavenSessionFactory
+[MISSING]
+
+NServiceBus.Persistence.Raven.RavenUnitOfWork
+[MISSING]
+
+NServiceBus.Persistence.Raven.RavenUserInstaller
+[MISSING]
+
+NServiceBus.Persistence.Raven.SagaPersister.RavenSagaPersister
+[MISSING]
+
+NServiceBus.Persistence.Raven.SagaPersister.SagaUniqueIdentity
+[MISSING]
+
+NServiceBus.Persistence.Raven.StoreAccessor
+[MISSING]
+
+NServiceBus.Persistence.Raven.SubscriptionStorage.MessageTypeConverter
+[MISSING]
+
+NServiceBus.Persistence.Raven.SubscriptionStorage.RavenSubscriptionStorage
+[MISSING]
+
+NServiceBus.Persistence.Raven.SubscriptionStorage.Subscription
+[MISSING]
+
+NServiceBus.Persistence.Raven.TimeoutPersister.RavenTimeoutPersistence
+[MISSING]
+
+NServiceBus.Persistence.SetupDefaultPersistence
+[MISSING]
+
+NServiceBus.Sagas.ConfigureTimeoutAsSystemMessages
+[MISSING]
+
+NServiceBus.Scheduling.Configuration.ConfigureScheduledTaskAsSystemMessages
+[MISSING]
+
+NServiceBus.Scheduling.Configuration.SchedulerConfiguration
+[MISSING]
+
+NServiceBus.Scheduling.InMemoryScheduledTaskStorage
+[MISSING]
+
+NServiceBus.Scheduling.IScheduledTaskStorage
+[MISSING]
+
+NServiceBus.Scheduling.IScheduler
+[MISSING]
+
+NServiceBus.ServiceAsyncResult
+[MISSING]
+
+NServiceBus.Settings.Endpoint
+[MISSING]
+
+NServiceBus.Settings.ISetDefaultSettings
+[MISSING]
+
+NServiceBus.Settings.TransportSettings
+[MISSING]
+
+NServiceBus.SyncConfig
+[MISSING]
+
+NServiceBus.Timeout.Core.TimeoutManagerDefaults
+[MISSING]
+
+NServiceBus.Transports.ConfigureTransport<T>
+[MISSING]
+
+NServiceBus.Transports.IConfigureTransport
+[MISSING]
+
+NServiceBus.Transports.IConfigureTransport<T>
+[MISSING]
+
+NServiceBus.Transports.Msmq.Config.CheckMachineNameForComplianceWithDtcLimitation
+[MISSING]
+
+NServiceBus.Unicast.BusAsyncResultEventArgs
+[MISSING]
+
+NServiceBus.Unicast.Config.DefaultToTimeoutManagerBasedDeferal
+[MISSING]
+
+NServiceBus.Unicast.Config.DefaultTransportForHost
+[MISSING]
+
+NServiceBus.Unicast.DefaultDispatcherFactory
+[MISSING]
+
+NServiceBus.Unicast.HandlerInvocationCache
+[MISSING]
+
+NServiceBus.Unicast.IMessageDispatcherFactory
+[MISSING]
+
+NServiceBus.Unicast.Monitoring.CriticalTimeCalculator
+[MISSING]
+
+NServiceBus.Unicast.Monitoring.EstimatedTimeToSLABreachCalculator
+[MISSING]
+
+NServiceBus.Unicast.Monitoring.PerformanceCounterInitializer
+[MISSING]
+
+NServiceBus.Unicast.Monitoring.ProcessingStatistics
+[MISSING]
+
+NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions.EnableMessageDrivenPublisherIfStorageIsFound
+[MISSING]
+
+NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions.MessageDrivenSubscriptionManager
+[MISSING]
+
+NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions.SubcriberSideFiltering.FilteringMutator
+[MISSING]
+
+NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions.SubcriberSideFiltering.SubscriptionPredicatesEvaluator
+[MISSING]
+
+NServiceBus.Unicast.Transport.Config.Bootstrapper
+[MISSING]
+
+NServiceBus.Unicast.Transport.Transactional.Config.AdvancedTransactionalConfig
+[MISSING]
+
+NServiceBus.WcfService<TRequest, TResponse>
+[MISSING]
+
+Public -> Internal
+
+NServiceBus.CircuitBreakers.CircuitBreaker
+NServiceBus.CircuitBreakers.CircuitBreaker
+
+NServiceBus.Config.Conventions.EndpointHelper
+NServiceBus.Config.Conventions.EndpointHelper
+
+NServiceBus.Config.SatelliteConfigurer
+NServiceBus.Config.SatelliteConfigurer
+
+NServiceBus.Faults.Forwarder.Config.FaultsQueueCreator
+NServiceBus.Faults.Forwarder.Config.FaultsQueueCreator
+
+NServiceBus.Faults.Forwarder.FaultManager
+NServiceBus.Faults.Forwarder.FaultManager
+
+NServiceBus.Faults.InMemory.FaultManager
+NServiceBus.Faults.InMemory.FaultManager
+
+NServiceBus.Impersonation.Windows.WindowsIdentityEnricher
+NServiceBus.Impersonation.Windows.WindowsIdentityEnricher
+
+NServiceBus.ObjectBuilder.Common.CommonObjectBuilder
+NServiceBus.ObjectBuilder.Common.CommonObjectBuilder
+
+NServiceBus.ObjectBuilder.Common.SynchronizedInvoker
+NServiceBus.ObjectBuilder.Common.SynchronizedInvoker
+
+NServiceBus.Persistence.Msmq.SubscriptionStorage.Entry
+NServiceBus.Persistence.Msmq.SubscriptionStorage.Entry
+
+NServiceBus.Sagas.ConfigureHowToFindSagaWithMessageDispatcher
+NServiceBus.Sagas.ConfigureHowToFindSagaWithMessageDispatcher
+
+NServiceBus.Sagas.Finders.HeaderSagaIdFinder<T>
+NServiceBus.Sagas.Finders.HeaderSagaIdFinder<T>
+
+NServiceBus.Sagas.Finders.PropertySagaFinder<TSaga, TMessage>
+NServiceBus.Sagas.Finders.PropertySagaFinder<TSagaData, TMessage>
+
+NServiceBus.Satellites.Config.SatelliteContext
+NServiceBus.Satellites.Config.SatelliteContext
+
+NServiceBus.Satellites.SatelliteLauncher
+NServiceBus.Satellites.SatelliteLauncher
+
+NServiceBus.Satellites.SatellitesQueuesCreator
+NServiceBus.Satellites.SatellitesQueuesCreator
+
+NServiceBus.Scheduling.DefaultScheduler
+NServiceBus.Scheduling.DefaultScheduler
+
+NServiceBus.Scheduling.Messages.ScheduledTask
+NServiceBus.Scheduling.Messages.ScheduledTask
+
+NServiceBus.Scheduling.ScheduledTaskMessageHandler
+NServiceBus.Scheduling.ScheduledTaskMessageHandler
+
+NServiceBus.SecondLevelRetries.Helpers.SecondLevelRetriesHeaders
+NServiceBus.SecondLevelRetries.Helpers.SecondLevelRetriesHeaders
+
+NServiceBus.SecondLevelRetries.SecondLevelRetriesProcessor
+NServiceBus.SecondLevelRetries.SecondLevelRetriesProcessor
+
+NServiceBus.Serializers.Json.Internal.MessageContractResolver
+NServiceBus.Serializers.Json.Internal.MessageContractResolver
+
+NServiceBus.Serializers.Json.Internal.MessageSerializationBinder
+NServiceBus.Serializers.Json.Internal.MessageSerializationBinder
+
+NServiceBus.Serializers.Json.Internal.XContainerConverter
+NServiceBus.Serializers.Json.Internal.XContainerConverter
+
+NServiceBus.Serializers.XML.Config.MessageTypesInitializer
+NServiceBus.Serializers.XML.Config.MessageTypesInitializer
+
+NServiceBus.Serializers.XML.XmlSanitizingStream
+NServiceBus.Serializers.XML.XmlSanitizingStream
+
+NServiceBus.Timeout.Core.DefaultTimeoutManager
+NServiceBus.Timeout.Core.DefaultTimeoutManager
+
+NServiceBus.Timeout.Hosting.Windows.TimeoutDispatcherProcessor
+NServiceBus.Timeout.Hosting.Windows.TimeoutDispatcherProcessor
+
+NServiceBus.Timeout.Hosting.Windows.TimeoutMessageProcessor
+NServiceBus.Timeout.Hosting.Windows.TimeoutMessageProcessor
+
+NServiceBus.Timeout.Hosting.Windows.TimeoutPersisterReceiver
+NServiceBus.Timeout.Hosting.Windows.TimeoutPersisterReceiver
+
+NServiceBus.Timeout.TimeoutManagerDeferrer
+NServiceBus.Timeout.TimeoutManagerDeferrer
+
+NServiceBus.Timeout.TimeoutManagerHeaders
+NServiceBus.Timeout.TimeoutManagerHeaders
+
+NServiceBus.Transports.Msmq.MsmqDequeueStrategy
+NServiceBus.Transports.Msmq.MsmqDequeueStrategy
+
+NServiceBus.Transports.Msmq.MsmqMessageSender
+NServiceBus.Transports.Msmq.MsmqMessageSender
+
+NServiceBus.Transports.Msmq.MsmqQueueCreator
+NServiceBus.Transports.Msmq.MsmqQueueCreator
+
+NServiceBus.Unicast.MessagingBestPractices
+NServiceBus.Unicast.MessagingBestPractices
+
+NServiceBus.Unicast.Monitoring.CausationMutator
+NServiceBus.Unicast.Monitoring.CausationMutator
+
+NServiceBus.Unicast.Publishing.StorageDrivenPublisher
+NServiceBus.Unicast.Publishing.StorageDrivenPublisher
+
+NServiceBus.Unicast.Queuing.Installers.AuditQueueCreator
+NServiceBus.Unicast.Queuing.Installers.AuditQueueCreator
+
+NServiceBus.Unicast.Queuing.Installers.EndpointInputQueueCreator
+NServiceBus.Unicast.Queuing.Installers.EndpointInputQueueCreator
+
+NServiceBus.Unicast.Queuing.Installers.ForwardReceivedMessagesToQueueCreator
+NServiceBus.Unicast.Queuing.Installers.ForwardReceivedMessagesToQueueCreator
+
+NServiceBus.Unicast.Queuing.QueuesCreator
+NServiceBus.Unicast.Queuing.QueuesCreator
+
+NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions.NoopSubscriptionAuthorizer
+NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions.NoopSubscriptionAuthorizer
+
+NServiceBus.Unicast.Transport.TransportConnectionString
+NServiceBus.Unicast.Transport.TransportConnectionString
+
+NServiceBus.Unicast.Transport.TransportMessageExtensions
+NServiceBus.Unicast.Transport.TransportMessageExtensions
+
+Members
+
+- NServiceBus.AutomaticSubscriptions.Config.AutoSubscribeSettings
+  - 
+[CompilerControlled, Public, HideBySig] NServiceBus.AutomaticSubscriptions.Config.AutoSubscribeSettings CustomAutoSubscriptionStrategy&lt;T&gt;()
+[MISSING]
+
+- NServiceBus.Configure
+  - 
+[Public, Static] Func&lt;string&gt; DefineEndpointVersionRetriever
+[MISSING]
+  - 
+[Public, Static] Func&lt;string&gt; GetEndpointNameAction
+[MISSING]
+  - 
+[Public, Static] Func&lt;FileInfo, Assembly&gt; LoadAssembly
+[MISSING]
+  - 
+[CompilerControlled, Public, Static, HideBySig, SpecialName] void add_ConfigurationComplete(Action)
+[MISSING]
+  - 
+[CompilerControlled, Public, HideBySig] void ForAllTypes&lt;T&gt;(Action&lt;Type&gt;)
+[CompilerControlled, Assembly, Static, HideBySig] void ForAllTypes&lt;T&gt;(IList&lt;Type&gt;, Action&lt;Type&gt;)
+  - 
+[CompilerControlled, Public, Static, HideBySig] IEnumerable&lt;Assembly&gt; GetAssembliesInDirectory(string, String[][])
+[MISSING]
+  - 
+[CompilerControlled, Public, HideBySig] void Initialize()
+[CompilerControlled, Assembly, HideBySig] void Initialize()
+  - 
+[CompilerControlled, Public, Static, HideBySig, SpecialName] void remove_ConfigurationComplete(Action)
+[MISSING]
+  - 
+[CompilerControlled, Public, Static, HideBySig] void ScaleOut(Action&lt;NServiceBus.Settings.ScaleOutSettings&gt;)
+[MISSING]
+  - 
+[None][CompilerControlled, Public, Static, HideBySig, SpecialName][CompilerControlled, Public, Static, HideBySig, SpecialName] NServiceBus.Config.ConfigurationSource.IConfigurationSource ConfigurationSource { get; set; }
+[MISSING]
+  - 
+[None][CompilerControlled, Public, Static, HideBySig, SpecialName][MISSING] NServiceBus.Settings.Endpoint Endpoint { get;  }
+[MISSING]
+  - 
+[None][CompilerControlled, Public, Static, HideBySig, SpecialName][MISSING] NServiceBus.Settings.TransportSettings Transports { get;  }
+[MISSING]
+
+- NServiceBus.EndpointSLAAttribute
+  - 
+[None][CompilerControlled, Public, HideBySig, SpecialName][CompilerControlled, Public, HideBySig, SpecialName] string SLA { get; set; }
+[MISSING]
+
+- NServiceBus.Features.Audit
+  - 
+[None][CompilerControlled, Public, Virtual, HideBySig, SpecialName][MISSING] bool IsEnabledByDefault { get;  }
+[MISSING]
+
+- NServiceBus.Features.AutoSubscribe
+  - 
+[None][CompilerControlled, Public, Virtual, HideBySig, SpecialName][MISSING] bool IsEnabledByDefault { get;  }
+[MISSING]
+
+- NServiceBus.Features.Feature
+  - 
+[CompilerControlled, Public, Static, HideBySig] IEnumerable&lt;NServiceBus.Features.Feature&gt; ByCategory(NServiceBus.Features.FeatureCategory)
+[MISSING]
+  - 
+[CompilerControlled, Public, Static, HideBySig] void Disable&lt;T&gt;()
+[MISSING]
+  - 
+[CompilerControlled, Public, Static, HideBySig] void Disable(Type)
+[MISSING]
+  - 
+[CompilerControlled, Public, Static, HideBySig] void DisableByDefault(Type)
+[MISSING]
+  - 
+[CompilerControlled, Public, Static, HideBySig] void Enable&lt;T&gt;()
+[MISSING]
+  - 
+[CompilerControlled, Public, Static, HideBySig] void Enable(Type)
+[MISSING]
+  - 
+[CompilerControlled, Public, Static, HideBySig] void EnableByDefault(Type)
+[MISSING]
+  - 
+[CompilerControlled, Public, Static, HideBySig] void EnableByDefault&lt;T&gt;()
+[CompilerControlled, Family, HideBySig] void EnableByDefault()
+  - 
+[CompilerControlled, Public, Virtual, HideBySig, VtableLayoutMask] void Initialize()
+[MISSING]
+  - 
+[CompilerControlled, Public, Static, HideBySig] bool IsEnabled&lt;T&gt;()
+[MISSING]
+  - 
+[CompilerControlled, Public, Static, HideBySig] bool IsEnabled(Type)
+[MISSING]
+  - 
+[CompilerControlled, Public, Static, HideBySig, SpecialName] bool op_Equality(NServiceBus.Features.Feature, NServiceBus.Features.Feature)
+[MISSING]
+  - 
+[CompilerControlled, Public, Static, HideBySig, SpecialName] bool op_Inequality(NServiceBus.Features.Feature, NServiceBus.Features.Feature)
+[MISSING]
+  - 
+[CompilerControlled, Public, Virtual, HideBySig, VtableLayoutMask] bool ShouldBeEnabled()
+[MISSING]
+  - 
+[None][CompilerControlled, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName][MISSING] NServiceBus.Features.FeatureCategory Category { get;  }
+[MISSING]
+  - 
+[None][CompilerControlled, Public, HideBySig, SpecialName][MISSING] bool Enabled { get;  }
+[MISSING]
+
+- NServiceBus.Features.Sagas
+  - 
+[Public, Static, InitOnly] IDictionary&lt;Type, IDictionary&lt;Type, KeyValuePair&lt;PropertyInfo, PropertyInfo&gt;&gt;&gt; SagaEntityToMessageToPropertyLookup
+[MISSING]
+  - 
+[CompilerControlled, Public, Static, HideBySig] void ConfigureFinder(Type)
+[CompilerControlled, Assembly, Static, HideBySig] void ConfigureFinder(Type, NServiceBus.Conventions)
+  - 
+[CompilerControlled, Public, Static, HideBySig] void ConfigureSaga(Type)
+[CompilerControlled, Assembly, Static, HideBySig] void ConfigureSaga(Type, NServiceBus.Conventions)
+  - 
+[CompilerControlled, Public, HideBySig] bool FindAndConfigureSagasIn(IEnumerable&lt;Type&gt;)
+[MISSING]
+  - 
+[CompilerControlled, Public, Static, HideBySig] MethodInfo GetFindByMethodForFinder(NServiceBus.Saga.IFinder, object)
+[CompilerControlled, Assembly, Static, HideBySig] MethodInfo GetFindByMethodForFinder(NServiceBus.Saga.IFinder, object)
+  - 
+[CompilerControlled, Public, Static, HideBySig] IEnumerable&lt;Type&gt; GetFindersForMessageAndEntity(Type, Type)
+[CompilerControlled, Assembly, Static, HideBySig] IEnumerable&lt;Type&gt; GetFindersForMessageAndEntity(Type, Type)
+  - 
+[CompilerControlled, Public, Static, HideBySig] IEnumerable&lt;Type&gt; GetSagaDataTypes()
+[CompilerControlled, Assembly, Static, HideBySig] IEnumerable&lt;Type&gt; GetSagaDataTypes()
+  - 
+[CompilerControlled, Public, Static, HideBySig] Type GetSagaEntityTypeForSagaType(Type)
+[CompilerControlled, Assembly, Static, HideBySig] Type GetSagaEntityTypeForSagaType(Type)
+  - 
+[CompilerControlled, Public, Static, HideBySig] Type GetSagaTypeForSagaEntityType(Type)
+[CompilerControlled, Assembly, Static, HideBySig] Type GetSagaTypeForSagaEntityType(Type)
+  - 
+[CompilerControlled, Public, Static, HideBySig] bool IsSagaType(Type)
+[CompilerControlled, Assembly, Static, HideBySig] bool IsSagaType(Type)
+  - 
+[CompilerControlled, Public, Static, HideBySig] bool ShouldMessageStartSaga(Type, Type)
+[MISSING]
+
+- NServiceBus.Features.SecondLevelRetries
+  - 
+[None][CompilerControlled, Public, Virtual, HideBySig, SpecialName][MISSING] bool IsEnabledByDefault { get;  }
+[MISSING]
+
+- NServiceBus.Features.TimeoutManager
+  - 
+[None][CompilerControlled, Public, Static, HideBySig, SpecialName][CompilerControlled, Private, Static, HideBySig, SpecialName] NServiceBus.Address DispatcherAddress { get; set; }
+[MISSING]
+  - 
+[None][CompilerControlled, Public, Static, HideBySig, SpecialName][CompilerControlled, Private, Static, HideBySig, SpecialName] NServiceBus.Address InputAddress { get; set; }
+[MISSING]
+  - 
+[None][CompilerControlled, Public, Virtual, HideBySig, SpecialName][MISSING] bool IsEnabledByDefault { get;  }
+[MISSING]
+
+- NServiceBus.Logging.LogManager
+  - 
+[None][CompilerControlled, Public, Static, HideBySig, SpecialName][CompilerControlled, Public, Static, HideBySig, SpecialName] NServiceBus.Logging.ILoggerFactory LoggerFactory { get; set; }
+[MISSING]
+
+- NServiceBus.MessageInterfaces.MessageMapper.Reflection.MessageMapper
+  - 
+[CompilerControlled, Public, HideBySig] Type CreateTypeFrom(Type, ModuleBuilder)
+[CompilerControlled, Private, HideBySig] Type CreateTypeFrom(Type, ModuleBuilder)
+  - 
+[CompilerControlled, Public, HideBySig] string GetNewTypeName(Type)
+[CompilerControlled, Private, HideBySig] string GetNewTypeName(Type)
+  - 
+[CompilerControlled, Public, HideBySig] void InitType(Type, ModuleBuilder)
+[CompilerControlled, Private, HideBySig] void InitType(Type, ModuleBuilder)
+
+- NServiceBus.ObjectBuilder.IConfigureComponents
+  - 
+[CompilerControlled, Public, Virtual, HideBySig, VtableLayoutMask, Abstract] bool HasComponent(Type)
+[MISSING]
+
+- NServiceBus.Serializers.Json.JsonMessageSerializer
+  - 
+[CompilerControlled, Public, HideBySig] object DeserializeObject(string, Type)
+[MISSING]
+
+- NServiceBus.Serializers.XML.XmlMessageSerializer
+  - 
+[None][CompilerControlled, Public, HideBySig, SpecialName][CompilerControlled, Public, HideBySig, SpecialName] bool SkipWrappingElementForSingleMessages { get; set; }
+[MISSING]
+
+- NServiceBus.Settings.SettingsHolder
+  - 
+[CompilerControlled, Public, Static, HideBySig] void ApplyTo&lt;T&gt;()
+[MISSING]
+  - 
+[CompilerControlled, Public, Static, HideBySig] void PreventChanges()
+[MISSING]
+  - 
+[CompilerControlled, Public, Static, HideBySig] void Reset()
+[MISSING]
+
+- NServiceBus.Settings.TransactionSettings
+  - 
+[CompilerControlled, Public, HideBySig] NServiceBus.Settings.TransactionSettings Advanced(Action&lt;NServiceBus.Settings.TransactionSettings/TransactionAdvancedSettings&gt;)
+[MISSING]
+
+- NServiceBus.Timeout.Core.TimeoutData
+  - 
+[None][CompilerControlled, Public, HideBySig, SpecialName][CompilerControlled, Public, HideBySig, SpecialName] string CorrelationId { get; set; }
+[MISSING]
+
+- NServiceBus.Transports.Msmq.MsmqUnitOfWork
+  - 
+[CompilerControlled, Public, HideBySig] void ClearTransaction()
+[CompilerControlled, Assembly, HideBySig] void ClearTransaction()
+  - 
+[CompilerControlled, Public, HideBySig] void SetTransaction(System.Messaging.MessageQueueTransaction)
+[CompilerControlled, Assembly, HideBySig] void SetTransaction(System.Messaging.MessageQueueTransaction)
+
+- NServiceBus.Unicast.Queuing.IWantQueueCreated
+  - 
+[None][CompilerControlled, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName][MISSING] bool IsDisabled { get;  }
+[MISSING]
+
+- NServiceBus.Unicast.Transport.ITransport
+  - 
+[CompilerControlled, Public, Virtual, HideBySig, VtableLayoutMask, Abstract] void AbortHandlingCurrentMessage()
+[MISSING]
+  - 
+[CompilerControlled, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName] void add_FailedMessageProcessing(EventHandler&lt;NServiceBus.Unicast.Transport.FailedMessageProcessingEventArgs&gt;)
+[MISSING]
+  - 
+[CompilerControlled, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName] void remove_FailedMessageProcessing(EventHandler&lt;NServiceBus.Unicast.Transport.FailedMessageProcessingEventArgs&gt;)
+[MISSING]
+  - 
+[CompilerControlled, Public, Virtual, HideBySig, VtableLayoutMask, Abstract] void Start(NServiceBus.Address)
+[MISSING]
+  - 
+[CompilerControlled, Public, Virtual, HideBySig, VtableLayoutMask, Abstract] void Stop()
+[MISSING]
+  - 
+[None][CompilerControlled, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName][MISSING] int MaximumMessageThroughputPerSecond { get;  }
+[MISSING]
+
+- NServiceBus.Unicast.Transport.TransactionSettings
+  - 
+[None][CompilerControlled, Public, Static, HideBySig, SpecialName][MISSING] NServiceBus.Unicast.Transport.TransactionSettings Default { get;  }
+[MISSING]
+  - 
+[None][CompilerControlled, Public, HideBySig, SpecialName][CompilerControlled, Public, HideBySig, SpecialName] bool DontUseDistributedTransactions { get; set; }
+[MISSING]
+
+- NServiceBus.Unicast.Transport.TransportReceiver
+  - 
+[CompilerControlled, Public, Final, Virtual, HideBySig, VtableLayoutMask] void ChangeNumberOfWorkerThreads(int)
+[MISSING]
+  - 
+[CompilerControlled, Public, HideBySig] void DisposeManaged()
+[CompilerControlled, Private, HideBySig] void DisposeManaged()
+  - 
+[CompilerControlled, Public, Final, Virtual, HideBySig, VtableLayoutMask] void Start(NServiceBus.Address)
+[MISSING]
+  - 
+[None][CompilerControlled, Public, Final, Virtual, HideBySig, VtableLayoutMask, SpecialName][CompilerControlled, Public, Final, Virtual, HideBySig, VtableLayoutMask, SpecialName] int MaxThroughputPerSecond { get; set; }
+[MISSING]
+  - 
+[None][CompilerControlled, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName][MISSING] int NumberOfWorkerThreads { get;  }
+[MISSING]
+
+- NServiceBus.Unicast.UnicastBus
+  - 
+[CompilerControlled, Public, HideBySig, SpecialName] void add_MessageReceived(NServiceBus.Unicast.UnicastBus/MessageReceivedDelegate)
+[MISSING]
+  - 
+[CompilerControlled, Public, Final, Virtual, HideBySig, VtableLayoutMask, SpecialName] void add_MessagesSent(EventHandler&lt;NServiceBus.Unicast.MessagesEventArgs&gt;)
+[MISSING]
+  - 
+[CompilerControlled, Public, Final, Virtual, HideBySig, VtableLayoutMask, SpecialName] void add_NoSubscribersForMessage(EventHandler&lt;NServiceBus.Unicast.MessageEventArgs&gt;)
+[MISSING]
+  - 
+[CompilerControlled, Public, Final, Virtual, HideBySig, VtableLayoutMask, SpecialName] void add_Started(EventHandler)
+[MISSING]
+  - 
+[CompilerControlled, Public, Final, Virtual, HideBySig, VtableLayoutMask] NServiceBus.ICallback Defer(DateTime, object)
+[MISSING]
+  - 
+[CompilerControlled, Public, Final, Virtual, HideBySig, VtableLayoutMask] NServiceBus.ICallback Defer(DateTime, Object[][])
+[MISSING]
+  - 
+[CompilerControlled, Public, Final, Virtual, HideBySig, VtableLayoutMask] void Dispose()
+[MISSING]
+  - 
+[CompilerControlled, Public, HideBySig] void DisposeManaged()
+[MISSING]
+  - 
+[CompilerControlled, Public, Final, Virtual, HideBySig, VtableLayoutMask] void DoNotContinueDispatchingCurrentMessageToHandlers()
+[MISSING]
+  - 
+[CompilerControlled, Public, Virtual, HideBySig, VtableLayoutMask] void Publish&lt;T&gt;(T[][])
+[MISSING]
+  - 
+[CompilerControlled, Public, Final, Virtual, HideBySig, VtableLayoutMask] void Raise&lt;T&gt;(Action&lt;T&gt;)
+[MISSING]
+  - 
+[CompilerControlled, Public, Final, Virtual, HideBySig, VtableLayoutMask] void Raise&lt;T&gt;(T)
+[MISSING]
+  - 
+[CompilerControlled, Public, HideBySig, SpecialName] void remove_MessageReceived(NServiceBus.Unicast.UnicastBus/MessageReceivedDelegate)
+[MISSING]
+  - 
+[CompilerControlled, Public, Final, Virtual, HideBySig, VtableLayoutMask, SpecialName] void remove_MessagesSent(EventHandler&lt;NServiceBus.Unicast.MessagesEventArgs&gt;)
+[MISSING]
+  - 
+[CompilerControlled, Public, Final, Virtual, HideBySig, VtableLayoutMask, SpecialName] void remove_NoSubscribersForMessage(EventHandler&lt;NServiceBus.Unicast.MessageEventArgs&gt;)
+[MISSING]
+  - 
+[CompilerControlled, Public, Final, Virtual, HideBySig, VtableLayoutMask, SpecialName] void remove_Started(EventHandler)
+[MISSING]
+  - 
+[CompilerControlled, Public, Final, Virtual, HideBySig, VtableLayoutMask] void Reply&lt;T&gt;(Action&lt;T&gt;)
+[MISSING]
+  - 
+[CompilerControlled, Public, Final, Virtual, HideBySig, VtableLayoutMask] NServiceBus.ICallback Send&lt;T&gt;(NServiceBus.Address, string, Action&lt;T&gt;)
+[MISSING]
+  - 
+[CompilerControlled, Public, Final, Virtual, HideBySig, VtableLayoutMask] NServiceBus.ICallback Send(string, string, object)
+[MISSING]
+  - 
+[CompilerControlled, Public, Final, Virtual, HideBySig, VtableLayoutMask] NServiceBus.ICallback Send(string, string, Object[][])
+[MISSING]
+  - 
+[CompilerControlled, Public, Final, Virtual, HideBySig, VtableLayoutMask] NServiceBus.ICallback Send(NServiceBus.Address, string, Object[][])
+[MISSING]
+  - 
+[CompilerControlled, Public, Final, Virtual, HideBySig, VtableLayoutMask] NServiceBus.ICallback Send(NServiceBus.Address, string, object)
+[MISSING]
+  - 
+[CompilerControlled, Public, Final, Virtual, HideBySig, VtableLayoutMask] NServiceBus.ICallback SendLocal(Object[][])
+[MISSING]
+  - 
+[CompilerControlled, Public, Final, Virtual, HideBySig, VtableLayoutMask] NServiceBus.ICallback SendToSites(IEnumerable&lt;string&gt;, object)
+[MISSING]
+  - 
+[CompilerControlled, Public, Final, Virtual, HideBySig, VtableLayoutMask] NServiceBus.ICallback SendToSites(IEnumerable&lt;string&gt;, Object[][])
+[MISSING]
+  - 
+[CompilerControlled, Public, Final, Virtual, HideBySig, VtableLayoutMask] void Shutdown()
+[MISSING]
+  - 
+[CompilerControlled, Public, Final, Virtual, HideBySig, VtableLayoutMask] NServiceBus.IBus Start(Action)
+[MISSING]
+  - 
+[CompilerControlled, Public, Final, Virtual, HideBySig, VtableLayoutMask] void Subscribe&lt;T&gt;(Predicate&lt;T&gt;)
+[MISSING]
+  - 
+[CompilerControlled, Public, Virtual, HideBySig, VtableLayoutMask] void Subscribe(Type, Predicate&lt;object&gt;)
+[MISSING]
+  - 
+[None][CompilerControlled, Public, HideBySig, SpecialName][CompilerControlled, Public, HideBySig, SpecialName] NServiceBus.Address MasterNodeAddress { get; set; }
+[MISSING]
+  - 
+[None][CompilerControlled, Public, HideBySig, SpecialName][CompilerControlled, Public, HideBySig, SpecialName] NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions.SubcriberSideFiltering.SubscriptionPredicatesEvaluator SubscriptionPredicatesEvaluator { get; set; }
+[MISSING]
+

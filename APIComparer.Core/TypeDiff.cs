@@ -9,16 +9,16 @@ namespace APIComparer
         public TypeDefinition LeftType { get; set; }
         public TypeDefinition RightType { get; set; }
 
-        public IList<FieldDefinition> LeftOrphanFields { get; set; }
-        public IList<FieldDefinition> RightOrphanFields { get; set; }
-        public IList<Tuple<FieldDefinition, FieldDefinition>> MatchingFields { get; set; }
+        public List<FieldDefinition> LeftOrphanFields { get; set; }
+        public List<FieldDefinition> RightOrphanFields { get; set; }
+        public List<Tuple<FieldDefinition, FieldDefinition>> MatchingFields { get; set; }
 
-        public IList<PropertyDefinition> LeftOrphanProperties { get; set; }
-        public IList<PropertyDefinition> RightOrphanProperties { get; set; }
-        public IList<Tuple<PropertyDefinition, PropertyDefinition>> MatchingProperties { get; set; }
+        public List<PropertyDefinition> LeftOrphanProperties { get; set; }
+        public List<PropertyDefinition> RightOrphanProperties { get; set; }
+        public List<Tuple<PropertyDefinition, PropertyDefinition>> MatchingProperties { get; set; }
 
-        public IList<MethodDefinition> LeftOrphanMethods { get; set; }
-        public IList<MethodDefinition> RightOrphanMethods { get; set; }
-        public IList<Tuple<MethodDefinition, MethodDefinition>> MatchingMethods { get; set; }
+        public List<MethodDefinition> LeftOrphanMethods { get; set; }
+        public List<MethodDefinition> RightOrphanMethods { get; set; }
+        public List<Tuple<MethodDefinition, MethodDefinition>> MatchingMethods { get; set; }
     }
 }

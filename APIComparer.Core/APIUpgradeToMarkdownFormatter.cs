@@ -6,7 +6,7 @@ using System.Web;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
 
-namespace APIComparer.Outputters
+namespace APIComparer
 {
     public class APIUpgradeToMarkdownFormatter 
     {

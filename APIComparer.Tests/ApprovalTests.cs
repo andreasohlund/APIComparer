@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using APIComparer.Outputters;
 using ApprovalTests;
 using NuGet;
 using NUnit.Framework;

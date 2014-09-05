@@ -3,7 +3,7 @@ using System.Linq;
 using System.Text;
 using Mono.Cecil;
 
-namespace APIComparer.Outputters
+namespace APIComparer
 {
     public class RawOutputFormatter 
     {

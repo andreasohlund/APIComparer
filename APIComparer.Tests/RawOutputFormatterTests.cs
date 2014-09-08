@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using APIComparer;
 using ApprovalTests;
 using NuGet;
@@ -37,16 +38,16 @@ public class RawOutputFormatterTests
 
         var engine = new ComparerEngine
         {
-            Filter = new NServiceBusAPIFilter()
         };
 
         var diff = engine.CreateDiff(file1, file2);
 
-        var formatter = new RawOutputFormatter();
+        var stringBuilder = new StringBuilder();
+        var formatter = new APIUpgradeToMarkdownFormatter(stringBuilder,"","" );
 
         formatter.WriteOut(diff);
 
-        Approvals.Verify(formatter.ToString());
+        Approvals.Verify(stringBuilder.ToString());
     }
 
     [Test]
@@ -57,15 +58,15 @@ public class RawOutputFormatterTests
 
         var engine = new ComparerEngine
         {
-            Filter = new NServiceBusAPIFilter()
         };
 
         var diff = engine.CreateDiff(file1, file2);
 
-        var formatter = new RawOutputFormatter();
+        var stringBuilder = new StringBuilder();
+        var formatter = new APIUpgradeToMarkdownFormatter(stringBuilder, "", "");
 
         formatter.WriteOut(diff);
 
-        Approvals.Verify(formatter.ToString());
+        Approvals.Verify(stringBuilder.ToString());
     }
 }

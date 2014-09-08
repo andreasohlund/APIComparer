@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Mono.Cecil;
@@ -7,29 +6,33 @@ namespace APIComparer
 {
     public class TypeDiff
     {
-        public TypeDefinition LeftType { get; set; }
-        public TypeDefinition RightType { get; set; }
+        public TypeDefinition LeftType;
+        public TypeDefinition RightType;
 
-        public List<FieldDefinition> LeftOrphanFields { get; set; }
-        public List<FieldDefinition> RightOrphanFields { get; set; }
-        public List<Tuple<FieldDefinition, FieldDefinition>> MatchingFields { get; set; }
+        public List<FieldDefinition> LeftOrphanFields;
+        public List<FieldDefinition> RightOrphanFields;
+        public List<MatchingMember<FieldDefinition>> MatchingFields;
 
-        public List<MethodDefinition> LeftOrphanMethods { get; set; }
-        public List<MethodDefinition> RightOrphanMethods { get; set; }
-        public List<Tuple<MethodDefinition, MethodDefinition>> MatchingMethods { get; set; }
+        public List<MethodDefinition> LeftOrphanMethods;
+        public List<MethodDefinition> RightOrphanMethods;
+        public List<MatchingMember<MethodDefinition>> MatchingMethods;
 
-
-        public IEnumerable<Tuple<MethodDefinition, MethodDefinition>> GetMissingMethods()
+        public IEnumerable<MatchingMember<MethodDefinition>> MethodsChangedToNonPublic()
         {
-            return LeftOrphanMethods.Select(m => new Tuple<MethodDefinition, MethodDefinition>(m, null))
-                .Concat(MatchingMethods)
-                .OrderBy(t => t.Item1.Name);
+            return MatchingMethods.Where(x => !x.Right.IsPublic && x.Left.IsPublic && !x.Left.HasObsoleteAttribute());
         }
-        public IEnumerable<Tuple<FieldDefinition, FieldDefinition>> GetMissingFields()
+
+        public IEnumerable<MatchingMember<FieldDefinition>> FieldsChangedToNonPublic()
         {
-            return LeftOrphanFields.Select(f => new Tuple<FieldDefinition, FieldDefinition>(f, null))
-                .Concat(MatchingFields)
-                .OrderBy(f => f.Item1.Name);
+            return MatchingFields.Where(x => !x.Right.IsPublic && x.Left.IsPublic && !x.Left.HasObsoleteAttribute());
+        }
+        public IEnumerable<FieldDefinition> PublicFieldsRemoved()
+        {
+            return LeftOrphanFields.Where(x => x.IsPublic && !x.HasObsoleteAttribute());
+        }
+        public IEnumerable<MethodDefinition> PublicMethodsRemoved()
+        {
+            return LeftOrphanMethods.Where(x => x.IsPublic && !x.HasObsoleteAttribute());
         }
 
     }

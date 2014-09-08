@@ -1,51 +1,73 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
+using EqualityComparers;
 using Mono.Cecil;
 
 namespace APIComparer
 {
     public class ComparerEngine
     {
+        IEqualityComparer<TypeDefinition> typeComparer;
+        IEqualityComparer<FieldDefinition> fieldComparer;
+        IEqualityComparer<MethodDefinition> methodComparer;
+
         public ComparerEngine()
         {
-            Filter = new BaseAPIFilter();
+            typeComparer = EqualityCompare<TypeDefinition>.EquateBy(t => t.FullName);
+            fieldComparer = EqualityCompare<FieldDefinition>.EquateBy(f => f.FullName);
+            methodComparer = EqualityCompare<MethodDefinition>.EquateBy(m => m.FullName);
         }
 
-        public BaseAPIFilter Filter { get; set; }
+        //MethodComparer = EqualityCompare<MethodDefinition>
+        //    .EquateBy(m => m.DeclaringType.FullName)
+        //    .ThenEquateBy(m => m.Name);
 
         public Diff CreateDiff(string leftAssembly, string rightAssembly)
         {
-            var readerParams = new ReaderParameters { ReadSymbols = true };
-
-            var l = AssemblyDefinition.ReadAssembly(leftAssembly, readerParams);
-            var r = AssemblyDefinition.ReadAssembly(rightAssembly, readerParams);
-
-            return Diff(l, r);
+            return CreateDiff(ReadTypes(leftAssembly), ReadTypes(rightAssembly));
         }
-
-        Diff Diff(AssemblyDefinition leftAssembly, AssemblyDefinition rightAssembly)
+        public Diff CreateDiff(IEnumerable<string> leftAssemblyGroup, IEnumerable<string> rightAssemblyGroup)
         {
-            var right = rightAssembly.MainModule.Types.ToList();
-            var left = leftAssembly.MainModule.Types.ToList();
-            return Diff(left, right);
+            return CreateDiff(ReadTypes(leftAssemblyGroup), ReadTypes(rightAssemblyGroup));
+        }
+        static IEnumerable<TypeDefinition> ReadTypes(IEnumerable<string> assemblyGroup)
+        {
+            var readerParams = new ReaderParameters
+            {
+                ReadSymbols = true
+            };
+            return assemblyGroup.SelectMany(assembly => AssemblyDefinition.ReadAssembly(assembly, readerParams).MainModule.Types);
+        }
+        static IEnumerable<TypeDefinition> ReadTypes(string leftAssembly)
+        {
+            var readerParams = new ReaderParameters
+            {
+                ReadSymbols = true
+            };
+
+            return AssemblyDefinition.ReadAssembly(leftAssembly, readerParams).MainModule.Types.ToList();
         }
 
-        public Diff Diff(IEnumerable<TypeDefinition> left, IEnumerable<TypeDefinition> right)
+        public Diff CreateDiff(IEnumerable<TypeDefinition> left, IEnumerable<TypeDefinition> right)
         {
             List<TypeDefinition> leftOrphans;
             List<TypeDefinition> rightOrphans;
-            List<Tuple<TypeDefinition, TypeDefinition>> diffs;
-            Diff(left, right, Filter.TypeComparer, out leftOrphans, out rightOrphans, out diffs);
+            List<MatchingMember<TypeDefinition>> matching;
 
-            var typeDiffs = diffs.Select(t => DiffTypes(t.Item1, t.Item2)).ToList();
+            var leftRealTypes = left.RealTypes().ToList();
+            var rightRealTypes = right.RealTypes().ToList();
+
+            Diff(leftRealTypes, rightRealTypes, typeComparer, out leftOrphans, out rightOrphans, out matching);
+
+            var typeDiffs = matching.Select(t => DiffTypes(t.Left, t.Right))
+                .ToList();
 
             return new Diff
             {
-                LeftOrphanTypes = leftOrphans.Where(Filter.FilterLeftType).ToList(),
-                RightOrphanTypes = rightOrphans.Where(Filter.FilterRightType).ToList(),
-                MatchingTypeDiffs = typeDiffs.Where(Filter.FilterMatchedType).ToList(),
-                MemberTypeDiffs = typeDiffs.Where(Filter.FilterMemberTypeDiff).ToList()
+                RightAllTypes = rightRealTypes,
+                LeftOrphanTypes = leftOrphans.OrderBy(x=>x.FullName).ToList(),
+                RightOrphanTypes = rightOrphans.OrderBy(x => x.FullName).ToList(),
+                MatchingTypeDiffs = typeDiffs.OrderBy(x => x.RightType.FullName).ToList(),
             };
         }
 
@@ -53,93 +75,120 @@ namespace APIComparer
         {
             List<FieldDefinition> leftOrphanFields;
             List<FieldDefinition> rightOrphanFields;
-            List<Tuple<FieldDefinition, FieldDefinition>> matchingFields;
+            List<MatchingMember<FieldDefinition>> matchingFields;
 
-            Diff(leftType.Fields, rightType.Fields, Filter.FieldComparer, out leftOrphanFields, out rightOrphanFields, out matchingFields);
+            Diff(leftType.RealFields(), rightType.RealFields(), fieldComparer, out leftOrphanFields, out rightOrphanFields, out matchingFields);
 
             List<MethodDefinition> leftOrphanMethods;
             List<MethodDefinition> rightOrphanMethods;
-            List<Tuple<MethodDefinition, MethodDefinition>> matchingMethods;
+            List<MatchingMember<MethodDefinition>> matchingMethods;
 
-            Diff(leftType.Methods, rightType.Methods, Filter.MethodComparer, out leftOrphanMethods, out rightOrphanMethods, out matchingMethods);
+            Diff(leftType.RealMethods(), rightType.RealMethods(), methodComparer, out leftOrphanMethods, out rightOrphanMethods, out matchingMethods);
 
             return new TypeDiff
             {
                 LeftType = leftType,
                 RightType = rightType,
 
-                LeftOrphanFields = leftOrphanFields.Where(Filter.FilterLeftField).ToList(),
-                RightOrphanFields = rightOrphanFields.Where(Filter.FilterRightField).ToList(),
-                MatchingFields = matchingFields.Where(t => Filter.FilterMatchedField(t.Item1, t.Item2)).ToList(),
-                LeftOrphanMethods = leftOrphanMethods.Where(Filter.FilterLeftMethod).ToList(),
-                RightOrphanMethods = rightOrphanMethods.Where(Filter.FilterRightMethod).ToList(),
-                MatchingMethods = matchingMethods.Where(t => Filter.FilterMatchedMethod(t.Item1, t.Item2)).ToList(),
+                LeftOrphanFields = leftOrphanFields.OrderBy(x => x.Name).ToList(),
+                RightOrphanFields = rightOrphanFields.OrderBy(x => x.Name).ToList(),
+                MatchingFields = matchingFields.OrderBy(x => x.Right.Name).ToList(),
+                LeftOrphanMethods = leftOrphanMethods.OrderBy(x => x.Name).ToList(),
+                RightOrphanMethods = rightOrphanMethods.OrderBy(x => x.Name).ToList(),
+                MatchingMethods = matchingMethods.OrderBy(x => x.Right.Name).ToList(),
             };
         }
 
-        static void Diff<TSource>(IEnumerable<TSource> left, IEnumerable<TSource> right, IEqualityComparer<TSource> comparer, out List<TSource> leftOrphans, out List<TSource> rightOrphans, out List<Tuple<TSource, TSource>> diffs) where TSource : IMemberDefinition
+        static void Diff<TSource>(IEnumerable<TSource> left, IEnumerable<TSource> right, IEqualityComparer<TSource> comparer, out List<TSource> leftOrphans, out List<TSource> rightOrphans, out List<MatchingMember<TSource>> matching) where TSource : IMemberDefinition
         {
-            comparer = comparer ?? EqualityComparer<TSource>.Default;
-
-            leftOrphans = new List<TSource>();
+            leftOrphans = left.ToList();
             rightOrphans = new List<TSource>();
-            diffs = new List<Tuple<TSource, TSource>>();
+            matching = new List<MatchingMember<TSource>>();
 
-            var leftRunning = true;
-            var rightRunning = true;
-
-            using (var leftEnum = left.GetEnumerator())
-            using (var rightEnum = right.GetEnumerator())
+            foreach (var item in right)
             {
-                while (leftRunning && rightRunning)
+                var index = leftOrphans.IndexOf(item, comparer);
+                if (index < 0)
                 {
-                    leftRunning = leftEnum.MoveNext();
-
-                    if (leftRunning)
-                    {
-                        var index = rightOrphans.IndexOf(leftEnum.Current, comparer);
-                        if (index < 0)
-                        {
-                            leftOrphans.Add(leftEnum.Current);
-                        }
-                        else
-                        {
-                            diffs.Add(Tuple.Create(leftEnum.Current, rightOrphans[index]));
-                            rightOrphans.RemoveAt(index);
-                        }
-                    }
-
-                    rightRunning = rightEnum.MoveNext();
-
-                    if (rightRunning)
-                    {
-                        var index = leftOrphans.IndexOf(rightEnum.Current, comparer);
-                        if (index < 0)
-                        {
-                            rightOrphans.Add(rightEnum.Current);
-                        }
-                        else
-                        {
-                            diffs.Add(Tuple.Create(leftOrphans[index], rightEnum.Current));
-                            leftOrphans.RemoveAt(index);
-                        }
-                    }
+                    rightOrphans.Add(item);
+                    continue;
                 }
-
-                while (leftRunning)
+                var leftOrphan = leftOrphans[index];
+                var matchingMember = new MatchingMember<TSource>
                 {
-                    leftRunning = leftEnum.MoveNext();
-                    if (leftRunning)
-                        leftOrphans.Add(leftEnum.Current);
-                }
-
-                while (rightRunning)
-                {
-                    rightRunning = rightEnum.MoveNext();
-                    if (rightRunning)
-                        rightOrphans.Add(rightEnum.Current);
-                }
+                    Left = leftOrphan,
+                    Right = item
+                };
+                matching.Add(matchingMember);
+                leftOrphans.RemoveAt(index);
             }
+
+            //var leftRunning = true;
+            //var rightRunning = true;
+            //using (var leftEnum = left.GetEnumerator())
+            //using (var rightEnum = right.GetEnumerator())
+            //{
+            //    while (leftRunning && rightRunning)
+            //    {
+            //        leftRunning = leftEnum.MoveNext();
+
+            //        if (leftRunning)
+            //        {
+            //            var index = rightOrphans.IndexOf(leftEnum.Current, comparer);
+            //            if (index < 0)
+            //            {
+            //                leftOrphans.Add(leftEnum.Current);
+            //            }
+            //            else
+            //            {
+            //                var rightMember = rightOrphans[index];
+
+            //                var matchingMember = new MatchingMember<TSource>
+            //                {
+            //                    Left = leftEnum.Current,
+            //                    Right = rightMember
+            //                };
+            //                matching.Add(matchingMember);
+            //                rightOrphans.RemoveAt(index);
+            //            }
+            //        }
+
+            //        rightRunning = rightEnum.MoveNext();
+
+            //        if (rightRunning)
+            //        {
+            //            var index = leftOrphans.IndexOf(rightEnum.Current, comparer);
+            //            if (index < 0)
+            //            {
+            //                rightOrphans.Add(rightEnum.Current);
+            //            }
+            //            else
+            //            {
+            //                var matchingMember = new MatchingMember<TSource>
+            //                {
+            //                    Left = leftOrphans[index],
+            //                    Right = rightEnum.Current
+            //                };
+            //                matching.Add(matchingMember);
+            //                leftOrphans.RemoveAt(index);
+            //            }
+            //        }
+            //    }
+
+            //    while (leftRunning)
+            //    {
+            //        leftRunning = leftEnum.MoveNext();
+            //        if (leftRunning)
+            //            leftOrphans.Add(leftEnum.Current);
+            //    }
+
+            //    while (rightRunning)
+            //    {
+            //        rightRunning = rightEnum.MoveNext();
+            //        if (rightRunning)
+            //            rightOrphans.Add(rightEnum.Current);
+            //    }
+            //}
         }
     }
 }

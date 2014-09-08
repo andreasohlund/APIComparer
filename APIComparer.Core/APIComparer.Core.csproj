@@ -59,10 +59,9 @@
     <Compile Include="CollectionExtensions.cs" />
     <Compile Include="ComparerEngine.cs" />
     <Compile Include="Diff.cs" />
-    <Compile Include="BaseAPIFilter.cs" />
     <Compile Include="APIUpgradeToMarkdownFormatter.cs" />
-    <Compile Include="RawOutputFormatter.cs" />
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="MatchingMember.cs" />
     <Compile Include="TypeDiff.cs" />
   </ItemGroup>
   <ItemGroup>

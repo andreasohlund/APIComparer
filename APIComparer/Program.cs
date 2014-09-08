@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using APIComparer;
 using NuGet;
 
@@ -7,10 +9,6 @@ class Program
 {
     static void Main()
     {
-        var packages = new[]
-        {
-            "4.6.4", "5.0.0-beta0004"
-        };
 
         var nugetCacheDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "NuGet", "Cache");
         var repo = new AggregateRepository(new[]
@@ -22,25 +20,30 @@ class Program
 
         var packageManager = new PackageManager(repo, "packages");
 
-        foreach (var v in packages)
-        {
-            if (!Directory.Exists(Path.Combine("packages", "NServiceBus." + v)))
-                packageManager.InstallPackage("NServiceBus", SemanticVersion.Parse(v));
-        }
+        //packageManager.InstallPackage("NServiceBus.Interfaces", SemanticVersion.Parse("4.6.4"));
+        //packageManager.InstallPackage("NServiceBus", SemanticVersion.Parse("4.6.4"));
+        var newVersion = "5.0.0-beta0004";
+        //packageManager.InstallPackage("NServiceBus", SemanticVersion.Parse(newVersion));
 
-        var file1 = Path.Combine("packages", "NServiceBus." + packages[0], "lib", "net40", "NServiceBus.Core.dll");
-        var file2 = Path.Combine("packages", "NServiceBus." + packages[1], "lib", "net45", "NServiceBus.Core.dll");
-
-        var engine = new ComparerEngine
+        var leftAssemblyGroup = new List<string>
         {
-            Filter = new NServiceBusAPIFilter()
+            Path.Combine("packages", "NServiceBus.4.6.4", "lib", "net40", "NServiceBus.Core.dll"),
+            Path.Combine("packages", "NServiceBus.Interfaces.4.6.4", "lib", "net40", "NServiceBus.dll")
+        };
+        var rightAssemblyGroup = new List<string>
+        {
+            Path.Combine("packages", "NServiceBus." + newVersion, "lib", "net45", "NServiceBus.Core.dll"),
         };
 
-        var diff = engine.CreateDiff(file1, file2);
+        var engine = new ComparerEngine();
 
-        var formatter = new APIUpgradeToMarkdownFormatter("Result.md", "https://github.com/Particular/NServiceBus/blob/4.6.4/", "https://github.com/Particular/NServiceBus/blob/5.0.0-beta4/");
+        var diff = engine.CreateDiff(leftAssemblyGroup, rightAssemblyGroup);
 
+        var stringBuilder = new StringBuilder();
+        var formatter = new APIUpgradeToMarkdownFormatter(stringBuilder, "https://github.com/Particular/NServiceBus/blob/4.6.4/", "https://github.com/Particular/NServiceBus/blob/5.0.0-beta4/");
         formatter.WriteOut(diff);
+        File.WriteAllText("Result.md", stringBuilder.ToString());
+
     }
 
 }

@@ -71,6 +71,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TypeDiffTests.cs" />
     <Compile Include="ComparerEngineTests.cs" />
     <Compile Include="RawOutputFormatterTests.cs" />
     <Compile Include="AssemblyInfo.cs" />

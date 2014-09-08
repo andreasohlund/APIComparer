@@ -15,20 +15,34 @@ Members
 [Public] string StringField
 [Assembly] string StringField
   - 
+[CompilerControlled, Public, HideBySig, SpecialName] string get_StringProperty()
+[CompilerControlled, Assembly, HideBySig, SpecialName] string get_StringProperty()
+  - 
 [CompilerControlled, Public, HideBySig] void Method()
 [CompilerControlled, Assembly, HideBySig] void Method()
   - 
-[None][CompilerControlled, Public, HideBySig, SpecialName][CompilerControlled, Public, HideBySig, SpecialName] string StringProperty { get; set; }
-[None][CompilerControlled, Assembly, HideBySig, SpecialName][CompilerControlled, Assembly, HideBySig, SpecialName] string StringProperty { get; set; }
+[CompilerControlled, Public, HideBySig, SpecialName] void set_StringProperty(string)
+[CompilerControlled, Assembly, HideBySig, SpecialName] void set_StringProperty(string)
 
 - Example.MemberMissingNextVersion
   - 
 [Public] string StringField
 [MISSING]
   - 
+[CompilerControlled, Public, HideBySig, SpecialName] string get_StringProperty()
+[MISSING]
+  - 
 [CompilerControlled, Public, HideBySig] void Method()
 [MISSING]
   - 
-[None][CompilerControlled, Public, HideBySig, SpecialName][CompilerControlled, Public, HideBySig, SpecialName] string StringProperty { get; set; }
+[CompilerControlled, Public, HideBySig, SpecialName] void set_StringProperty(string)
 [MISSING]
+
+- Example.MemberObsoleteNextVersion
+  - 
+[CompilerControlled, Public, HideBySig, SpecialName] string get_StringProperty()
+[CompilerControlled, Assembly, HideBySig, SpecialName] string get_StringProperty()
+  - 
+[CompilerControlled, Public, HideBySig, SpecialName] void set_StringProperty(string)
+[CompilerControlled, Assembly, HideBySig, SpecialName] void set_StringProperty(string)
 

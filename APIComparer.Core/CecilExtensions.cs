@@ -15,12 +15,6 @@ namespace APIComparer
             return value.CustomAttributes.Any(a => a.AttributeType.Name == "ObsoleteAttribute");
         }
 
-        public static string GetName(this PropertyDefinition property)
-        {
-            return String.Format("{0} {1} {{ {2} {3} }}", property.PropertyType.GetName(), property.Name, property.GetMethod != null ? "get;" : "", property.SetMethod != null ? "set;" : "");
-        }
-
-
         public static string GetName(this MethodDefinition method)
         {
             var genericParams = method.GenericParameters.Select(x => x.GetName()).ToList();
@@ -34,19 +28,10 @@ namespace APIComparer
             return String.Format("{0}({1})", result, string.Join(", ", methodParams));
         }
 
-        public static SequencePoint GetValidSequencePoint(this PropertyDefinition property)
-        {
-            var gsp = property.GetMethod != null ? property.GetMethod.GetValidSequencePoint() : null;
-            var ssp = property.SetMethod != null ? property.SetMethod.GetValidSequencePoint() : null;
-
-            return GetFirstSequencePoint(new[] { gsp, ssp });
-        }
-
         public static SequencePoint GetValidSequencePoint(this TypeDefinition type)
         {
             var sp = GetFirstSequencePoint(
-                type.Methods.Select(x => x.GetValidSequencePoint())
-                .Concat(type.Properties.Select(GetValidSequencePoint)));
+                type.Methods.Select(x => x.GetValidSequencePoint()));
 
             if (sp == null)
                 return null;
@@ -146,10 +131,5 @@ namespace APIComparer
             return false;
         }
 
-        public static bool IsPublic(this PropertyDefinition property)
-        {
-            return (property.GetMethod != null && property.GetMethod.IsPublic) ||
-                   (property.SetMethod != null && property.SetMethod.IsPublic);
-        }
     }
 }

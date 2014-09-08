@@ -107,16 +107,6 @@ namespace APIComparer
             return field.FieldType.GetName() + " " + field.Name;
         }
 
-        string FormatProperties(PropertyDefinition left, PropertyDefinition right, TypeDefinition fallbackRightType)
-        {
-            var format = String.Format("{0} {1} {{ {2} {3} }}", left.PropertyType.GetName(), left.Name, left.GetMethod != null ? "get;" : "", left.SetMethod != null ? "set;" : "");
-            var leftSP = left.GetValidSequencePoint();
-            var rightSP = right != null ? right.GetValidSequencePoint() :
-                fallbackRightType != null ? fallbackRightType.GetValidSequencePoint() : null;
-
-            return CreateLinkedLine(format, leftSP, rightSP, 2);
-        }
-
         void WriteOut(TypeDiff typeDiff, StringBuilder sb)
         {
             var missingFields = typeDiff.GetMissingFields()
@@ -127,11 +117,7 @@ namespace APIComparer
                 .Select(t => FormatMethods(t.Item1, t.Item2, typeDiff.RightType))
                 .ToList();
 
-            var missingProperties = typeDiff.GetMissingProperties()
-                .Select(t => FormatProperties(t.Item1, t.Item2, typeDiff.RightType))
-                .ToList();
-
-            if (missingFields.Any() || missingMethods.Any() || missingProperties.Any())
+            if (missingFields.Any() || missingMethods.Any())
             {
                 sb.AppendLine("- " + HttpUtility.HtmlEncode(typeDiff.LeftType.GetName()));
 
@@ -143,11 +129,6 @@ namespace APIComparer
                 foreach (var missingMethod in missingMethods)
                 {
                     sb.AppendLine("  - " + HttpUtility.HtmlEncode(missingMethod));
-                }
-
-                foreach (var missingProperty in missingProperties)
-                {
-                    sb.AppendLine("  - " + HttpUtility.HtmlEncode(missingProperty));
                 }
 
                 sb.AppendLine();

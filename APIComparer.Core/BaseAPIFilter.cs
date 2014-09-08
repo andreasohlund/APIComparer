@@ -10,13 +10,11 @@ namespace APIComparer
         {
             TypeComparer = EqualityCompare<TypeDefinition>.EquateBy(t => t.FullName);
             FieldComparer = EqualityCompare<FieldDefinition>.EquateBy(f => f.FullName);
-            PropertyComparer = EqualityCompare<PropertyDefinition>.EquateBy(p => p.FullName);
             MethodComparer = EqualityCompare<MethodDefinition>.EquateBy(m => m.FullName);
         }
 
         public IEqualityComparer<TypeDefinition> TypeComparer { get; protected set; }
         public IEqualityComparer<FieldDefinition> FieldComparer { get; protected set; }
-        public IEqualityComparer<PropertyDefinition> PropertyComparer { get; protected set; }
         public IEqualityComparer<MethodDefinition> MethodComparer { get; protected set; }
 
         public virtual bool FilterLeftType(TypeDefinition type)
@@ -50,21 +48,6 @@ namespace APIComparer
         }
 
         public virtual bool FilterMatchedField(FieldDefinition left, FieldDefinition right)
-        {
-            return true;
-        }
-
-        public virtual bool FilterLeftProperty(PropertyDefinition property)
-        {
-            return true;
-        }
-
-        public virtual bool FilterRightProperty(PropertyDefinition property)
-        {
-            return true;
-        }
-
-        public virtual bool FilterMatchedProperty(PropertyDefinition left, PropertyDefinition right)
         {
             return true;
         }

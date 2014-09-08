@@ -72,28 +72,6 @@ public class NServiceBusAPIFilter : BaseAPIFilter
             !right.IsPublic;
     }
 
-    public override bool FilterLeftProperty(PropertyDefinition property)
-    {
-        return
-            property.IsPublic() &&
-            !property.EditorBrowsableStateNever() &&
-            !property.HasObsoleteAttribute();
-    }
-
-    public override bool FilterRightProperty(PropertyDefinition property)
-    {
-        return false;
-    }
-
-    public override bool FilterMatchedProperty(PropertyDefinition left, PropertyDefinition right)
-    {
-        return
-            !left.EditorBrowsableStateNever() &&
-            !left.HasObsoleteAttribute() &&
-            (left.GetMethod != null && right.GetMethod != null && CommonFilterMatchedMethod(left.GetMethod, right.GetMethod)) &&
-            (left.SetMethod != null && right.SetMethod != null && CommonFilterMatchedMethod(left.SetMethod, right.SetMethod));
-    }
-
     public override bool FilterLeftMethod(MethodDefinition method)
     {
         return
@@ -126,8 +104,7 @@ public class NServiceBusAPIFilter : BaseAPIFilter
     bool FilterMethods(MethodDefinition method)
     {
         return !method.IsConstructor // not constructors
-               && (!method.IsVirtual || !method.IsReuseSlot) // not public overrides
-               && !method.IsGetter && !method.IsSetter; // not property methods
+               && (!method.IsVirtual || !method.IsReuseSlot);
     }
 
     bool IsAnonymousType(TypeDefinition type)

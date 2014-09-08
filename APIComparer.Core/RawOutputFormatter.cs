@@ -80,11 +80,6 @@ namespace APIComparer
             return Environment.NewLine + FormatField(left) + Environment.NewLine + (right != null ? FormatField(right) : "[MISSING]");
         }
 
-        string FormatProperties(PropertyDefinition left, PropertyDefinition right)
-        {
-            return CreateLinkedLine(FormatProperty, left, right);
-        }
-
         string FormatMethods(MethodDefinition left, MethodDefinition right)
         {
             return CreateLinkedLine(FormatMethod, left, right);
@@ -100,11 +95,7 @@ namespace APIComparer
                 .Select(t => FormatMethods(t.Item1, t.Item2))
                 .ToList();
 
-            var missingProperties = typeDiff.GetMissingProperties()
-                .Select(t => FormatProperties(t.Item1, t.Item2))
-                .ToList();
-
-            if (missingFields.Any() || missingMethods.Any() || missingProperties.Any())
+            if (missingFields.Any() || missingMethods.Any())
             {
                 sb.AppendLine("- " + typeDiff.LeftType.GetName());
 
@@ -118,11 +109,6 @@ namespace APIComparer
                     sb.AppendLine("  - " + missingMethod);
                 }
 
-                foreach (var missingProperty in missingProperties)
-                {
-                    sb.AppendLine("  - " + missingProperty);
-                }
-
                 sb.AppendLine();
             }
         }
@@ -131,16 +117,6 @@ namespace APIComparer
         string FormatMethod(MethodDefinition method)
         {
             return "[" + method.Attributes + "] " + method.GetName();
-        }
-
-        string FormatProperty(PropertyDefinition property)
-        {
-            return String.Format(
-                "[{0}][{1}][{2}] {3}",
-                property.Attributes,
-                (property.GetMethod != null ? property.GetMethod.Attributes.ToString() : "MISSING"),
-                (property.SetMethod != null ? property.SetMethod.Attributes.ToString() : "MISSING"),
-                property.GetName());
         }
 
     }

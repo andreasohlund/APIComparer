@@ -614,6 +614,18 @@ Members
 [CompilerControlled, Public, HideBySig] void ForAllTypes<T>(Action<Type>)
 [CompilerControlled, Assembly, Static, HideBySig] void ForAllTypes<T>(IList<Type>, Action<Type>)
   - 
+[CompilerControlled, Public, Static, HideBySig, SpecialName] NServiceBus.Config.ConfigurationSource.IConfigurationSource get_ConfigurationSource()
+[MISSING]
+  - 
+[CompilerControlled, Public, Static, HideBySig, SpecialName] NServiceBus.Settings.Endpoint get_Endpoint()
+[MISSING]
+  - 
+[CompilerControlled, Public, Static, HideBySig, SpecialName] bool get_SendOnlyMode()
+[MISSING]
+  - 
+[CompilerControlled, Public, Static, HideBySig, SpecialName] NServiceBus.Settings.TransportSettings get_Transports()
+[MISSING]
+  - 
 [CompilerControlled, Public, Static, HideBySig] IEnumerable<Assembly> GetAssembliesInDirectory(string, String[][])
 [MISSING]
   - 
@@ -626,29 +638,16 @@ Members
 [CompilerControlled, Public, Static, HideBySig] void ScaleOut(Action<NServiceBus.Settings.ScaleOutSettings>)
 [MISSING]
   - 
-[None][CompilerControlled, Public, Static, HideBySig, SpecialName][CompilerControlled, Public, Static, HideBySig, SpecialName] NServiceBus.Config.ConfigurationSource.IConfigurationSource ConfigurationSource { get; set; }
-[MISSING]
+[CompilerControlled, Public, HideBySig, SpecialName] void set_Builder(NServiceBus.ObjectBuilder.IBuilder)
+[CompilerControlled, Private, HideBySig, SpecialName] void set_Builder(NServiceBus.ObjectBuilder.IBuilder)
   - 
-[None][CompilerControlled, Public, Static, HideBySig, SpecialName][MISSING] NServiceBus.Settings.Endpoint Endpoint { get;  }
-[MISSING]
-  - 
-[None][CompilerControlled, Public, Static, HideBySig, SpecialName][MISSING] NServiceBus.Settings.TransportSettings Transports { get;  }
+[CompilerControlled, Public, Static, HideBySig, SpecialName] void set_ConfigurationSource(NServiceBus.Config.ConfigurationSource.IConfigurationSource)
 [MISSING]
 
 - NServiceBus.EndpointSLAAttribute
   - 
-[None][CompilerControlled, Public, HideBySig, SpecialName][CompilerControlled, Public, HideBySig, SpecialName] string SLA { get; set; }
-[MISSING]
-
-- NServiceBus.Features.Audit
-  - 
-[None][CompilerControlled, Public, Virtual, HideBySig, SpecialName][MISSING] bool IsEnabledByDefault { get;  }
-[MISSING]
-
-- NServiceBus.Features.AutoSubscribe
-  - 
-[None][CompilerControlled, Public, Virtual, HideBySig, SpecialName][MISSING] bool IsEnabledByDefault { get;  }
-[MISSING]
+[CompilerControlled, Public, HideBySig, SpecialName] void set_SLA(string)
+[CompilerControlled, Private, HideBySig, SpecialName] void set_SLA(TimeSpan)
 
 - NServiceBus.Features.Feature
   - 
@@ -676,6 +675,12 @@ Members
 [CompilerControlled, Public, Static, HideBySig] void EnableByDefault<T>()
 [CompilerControlled, Family, HideBySig] void EnableByDefault()
   - 
+[CompilerControlled, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName] NServiceBus.Features.FeatureCategory get_Category()
+[MISSING]
+  - 
+[CompilerControlled, Public, HideBySig, SpecialName] bool get_Enabled()
+[MISSING]
+  - 
 [CompilerControlled, Public, Virtual, HideBySig, VtableLayoutMask] void Initialize()
 [MISSING]
   - 
@@ -692,12 +697,6 @@ Members
 [MISSING]
   - 
 [CompilerControlled, Public, Virtual, HideBySig, VtableLayoutMask] bool ShouldBeEnabled()
-[MISSING]
-  - 
-[None][CompilerControlled, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName][MISSING] NServiceBus.Features.FeatureCategory Category { get;  }
-[MISSING]
-  - 
-[None][CompilerControlled, Public, HideBySig, SpecialName][MISSING] bool Enabled { get;  }
 [MISSING]
 
 - NServiceBus.Features.Sagas
@@ -735,25 +734,20 @@ Members
 [CompilerControlled, Public, Static, HideBySig] bool ShouldMessageStartSaga(Type, Type)
 [MISSING]
 
-- NServiceBus.Features.SecondLevelRetries
-  - 
-[None][CompilerControlled, Public, Virtual, HideBySig, SpecialName][MISSING] bool IsEnabledByDefault { get;  }
-[MISSING]
-
 - NServiceBus.Features.TimeoutManager
   - 
-[None][CompilerControlled, Public, Static, HideBySig, SpecialName][CompilerControlled, Private, Static, HideBySig, SpecialName] NServiceBus.Address DispatcherAddress { get; set; }
+[CompilerControlled, Public, Static, HideBySig, SpecialName] NServiceBus.Address get_DispatcherAddress()
 [MISSING]
   - 
-[None][CompilerControlled, Public, Static, HideBySig, SpecialName][CompilerControlled, Private, Static, HideBySig, SpecialName] NServiceBus.Address InputAddress { get; set; }
-[MISSING]
-  - 
-[None][CompilerControlled, Public, Virtual, HideBySig, SpecialName][MISSING] bool IsEnabledByDefault { get;  }
+[CompilerControlled, Public, Static, HideBySig, SpecialName] NServiceBus.Address get_InputAddress()
 [MISSING]
 
 - NServiceBus.Logging.LogManager
   - 
-[None][CompilerControlled, Public, Static, HideBySig, SpecialName][CompilerControlled, Public, Static, HideBySig, SpecialName] NServiceBus.Logging.ILoggerFactory LoggerFactory { get; set; }
+[CompilerControlled, Public, Static, HideBySig, SpecialName] NServiceBus.Logging.ILoggerFactory get_LoggerFactory()
+[MISSING]
+  - 
+[CompilerControlled, Public, Static, HideBySig, SpecialName] void set_LoggerFactory(NServiceBus.Logging.ILoggerFactory)
 [MISSING]
 
 - NServiceBus.MessageInterfaces.MessageMapper.Reflection.MessageMapper
@@ -779,7 +773,10 @@ Members
 
 - NServiceBus.Serializers.XML.XmlMessageSerializer
   - 
-[None][CompilerControlled, Public, HideBySig, SpecialName][CompilerControlled, Public, HideBySig, SpecialName] bool SkipWrappingElementForSingleMessages { get; set; }
+[CompilerControlled, Public, HideBySig, SpecialName] bool get_SkipWrappingElementForSingleMessages()
+[MISSING]
+  - 
+[CompilerControlled, Public, HideBySig, SpecialName] void set_SkipWrappingElementForSingleMessages(bool)
 [MISSING]
 
 - NServiceBus.Settings.SettingsHolder
@@ -800,7 +797,18 @@ Members
 
 - NServiceBus.Timeout.Core.TimeoutData
   - 
-[None][CompilerControlled, Public, HideBySig, SpecialName][CompilerControlled, Public, HideBySig, SpecialName] string CorrelationId { get; set; }
+[CompilerControlled, Public, HideBySig, SpecialName] string get_CorrelationId()
+[MISSING]
+  - 
+[CompilerControlled, Public, HideBySig, SpecialName] void set_CorrelationId(string)
+[MISSING]
+
+- NServiceBus.TransportMessage
+  - 
+[CompilerControlled, Public, HideBySig, SpecialName] string get_IdForCorrelation()
+[MISSING]
+  - 
+[CompilerControlled, Public, HideBySig, SpecialName] void set_ReplyToAddress(NServiceBus.Address)
 [MISSING]
 
 - NServiceBus.Transports.Msmq.MsmqUnitOfWork
@@ -811,9 +819,23 @@ Members
 [CompilerControlled, Public, HideBySig] void SetTransaction(System.Messaging.MessageQueueTransaction)
 [CompilerControlled, Assembly, HideBySig] void SetTransaction(System.Messaging.MessageQueueTransaction)
 
+- NServiceBus.Unicast.Messages.MessageMetadata
+  - 
+[CompilerControlled, Public, HideBySig, SpecialName] void set_MessageHierarchy(IEnumerable<Type>)
+[MISSING]
+  - 
+[CompilerControlled, Public, HideBySig, SpecialName] void set_MessageType(Type)
+[MISSING]
+  - 
+[CompilerControlled, Public, HideBySig, SpecialName] void set_Recoverable(bool)
+[MISSING]
+  - 
+[CompilerControlled, Public, HideBySig, SpecialName] void set_TimeToBeReceived(TimeSpan)
+[MISSING]
+
 - NServiceBus.Unicast.Queuing.IWantQueueCreated
   - 
-[None][CompilerControlled, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName][MISSING] bool IsDisabled { get;  }
+[CompilerControlled, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName] bool get_IsDisabled()
 [MISSING]
 
 - NServiceBus.Unicast.Transport.ITransport
@@ -824,7 +846,16 @@ Members
 [CompilerControlled, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName] void add_FailedMessageProcessing(EventHandler<NServiceBus.Unicast.Transport.FailedMessageProcessingEventArgs>)
 [MISSING]
   - 
+[CompilerControlled, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName] int get_MaxThroughputPerSecond()
+[MISSING]
+  - 
+[CompilerControlled, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName] int get_NumberOfWorkerThreads()
+[MISSING]
+  - 
 [CompilerControlled, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName] void remove_FailedMessageProcessing(EventHandler<NServiceBus.Unicast.Transport.FailedMessageProcessingEventArgs>)
+[MISSING]
+  - 
+[CompilerControlled, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName] void set_MaxThroughputPerSecond(int)
 [MISSING]
   - 
 [CompilerControlled, Public, Virtual, HideBySig, VtableLayoutMask, Abstract] void Start(NServiceBus.Address)
@@ -832,16 +863,16 @@ Members
   - 
 [CompilerControlled, Public, Virtual, HideBySig, VtableLayoutMask, Abstract] void Stop()
 [MISSING]
-  - 
-[None][CompilerControlled, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName][MISSING] int MaximumMessageThroughputPerSecond { get;  }
-[MISSING]
 
 - NServiceBus.Unicast.Transport.TransactionSettings
   - 
-[None][CompilerControlled, Public, Static, HideBySig, SpecialName][MISSING] NServiceBus.Unicast.Transport.TransactionSettings Default { get;  }
+[CompilerControlled, Public, Static, HideBySig, SpecialName] NServiceBus.Unicast.Transport.TransactionSettings get_Default()
 [MISSING]
   - 
-[None][CompilerControlled, Public, HideBySig, SpecialName][CompilerControlled, Public, HideBySig, SpecialName] bool DontUseDistributedTransactions { get; set; }
+[CompilerControlled, Public, HideBySig, SpecialName] bool get_DontUseDistributedTransactions()
+[MISSING]
+  - 
+[CompilerControlled, Public, HideBySig, SpecialName] void set_DontUseDistributedTransactions(bool)
 [MISSING]
 
 - NServiceBus.Unicast.Transport.TransportReceiver
@@ -852,13 +883,25 @@ Members
 [CompilerControlled, Public, HideBySig] void DisposeManaged()
 [CompilerControlled, Private, HideBySig] void DisposeManaged()
   - 
+[CompilerControlled, Public, Final, Virtual, HideBySig, VtableLayoutMask, SpecialName] int get_MaxThroughputPerSecond()
+[MISSING]
+  - 
+[CompilerControlled, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName] int get_NumberOfWorkerThreads()
+[MISSING]
+  - 
+[CompilerControlled, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName] void set_MaximumConcurrencyLevel(int)
+[CompilerControlled, Private, HideBySig, SpecialName] void set_MaximumConcurrencyLevel(int)
+  - 
+[CompilerControlled, Public, Final, Virtual, HideBySig, VtableLayoutMask, SpecialName] void set_MaxThroughputPerSecond(int)
+[MISSING]
+  - 
+[CompilerControlled, Public, HideBySig, SpecialName] void set_Receiver(NServiceBus.Transports.IDequeueMessages)
+[CompilerControlled, Private, HideBySig, SpecialName] void set_Receiver(NServiceBus.Transports.IDequeueMessages)
+  - 
+[CompilerControlled, Public, HideBySig, SpecialName] void set_TransactionSettings(NServiceBus.Unicast.Transport.TransactionSettings)
+[CompilerControlled, Private, HideBySig, SpecialName] void set_TransactionSettings(NServiceBus.Unicast.Transport.TransactionSettings)
+  - 
 [CompilerControlled, Public, Final, Virtual, HideBySig, VtableLayoutMask] void Start(NServiceBus.Address)
-[MISSING]
-  - 
-[None][CompilerControlled, Public, Final, Virtual, HideBySig, VtableLayoutMask, SpecialName][CompilerControlled, Public, Final, Virtual, HideBySig, VtableLayoutMask, SpecialName] int MaxThroughputPerSecond { get; set; }
-[MISSING]
-  - 
-[None][CompilerControlled, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName][MISSING] int NumberOfWorkerThreads { get;  }
 [MISSING]
 
 - NServiceBus.Unicast.UnicastBus
@@ -888,6 +931,54 @@ Members
 [MISSING]
   - 
 [CompilerControlled, Public, Final, Virtual, HideBySig, VtableLayoutMask] void DoNotContinueDispatchingCurrentMessageToHandlers()
+[MISSING]
+  - 
+[CompilerControlled, Public, Final, Virtual, HideBySig, VtableLayoutMask, SpecialName] NServiceBus.IMessageContext get_CurrentMessageContext()
+[MISSING]
+  - 
+[CompilerControlled, Public, HideBySig, SpecialName] bool get_DoNotStartTransport()
+[MISSING]
+  - 
+[CompilerControlled, Public, HideBySig, SpecialName] NServiceBus.Address get_ForwardReceivedMessagesTo()
+[MISSING]
+  - 
+[CompilerControlled, Public, Final, Virtual, HideBySig, VtableLayoutMask, SpecialName] NServiceBus.IInMemoryOperations get_InMemory()
+[MISSING]
+  - 
+[CompilerControlled, Public, HideBySig, SpecialName] NServiceBus.Address get_InputAddress()
+[MISSING]
+  - 
+[CompilerControlled, Public, HideBySig, SpecialName] NServiceBus.Address get_MasterNodeAddress()
+[MISSING]
+  - 
+[CompilerControlled, Public, HideBySig, SpecialName] NServiceBus.Audit.MessageAuditer get_MessageAuditer()
+[MISSING]
+  - 
+[CompilerControlled, Public, HideBySig, SpecialName] NServiceBus.Transports.IDeferMessages get_MessageDeferrer()
+[MISSING]
+  - 
+[CompilerControlled, Public, HideBySig, SpecialName] IDictionary<Type, Type> get_MessageDispatcherMappings()
+[MISSING]
+  - 
+[CompilerControlled, Public, HideBySig, SpecialName] NServiceBus.Unicast.Messages.MessageMetadataRegistry get_MessageMetadataRegistry()
+[MISSING]
+  - 
+[CompilerControlled, Public, HideBySig, SpecialName] NServiceBus.Transports.IPublishMessages get_MessagePublisher()
+[MISSING]
+  - 
+[CompilerControlled, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName] NServiceBus.Serialization.IMessageSerializer get_MessageSerializer()
+[MISSING]
+  - 
+[CompilerControlled, Public, Final, Virtual, HideBySig, VtableLayoutMask, SpecialName] IDictionary<string, string> get_OutgoingHeaders()
+[MISSING]
+  - 
+[CompilerControlled, Public, HideBySig, SpecialName] bool get_SkipDeserialization()
+[MISSING]
+  - 
+[CompilerControlled, Public, HideBySig, SpecialName] NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions.SubcriberSideFiltering.SubscriptionPredicatesEvaluator get_SubscriptionPredicatesEvaluator()
+[MISSING]
+  - 
+[CompilerControlled, Public, HideBySig, SpecialName] TimeSpan get_TimeToBeReceivedOnForwardedMessages()
 [MISSING]
   - 
 [CompilerControlled, Public, Virtual, HideBySig, VtableLayoutMask] void Publish<T>(T[][])
@@ -938,6 +1029,48 @@ Members
 [CompilerControlled, Public, Final, Virtual, HideBySig, VtableLayoutMask] NServiceBus.ICallback SendToSites(IEnumerable<string>, Object[][])
 [MISSING]
   - 
+[CompilerControlled, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName] void set_DisableMessageHandling(bool)
+[MISSING]
+  - 
+[CompilerControlled, Public, HideBySig, SpecialName] void set_DoNotStartTransport(bool)
+[MISSING]
+  - 
+[CompilerControlled, Public, HideBySig, SpecialName] void set_ForwardReceivedMessagesTo(NServiceBus.Address)
+[MISSING]
+  - 
+[CompilerControlled, Public, HideBySig, SpecialName] void set_InputAddress(NServiceBus.Address)
+[MISSING]
+  - 
+[CompilerControlled, Public, HideBySig, SpecialName] void set_MasterNodeAddress(NServiceBus.Address)
+[MISSING]
+  - 
+[CompilerControlled, Public, HideBySig, SpecialName] void set_MessageAuditer(NServiceBus.Audit.MessageAuditer)
+[MISSING]
+  - 
+[CompilerControlled, Public, HideBySig, SpecialName] void set_MessageDeferrer(NServiceBus.Transports.IDeferMessages)
+[MISSING]
+  - 
+[CompilerControlled, Public, HideBySig, SpecialName] void set_MessageDispatcherMappings(IDictionary<Type, Type>)
+[MISSING]
+  - 
+[CompilerControlled, Public, HideBySig, SpecialName] void set_MessageMetadataRegistry(NServiceBus.Unicast.Messages.MessageMetadataRegistry)
+[MISSING]
+  - 
+[CompilerControlled, Public, HideBySig, SpecialName] void set_MessagePublisher(NServiceBus.Transports.IPublishMessages)
+[MISSING]
+  - 
+[CompilerControlled, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName] void set_MessageSerializer(NServiceBus.Serialization.IMessageSerializer)
+[MISSING]
+  - 
+[CompilerControlled, Public, HideBySig, SpecialName] void set_SkipDeserialization(bool)
+[MISSING]
+  - 
+[CompilerControlled, Public, HideBySig, SpecialName] void set_SubscriptionPredicatesEvaluator(NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions.SubcriberSideFiltering.SubscriptionPredicatesEvaluator)
+[MISSING]
+  - 
+[CompilerControlled, Public, HideBySig, SpecialName] void set_TimeToBeReceivedOnForwardedMessages(TimeSpan)
+[MISSING]
+  - 
 [CompilerControlled, Public, Final, Virtual, HideBySig, VtableLayoutMask] void Shutdown()
 [MISSING]
   - 
@@ -948,11 +1081,5 @@ Members
 [MISSING]
   - 
 [CompilerControlled, Public, Virtual, HideBySig, VtableLayoutMask] void Subscribe(Type, Predicate<object>)
-[MISSING]
-  - 
-[None][CompilerControlled, Public, HideBySig, SpecialName][CompilerControlled, Public, HideBySig, SpecialName] NServiceBus.Address MasterNodeAddress { get; set; }
-[MISSING]
-  - 
-[None][CompilerControlled, Public, HideBySig, SpecialName][CompilerControlled, Public, HideBySig, SpecialName] NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions.SubcriberSideFiltering.SubscriptionPredicatesEvaluator SubscriptionPredicatesEvaluator { get; set; }
 [MISSING]
 

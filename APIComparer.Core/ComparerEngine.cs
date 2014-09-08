@@ -57,12 +57,6 @@ namespace APIComparer
 
             Diff(leftType.Fields, rightType.Fields, Filter.FieldComparer, out leftOrphanFields, out rightOrphanFields, out matchingFields);
 
-            List<PropertyDefinition> leftOrphanProperties;
-            List<PropertyDefinition> rightOrphanProperties;
-            List<Tuple<PropertyDefinition, PropertyDefinition>> matchingProperties;
-
-            Diff(leftType.Properties, rightType.Properties, Filter.PropertyComparer, out leftOrphanProperties, out rightOrphanProperties, out matchingProperties);
-
             List<MethodDefinition> leftOrphanMethods;
             List<MethodDefinition> rightOrphanMethods;
             List<Tuple<MethodDefinition, MethodDefinition>> matchingMethods;
@@ -77,11 +71,6 @@ namespace APIComparer
                 LeftOrphanFields = leftOrphanFields.Where(Filter.FilterLeftField).ToList(),
                 RightOrphanFields = rightOrphanFields.Where(Filter.FilterRightField).ToList(),
                 MatchingFields = matchingFields.Where(t => Filter.FilterMatchedField(t.Item1, t.Item2)).ToList(),
-
-                LeftOrphanProperties = leftOrphanProperties.Where(Filter.FilterLeftProperty).ToList(),
-                RightOrphanProperties = rightOrphanProperties.Where(Filter.FilterRightProperty).ToList(),
-                MatchingProperties = matchingProperties.Where(t => Filter.FilterMatchedProperty(t.Item1, t.Item2)).ToList(),
-
                 LeftOrphanMethods = leftOrphanMethods.Where(Filter.FilterLeftMethod).ToList(),
                 RightOrphanMethods = rightOrphanMethods.Where(Filter.FilterRightMethod).ToList(),
                 MatchingMethods = matchingMethods.Where(t => Filter.FilterMatchedMethod(t.Item1, t.Item2)).ToList(),

@@ -26,20 +26,22 @@ namespace APIComparer
 
         Diff Diff(AssemblyDefinition leftAssembly, AssemblyDefinition rightAssembly)
         {
+            var right = rightAssembly.MainModule.Types.ToList();
+            var left = leftAssembly.MainModule.Types.ToList();
+            return Diff(left, right);
+        }
+
+        public Diff Diff(IEnumerable<TypeDefinition> left, IEnumerable<TypeDefinition> right)
+        {
             List<TypeDefinition> leftOrphans;
             List<TypeDefinition> rightOrphans;
             List<Tuple<TypeDefinition, TypeDefinition>> diffs;
-
-            var right = rightAssembly.MainModule.Types.ToList();
-            var left = leftAssembly.MainModule.Types.ToList();
             Diff(left, right, Filter.TypeComparer, out leftOrphans, out rightOrphans, out diffs);
 
             var typeDiffs = diffs.Select(t => DiffTypes(t.Item1, t.Item2)).ToList();
 
             return new Diff
             {
-                LeftAssembly = leftAssembly,
-                RightAssembly = rightAssembly,
                 LeftOrphanTypes = leftOrphans.Where(Filter.FilterLeftType).ToList(),
                 RightOrphanTypes = rightOrphans.Where(Filter.FilterRightType).ToList(),
                 MatchingTypeDiffs = typeDiffs.Where(Filter.FilterMatchedType).ToList(),

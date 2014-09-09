@@ -119,6 +119,10 @@ namespace APIComparer
         {
             foreach (var typeDefinition in diff)
             {
+                if (!typeDefinition.IsPublic)
+                {
+                    continue;
+                }
                 if (typeDefinition.HasObsoleteAttribute())
                 {
                     yield return typeDefinition;
@@ -137,11 +141,11 @@ namespace APIComparer
 
         public static IEnumerable<FieldDefinition> GetObsoleteFields(this TypeDefinition typeDefinition)
         {
-            return typeDefinition.Fields.Where(field => field.HasObsoleteAttribute());
+            return typeDefinition.Fields.Where(x => x.IsPublic && x.HasObsoleteAttribute());
         }
         public static IEnumerable<MethodDefinition> GetObsoleteMethods(this TypeDefinition typeDefinition)
         {
-            return typeDefinition.Methods.Where(field => field.HasObsoleteAttribute());
+            return typeDefinition.Methods.Where(x => x.IsPublic && x.HasObsoleteAttribute());
         }
 
         public static SequencePoint GetValidSequencePoint(this TypeDefinition type)

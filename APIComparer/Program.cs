@@ -20,19 +20,23 @@ class Program
 
         var packageManager = new PackageManager(repo, "packages");
 
-        //packageManager.InstallPackage("NServiceBus.Interfaces", SemanticVersion.Parse("4.6.4"));
-        //packageManager.InstallPackage("NServiceBus", SemanticVersion.Parse("4.6.4"));
         var newVersion = "5.0.0-beta0004";
         //packageManager.InstallPackage("NServiceBus", SemanticVersion.Parse(newVersion));
+        //packageManager.InstallPackage("NServiceBus.Host", SemanticVersion.Parse(newVersion));
+        //packageManager.InstallPackage("NServiceBus.Interfaces", SemanticVersion.Parse("4.6.4"));
+        //packageManager.InstallPackage("NServiceBus", SemanticVersion.Parse("4.6.4"));
+        //packageManager.InstallPackage("NServiceBus.Host", SemanticVersion.Parse("4.6.4"));
 
         var leftAssemblyGroup = new List<string>
         {
             Path.Combine("packages", "NServiceBus.4.6.4", "lib", "net40", "NServiceBus.Core.dll"),
-            Path.Combine("packages", "NServiceBus.Interfaces.4.6.4", "lib", "net40", "NServiceBus.dll")
+            Path.Combine("packages", "NServiceBus.Interfaces.4.6.4", "lib", "net40", "NServiceBus.dll"),
+            Path.Combine("packages", "NServiceBus.Host.4.6.4", "lib", "net40", "NServiceBus.Host.exe")
         };
         var rightAssemblyGroup = new List<string>
         {
             Path.Combine("packages", "NServiceBus." + newVersion, "lib", "net45", "NServiceBus.Core.dll"),
+            Path.Combine("packages", "NServiceBus.Host." + newVersion, "lib", "net45", "NServiceBus.Host.exe"),
         };
 
         var engine = new ComparerEngine();

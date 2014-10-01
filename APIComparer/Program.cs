@@ -20,18 +20,18 @@ class Program
 
         var packageManager = new PackageManager(repo, "packages");
 
-        var newVersion = "5.0.0-beta0004";
-        //packageManager.InstallPackage("NServiceBus", SemanticVersion.Parse(newVersion));
-        //packageManager.InstallPackage("NServiceBus.Host", SemanticVersion.Parse(newVersion));
-        //packageManager.InstallPackage("NServiceBus.Interfaces", SemanticVersion.Parse("4.6.4"));
-        //packageManager.InstallPackage("NServiceBus", SemanticVersion.Parse("4.6.4"));
-        //packageManager.InstallPackage("NServiceBus.Host", SemanticVersion.Parse("4.6.4"));
+        var newVersion = "5.0.0";
+        packageManager.InstallPackage("NServiceBus", SemanticVersion.Parse(newVersion));
+        packageManager.InstallPackage("NServiceBus.Host", SemanticVersion.Parse(newVersion));
+        packageManager.InstallPackage("NServiceBus.Interfaces", SemanticVersion.Parse("4.6.6"));
+        packageManager.InstallPackage("NServiceBus", SemanticVersion.Parse("4.6.6"));
+        packageManager.InstallPackage("NServiceBus.Host", SemanticVersion.Parse("4.6.6"));
 
         var leftAssemblyGroup = new List<string>
         {
-            Path.Combine("packages", "NServiceBus.4.6.4", "lib", "net40", "NServiceBus.Core.dll"),
-            Path.Combine("packages", "NServiceBus.Interfaces.4.6.4", "lib", "net40", "NServiceBus.dll"),
-            Path.Combine("packages", "NServiceBus.Host.4.6.4", "lib", "net40", "NServiceBus.Host.exe")
+            Path.Combine("packages", "NServiceBus.4.6.6", "lib", "net40", "NServiceBus.Core.dll"),
+            Path.Combine("packages", "NServiceBus.Interfaces.4.6.6", "lib", "net40", "NServiceBus.dll"),
+            Path.Combine("packages", "NServiceBus.Host.4.6.6", "lib", "net40", "NServiceBus.Host.exe")
         };
         var rightAssemblyGroup = new List<string>
         {
@@ -44,7 +44,7 @@ class Program
         var diff = engine.CreateDiff(leftAssemblyGroup, rightAssemblyGroup);
 
         var stringBuilder = new StringBuilder();
-        var formatter = new APIUpgradeToMarkdownFormatter(stringBuilder, "https://github.com/Particular/NServiceBus/blob/4.6.4/", "https://github.com/Particular/NServiceBus/blob/5.0.0-beta4/");
+        var formatter = new APIUpgradeToMarkdownFormatter(stringBuilder, "https://github.com/Particular/NServiceBus/blob/4.6.6/", "https://github.com/Particular/NServiceBus/tree/master/");
         formatter.WriteOut(diff);
         File.WriteAllText("Result.md", stringBuilder.ToString());
 

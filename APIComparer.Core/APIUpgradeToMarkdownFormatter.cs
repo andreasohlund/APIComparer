@@ -69,12 +69,12 @@ namespace APIComparer
             if (obsoleteTypes.Any())
             {
                 stringBuilder.AppendLine();
-                stringBuilder.AppendLine("### The following types have Obsoletes.");
+                stringBuilder.AppendLine("## The following types have Obsoletes.");
                 stringBuilder.AppendLine();
                 foreach (var type in obsoleteTypes)
                 {
                     var link = CreateRightLink(type.GetValidSequencePoint());
-                    stringBuilder.AppendLine("#### " + HttpUtility.HtmlEncode(type.GetName()) + "  " + link);
+                    stringBuilder.AppendLine("### " + HttpUtility.HtmlEncode(type.GetName()) + "  " + link);
                     stringBuilder.AppendLine();
                     if (type.HasObsoleteAttribute())
                     {
@@ -96,7 +96,7 @@ namespace APIComparer
             if (obsoletes.Any())
             {
                 stringBuilder.AppendLine();
-                stringBuilder.AppendLine("##### Obsolete Fields");
+                stringBuilder.AppendLine("#### Obsolete Fields");
                 stringBuilder.AppendLine();
                 foreach (var field in obsoletes)
                 {
@@ -112,7 +112,7 @@ namespace APIComparer
             if (obsoletes.Any())
             {
                 stringBuilder.AppendLine();
-                stringBuilder.AppendLine("##### Obsolete Methods");
+                stringBuilder.AppendLine("#### Obsolete Methods");
                 stringBuilder.AppendLine();
                 foreach (var method in obsoletes)
                 {
@@ -125,13 +125,14 @@ namespace APIComparer
         }
 
 
+
         public void WriteOut(Diff diff)
         {
             var removePublicTypes = diff.RemovePublicTypes().ToList();
             if (removePublicTypes.Any())
             {
                 stringBuilder.AppendLine();
-                stringBuilder.AppendLine("### The following public types have been removed.");
+                stringBuilder.AppendLine("## The following public types have been removed.");
                 stringBuilder.AppendLine();
                 foreach (var type in removePublicTypes)
                 {
@@ -144,7 +145,7 @@ namespace APIComparer
             if (typesChangedToNonPublic.Any())
             {
                 stringBuilder.AppendLine();
-                stringBuilder.AppendLine("### The following public types have been made internal.");
+                stringBuilder.AppendLine("## The following public types have been made internal.");
                 stringBuilder.AppendLine();
                 foreach (var type in typesChangedToNonPublic)
                 {
@@ -155,7 +156,7 @@ namespace APIComparer
             }
 
             stringBuilder.AppendLine();
-            stringBuilder.AppendLine("### The following types have differences.");
+            stringBuilder.AppendLine("## The following types have differences.");
             stringBuilder.AppendLine();
             foreach (var typeDiff in diff.MatchingTypeDiffs)
             {
@@ -199,7 +200,7 @@ namespace APIComparer
         {
             stringBuilder.AppendLine();
             var links = CreateLinks(typeDiff.LeftType.GetValidSequencePoint(), typeDiff.RightType.GetValidSequencePoint());
-            stringBuilder.AppendFormat("#### {0}  {1}", HttpUtility.HtmlEncode(typeDiff.RightType.GetName()), links);
+            stringBuilder.AppendFormat("### {0}  {1}", HttpUtility.HtmlEncode(typeDiff.RightType.GetName()), links);
             stringBuilder.AppendLine();
 
             WriteFields(typeDiff);
@@ -214,7 +215,7 @@ namespace APIComparer
             if (changedToNonPublic.Any())
             {
                 stringBuilder.AppendLine();
-                stringBuilder.AppendLine("##### Fields changed to non-public");
+                stringBuilder.AppendLine("#### Fields changed to non-public");
                 stringBuilder.AppendLine();
                 foreach (var field in changedToNonPublic)
                 {
@@ -227,7 +228,7 @@ namespace APIComparer
             //if (added.Any())
             //{
             //    stringBuilder.AppendLine();
-            //    stringBuilder.AppendLine("##### Fields Added");
+            //    stringBuilder.AppendLine("#### Fields Added");
             //    stringBuilder.AppendLine();
             //    foreach (var field in added)
             //    {
@@ -239,7 +240,7 @@ namespace APIComparer
             if (removed.Any())
             {
                 stringBuilder.AppendLine();
-                stringBuilder.AppendLine("##### Fields Removed"); 
+                stringBuilder.AppendLine("#### Fields Removed"); 
                 stringBuilder.AppendLine();
                 foreach (var field in removed)
                 {
@@ -254,7 +255,7 @@ namespace APIComparer
             if (changedToNonPublic.Any())
             {
                 stringBuilder.AppendLine();
-                stringBuilder.AppendLine("##### Methods changed to non-public");
+                stringBuilder.AppendLine("#### Methods changed to non-public");
                 stringBuilder.AppendLine();
                 foreach (var method in changedToNonPublic)
                 {
@@ -269,7 +270,7 @@ namespace APIComparer
             //if (added.Any())
             //{
             //    stringBuilder.AppendLine();
-            //    stringBuilder.AppendLine("##### Methods Added");
+            //    stringBuilder.AppendLine("#### Methods Added");
             //    stringBuilder.AppendLine();
             //    foreach (var method in added)
             //    {
@@ -282,7 +283,7 @@ namespace APIComparer
             if (removed.Any())
             {
                 stringBuilder.AppendLine();
-                stringBuilder.AppendLine("##### Methods Removed");
+                stringBuilder.AppendLine("#### Methods Removed");
                 stringBuilder.AppendLine();
                 foreach (var method in removed)
                 {

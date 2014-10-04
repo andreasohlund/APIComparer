@@ -23,15 +23,15 @@ class Program
         var newVersion = "5.0.0";
         packageManager.InstallPackage("NServiceBus", SemanticVersion.Parse(newVersion));
         packageManager.InstallPackage("NServiceBus.Host", SemanticVersion.Parse(newVersion));
-        packageManager.InstallPackage("NServiceBus.Interfaces", SemanticVersion.Parse("4.6.6"));
-        packageManager.InstallPackage("NServiceBus", SemanticVersion.Parse("4.6.6"));
-        packageManager.InstallPackage("NServiceBus.Host", SemanticVersion.Parse("4.6.6"));
+        packageManager.InstallPackage("NServiceBus.Interfaces", SemanticVersion.Parse("4.6.7"));
+        packageManager.InstallPackage("NServiceBus", SemanticVersion.Parse("4.6.7"));
+        packageManager.InstallPackage("NServiceBus.Host", SemanticVersion.Parse("4.6.7"));
 
         var leftAssemblyGroup = new List<string>
         {
-            Path.Combine("packages", "NServiceBus.4.6.6", "lib", "net40", "NServiceBus.Core.dll"),
-            Path.Combine("packages", "NServiceBus.Interfaces.4.6.6", "lib", "net40", "NServiceBus.dll"),
-            Path.Combine("packages", "NServiceBus.Host.4.6.6", "lib", "net40", "NServiceBus.Host.exe")
+            Path.Combine("packages", "NServiceBus.4.6.7", "lib", "net40", "NServiceBus.Core.dll"),
+            Path.Combine("packages", "NServiceBus.Interfaces.4.6.7", "lib", "net40", "NServiceBus.dll"),
+            Path.Combine("packages", "NServiceBus.Host.4.6.7", "lib", "net40", "NServiceBus.Host.exe")
         };
         var rightAssemblyGroup = new List<string>
         {
@@ -44,7 +44,7 @@ class Program
         var diff = engine.CreateDiff(leftAssemblyGroup, rightAssemblyGroup);
 
         var stringBuilder = new StringBuilder();
-        var formatter = new APIUpgradeToMarkdownFormatter(stringBuilder, "https://github.com/Particular/NServiceBus/blob/4.6.6/", "https://github.com/Particular/NServiceBus/tree/master/");
+        var formatter = new APIUpgradeToMarkdownFormatter(stringBuilder, "https://github.com/Particular/NServiceBus/blob/4.6.7/", "https://github.com/Particular/NServiceBus/tree/master/");
         formatter.WriteOut(diff);
         File.WriteAllText("Result.md", stringBuilder.ToString());
 

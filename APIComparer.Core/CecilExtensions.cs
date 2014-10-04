@@ -44,6 +44,7 @@ namespace APIComparer
             }
             return null;
         }
+        
         public static string GetObsoleteString(this ICustomAttributeProvider value)
         {
             var arguments = value.GetObsoleteAttribute().ConstructorArguments;
@@ -59,7 +60,15 @@ namespace APIComparer
                 treatAsError = (bool) arguments[1].Value;
             }
 
-            return message + " TreatAsError=" + treatAsError;
+            if (!message.EndsWith("."))
+            {
+                message += ".";
+            }
+            if (treatAsError)
+            {
+                return message + " Obsoleted with error.";
+            }
+            return message + " Obsoleted with warning.";
         }
 
         public static string GetName(this MethodDefinition method)

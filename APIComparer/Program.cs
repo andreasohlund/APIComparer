@@ -44,7 +44,7 @@ class Program
         var diff = engine.CreateDiff(leftAssemblyGroup, rightAssemblyGroup);
 
         var stringBuilder = new StringBuilder();
-        var formatter = new APIUpgradeToMarkdownFormatter(stringBuilder, "https://github.com/Particular/NServiceBus/blob/4.6.7/", "https://github.com/Particular/NServiceBus/tree/master/");
+        var formatter = new APIUpgradeToMarkdownFormatter(stringBuilder, "https://github.com/Particular/NServiceBus/blob/4.6.7/", "https://github.com/Particular/NServiceBus/blob/master/");
         formatter.WriteOut(diff);
         File.WriteAllText("Result.md", stringBuilder.ToString());
 

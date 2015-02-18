@@ -1,50 +1,59 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using APIComparer;
 using NuGet;
 
 class Program
 {
-    static void Main()
+    static void Main(string[] args)
     {
 
-        var nugetCacheDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "NuGet", "Cache");
-        var repo = new AggregateRepository(new[]
+        //var nugetCacheDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "NuGet", "Cache");
+        //var repo = new AggregateRepository(new[]
+        //{
+        //    PackageRepositoryFactory.Default.CreateRepository(nugetCacheDirectory),
+        //    PackageRepositoryFactory.Default.CreateRepository("https://www.nuget.org/api/v2"),
+        //    PackageRepositoryFactory.Default.CreateRepository("https://www.myget.org/F/particular/"),
+        //});
+
+        //var packageManager = new PackageManager(repo, "packages");
+
+        //var newVersion = "5.0.0";
+        //packageManager.InstallPackage("NServiceBus", SemanticVersion.Parse(newVersion));
+        //packageManager.InstallPackage("NServiceBus.Host", SemanticVersion.Parse(newVersion));
+        //packageManager.InstallPackage("NServiceBus.Interfaces", SemanticVersion.Parse("4.6.7"));
+        //packageManager.InstallPackage("NServiceBus", SemanticVersion.Parse("4.6.7"));
+        //packageManager.InstallPackage("NServiceBus.Host", SemanticVersion.Parse("4.6.7"));
+
+      
+        var sourceIndex = Array.FindIndex(args, arg => arg == "--source");
+
+        if (sourceIndex < 0)
         {
-            PackageRepositoryFactory.Default.CreateRepository(nugetCacheDirectory),
-            PackageRepositoryFactory.Default.CreateRepository("https://www.nuget.org/api/v2"),
-            PackageRepositoryFactory.Default.CreateRepository("https://www.myget.org/F/particular/"),
-        });
+            throw new Exception("No target assemblies specified, please use --source {asm1};{asm2}...");
+        }
 
-        var packageManager = new PackageManager(repo, "packages");
+        var leftAssemblyGroup = args[sourceIndex + 1].Split(';').Select(Path.GetFullPath).ToList();
 
-        var newVersion = "5.0.0";
-        packageManager.InstallPackage("NServiceBus", SemanticVersion.Parse(newVersion));
-        packageManager.InstallPackage("NServiceBus.Host", SemanticVersion.Parse(newVersion));
-        packageManager.InstallPackage("NServiceBus.Interfaces", SemanticVersion.Parse("4.6.7"));
-        packageManager.InstallPackage("NServiceBus", SemanticVersion.Parse("4.6.7"));
-        packageManager.InstallPackage("NServiceBus.Host", SemanticVersion.Parse("4.6.7"));
 
-        var leftAssemblyGroup = new List<string>
+        var targetIndex = Array.FindIndex(args,arg => arg == "--target");
+
+        if (targetIndex < 0)
         {
-            Path.Combine("packages", "NServiceBus.4.6.7", "lib", "net40", "NServiceBus.Core.dll"),
-            Path.Combine("packages", "NServiceBus.Interfaces.4.6.7", "lib", "net40", "NServiceBus.dll"),
-            Path.Combine("packages", "NServiceBus.Host.4.6.7", "lib", "net40", "NServiceBus.Host.exe")
-        };
-        var rightAssemblyGroup = new List<string>
-        {
-            Path.Combine("packages", "NServiceBus." + newVersion, "lib", "net45", "NServiceBus.Core.dll"),
-            Path.Combine("packages", "NServiceBus.Host." + newVersion, "lib", "net45", "NServiceBus.Host.exe"),
-        };
+            throw new Exception("No target assemblies specified, please use --target {asm1};{asm2}...");
+        }
 
+        var rightAssemblyGroup = args[targetIndex + 1].Split(';').Select(Path.GetFullPath).ToList();
+        
         var engine = new ComparerEngine();
 
         var diff = engine.CreateDiff(leftAssemblyGroup, rightAssemblyGroup);
 
         var stringBuilder = new StringBuilder();
-        var formatter = new APIUpgradeToMarkdownFormatter(stringBuilder, "https://github.com/Particular/NServiceBus/blob/4.6.7/", "https://github.com/Particular/NServiceBus/blob/master/");
+        var formatter = new APIUpgradeToMarkdownFormatter(stringBuilder, "https://github.com/Particular/NServiceBus/blob/5.2.0/", "https://github.com/Particular/NServiceBus/blob/extending_pipeline_to_transport/");
         formatter.WriteOut(diff);
         File.WriteAllText("Result.md", stringBuilder.ToString());
 

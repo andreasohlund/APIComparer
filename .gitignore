@@ -39,4 +39,4 @@ run-git.cmd
 
 *.jtconfig
 
-*.received
+*.received.txt

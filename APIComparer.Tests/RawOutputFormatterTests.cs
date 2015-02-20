@@ -7,7 +7,7 @@ using NuGet;
 using NUnit.Framework;
 
 [TestFixture]
-public class RawOutputFormatterTests
+public class APIUpgradeToMarkdownFormatterTests
 {
     [Test]
     public void ApproveNServiceBus()

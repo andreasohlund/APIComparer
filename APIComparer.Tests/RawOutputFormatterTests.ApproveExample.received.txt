@@ -1,54 +1,61 @@
 ﻿
-### The following public types have been removed.
+## The following public types have been removed.
 
-- Example.MissingNextVersionClass  [ [link](ExampleV1/MissingNextVersionClass.cs) ]
-
-
-### The following types have differences.
+- `Example.MissingNextVersionClass` [ [link](MissingNextVersionClass.cs) ]
 
 
-#### Example.IMethodChangesParametersNextVersion  
+## The following public types have been made internal.
 
-##### Methods Removed
-
-  - void MethodName(string) 
+- `Example.InternalNextVersionClass` [ [old](InternalNextVersionClass.cs) | [new](InternalNextVersionClass.cs) ]
 
 
-#### Example.MemberInternalNextVersion  [ [old](ExampleV1/MemberInternalNextVersion.cs) | [new](ExampleV2/MemberInternalNextVersion.cs) ]
-
-##### Fields changed to non-public
-
-  - string StringField
-
-##### Methods changed to non-public
-
-  - string get_StringProperty() 
-  - void Method() [ [old](ExampleV1/MemberInternalNextVersion.cs#L8) | [new](ExampleV2/MemberInternalNextVersion.cs#L8) ]
-  - void set_StringProperty(string) 
+## The following types have differences.
 
 
-#### Example.MemberMissingNextVersion  [ [old](ExampleV1/MemberMissingNextVersion.cs) ]
+### Example.ClassWithReadOnlyPropToBeRemovedInNextMajor  [ [old](ClassWithReadOnlyPropToBeRemovedInNextMajor.cs) ]
 
-##### Fields Removed
+#### Methods Removed
 
-  - string StringField
-
-##### Methods Removed
-
-  - string get_StringProperty() 
-  - void Method() [ [new](ExampleV1/MemberMissingNextVersion.cs#L8) ]
-  - void set_StringProperty(string) 
+  - `string get_TheProperty()` [ [link](ClassWithReadOnlyPropToBeRemovedInNextMajor.cs#L12) ]
 
 
-#### Example.MemberObsoleteNextVersion  [ [old](ExampleV1/MemberObsoleteNextVersion.cs) | [new](ExampleV2/MemberObsoleteNextVersion.cs) ]
+### Example.IMethodChangesParametersNextVersion  
 
-##### Fields changed to non-public
+#### Methods Removed
 
-  - string StringField
+  - `void MethodName(string)` 
 
-##### Methods changed to non-public
 
-  - string get_StringProperty() 
-  - void Method() [ [old](ExampleV1/MemberObsoleteNextVersion.cs#L13) | [new](ExampleV2/MemberObsoleteNextVersion.cs#L8) ]
-  - void set_StringProperty(string) 
+### Example.MemberInternalNextVersion  [ [old](MemberInternalNextVersion.cs) | [new](MemberInternalNextVersion.cs) ]
+
+#### Fields changed to non-public
+
+  - `string StringField`
+
+#### Methods changed to non-public
+
+  - `string get_StringProperty()` 
+  - `void Method()` [ [old](MemberInternalNextVersion.cs#L10) | [new](MemberInternalNextVersion.cs#L10) ]
+  - `void set_StringProperty(string)` 
+
+
+### Example.MemberMissingNextVersion  [ [old](MemberMissingNextVersion.cs) ]
+
+#### Fields Removed
+
+  - `string StringField`
+
+#### Methods Removed
+
+  - `string get_StringProperty()` 
+  - `void Method()` [ [link](MemberMissingNextVersion.cs#L10) ]
+  - `void set_StringProperty(string)` 
+
+
+### Example.MemberObsoleteNextVersion  [ [old](MemberObsoleteNextVersion.cs) | [new](MemberObsoleteNextVersion.cs) ]
+
+#### Methods changed to non-public
+
+  - `string get_StringProperty()` 
+  - `void set_StringProperty(string)` 
 

@@ -35,6 +35,8 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ClassWithFieldToRemovedInNextMajor.cs" />
+    <Compile Include="ClassWithReadOnlyPropToBeRemovedInNextMajor.cs" />
     <Compile Include="IMethodChangesParametersNextVersion.cs" />
     <Compile Include="InternalNextVersionClass.cs" />
     <Compile Include="MemberInternalNextVersion.cs" />

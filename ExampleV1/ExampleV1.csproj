@@ -35,12 +35,15 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ClassWithFieldToRemovedInNextMajor.cs" />
+    <Compile Include="ClassWithReadOnlyPropToBeRemovedInNextMajor.cs" />
     <Compile Include="IMethodChangesParametersNextVersion.cs" />
     <Compile Include="InternalNextVersionClass.cs" />
     <Compile Include="MemberInternalNextVersion.cs" />
     <Compile Include="MemberMissingNextVersion.cs" />
     <Compile Include="MemberObsoleteNextVersion.cs" />
     <Compile Include="MissingNextVersionClass.cs" />
+    <Compile Include="MissingNextVersionClassWithRemoveInNextMajor.cs" />
     <Compile Include="ObsoleteNextVersionClass.cs" />
     <Compile Include="PublicClass.cs" />
   </ItemGroup>

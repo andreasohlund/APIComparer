@@ -128,7 +128,7 @@ namespace APIComparer
 
         public void WriteOut(Diff diff)
         {
-            var removePublicTypes = diff.RemovePublicTypes().ToList();
+            var removePublicTypes = diff.RemovedPublicTypes().ToList();
             if (removePublicTypes.Any())
             {
                 stringBuilder.AppendLine();

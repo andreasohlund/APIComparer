@@ -44,11 +44,3 @@
   - `void Method()` [ [link](MemberMissingNextVersion.cs#L10) ]
   - `void set_StringProperty(string)` 
 
-
-### Example.MemberObsoleteNextVersion  [ [old](MemberObsoleteNextVersion.cs) | [new](MemberObsoleteNextVersion.cs) ]
-
-#### Methods changed to non-public
-
-  - `string get_StringProperty()` 
-  - `void set_StringProperty(string)` 
-

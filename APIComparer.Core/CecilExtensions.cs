@@ -31,6 +31,7 @@ namespace APIComparer
                 {
                     return obsoleteAttribute;
                 }
+
             }
             var @event = value as EventDefinition;
             if (@event != null)
@@ -42,6 +43,27 @@ namespace APIComparer
                     return obsoleteAttribute;
                 }
             }
+            var method = value as MethodDefinition;
+
+            if (method != null)
+            {
+                if (method.IsGetter || method.IsSetter)
+                {
+                    foreach (var prop in method.DeclaringType.Properties)
+                    {
+                        if (prop.GetMethod == method || prop.SetMethod == method)
+                        {
+                            obsoleteAttribute = prop.CustomAttributes.FirstOrDefault(a => a.AttributeType.Name == "ObsoleteAttribute");
+
+                            if (obsoleteAttribute != null)
+                            {
+                                return obsoleteAttribute;
+                            }
+                        }
+                    }              
+                }
+            }
+      
             return null;
         }
         

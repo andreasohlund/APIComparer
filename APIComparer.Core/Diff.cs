@@ -16,7 +16,7 @@ namespace APIComparer
             return MatchingTypeDiffs.Where(x => !x.RightType.IsPublic && (x.LeftType.IsPublic && !x.LeftType.HasObsoleteAttribute()));
         }
 
-        public IEnumerable<TypeDefinition> RemovePublicTypes()
+        public IEnumerable<TypeDefinition> RemovedPublicTypes()
         {
             return LeftOrphanTypes.Where(x => x.IsPublic && !x.HasObsoleteAttribute());
         }

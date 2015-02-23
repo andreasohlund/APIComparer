@@ -7,13 +7,41 @@ public static class BreakingChangeFinder
 {
     public static IEnumerable<BreakingChange> Find(Diff diff)
     {
-        IList<BreakingChange> result = diff.RemovedPublicTypes().Select(t=>new TypeRemoved(t))
+        IList<BreakingChange> breakingChanges = diff.RemovedPublicTypes().Select(t => new TypeRemoved(t))
             .ToList<BreakingChange>();
 
-        result.AddRange(diff.TypesChangedToNonPublic()
-            .Select(typeDiff=>new TypeMadeNonPublic(typeDiff)));
+        breakingChanges.AddRange(diff.TypesChangedToNonPublic()
+            .Select(typeDiff => new TypeMadeNonPublic(typeDiff)));
+        breakingChanges.AddRange(diff.TypesChangedToNonPublic()
+            .Select(typeDiff => new TypeMadeNonPublic(typeDiff)));
 
-        return result;
+        foreach (var typeDiff in diff.MatchingTypeDiffs)
+        {
+            if (typeDiff.LeftType.HasObsoleteAttribute())
+            {
+                continue;
+            }
+            if (typeDiff.RightType.HasObsoleteAttribute())
+            {
+                continue;
+            }
+
+            if (!typeDiff.LeftType.IsPublic)
+            {
+                continue;
+            }
+            if (!typeDiff.RightType.IsPublic)
+            {
+                continue;
+            }
+            breakingChanges.AddRange(typeDiff.PublicFieldsRemoved().Select(d => new PublicFieldRemoved(typeDiff.LeftType, d)));
+            //        typeDiff.PublicMethodsRemoved().Any() ||
+            //typeDiff.FieldsChangedToNonPublic().Any() ||
+            //typeDiff.MethodsChangedToNonPublic().Any()
+
+        }
+
+        return breakingChanges;
     }
 
 

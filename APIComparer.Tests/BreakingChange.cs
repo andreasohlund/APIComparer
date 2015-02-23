@@ -23,7 +23,7 @@ class TypeRemoved : BreakingChange
 
     public override string Reason
     {
-        get { return string.Format("Type removed: {0}", removedType); }
+        get { return string.Format("Type {0} removed", removedType); }
     }
 }
 
@@ -38,6 +38,27 @@ class TypeMadeNonPublic: BreakingChange
 
     public override string Reason
     {
-        get { return string.Format("Type made non public: {0}", typeDiff.RightType); }
+        get { return string.Format("Type {0} made non public", typeDiff.RightType); }
+    }
+}
+
+class PublicFieldRemoved:BreakingChange
+{
+    readonly TypeDefinition typeDefinition;
+    readonly FieldDefinition fieldDefinition;
+
+    public PublicFieldRemoved(TypeDefinition typeDefinition, FieldDefinition fieldDefinition)
+    {
+        this.typeDefinition = typeDefinition;
+        this.fieldDefinition = fieldDefinition;
+    }
+
+
+    public override string Reason
+    {
+        get
+        {
+             return string.Format("Public field {0} removed from {1}", fieldDefinition.Name,typeDefinition);
+        }
     }
 }

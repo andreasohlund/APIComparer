@@ -1,2 +1,4 @@
-﻿Type removed: Example.MissingNextVersionClass
-Type made non public: Example.InternalNextVersionClass
+﻿Type Example.MissingNextVersionClass removed
+Type Example.InternalNextVersionClass made non public
+Type Example.InternalNextVersionClass made non public
+Public field StringField removed from Example.MemberMissingNextVersion

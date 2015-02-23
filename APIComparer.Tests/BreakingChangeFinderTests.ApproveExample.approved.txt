@@ -1,1 +1,2 @@
 ﻿Type removed: Example.MissingNextVersionClass
+Type made non public: Example.InternalNextVersionClass

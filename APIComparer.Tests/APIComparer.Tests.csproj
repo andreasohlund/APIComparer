@@ -71,9 +71,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BreakingChange.cs" />
+    <Compile Include="BreakingChangeFinder.cs" />
+    <Compile Include="BreakingChangeFinderTests.cs" />
     <Compile Include="TypeDiffTests.cs" />
     <Compile Include="ComparerEngineTests.cs" />
-    <Compile Include="RawOutputFormatterTests.cs" />
+    <Compile Include="APIUpgradeToMarkdownFormatterTests.cs" />
     <Compile Include="AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

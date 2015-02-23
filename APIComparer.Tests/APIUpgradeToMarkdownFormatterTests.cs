@@ -56,10 +56,7 @@ public class APIUpgradeToMarkdownFormatterTests
         var file1 = "ExampleV1.dll";
         var file2 = "ExampleV2.dll";
 
-        var engine = new ComparerEngine
-        {
-        };
-
+        var engine = new ComparerEngine();
         var diff = engine.CreateDiff(file1, file2);
 
         var stringBuilder = new StringBuilder();

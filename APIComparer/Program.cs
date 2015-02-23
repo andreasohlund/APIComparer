@@ -53,7 +53,7 @@ class Program
         var diff = engine.CreateDiff(leftAssemblyGroup, rightAssemblyGroup);
 
         var stringBuilder = new StringBuilder();
-        var formatter = new APIUpgradeToMarkdownFormatter(stringBuilder, "https://github.com/Particular/NServiceBus/blob/5.2.0/", "https://github.com/Particular/NServiceBus/blob/extending_pipeline_to_transport/");
+        var formatter = new APIUpgradeToMarkdownFormatter(stringBuilder, "https://github.com/Particular/NServiceBus/blob/5.2.0/", "https://github.com/Particular/NServiceBus/blob/develop/");
         formatter.WriteOut(diff);
         File.WriteAllText("Result.md", stringBuilder.ToString());
 

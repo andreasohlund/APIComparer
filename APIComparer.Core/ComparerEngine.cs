@@ -1,11 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using EqualityComparers;
-using Mono.Cecil;
-
 namespace APIComparer
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using EqualityComparers;
+    using Mono.Cecil;
+
     public class ComparerEngine
     {
         IEqualityComparer<TypeDefinition> typeComparer;

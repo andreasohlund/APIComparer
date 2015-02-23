@@ -1,34 +1,43 @@
 ﻿using APIComparer;
 using Mono.Cecil;
 
-public class BreakingChange
+public abstract class BreakingChange
 {
-    public static BreakingChange TypeRemoved(TypeDefinition typeDefinition)
-    {
-        return new BreakingChange("Type removed", typeDefinition.ToString());
-    }
-    public static BreakingChange TypeMadeNonPublic(TypeDiff typeDiff)
-    {
-        return new BreakingChange("Type made non public", typeDiff.RightType.ToString());
-    }
-    
-
-    BreakingChange(string reason,string changedThing)
-    {
-        this.reason = reason;
-        this.changedThing = changedThing;
-    }
-
-
-     
-
+    public abstract string Reason { get; }
 
     public override string ToString()
     {
-        return string.Format("{0}: {1}", reason, changedThing);
+        return Reason;
     }
 
- readonly string reason;
-    readonly string changedThing;
+}
 
+class TypeRemoved : BreakingChange
+{
+    readonly TypeDefinition removedType;
+
+    public TypeRemoved(TypeDefinition removedType)
+    {
+        this.removedType = removedType;
+    }
+
+    public override string Reason
+    {
+        get { return string.Format("Type removed: {0}", removedType); }
+    }
+}
+
+class TypeMadeNonPublic: BreakingChange
+{
+    readonly TypeDiff typeDiff;
+   
+    public TypeMadeNonPublic(TypeDiff typeDiff)
+    {
+        this.typeDiff = typeDiff;
+    }
+
+    public override string Reason
+    {
+        get { return string.Format("Type made non public: {0}", typeDiff.RightType); }
+    }
 }

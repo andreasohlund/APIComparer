@@ -36,9 +36,7 @@ public class APIUpgradeToMarkdownFormatterTests
         var file1 = Path.Combine("packages", "NServiceBus." + packages[0], "lib", "net40", "NServiceBus.Core.dll");
         var file2 = Path.Combine("packages", "NServiceBus." + packages[1], "lib", "net45", "NServiceBus.Core.dll");
 
-        var engine = new ComparerEngine
-        {
-        };
+        var engine = new ComparerEngine();
 
         var diff = engine.CreateDiff(file1, file2);
 

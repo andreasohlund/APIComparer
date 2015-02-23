@@ -34,11 +34,11 @@ public static class BreakingChangeFinder
             {
                 continue;
             }
-            breakingChanges.AddRange(typeDiff.PublicFieldsRemoved().Select(d => new PublicFieldRemoved(typeDiff.LeftType, d)));
-            //        typeDiff.PublicMethodsRemoved().Any() ||
-            //typeDiff.FieldsChangedToNonPublic().Any() ||
-            //typeDiff.MethodsChangedToNonPublic().Any()
-
+            breakingChanges.AddRange(typeDiff.PublicFieldsRemoved().Select(field => new PublicFieldRemoved(typeDiff.LeftType, field)));
+            breakingChanges.AddRange(typeDiff.PublicMethodsRemoved().Select(method => new PublicMethodRemoved(typeDiff.LeftType, method)));
+            breakingChanges.AddRange(typeDiff.FieldsChangedToNonPublic().Select(field => new FieldChangedToNonPublic(typeDiff.LeftType, field.Left)));
+            breakingChanges.AddRange(typeDiff.MethodsChangedToNonPublic().Select(method => new MethodChangedToNonPublic(typeDiff.LeftType, method.Left)));
+         
         }
 
         return breakingChanges;

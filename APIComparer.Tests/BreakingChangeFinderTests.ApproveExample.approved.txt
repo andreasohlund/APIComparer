@@ -1,4 +1,12 @@
 ﻿Type Example.MissingNextVersionClass removed
 Type Example.InternalNextVersionClass made non public
 Type Example.InternalNextVersionClass made non public
+Method MethodName removed from type Example.IMethodChangesParametersNextVersion
+Field StringField of type Example.MemberInternalNextVersion has been made non public
+Method get_StringProperty of type Example.MemberInternalNextVersion has been made non public
+Method Method of type Example.MemberInternalNextVersion has been made non public
+Method set_StringProperty of type Example.MemberInternalNextVersion has been made non public
 Public field StringField removed from Example.MemberMissingNextVersion
+Method get_StringProperty removed from type Example.MemberMissingNextVersion
+Method Method removed from type Example.MemberMissingNextVersion
+Method set_StringProperty removed from type Example.MemberMissingNextVersion

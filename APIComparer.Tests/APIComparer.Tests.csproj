@@ -74,10 +74,16 @@
     <Compile Include="BreakingChange.cs" />
     <Compile Include="BreakingChangeFinder.cs" />
     <Compile Include="BreakingChangeFinderTests.cs" />
+    <Compile Include="FieldChangedToNonPublic.cs" />
+    <Compile Include="MethodChangedToNonPublic.cs" />
+    <Compile Include="PublicFieldRemoved.cs" />
+    <Compile Include="PublicMethodRemoved.cs" />
     <Compile Include="TypeDiffTests.cs" />
     <Compile Include="ComparerEngineTests.cs" />
     <Compile Include="APIUpgradeToMarkdownFormatterTests.cs" />
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="TypeMadeNonPublic.cs" />
+    <Compile Include="TypeRemoved.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

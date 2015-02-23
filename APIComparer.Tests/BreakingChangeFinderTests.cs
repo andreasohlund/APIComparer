@@ -1,6 +1,7 @@
 ﻿using System;
 using ApprovalTests;
 using APIComparer;
+using APIComparer.BreakingChanges;
 using NUnit.Framework;
 
 [TestFixture]

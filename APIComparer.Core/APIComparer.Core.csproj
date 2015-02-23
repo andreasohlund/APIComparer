@@ -55,14 +55,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BreakingChanges\BreakingChange.cs" />
+    <Compile Include="BreakingChanges\BreakingChangeFinder.cs" />
     <Compile Include="CecilExtensions.cs" />
     <Compile Include="CollectionExtensions.cs" />
     <Compile Include="ComparerEngine.cs" />
     <Compile Include="Diff.cs" />
     <Compile Include="APIUpgradeToMarkdownFormatter.cs" />
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="BreakingChanges\FieldChangedToNonPublic.cs" />
     <Compile Include="MatchingMember.cs" />
+    <Compile Include="BreakingChanges\MethodChangedToNonPublic.cs" />
+    <Compile Include="BreakingChanges\PublicFieldRemoved.cs" />
+    <Compile Include="BreakingChanges\PublicMethodRemoved.cs" />
     <Compile Include="TypeDiff.cs" />
+    <Compile Include="BreakingChanges\TypeMadeNonPublic.cs" />
+    <Compile Include="BreakingChanges\TypeRemoved.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

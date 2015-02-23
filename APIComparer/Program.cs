@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using APIComparer;
+using APIComparer.BreakingChanges;
 
 class Program
 {
@@ -26,7 +27,7 @@ class Program
         //packageManager.InstallPackage("NServiceBus", SemanticVersion.Parse("4.6.7"));
         //packageManager.InstallPackage("NServiceBus.Host", SemanticVersion.Parse("4.6.7"));
 
-      
+
         var sourceIndex = Array.FindIndex(args, arg => arg == "--source");
 
         if (sourceIndex < 0)
@@ -37,7 +38,7 @@ class Program
         var leftAssemblyGroup = args[sourceIndex + 1].Split(';').Select(Path.GetFullPath).ToList();
 
 
-        var targetIndex = Array.FindIndex(args,arg => arg == "--target");
+        var targetIndex = Array.FindIndex(args, arg => arg == "--target");
 
         if (targetIndex < 0)
         {
@@ -45,7 +46,7 @@ class Program
         }
 
         var rightAssemblyGroup = args[targetIndex + 1].Split(';').Select(Path.GetFullPath).ToList();
-        
+
         var engine = new ComparerEngine();
 
         var diff = engine.CreateDiff(leftAssemblyGroup, rightAssemblyGroup);
@@ -55,6 +56,24 @@ class Program
         formatter.WriteOut(diff);
         File.WriteAllText("Result.md", stringBuilder.ToString());
 
+        var breakingChanges = BreakingChangeFinder.Find(diff);
+
+        if (breakingChanges.Any())
+        {
+            Console.Out.WriteLine("--------  Breaking Changes found --------");
+
+            foreach (var breakingChange in breakingChanges)
+            {
+                Console.Out.WriteLine(breakingChange.Reason);
+            }
+        
+            Console.Out.WriteLine("-----------------------------------------");
+        }
+
+
+        Console.Out.WriteLine("Full report written to Result.md");
+
+        Console.ReadKey();
     }
 
 }

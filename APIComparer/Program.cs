@@ -57,7 +57,7 @@ class Program
         }
         else
         {
-            Console.Out.Write(" .... OK");
+            Console.Out.WriteLine(" .... OK");
         }
     }
 

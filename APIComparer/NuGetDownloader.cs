@@ -28,28 +28,44 @@ class NuGetDownloader
     {
         packageManager.InstallPackage(nugetName, SemanticVersion.Parse(version));
 
-        var packageRoot = Path.Combine("packages", string.Format("{0}.{1}", nugetName, version), "lib");
+        var dirPath = Path.Combine("packages", string.Format("{0}.{1}", nugetName, version), "lib");
 
-        string dirPath = null;
 
-        if (Directory.Exists(Path.Combine(packageRoot, "net45")))
+        if (Directory.Exists(Path.Combine(dirPath, "net20")))
         {
-            dirPath = Path.Combine(packageRoot, "net45");
+            dirPath = Path.Combine(dirPath, "net20");
         }
 
-        if (Directory.Exists(Path.Combine(packageRoot, "net40")))
+        if (Directory.Exists(Path.Combine(dirPath, "net30")))
         {
-            dirPath = Path.Combine(packageRoot, "net40");
+            dirPath = Path.Combine(dirPath, "net30");
         }
 
-        if (string.IsNullOrEmpty(dirPath))
+        if (Directory.Exists(Path.Combine(dirPath, "net35")))
         {
-            throw new Exception("Couldn't find a lib/xyz dir for version " + version);
+            dirPath = Path.Combine(dirPath, "net35");
         }
 
-        return Directory.EnumerateFiles(dirPath)
+        if (Directory.Exists(Path.Combine(dirPath, "net40")))
+        {
+            dirPath = Path.Combine(dirPath, "net40");
+        }
+
+        if (Directory.Exists(Path.Combine(dirPath, "net45")))
+        {
+            dirPath = Path.Combine(dirPath, "net45");
+        }
+
+        var files = Directory.EnumerateFiles(dirPath)
             .Where(f => f.EndsWith(".dll") || f.EndsWith(".exe"))
             .ToList();
 
+
+        if (!files.Any())
+        {
+            throw new Exception("Couldn't find any assemblies in  " + dirPath);
+        }
+
+        return files;
     }
 }

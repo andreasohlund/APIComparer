@@ -18,31 +18,27 @@ namespace APIComparer
             methodComparer = EqualityCompare<MethodDefinition>.EquateBy(m => m.FullName);
         }
 
-        //MethodComparer = EqualityCompare<MethodDefinition>
-        //    .EquateBy(m => m.DeclaringType.FullName)
-        //    .ThenEquateBy(m => m.Name);
-
         public Diff CreateDiff(string leftAssembly, string rightAssembly)
         {
-            return CreateDiff(ReadTypes(leftAssembly), ReadTypes(rightAssembly));
+            return CreateDiff(ReadTypes(leftAssembly,true), ReadTypes(rightAssembly,true));
         }
-        public Diff CreateDiff(IEnumerable<string> leftAssemblyGroup, IEnumerable<string> rightAssemblyGroup)
+        public Diff CreateDiff(AssemblyGroup leftAssemblyGroup, AssemblyGroup rightAssemblyGroup)
         {
-            return CreateDiff(ReadTypes(leftAssemblyGroup), ReadTypes(rightAssemblyGroup));
+            return CreateDiff(ReadTypes(leftAssemblyGroup.Assemblies,leftAssemblyGroup.ReadSymbols), ReadTypes(rightAssemblyGroup.Assemblies,rightAssemblyGroup.ReadSymbols));
         }
-        static IEnumerable<TypeDefinition> ReadTypes(IEnumerable<string> assemblyGroup)
+        IEnumerable<TypeDefinition> ReadTypes(IEnumerable<string> assemblyGroup,bool readSymbols)
         {
             var readerParams = new ReaderParameters
             {
-                ReadSymbols = true
+                ReadSymbols = readSymbols
             };
             return assemblyGroup.SelectMany(assembly => AssemblyDefinition.ReadAssembly(assembly, readerParams).MainModule.Types);
         }
-        static IEnumerable<TypeDefinition> ReadTypes(string leftAssembly)
+        IEnumerable<TypeDefinition> ReadTypes(string leftAssembly,bool readSymbols)
         {
             var readerParams = new ReaderParameters
             {
-                ReadSymbols = true
+                ReadSymbols = readSymbols
             };
 
             return AssemblyDefinition.ReadAssembly(leftAssembly, readerParams).MainModule.Types.ToList();
@@ -122,73 +118,6 @@ namespace APIComparer
                 matching.Add(matchingMember);
                 leftOrphans.RemoveAt(index);
             }
-
-            //var leftRunning = true;
-            //var rightRunning = true;
-            //using (var leftEnum = left.GetEnumerator())
-            //using (var rightEnum = right.GetEnumerator())
-            //{
-            //    while (leftRunning && rightRunning)
-            //    {
-            //        leftRunning = leftEnum.MoveNext();
-
-            //        if (leftRunning)
-            //        {
-            //            var index = rightOrphans.IndexOf(leftEnum.Current, comparer);
-            //            if (index < 0)
-            //            {
-            //                leftOrphans.Add(leftEnum.Current);
-            //            }
-            //            else
-            //            {
-            //                var rightMember = rightOrphans[index];
-
-            //                var matchingMember = new MatchingMember<TSource>
-            //                {
-            //                    Left = leftEnum.Current,
-            //                    Right = rightMember
-            //                };
-            //                matching.Add(matchingMember);
-            //                rightOrphans.RemoveAt(index);
-            //            }
-            //        }
-
-            //        rightRunning = rightEnum.MoveNext();
-
-            //        if (rightRunning)
-            //        {
-            //            var index = leftOrphans.IndexOf(rightEnum.Current, comparer);
-            //            if (index < 0)
-            //            {
-            //                rightOrphans.Add(rightEnum.Current);
-            //            }
-            //            else
-            //            {
-            //                var matchingMember = new MatchingMember<TSource>
-            //                {
-            //                    Left = leftOrphans[index],
-            //                    Right = rightEnum.Current
-            //                };
-            //                matching.Add(matchingMember);
-            //                leftOrphans.RemoveAt(index);
-            //            }
-            //        }
-            //    }
-
-            //    while (leftRunning)
-            //    {
-            //        leftRunning = leftEnum.MoveNext();
-            //        if (leftRunning)
-            //            leftOrphans.Add(leftEnum.Current);
-            //    }
-
-            //    while (rightRunning)
-            //    {
-            //        rightRunning = rightEnum.MoveNext();
-            //        if (rightRunning)
-            //            rightOrphans.Add(rightEnum.Current);
-            //    }
-            //}
         }
     }
 }

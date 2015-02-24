@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -8,12 +7,12 @@ using APIComparer.BreakingChanges;
 
 class Program
 {
-    /*
-     * 
-Example cmd line --source C:\Users\andreas.ohlund\Downloads\NServiceBus.5.2.0\NServiceBus.Core.dll --target C:\dev\NServiceBus\binaries\NServiceBus.Core.dll
-    
-     * 
-     */
+    /* 
+    Example cmd line
+    .\APIComparer.exe    --source C:\Users\andreas.ohlund\Downloads\NServiceBus.5.2.0\NServiceBus.Core.dll --target C:\dev\NServiceBus\binaries\NServiceBus.Core.dll
+    or
+    .\APIComparer.exe --nuget NServiceBus.RabbitMQ --versionrange 1.0.1..1.1.5
+         */
     static void Main(string[] args)
     {
 
@@ -60,10 +59,6 @@ Example cmd line --source C:\Users\andreas.ohlund\Downloads\NServiceBus.5.2.0\NS
         {
             Console.Out.Write(" .... OK");
         }
-
-
-
-        Console.ReadKey();
     }
 
     static CompareSet GetNuGetVersionsToCompare(string[] args)
@@ -87,12 +82,13 @@ Example cmd line --source C:\Users\andreas.ohlund\Downloads\NServiceBus.5.2.0\NS
         var rightVersion = versions[1];
         var nugetDownloader = new NuGetDownloader(nugetName);
 
-
+        var rightAssemblyGroup = new AssemblyGroup(nugetDownloader.DownloadAndExtractVersion(rightVersion));
+        var leftAssemblyGroup = new AssemblyGroup(nugetDownloader.DownloadAndExtractVersion(leftVersion));
         return new CompareSet
         {
             Name = nugetName,
-            RightAssemblyGroup = nugetDownloader.DownloadAndExtractVersion(rightVersion),
-            LeftAssemblyGroup = nugetDownloader.DownloadAndExtractVersion(leftVersion),
+            RightAssemblyGroup = rightAssemblyGroup,
+            LeftAssemblyGroup = leftAssemblyGroup,
             RightVersion = rightVersion,
             LeftVersion = leftVersion
 
@@ -120,8 +116,8 @@ Example cmd line --source C:\Users\andreas.ohlund\Downloads\NServiceBus.5.2.0\NS
         return new CompareSet
         {
             Name = "Custom",
-            RightAssemblyGroup = args[targetIndex + 1].Split(';').Select(Path.GetFullPath).ToList(),
-            LeftAssemblyGroup = args[sourceIndex + 1].Split(';').Select(Path.GetFullPath).ToList(),
+            RightAssemblyGroup = new AssemblyGroup(args[targetIndex + 1].Split(';').Select(Path.GetFullPath).ToList()),
+            LeftAssemblyGroup = new AssemblyGroup(args[sourceIndex + 1].Split(';').Select(Path.GetFullPath).ToList()),
             RightVersion = "TBD",
             LeftVersion = "TBD"
 
@@ -133,8 +129,8 @@ Example cmd line --source C:\Users\andreas.ohlund\Downloads\NServiceBus.5.2.0\NS
 
 class CompareSet
 {
-    public List<string> LeftAssemblyGroup;
-    public List<string> RightAssemblyGroup;
+    public AssemblyGroup LeftAssemblyGroup;
+    public AssemblyGroup RightAssemblyGroup;
 
     public string LeftVersion;
     public string RightVersion;

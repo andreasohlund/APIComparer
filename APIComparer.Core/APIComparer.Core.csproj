@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssemblyGroup.cs" />
     <Compile Include="BreakingChanges\BreakingChange.cs" />
     <Compile Include="BreakingChanges\BreakingChangeFinder.cs" />
     <Compile Include="CecilExtensions.cs" />

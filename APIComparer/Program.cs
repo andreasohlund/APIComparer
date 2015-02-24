@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -7,56 +8,38 @@ using APIComparer.BreakingChanges;
 
 class Program
 {
+    /*
+     * 
+Example cmd line --source C:\Users\andreas.ohlund\Downloads\NServiceBus.5.2.0\NServiceBus.Core.dll --target C:\dev\NServiceBus\binaries\NServiceBus.Core.dll
+    
+     * 
+     */
     static void Main(string[] args)
     {
 
-        //var nugetCacheDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "NuGet", "Cache");
-        //var repo = new AggregateRepository(new[]
-        //{
-        //    PackageRepositoryFactory.Default.CreateRepository(nugetCacheDirectory),
-        //    PackageRepositoryFactory.Default.CreateRepository("https://www.nuget.org/api/v2"),
-        //    PackageRepositoryFactory.Default.CreateRepository("https://www.myget.org/F/particular/"),
-        //});
+        CompareSet compareSet;
 
-        //var packageManager = new PackageManager(repo, "packages");
-
-        //var newVersion = "5.0.0";
-        //packageManager.InstallPackage("NServiceBus", SemanticVersion.Parse(newVersion));
-        //packageManager.InstallPackage("NServiceBus.Host", SemanticVersion.Parse(newVersion));
-        //packageManager.InstallPackage("NServiceBus.Interfaces", SemanticVersion.Parse("4.6.7"));
-        //packageManager.InstallPackage("NServiceBus", SemanticVersion.Parse("4.6.7"));
-        //packageManager.InstallPackage("NServiceBus.Host", SemanticVersion.Parse("4.6.7"));
-
-
-        var sourceIndex = Array.FindIndex(args, arg => arg == "--source");
-
-        if (sourceIndex < 0)
+        if (args.Any(a => a == "--nuget"))
         {
-            throw new Exception("No target assemblies specified, please use --source {asm1};{asm2}...");
+            compareSet = GetNuGetVersionsToCompare(args);
         }
-
-        var leftAssemblyGroup = args[sourceIndex + 1].Split(';').Select(Path.GetFullPath).ToList();
-
-
-        var targetIndex = Array.FindIndex(args, arg => arg == "--target");
-
-        if (targetIndex < 0)
+        else
         {
-            throw new Exception("No target assemblies specified, please use --target {asm1};{asm2}...");
+            compareSet = GetExplicitAssembliesToCompare(args);
         }
-
-        var rightAssemblyGroup = args[targetIndex + 1].Split(';').Select(Path.GetFullPath).ToList();
 
         var engine = new ComparerEngine();
 
-        var diff = engine.CreateDiff(leftAssemblyGroup, rightAssemblyGroup);
+        var diff = engine.CreateDiff(compareSet.LeftAssemblyGroup, compareSet.RightAssemblyGroup);
 
         var stringBuilder = new StringBuilder();
-        var formatter = new APIUpgradeToMarkdownFormatter(stringBuilder, "https://github.com/Particular/NServiceBus/blob/5.2.0/", "https://github.com/Particular/NServiceBus/blob/develop/");
+        var formatter = new APIUpgradeToMarkdownFormatter(stringBuilder, "tbd", "tbd");
         formatter.WriteOut(diff);
-        File.WriteAllText("Result.md", stringBuilder.ToString());
+
 
         var breakingChanges = BreakingChangeFinder.Find(diff);
+
+        Console.Out.Write("Checking {0}-{1}..{2}", compareSet.Name, compareSet.LeftVersion, compareSet.RightVersion);
 
         if (breakingChanges.Any())
         {
@@ -66,14 +49,97 @@ class Program
             {
                 Console.Out.WriteLine(breakingChange.Reason);
             }
-        
+
             Console.Out.WriteLine("-----------------------------------------");
+            var resultFile = string.Format("{0}-{1}..{2}.md", compareSet.Name, compareSet.LeftVersion, compareSet.RightVersion);
+            File.WriteAllText(resultFile, stringBuilder.ToString());
+
+            Console.Out.WriteLine("Full report written to " + resultFile);
+        }
+        else
+        {
+            Console.Out.Write(" .... OK");
         }
 
 
-        Console.Out.WriteLine("Full report written to Result.md");
 
         Console.ReadKey();
     }
+
+    static CompareSet GetNuGetVersionsToCompare(string[] args)
+    {
+        var nugetIndex = Array.FindIndex(args, arg => arg == "--nuget");
+
+        var nugetName = args[nugetIndex + 1];
+
+        var versionsIndex = Array.FindIndex(args, arg => arg == "--versionrange");
+
+
+        if (versionsIndex < 0)
+        {
+            throw new Exception("No version range specified, please use --versionrange {source-version}..{target-version}");
+        }
+
+        var versions = args[versionsIndex + 1].Split(new[] { ".." }, StringSplitOptions.None);
+
+        var leftVersion = versions[0];
+
+        var rightVersion = versions[1];
+        var nugetDownloader = new NuGetDownloader(nugetName);
+
+
+        return new CompareSet
+        {
+            Name = nugetName,
+            RightAssemblyGroup = nugetDownloader.DownloadAndExtractVersion(rightVersion),
+            LeftAssemblyGroup = nugetDownloader.DownloadAndExtractVersion(leftVersion),
+            RightVersion = rightVersion,
+            LeftVersion = leftVersion
+
+        };
+    }
+
+    private static CompareSet GetExplicitAssembliesToCompare(string[] args)
+    {
+        var sourceIndex = Array.FindIndex(args, arg => arg == "--source");
+
+        if (sourceIndex < 0)
+        {
+            throw new Exception("No target assemblies specified, please use --source {asm1};{asm2}...");
+        }
+
+
+
+        var targetIndex = Array.FindIndex(args, arg => arg == "--target");
+
+        if (targetIndex < 0)
+        {
+            throw new Exception("No target assemblies specified, please use --target {asm1};{asm2}...");
+        }
+
+        return new CompareSet
+        {
+            Name = "Custom",
+            RightAssemblyGroup = args[targetIndex + 1].Split(';').Select(Path.GetFullPath).ToList(),
+            LeftAssemblyGroup = args[sourceIndex + 1].Split(';').Select(Path.GetFullPath).ToList(),
+            RightVersion = "TBD",
+            LeftVersion = "TBD"
+
+        };
+
+    }
+
+}
+
+class CompareSet
+{
+    public List<string> LeftAssemblyGroup;
+    public List<string> RightAssemblyGroup;
+
+    public string LeftVersion;
+    public string RightVersion;
+    public string Name;
+
+
 
 }

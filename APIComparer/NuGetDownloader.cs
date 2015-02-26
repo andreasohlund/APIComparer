@@ -11,7 +11,7 @@ class NuGetDownloader
 
     public NuGetDownloader(string nugetName)
     {
-        this.package = nugetName;
+        package = nugetName;
 
         var nugetCacheDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "NuGet", "Cache");
         var repo = new AggregateRepository(new[]

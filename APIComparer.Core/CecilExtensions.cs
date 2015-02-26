@@ -13,6 +13,29 @@ namespace APIComparer
             return value.GetObsoleteAttribute() != null;
         }
 
+        public static bool ContainsAttribute<T>(this TypeDefinition typeDefinition)
+        {
+            var fullName = typeof(T).FullName;
+            return typeDefinition.CustomAttributes.Any(x => x.AttributeType.FullName == fullName);
+        }
+
+        public static void RemoveTypes(this ModuleDefinition module, IEnumerable<TypeDefinition> typesToRemove)
+        {
+            foreach (var typeToRemove in typesToRemove)
+            {
+                module.RemoveType(typeToRemove);
+            }
+        }
+        public static void RemoveType(this ModuleDefinition module, TypeDefinition typeDefinition)
+        {
+
+            if (typeDefinition.DeclaringType != null)
+            {
+                typeDefinition.DeclaringType.NestedTypes.Remove(typeDefinition);
+
+            }
+            module.Types.Remove(typeDefinition);
+        }
         public static CustomAttribute GetObsoleteAttribute(this ICustomAttributeProvider value)
         {
             var obsoleteAttribute = value.CustomAttributes.FirstOrDefault(a => a.AttributeType.Name == "ObsoleteAttribute");

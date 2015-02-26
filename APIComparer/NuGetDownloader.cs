@@ -6,12 +6,12 @@ using NuGet;
 
 class NuGetDownloader
 {
-    readonly string nugetName;
+    readonly string package;
     PackageManager packageManager;
 
     public NuGetDownloader(string nugetName)
     {
-        this.nugetName = nugetName;
+        this.package = nugetName;
 
         var nugetCacheDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "NuGet", "Cache");
         var repo = new AggregateRepository(new[]
@@ -26,9 +26,19 @@ class NuGetDownloader
 
     public List<string> DownloadAndExtractVersion(string version)
     {
-        packageManager.InstallPackage(nugetName, SemanticVersion.Parse(version));
+        var semVer = SemanticVersion.Parse(version);
 
-        var dirPath = Path.Combine("packages", string.Format("{0}.{1}", nugetName, version), "lib");
+        packageManager.InstallPackage(package,semVer,true,false);
+     
+        //handle package revs like 1.0.0.1
+        var trimmedVersion = string.Format("{0}.{1}.{2}", semVer.Version.Major, semVer.Version.Minor, semVer.Version.Build);
+
+        if (semVer.Version.Revision > 0)
+        {
+            trimmedVersion += "." + semVer.Version.Revision;
+        }
+        
+        var dirPath = Path.Combine("packages", string.Format("{0}.{1}", package, trimmedVersion), "lib");
 
 
         if (Directory.Exists(Path.Combine(dirPath, "net20")))
@@ -67,5 +77,26 @@ class NuGetDownloader
         }
 
         return files;
+    }
+}
+
+class NuGetBrowser
+{
+    IPackageRepository repository;
+
+    public NuGetBrowser()
+    {
+        repository = PackageRepositoryFactory.Default.CreateRepository("https://packages.nuget.org/api/v2");
+    }
+
+    public IList<SemanticVersion> GetAllVersions(string package)
+    {
+     
+        var packages = repository.FindPackagesById(package).ToList();
+
+        return  packages.Where(item => item.IsReleaseVersion() && item.IsListed())
+            .Select(p=>p.Version)
+            .ToList();
+
     }
 }

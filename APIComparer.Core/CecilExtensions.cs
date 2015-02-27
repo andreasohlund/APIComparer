@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Mono.Cecil;
-using Mono.Cecil.Cil;
-
-namespace APIComparer
+﻿namespace APIComparer
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Runtime.CompilerServices;
+    using Mono.Cecil;
+    using Mono.Cecil.Cil;
+
     public static class CecilExtensions
     {
         public static bool HasObsoleteAttribute(this ICustomAttributeProvider value)
@@ -13,19 +14,27 @@ namespace APIComparer
             return value.GetObsoleteAttribute() != null;
         }
 
-        public static bool ContainsAttribute<T>(this TypeDefinition typeDefinition)
+        public static bool IsCompilerGenerated(this ICustomAttributeProvider definition)
         {
-            var fullName = typeof(T).FullName;
-            return typeDefinition.CustomAttributes.Any(x => x.AttributeType.FullName == fullName);
+            var fullName = typeof(CompilerGeneratedAttribute).FullName;
+            return definition.CustomAttributes.Any(x => x.AttributeType.FullName == fullName);
         }
 
-        public static void RemoveTypes(this ModuleDefinition module, IEnumerable<TypeDefinition> typesToRemove)
+        public static void RemoveUnwantedAttributes(this ICustomAttributeProvider provider)
         {
-            foreach (var typeToRemove in typesToRemove)
+            foreach (var toRemove in provider.CustomAttributes.Where(IsUnwantedAttribute).ToList())
             {
-                module.RemoveType(typeToRemove);
+                provider.CustomAttributes.Remove(toRemove);
             }
         }
+
+        static bool IsUnwantedAttribute(CustomAttribute x)
+        {
+            return x.AttributeType.Name != typeof(ObsoleteAttribute).Name &&
+                !x.AttributeType.Name.StartsWith("Assembly");
+        }
+
+
         public static void RemoveType(this ModuleDefinition module, TypeDefinition typeDefinition)
         {
 

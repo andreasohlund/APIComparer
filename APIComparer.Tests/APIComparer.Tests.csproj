@@ -75,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyCompression\AssemblyCompressionTests.cs" />
+    <Compile Include="AssemblyCompression\Verifier.cs" />
     <Compile Include="BreakingChangeFinderTests.cs" />
     <Compile Include="TypeDiffTests.cs" />
     <Compile Include="ComparerEngineTests.cs" />

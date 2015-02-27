@@ -1,9 +1,11 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using APIComparer;
 using Mono.Cecil;
+using Mono.Cecil.Cil;
 using NUnit.Framework;
 
 [TestFixture]
@@ -30,6 +32,8 @@ public class AssemblyCompressionTests
         Debug.WriteLine("before {0} kbytes", beforeSize / 1024);
         var afterSize = new FileInfo(afterAssemblyPath).Length + new FileInfo(afterAssemblyPath.Replace(".dll", ".pdb")).Length;
         Debug.WriteLine("after {0} kbytes", afterSize/1024);
+
+        Verifier.Verify(afterAssemblyPath);
     }
 
     static void CompressAssembly(ModuleDefinition moduleDefinition)
@@ -51,15 +55,15 @@ public class AssemblyCompressionTests
 
     static void ProcessType(TypeDefinition type)
     {
-        foreach (var toRemove in type.Properties.Where(x=>x.IsCompilerGenerated()).ToList())
+        foreach (var toRemove in type.Properties.Where(x => x.IsCompilerGenerated()).ToList())
         {
             type.Properties.Remove(toRemove);
         }
-        foreach (var toRemove in type.Methods.Where(x=>x.IsCompilerGenerated()).ToList())
+        foreach (var toRemove in type.Methods.Where(x => x.IsCompilerGenerated() && !x.Name.StartsWith("get_") && !x.Name.StartsWith("set_")).ToList())
         {
             type.Methods.Remove(toRemove);
         }
-        foreach (var toRemove in type.Fields.Where(x=>x.IsCompilerGenerated()).ToList())
+        foreach (var toRemove in type.Fields.Where(x => x.IsCompilerGenerated()).ToList())
         {
             type.Fields.Remove(toRemove);
         }
@@ -82,10 +86,28 @@ public class AssemblyCompressionTests
             {
                 //todo: preserve a single pdb line
                 var body = method.Body;
+                var validSequencePoint = method.GetValidSequencePoint();
                 body.Variables.Clear();
                 body.ExceptionHandlers.Clear();
                 body.Instructions.Clear();
+
+                var exceptionReference = new TypeReference("System", "Exception", method.Module.TypeSystem.String.Module, method.Module.TypeSystem.String.Scope);
+                var ctor = new MethodReference(".ctor", method.Module.TypeSystem.Void, exceptionReference);
+
+                body.Instructions.Add(Instruction.Create(OpCodes.Newobj, ctor));
+
+                var instruction = Instruction.Create(OpCodes.Throw);
+                if (validSequencePoint != null)
+                {
+                    instruction.SequencePoint = validSequencePoint;
+                }
+                body.Instructions.Add(instruction);
             }
         }
+    }
+
+    public int Foo()
+    {
+        throw new System.Exception();
     }
 }

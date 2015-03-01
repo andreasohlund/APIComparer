@@ -47,7 +47,7 @@ public static class Verifier
                     continue;
                 }
                 
-                Debug.WriteLine(line);
+                Trace.WriteLine(line);
             }
         }
 

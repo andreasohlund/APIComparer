@@ -29,9 +29,9 @@ public class AssemblyCompressionTests
                                };
         moduleDefinition.Write(afterAssemblyPath, writerParameters);
         var beforeSize = new FileInfo(beforeAssemblyPath).Length + new FileInfo(beforeAssemblyPath.Replace(".dll",".pdb")).Length;
-        Debug.WriteLine("before {0} kbytes", beforeSize / 1024);
+        Trace.WriteLine(string.Format("before {0} kbytes", beforeSize / 1024));
         var afterSize = new FileInfo(afterAssemblyPath).Length + new FileInfo(afterAssemblyPath.Replace(".dll", ".pdb")).Length;
-        Debug.WriteLine("after {0} kbytes", afterSize/1024);
+        Trace.WriteLine(string.Format("after {0} kbytes", afterSize / 1024));
 
         Verifier.Verify(afterAssemblyPath);
     }

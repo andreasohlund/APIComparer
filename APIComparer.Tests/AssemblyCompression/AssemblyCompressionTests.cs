@@ -108,6 +108,6 @@ public class AssemblyCompressionTests
 
     public int Foo()
     {
-        throw new System.Exception();
+        throw new Exception();
     }
 }

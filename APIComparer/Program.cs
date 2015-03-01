@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using APIComparer;
 using APIComparer.BreakingChanges;
-using NuGet;
+using APIComparer.VersionComparisons;
 
 class Program
 {
@@ -61,7 +61,7 @@ class Program
 
         if (showAllVersions || breakingChanges.Any())
         {
-            Console.Out.Write("Checking {0}-{1}..{2}", compareSet.Name, compareSet.LeftVersion, compareSet.RightVersion);
+            Console.Out.Write("Checking {0}", compareSet);
 
             if (breakingChanges.Any())
             {
@@ -72,7 +72,7 @@ class Program
                 Console.Out.Write(" OK");
             }
 
-            var resultFile = string.Format("{0}-{1}..{2}.md", compareSet.Name, compareSet.LeftVersion, compareSet.RightVersion);
+            var resultFile = string.Format("{0}-{1}..{2}.md", compareSet.Name, compareSet.Versions.LeftVersion, compareSet.Versions.RightVersion);
             File.WriteAllText(resultFile, stringBuilder.ToString());
 
             Console.Out.WriteLine(", Full report written to " + resultFile);            
@@ -131,7 +131,7 @@ class Program
 
 
         return compareStrategy.GetVersionsToCompare(semverCompliantVersions)
-            .Select(pair => CreateCompareSet(package, pair.LeftVersion, pair.RightVersion))
+            .Select(pair => CreateCompareSet(package, pair))
             .ToList();
     }
 
@@ -142,17 +142,17 @@ class Program
         var leftVersion = versionParts[0];
 
         var rightVersion = versionParts[1];
-        yield return CreateCompareSet(nugetName, leftVersion, rightVersion);
+        yield return CreateCompareSet(nugetName, new VersionPair(leftVersion,rightVersion));
     }
 
-    private static CompareSet CreateCompareSet(string package, string leftVersion, string rightVersion)
+    static CompareSet CreateCompareSet(string package, VersionPair versions)
     {
         var nugetDownloader = new NuGetDownloader(package);
 
-        Console.Out.Write("Preparing {0}-{1}..{2}", package, leftVersion,rightVersion);
+        Console.Out.Write("Preparing {0}-{1}", package, versions);
      
-        var leftAssemblyGroup = new AssemblyGroup(nugetDownloader.DownloadAndExtractVersion(leftVersion));
-        var rightAssemblyGroup = new AssemblyGroup(nugetDownloader.DownloadAndExtractVersion(rightVersion));
+        var leftAssemblyGroup = new AssemblyGroup(nugetDownloader.DownloadAndExtractVersion(versions.LeftVersion));
+        var rightAssemblyGroup = new AssemblyGroup(nugetDownloader.DownloadAndExtractVersion(versions.RightVersion));
 
         Console.Out.WriteLine(" done");
      
@@ -161,9 +161,7 @@ class Program
             Name = package,
             RightAssemblyGroup = rightAssemblyGroup,
             LeftAssemblyGroup = leftAssemblyGroup,
-            RightVersion = rightVersion,
-            LeftVersion = leftVersion
-
+            Versions = versions
         };
     }
 
@@ -190,109 +188,10 @@ class Program
             Name = "Custom",
             RightAssemblyGroup = new AssemblyGroup(args[targetIndex + 1].Split(';').Select(Path.GetFullPath).ToList()),
             LeftAssemblyGroup = new AssemblyGroup(args[sourceIndex + 1].Split(';').Select(Path.GetFullPath).ToList()),
-            RightVersion = "TBD",
-            LeftVersion = "TBD"
+            Versions = new VersionPair("TBD-Left","TBD-Right")
 
         };
 
     }
-
-}
-
-class CompareStrategies
-{
-    public static ICompareStrategy Default
-    {
-        get { return new CompareAgainstFirstReleaseStrategy(); }
-    }
-
-    public static ICompareStrategy Parse(string strategy)
-    {
-        if (strategy == "next-release")
-        {
-            return new CompareAgainstNextReleaseStrategy();
-        }
-
-        throw new Exception("Unknown strategy " + strategy);
-    }
-}
-
-class CompareAgainstNextReleaseStrategy : ICompareStrategy
-{
-    public IEnumerable<VersionPair> GetVersionsToCompare(List<SemanticVersion> semverCompliantVersions)
-    {
-        var majorGroups = semverCompliantVersions.GroupBy(v => v.Version.Major);
-
-        foreach (var major in majorGroups)
-        {
-            var left = major.First();
-
-            foreach (var right in major)
-            {
-
-                if (right == left)
-                {
-                    continue;
-                }
-
-                yield return new VersionPair
-                {
-                    LeftVersion = left.Version.ToString(),
-                    RightVersion = right.Version.ToString()
-                };
-
-                left = right;
-            }
-        }
-    }
-}
-
-class CompareAgainstFirstReleaseStrategy: ICompareStrategy
-{
-    public IEnumerable<VersionPair> GetVersionsToCompare(List<SemanticVersion> semverCompliantVersions)
-    {
-        var majorGroups = semverCompliantVersions.GroupBy(v => v.Version.Major);
-
-        foreach (var major in majorGroups)
-        {
-            var firstRelease = major.First();
-
-            foreach (var release in major)
-            {
-                if (release == firstRelease)
-                {
-                    continue;
-                }
-
-                yield return new VersionPair{
-                   LeftVersion = firstRelease.Version.ToString(),
-                   RightVersion = release.Version.ToString()
-                };
-            }
-        }
-    }
-}
-
-interface ICompareStrategy
-{
-    IEnumerable<VersionPair> GetVersionsToCompare(List<SemanticVersion> semverCompliantVersions);
-}
-
-class VersionPair
-{
-    public string LeftVersion;
-    public string RightVersion;
-}
-
-class CompareSet
-{
-    public AssemblyGroup LeftAssemblyGroup;
-    public AssemblyGroup RightAssemblyGroup;
-
-    public string LeftVersion;
-    public string RightVersion;
-    public string Name;
-
-
 
 }

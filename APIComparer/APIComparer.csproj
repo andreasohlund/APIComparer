@@ -70,9 +70,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="VersionComparisons\CompareAgainstFirstReleaseStrategy.cs" />
+    <Compile Include="VersionComparisons\CompareAgainstNextReleaseStrategy.cs" />
+    <Compile Include="VersionComparisons\CompareSet.cs" />
+    <Compile Include="VersionComparisons\CompareStrategies.cs" />
+    <Compile Include="VersionComparisons\ICompareStrategy.cs" />
     <Compile Include="NuGetDownloader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="VersionComparisons\VersionPair.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

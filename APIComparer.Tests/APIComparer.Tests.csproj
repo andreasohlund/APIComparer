@@ -81,6 +81,8 @@
     <Compile Include="ComparerEngineTests.cs" />
     <Compile Include="APIUpgradeToMarkdownFormatterTests.cs" />
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="VersionComparisons\CompareLatestPatchStrategy.cs" />
+    <Compile Include="VersionComparisons\CompareLatestPatchTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

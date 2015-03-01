@@ -3,8 +3,8 @@ using NuGet;
 
 namespace APIComparer.VersionComparisons
 {
-    interface ICompareStrategy
+    public interface ICompareStrategy
     {
-        IEnumerable<VersionPair> GetVersionsToCompare(List<SemanticVersion> semverCompliantVersions);
+        IEnumerable<VersionPair> GetVersionsToCompare(List<SemanticVersion> semVerCompliantVersions);
     }
 }

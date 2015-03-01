@@ -72,6 +72,7 @@
   <ItemGroup>
     <Compile Include="VersionComparisons\CompareAgainstFirstReleaseStrategy.cs" />
     <Compile Include="VersionComparisons\CompareAgainstNextReleaseStrategy.cs" />
+    <Compile Include="VersionComparisons\CompareLatestPatchStrategy.cs" />
     <Compile Include="VersionComparisons\CompareSet.cs" />
     <Compile Include="VersionComparisons\CompareStrategies.cs" />
     <Compile Include="VersionComparisons\ICompareStrategy.cs" />

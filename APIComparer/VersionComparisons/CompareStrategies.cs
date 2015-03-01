@@ -6,12 +6,17 @@ namespace APIComparer.VersionComparisons
     {
         public static ICompareStrategy Default
         {
-            get { return new CompareAgainstFirstReleaseStrategy(); }
+            get { return new CompareLatestPatchStrategy(); }
         }
 
         public static ICompareStrategy Parse(string strategy)
         {
             if (strategy == "next-release")
+            {
+                return new CompareAgainstNextReleaseStrategy();
+            }
+
+            if (strategy == "first-release")
             {
                 return new CompareAgainstNextReleaseStrategy();
             }

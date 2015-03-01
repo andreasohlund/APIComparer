@@ -1,6 +1,6 @@
 ﻿namespace APIComparer.VersionComparisons
 {
-    class VersionPair
+    public class VersionPair
     {
         public VersionPair(string leftVersion,string rightVersion)
         {

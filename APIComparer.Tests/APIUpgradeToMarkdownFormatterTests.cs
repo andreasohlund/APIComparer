@@ -52,11 +52,8 @@ public class APIUpgradeToMarkdownFormatterTests
     [Test]
     public void ApproveExample()
     {
-        var file1 = "ExampleV1.dll";
-        var file2 = "ExampleV2.dll";
-
         var engine = new ComparerEngine();
-        var diff = engine.CreateDiff(file1, file2);
+        var diff = engine.CreateDiff("ExampleV1.dll", "ExampleV2.dll");
 
         var stringBuilder = new StringBuilder();
         var formatter = new APIUpgradeToMarkdownFormatter(stringBuilder, "", "");

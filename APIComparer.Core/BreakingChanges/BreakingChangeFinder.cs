@@ -7,7 +7,7 @@ namespace APIComparer.BreakingChanges
     {
         public static IEnumerable<BreakingChange> Find(Diff diff)
         {
-            List<BreakingChange> breakingChanges = diff.RemovedPublicTypes().Select(t => new TypeRemoved(t))
+            var breakingChanges = diff.RemovedPublicTypes().Select(t => new TypeRemoved(t))
                 .ToList<BreakingChange>();
 
             breakingChanges.AddRange(diff.TypesChangedToNonPublic()

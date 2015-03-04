@@ -1,12 +1,12 @@
 ﻿
 ## The following public types have been removed.
 
-- `Example.MissingNextVersionClass` [ [link](MissingNextVersionClass.cs) ]
+- `Example.MissingNextVersionClass` [ [link](ExampleV1/MissingNextVersionClass.cs) ]
 
 
 ## The following public types have been made internal.
 
-- `Example.InternalNextVersionClass` [ [old](InternalNextVersionClass.cs) | [new](InternalNextVersionClass.cs) ]
+- `Example.InternalNextVersionClass` [ [old](ExampleV1/InternalNextVersionClass.cs) | [new](ExampleV2/InternalNextVersionClass.cs) ]
 
 
 ## The following types have differences.
@@ -19,7 +19,7 @@
   - `void MethodName(string)` 
 
 
-### Example.MemberInternalNextVersion  [ [old](MemberInternalNextVersion.cs) | [new](MemberInternalNextVersion.cs) ]
+### Example.MemberInternalNextVersion  [ [old](ExampleV1/MemberInternalNextVersion.cs) | [new](ExampleV2/MemberInternalNextVersion.cs) ]
 
 #### Fields changed to non-public
 
@@ -28,11 +28,11 @@
 #### Methods changed to non-public
 
   - `string get_StringProperty()` 
-  - `void Method()` [ [old](MemberInternalNextVersion.cs#L10) | [new](MemberInternalNextVersion.cs#L10) ]
+  - `void Method()` [ [old](ExampleV1/MemberInternalNextVersion.cs#L10) | [new](ExampleV2/MemberInternalNextVersion.cs#L10) ]
   - `void set_StringProperty(string)` 
 
 
-### Example.MemberMissingNextVersion  [ [old](MemberMissingNextVersion.cs) ]
+### Example.MemberMissingNextVersion  [ [old](ExampleV1/MemberMissingNextVersion.cs) ]
 
 #### Fields Removed
 
@@ -41,6 +41,6 @@
 #### Methods Removed
 
   - `string get_StringProperty()` 
-  - `void Method()` [ [link](MemberMissingNextVersion.cs#L10) ]
+  - `void Method()` [ [link](ExampleV1/MemberMissingNextVersion.cs#L10) ]
   - `void set_StringProperty(string)` 
 

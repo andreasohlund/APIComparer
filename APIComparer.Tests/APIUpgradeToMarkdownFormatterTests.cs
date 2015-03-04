@@ -10,6 +10,7 @@ using NUnit.Framework;
 public class APIUpgradeToMarkdownFormatterTests
 {
     [Test]
+    [Explicit]
     public void ApproveNServiceBus()
     {
         var packages = new[]

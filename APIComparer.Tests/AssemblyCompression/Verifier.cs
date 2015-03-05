@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using NUnit.Framework;
 
 public static class Verifier
 {
     static string exePath;
-    static bool peverifyFound = true;
+    static bool peverifyFound;
 
     static Verifier()
     {
-
         exePath = Environment.ExpandEnvironmentVariables(@"%programfiles(x86)%\Microsoft SDKs\Windows\v7.0A\Bin\NETFX 4.0 Tools\PEVerify.exe");
 
         if (!File.Exists(exePath))
@@ -19,22 +19,20 @@ public static class Verifier
         peverifyFound = File.Exists(exePath);
         if (!peverifyFound)
         {
-#if(!DEBUG)
-            throw new Exception("Could not fund PEVerify");
-#endif
+            Assert.Ignore("Could not find PEVerify");
         }
     }
     public static void Verify(string assemblyPath)
     {
         if (!peverifyFound)
         {
-            return;
+            Assert.Ignore("Could not find PEVerify");
         }
         var output = Validate(assemblyPath);
 
         var stringReader = new StringReader(output);
         string line;
-        while ((line = stringReader.ReadLine())!=null)
+        while ((line = stringReader.ReadLine()) != null)
         {
             if (line.Contains("Error"))
             {
@@ -46,11 +44,10 @@ public static class Verifier
                 {
                     continue;
                 }
-                
+
                 Trace.WriteLine(line);
             }
         }
-
     }
 
     public static string Validate(string assemblyPath2)
@@ -62,8 +59,7 @@ public static class Verifier
             CreateNoWindow = true
         });
 
-        process.WaitForExit(10000);
+        process.WaitForExit();
         return process.StandardOutput.ReadToEnd().Trim().Replace(assemblyPath2, "");
     }
-
 }

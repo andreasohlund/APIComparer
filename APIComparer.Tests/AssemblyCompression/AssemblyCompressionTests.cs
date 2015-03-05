@@ -6,6 +6,7 @@ using System.Reflection;
 using APIComparer;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
+using Mono.Cecil.Rocks;
 using NUnit.Framework;
 
 [TestFixture]
@@ -28,7 +29,7 @@ public class AssemblyCompressionTests
                                    WriteSymbols = true
                                };
         moduleDefinition.Write(afterAssemblyPath, writerParameters);
-        var beforeSize = new FileInfo(beforeAssemblyPath).Length + new FileInfo(beforeAssemblyPath.Replace(".dll",".pdb")).Length;
+        var beforeSize = new FileInfo(beforeAssemblyPath).Length + new FileInfo(beforeAssemblyPath.Replace(".dll", ".pdb")).Length;
         Trace.WriteLine(string.Format("before {0} kbytes", beforeSize / 1024));
         var afterSize = new FileInfo(afterAssemblyPath).Length + new FileInfo(afterAssemblyPath.Replace(".dll", ".pdb")).Length;
         Trace.WriteLine(string.Format("after {0} kbytes", afterSize / 1024));
@@ -49,11 +50,11 @@ public class AssemblyCompressionTests
 
         foreach (var type in moduleDefinition.GetTypes())
         {
-            ProcessType(type);
+            ProcessType(moduleDefinition, type);
         }
     }
 
-    static void ProcessType(TypeDefinition type)
+    static void ProcessType(ModuleDefinition moduleDefinition, TypeDefinition type)
     {
         foreach (var toRemove in type.Properties.Where(x => x.IsCompilerGenerated()).ToList())
         {
@@ -68,7 +69,6 @@ public class AssemblyCompressionTests
             type.Fields.Remove(toRemove);
         }
 
-
         foreach (var property in type.Properties)
         {
             property.RemoveUnwantedAttributes();
@@ -78,6 +78,10 @@ public class AssemblyCompressionTests
         {
             field.RemoveUnwantedAttributes();
         }
+
+        var exceptionReference = new TypeReference("System", "Exception", moduleDefinition.TypeSystem.String.Module, moduleDefinition.TypeSystem.String.Scope);
+        exceptionReference = moduleDefinition.Import(exceptionReference);
+        var ctor = moduleDefinition.Import(exceptionReference.Resolve().GetConstructors().First(c => !c.HasParameters));
 
         foreach (var method in type.Methods)
         {
@@ -90,9 +94,6 @@ public class AssemblyCompressionTests
                 body.Variables.Clear();
                 body.ExceptionHandlers.Clear();
                 body.Instructions.Clear();
-
-                var exceptionReference = new TypeReference("System", "Exception", method.Module.TypeSystem.String.Module, method.Module.TypeSystem.String.Scope);
-                var ctor = new MethodReference(".ctor", method.Module.TypeSystem.Void, exceptionReference);
 
                 body.Instructions.Add(Instruction.Create(OpCodes.Newobj, ctor));
 

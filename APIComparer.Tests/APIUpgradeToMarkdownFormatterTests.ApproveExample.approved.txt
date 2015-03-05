@@ -28,7 +28,7 @@
 #### Methods changed to non-public
 
   - `string get_StringProperty()` 
-  - `void Method()` [ [old](ExampleV1/MemberInternalNextVersion.cs#L10) | [new](ExampleV2/MemberInternalNextVersion.cs#L10) ]
+  - `void Method()` [ [old](ExampleV1/MemberInternalNextVersion.cs#L10) | [new](ExampleV2/MemberInternalNextVersion.cs#L12) ]
   - `void set_StringProperty(string)` 
 
 

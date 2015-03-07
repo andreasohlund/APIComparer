@@ -21,6 +21,7 @@
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             var configuration = new BusConfiguration();
+            configuration.AssembliesToScan(AllAssemblies.Except("Windows.Azure.*"));
             WireupAutofacContainer(configuration);
 
             configuration.UseTransport<AzureStorageQueueTransport>();

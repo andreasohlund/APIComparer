@@ -3,12 +3,12 @@
     using System.Web.Mvc;
     using NServiceBus;
 
-    [RoutePrefix("Compare")]
+    [RoutePrefix("compare")]
     public class CompareController : Controller
     {
         public IBus Bus { get; set; }
 
-        [Route("{nugetpackageid}/{leftVersion}...{rightVersion}")]
+        [Route("{nugetpackageid}/{leftVersion:semver}...{rightVersion:semver}")]
         public ActionResult CompareVersions(string nugetPackageId, string leftVersion, string rightVersion)
         {
             return View();

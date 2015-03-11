@@ -72,6 +72,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NuGetBrowser.cs" />
     <Compile Include="VersionComparisons\CompareAgainstFirstReleaseStrategy.cs" />
     <Compile Include="VersionComparisons\CompareAgainstNextReleaseStrategy.cs" />
     <Compile Include="VersionComparisons\CompareLatestPatchStrategy.cs" />

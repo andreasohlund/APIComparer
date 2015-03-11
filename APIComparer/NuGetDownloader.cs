@@ -9,17 +9,20 @@ class NuGetDownloader
     readonly string package;
     PackageManager packageManager;
 
-    public NuGetDownloader(string nugetName)
+    public NuGetDownloader(string nugetName, IEnumerable<string> repositories)
     {
         package = nugetName;
 
         var nugetCacheDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "NuGet", "Cache");
-        var repo = new AggregateRepository(new[]
+
+
+        var reposToUse = new List<IPackageRepository>
         {
-            PackageRepositoryFactory.Default.CreateRepository(nugetCacheDirectory),
-            PackageRepositoryFactory.Default.CreateRepository("https://www.nuget.org/api/v2"),
-            //PackageRepositoryFactory.Default.CreateRepository("https://www.myget.org/F/particular/"),
-        });
+            PackageRepositoryFactory.Default.CreateRepository(nugetCacheDirectory)
+        };
+
+        reposToUse.AddRange(repositories.ToList().Select(r => PackageRepositoryFactory.Default.CreateRepository(r)));
+        var repo = new AggregateRepository(reposToUse);
 
         packageManager = new PackageManager(repo, "packages");
     }
@@ -28,17 +31,10 @@ class NuGetDownloader
     {
         var semVer = SemanticVersion.Parse(version);
 
-        packageManager.InstallPackage(package,semVer,true,false);
-     
-        //handle package revs like 1.0.0.1
-        var trimmedVersion = string.Format("{0}.{1}.{2}", semVer.Version.Major, semVer.Version.Minor, semVer.Version.Build);
+        packageManager.InstallPackage(package, semVer, true, false);
 
-        if (semVer.Version.Revision > 0)
-        {
-            trimmedVersion += "." + semVer.Version.Revision;
-        }
-        
-        var dirPath = Path.Combine("packages", string.Format("{0}.{1}", package, trimmedVersion), "lib");
+
+        var dirPath = Path.Combine("packages", string.Format("{0}.{1}", package, version), "lib");
 
 
         if (Directory.Exists(Path.Combine(dirPath, "net20")))
@@ -77,26 +73,5 @@ class NuGetDownloader
         }
 
         return files;
-    }
-}
-
-class NuGetBrowser
-{
-    IPackageRepository repository;
-
-    public NuGetBrowser()
-    {
-        repository = PackageRepositoryFactory.Default.CreateRepository("https://packages.nuget.org/api/v2");
-    }
-
-    public IList<SemanticVersion> GetAllVersions(string package)
-    {
-     
-        var packages = repository.FindPackagesById(package).ToList();
-
-        return  packages.Where(item => item.IsReleaseVersion() && item.IsListed())
-            .Select(p=>p.Version)
-            .ToList();
-
     }
 }

@@ -15,6 +15,8 @@ class Program
     .\APIComparer.exe    --source C:\Users\andreas.ohlund\Downloads\NServiceBus.5.2.0\NServiceBus.Core.dll --target C:\dev\NServiceBus\binaries\NServiceBus.Core.dll
     or
     .\APIComparer.exe --nuget NServiceBus.RabbitMQ --versions 1.0.1..1.1.5
+     
+     * comparing local bin to latest build: --target C:\dev\NServiceBus\binaries\NServiceBus.Core.dll --source nuget:NServiceBus --feeds http://builds.particular.net/guestAuth/app/nuget/v1/FeedService.svc --include-prerelease
          */
     static void Main(string[] args)
     {
@@ -117,7 +119,7 @@ class Program
 
     static IEnumerable<CompareSet> GetAllNuGetVersions(string package, ICompareStrategy compareStrategy)
     {
-        var browser = new NuGetBrowser();
+        var browser = new NuGetBrowser(new List<string> { "https://www.nuget.org/api/v2" });
 
         Console.Out.Write("Loading version history for {0}", package);
      
@@ -147,7 +149,7 @@ class Program
 
     static CompareSet CreateCompareSet(string package, VersionPair versions)
     {
-        var nugetDownloader = new NuGetDownloader(package);
+        var nugetDownloader = new NuGetDownloader(package, new List<string> { "https://www.nuget.org/api/v2" });
 
         Console.Out.Write("Preparing {0}-{1}", package, versions);
      
@@ -183,15 +185,66 @@ class Program
             throw new Exception("No target assemblies specified, please use --target {asm1};{asm2}...");
         }
 
+        var source = args[sourceIndex + 1];
+
+        AssemblyGroup leftAsmGroup;
+
+        string leftVersion;
+
+        var compareName = "Custom";
+
+        if (source.StartsWith("nuget:"))
+        {
+
+            var nugetName = source.Replace("nuget:", "").Trim();
+
+
+            compareName = nugetName;
+
+            var feeds = GetFeedsToUse(args);
+
+            var nugetBrowser = new NuGetBrowser(feeds);
+
+            var version = nugetBrowser.GetAllVersions(nugetName,args.Contains("--include-prerelease")).Max();
+
+            var nugetDownloader = new NuGetDownloader(nugetName, feeds);
+
+            leftVersion = version.ToString();
+
+            leftAsmGroup = new AssemblyGroup(nugetDownloader.DownloadAndExtractVersion(leftVersion));
+        }
+        else
+        {
+            leftVersion = "TBD-Left";
+
+            leftAsmGroup = new AssemblyGroup(source.Split(';').Select(Path.GetFullPath).ToList());
+        }
+
         return new CompareSet
         {
-            Name = "Custom",
+            Name = compareName,
             RightAssemblyGroup = new AssemblyGroup(args[targetIndex + 1].Split(';').Select(Path.GetFullPath).ToList()),
-            LeftAssemblyGroup = new AssemblyGroup(args[sourceIndex + 1].Split(';').Select(Path.GetFullPath).ToList()),
-            Versions = new VersionPair("TBD-Left","TBD-Right")
+            LeftAssemblyGroup = leftAsmGroup,
+            Versions = new VersionPair(leftVersion, "TBD-Right")
 
         };
 
+    }
+
+    static List<string> GetFeedsToUse(string[] args)
+    {
+        var feedsIndex = Array.FindIndex(args, arg => arg == "--feeds");
+
+        List<string> feeds;
+        if (feedsIndex < 0)
+        {
+            feeds = new List<string> { "https://www.nuget.org/api/v2" };
+        }
+        else
+        {
+            feeds = args[feedsIndex + 1].Split(';').ToList();
+        }
+        return feeds;
     }
 
 }

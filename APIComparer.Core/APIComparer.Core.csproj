@@ -71,6 +71,7 @@
     <Compile Include="APIUpgradeToMarkdownFormatter.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="BreakingChanges\FieldChangedToNonPublic.cs" />
+    <Compile Include="FormattingInfo.cs" />
     <Compile Include="MatchingMember.cs" />
     <Compile Include="BreakingChanges\MethodChangedToNonPublic.cs" />
     <Compile Include="BreakingChanges\PublicFieldRemoved.cs" />

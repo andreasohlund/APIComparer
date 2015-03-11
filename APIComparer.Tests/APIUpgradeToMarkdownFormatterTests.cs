@@ -1,8 +1,7 @@
 ﻿using System;
 using System.IO;
-using System.Text;
-using APIComparer;
 using ApprovalTests;
+using APIComparer;
 using NuGet;
 using NUnit.Framework;
 
@@ -41,10 +40,9 @@ public class APIUpgradeToMarkdownFormatterTests
 
         var diff = engine.CreateDiff(file1, file2);
 
-        var stringBuilder = new StringBuilder();
-        var formatter = new APIUpgradeToMarkdownFormatter(stringBuilder,"","" );
-
-        formatter.WriteOut(diff);
+        var stringBuilder = new StringWriter();
+        var formatter = new APIUpgradeToMarkdownFormatter();
+        formatter.WriteOut(diff, stringBuilder, new FormattingInfo(string.Empty, string.Empty));
 
         Approvals.Verify(stringBuilder.ToString());
     }
@@ -55,10 +53,10 @@ public class APIUpgradeToMarkdownFormatterTests
         var engine = new ComparerEngine();
         var diff = engine.CreateDiff("ExampleV1.dll", "ExampleV2.dll");
 
-        var stringBuilder = new StringBuilder();
-        var formatter = new APIUpgradeToMarkdownFormatter(stringBuilder, "", "");
+        var stringBuilder = new StringWriter();
+        var formatter = new APIUpgradeToMarkdownFormatter();
 
-        formatter.WriteOut(diff);
+        formatter.WriteOut(diff, stringBuilder, new FormattingInfo(string.Empty, string.Empty));
 
         Approvals.Verify(stringBuilder.ToString());
     }

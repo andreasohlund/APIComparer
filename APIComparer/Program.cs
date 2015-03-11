@@ -53,11 +53,6 @@ class Program
 
         var diff = engine.CreateDiff(compareSet.LeftAssemblyGroup, compareSet.RightAssemblyGroup);
 
-        var stringBuilder = new StringBuilder();
-        var formatter = new APIUpgradeToMarkdownFormatter(stringBuilder, "tbd", "tbd");
-        formatter.WriteOut(diff);
-
-
         var breakingChanges = BreakingChangeFinder.Find(diff)
             .ToList();
 
@@ -75,7 +70,16 @@ class Program
             }
 
             var resultFile = string.Format("{0}-{1}..{2}.md", compareSet.Name, compareSet.Versions.LeftVersion, compareSet.Versions.RightVersion);
-            File.WriteAllText(resultFile, stringBuilder.ToString());
+            using (var fileStream = File.OpenWrite(resultFile))
+            using(var into = new StreamWriter(fileStream))
+            {
+                var formatter = new APIUpgradeToMarkdownFormatter();
+                formatter.WriteOut(diff, into, new FormattingInfo("tbd", "tbd"));
+
+                into.Flush();
+                into.Close();
+                fileStream.Close();
+            }
 
             Console.Out.WriteLine(", Full report written to " + resultFile);            
         }

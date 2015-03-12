@@ -5,7 +5,7 @@
 
     public class CompareNugetPackage : ICommand
     {
-        public CompareNugetPackage(string packageId, string leftVersion, string rightVersion)
+        public CompareNugetPackage(string packageId, Version leftVersion, Version rightVersion)
         {
             this.PackageId = packageId;
             RightVersion = rightVersion;
@@ -13,7 +13,7 @@
         }
 
         public string PackageId { get; private set; }
-        public string LeftVersion { get; private set; }
-        public string RightVersion { get; private set; }
+        public Version LeftVersion { get; private set; }
+        public Version RightVersion { get; private set; }
     }
 }

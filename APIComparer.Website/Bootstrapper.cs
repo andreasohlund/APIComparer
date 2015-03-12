@@ -9,6 +9,7 @@
         {
             var builder = new ContainerBuilder();
 
+            BusConfig.Setup(existingContainer);
             builder.Update(existingContainer.ComponentRegistry);
         }
     }

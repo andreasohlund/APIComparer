@@ -6,7 +6,7 @@
 
     public static class BusConfig
     {
-        public static IBus Setup(IContainer container)
+        public static IBus Setup(ILifetimeScope container)
         {
             var configuration = new BusConfiguration();
             configuration.UseContainer<AutofacBuilder>(x => x.ExistingLifetimeScope(container));

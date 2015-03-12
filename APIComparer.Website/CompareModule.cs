@@ -1,15 +1,28 @@
 ﻿namespace APIComparer.Website
 {
-    using System.Threading.Tasks;
+    using System;
+    using APIComparer.Contracts;
     using Nancy;
+    using NServiceBus;
 
     public class CompareModule : NancyModule
     {
-        public CompareModule()
+        public CompareModule(IBus bus)
         {
-            Get["/compare/{nugetpackageid}/{leftversion:version}...{rightversion:version}", true] = async (ctx, token) =>
+            Get["/compare/{nugetpackageid}/{leftversion}...{rightversion}"] = ctx =>
             {
-                return Task.FromResult(200);
+                Version leftVersion, rightVersion;
+                if (!Version.TryParse(ctx.leftversion, out leftVersion))
+                {
+                    return 404;
+                }
+                if (!Version.TryParse(ctx.rightversion, out rightVersion))
+                {
+                    return 404;
+                }
+
+                bus.Send(new CompareNugetPackage(ctx.nugetpackageid, leftVersion, rightVersion));
+                return "Hello Nuget";
             };
         }
     }

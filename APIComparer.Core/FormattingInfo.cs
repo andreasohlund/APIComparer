@@ -7,8 +7,8 @@ namespace APIComparer
 
         public FormattingInfo(string leftUrl, string rightUrl)
         {
-            this.RightUrl = rightUrl;
-            this.LeftUrl = leftUrl;
+            RightUrl = rightUrl;
+            LeftUrl = leftUrl;
         }
     }
 }

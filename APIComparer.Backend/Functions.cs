@@ -13,6 +13,7 @@
         public static void Host(TextWriter log, CancellationToken cancellationToken)
         {
             var configuration = new BusConfiguration();
+            configuration.EndpointName("APIComparer.Backend");
             configuration.DisableFeature<SecondLevelRetries>();
             configuration.DisableFeature<Sagas>();
             configuration.DisableFeature<TimeoutManager>();

@@ -121,6 +121,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AzureSubscriptionStorageConfigProvider.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="BusConfig.cs" />
     <Compile Include="CompareModule.cs" />
@@ -147,6 +148,9 @@
       <Project>{ac55cccd-adf5-4596-a1c2-52816f84cd9c}</Project>
       <Name>APIComparer.Contracts</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\particular-apicomparer-live.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Azure.WebJobs;
-
-namespace APIComparer.Backend
+﻿namespace APIComparer.Backend
 {
+    using System;
+    using Microsoft.Azure.WebJobs;
+
     // To learn more about Microsoft Azure WebJobs SDK, please see http://go.microsoft.com/fwlink/?LinkID=320976
     class Program
     {
@@ -17,8 +13,8 @@ namespace APIComparer.Backend
             JobHost host;
             string connectionString;
             // To run webjobs locally, can't use storage emulator
-            // for local execution, use connection string stored in environment vatiable
-            if ((connectionString = Environment.GetEnvironmentVariable("AzureStorageQueueTransport.ConnectionString")) != null)
+            // for local execution, use connection string stored in environment variable
+            if ((connectionString = Environment.GetEnvironmentVariable("AzureStorageQueueTransport.ConnectionString", EnvironmentVariableTarget.User)) != null)
             {
                 var configuration = new JobHostConfiguration
                 {

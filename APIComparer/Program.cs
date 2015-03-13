@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
 using APIComparer;
 using APIComparer.BreakingChanges;
 using APIComparer.VersionComparisons;

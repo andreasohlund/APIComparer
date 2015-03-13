@@ -151,6 +151,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\particular-apicomparer-live.pubxml" />
+    <Content Include="Properties\webjobs-list.json" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -192,6 +193,7 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\GitVersionTask.3.0.0-beta0001\Build\GitVersionTask.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\GitVersionTask.3.0.0-beta0001\Build\GitVersionTask.targets'))" />
   </Target>
+  <Import Project="..\packages\Microsoft.Web.WebJobs.Publish.1.0.2\tools\webjobs.targets" Condition="Exists('..\packages\Microsoft.Web.WebJobs.Publish.1.0.2\tools\webjobs.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

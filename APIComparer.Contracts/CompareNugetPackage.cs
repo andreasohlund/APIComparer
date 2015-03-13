@@ -1,4 +1,5 @@
-﻿namespace APIComparer.Contracts
+﻿// ReSharper disable MemberCanBePrivate.Global
+namespace APIComparer.Contracts
 {
     using System;
     using NServiceBus;
@@ -7,7 +8,7 @@
     {
         public CompareNugetPackage(string packageId, Version leftVersion, Version rightVersion)
         {
-            this.PackageId = packageId;
+            PackageId = packageId;
             RightVersion = rightVersion;
             LeftVersion = leftVersion;
         }

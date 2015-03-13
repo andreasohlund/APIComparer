@@ -1,163 +1,150 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web;
-using Mono.Cecil;
-using Mono.Cecil.Cil;
-
 namespace APIComparer
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Web;
+    using Mono.Cecil;
+    using Mono.Cecil.Cil;
+
     public class APIUpgradeToMarkdownFormatter 
     {
-        StringBuilder stringBuilder;
-        public string leftUrl;
-        public string rightUrl;
-
-        public APIUpgradeToMarkdownFormatter(StringBuilder stringBuilder, string leftUrl, string rightUrl)
-        {
-            this.stringBuilder = stringBuilder;
-            this.leftUrl = leftUrl;
-            this.rightUrl = rightUrl;
-        }
-        
-        string CreateLinks(SequencePoint leftSP, SequencePoint rightSP, int offset = 0)
+        string CreateLinks(SequencePoint leftSP, SequencePoint rightSP, FormattingInfo info, int offset = 0)
         {
             if (leftSP != null && rightSP != null)
             {
-                var leftSPUrl = CreateSequencePointUrl(leftUrl, leftSP, offset);
-                var rightSPUrl = CreateSequencePointUrl(rightUrl, rightSP, offset);
+                var leftSPUrl = CreateSequencePointUrl(info.LeftUrl, leftSP, offset);
+                var rightSPUrl = CreateSequencePointUrl(info.RightUrl, rightSP, offset);
                 return String.Format("[ {0} | {1} ]", CreateMarkdownUrl("old", leftSPUrl), CreateMarkdownUrl("new", rightSPUrl));
             }
             if (leftSP != null)
             {
-                var leftSPUrl = CreateSequencePointUrl(leftUrl, leftSP, offset);
+                var leftSPUrl = CreateSequencePointUrl(info.LeftUrl, leftSP, offset);
                 return String.Format("[ {0} ]", CreateMarkdownUrl("old", leftSPUrl));
             }
             if (rightSP != null)
             {
-                var rightSPUrl = CreateSequencePointUrl(rightUrl, rightSP, offset);
+                var rightSPUrl = CreateSequencePointUrl(info.RightUrl, rightSP, offset);
                 return String.Format("[ {0} ]", CreateMarkdownUrl("new", rightSPUrl));
             }
             return "";
         }
 
-        string CreateLeftLink(SequencePoint rightSP, int offset = 0)
+        string CreateLeftLink(SequencePoint rightSP, FormattingInfo info, int offset = 0)
         {
             if (rightSP != null)
             {
-                var rightSPUrl = CreateSequencePointUrl(leftUrl, rightSP, offset);
+                var rightSPUrl = CreateSequencePointUrl(info.LeftUrl, rightSP, offset);
                 return String.Format("[ {0} ]", CreateMarkdownUrl("link", rightSPUrl));
             }
             return "";
         }
 
-        string CreateRightLink(SequencePoint rightSP, int offset = 0)
+        string CreateRightLink(SequencePoint rightSP, FormattingInfo info, int offset = 0)
         {
             if (rightSP != null)
             {
-                var rightSPUrl = CreateSequencePointUrl(rightUrl, rightSP, offset);
+                var rightSPUrl = CreateSequencePointUrl(info.RightUrl, rightSP, offset);
                 return String.Format("[ {0} ]", CreateMarkdownUrl("link", rightSPUrl));
             }
             return "";
         }
 
-        void WriteObsoletes(IEnumerable<TypeDefinition> allTypes)
+        void WriteObsoletes(IEnumerable<TypeDefinition> allTypes, TextWriter writer, FormattingInfo info)
         {
             var obsoleteTypes = allTypes.TypeWithObsoletes().ToList();
                 
             if (obsoleteTypes.Any())
             {
-                stringBuilder.AppendLine();
-                stringBuilder.AppendLine("## The following types have Obsoletes.");
-                stringBuilder.AppendLine();
+                writer.WriteLine();
+                writer.WriteLine("## The following types have Obsoletes.");
+                writer.WriteLine();
                 foreach (var type in obsoleteTypes)
                 {
-                    var link = CreateRightLink(type.GetValidSequencePoint());
-                    stringBuilder.AppendLine("### " + HttpUtility.HtmlEncode(type.GetName()) + "  " + link);
-                    stringBuilder.AppendLine();
+                    var link = CreateRightLink(type.GetValidSequencePoint(), info);
+                    writer.WriteLine("### " + HttpUtility.HtmlEncode(type.GetName()) + "  " + link);
+                    writer.WriteLine();
                     if (type.HasObsoleteAttribute())
                     {
-                        stringBuilder.AppendLine(type.GetObsoleteString());
-                        stringBuilder.AppendLine();
+                        writer.WriteLine(type.GetObsoleteString());
+                        writer.WriteLine();
                     }
 
-                    WriteObsoleteFields(type);
-                    WriteObsoleteMethods(type);
+                    WriteObsoleteFields(type, writer);
+                    WriteObsoleteMethods(type, writer, info);
                 }
-                stringBuilder.AppendLine();
+                writer.WriteLine();
             }
 
         }
 
-        void WriteObsoleteFields(TypeDefinition type)
+        void WriteObsoleteFields(TypeDefinition type, TextWriter writer)
         {
             var obsoletes = type.GetObsoleteFields().ToList();
             if (obsoletes.Any())
             {
-                stringBuilder.AppendLine();
-                stringBuilder.AppendLine("#### Obsolete Fields");
-                stringBuilder.AppendLine();
+                writer.WriteLine();
+                writer.WriteLine("#### Obsolete Fields");
+                writer.WriteLine();
                 foreach (var field in obsoletes)
                 {
-                    stringBuilder.AppendFormat("  - `{0}`", field.GetName());
-                    stringBuilder.AppendLine("<br>" + field.GetObsoleteString());
+                    writer.Write("  - `{0}`", field.GetName());
+                    writer.WriteLine("<br>" + field.GetObsoleteString());
                 }
             }
-            stringBuilder.AppendLine();
+            writer.WriteLine();
         }
-        void WriteObsoleteMethods(TypeDefinition type)
+        void WriteObsoleteMethods(TypeDefinition type, TextWriter writer, FormattingInfo info)
         {
             var obsoletes = type.GetObsoleteMethods().ToList();
             if (obsoletes.Any())
             {
-                stringBuilder.AppendLine();
-                stringBuilder.AppendLine("#### Obsolete Methods");
-                stringBuilder.AppendLine();
+                writer.WriteLine();
+                writer.WriteLine("#### Obsolete Methods");
+                writer.WriteLine();
                 foreach (var method in obsoletes)
                 {
-                    var link = CreateRightLink(method.GetValidSequencePoint());
-                    stringBuilder.Append(string.Format("  - `{0}` {1}", method.GetName(), link));
-                    stringBuilder.AppendLine("<br>" + method.GetObsoleteString());
+                    var link = CreateRightLink(method.GetValidSequencePoint(), info);
+                    writer.Write("  - `{0}` {1}", method.GetName(), link);
+                    writer.WriteLine("<br>" + method.GetObsoleteString());
                 }
             }
-            stringBuilder.AppendLine();
+            writer.WriteLine();
         }
 
-
-
-        public void WriteOut(Diff diff)
+        public void WriteOut(Diff diff, TextWriter writer, FormattingInfo info)
         {
             var removePublicTypes = diff.RemovedPublicTypes().ToList();
             if (removePublicTypes.Any())
             {
-                stringBuilder.AppendLine();
-                stringBuilder.AppendLine("## The following public types have been removed.");
-                stringBuilder.AppendLine();
+                writer.WriteLine();
+                writer.WriteLine("## The following public types have been removed.");
+                writer.WriteLine();
                 foreach (var type in removePublicTypes)
                 {
-                    var link = CreateLeftLink(type.GetValidSequencePoint());
-                    stringBuilder.AppendLine(string.Format("- `{0}` {1}", type.GetName(), link));
+                    var link = CreateLeftLink(type.GetValidSequencePoint(), info);
+                    writer.WriteLine("- `{0}` {1}", type.GetName(), link);
                 }
-                stringBuilder.AppendLine();
+                writer.WriteLine();
             }
             var typesChangedToNonPublic = diff.TypesChangedToNonPublic().ToList();
             if (typesChangedToNonPublic.Any())
             {
-                stringBuilder.AppendLine();
-                stringBuilder.AppendLine("## The following public types have been made internal.");
-                stringBuilder.AppendLine();
+                writer.WriteLine();
+                writer.WriteLine("## The following public types have been made internal.");
+                writer.WriteLine();
                 foreach (var type in typesChangedToNonPublic)
                 {
-                    var links = CreateLinks(type.LeftType.GetValidSequencePoint(), type.RightType.GetValidSequencePoint());
-                    stringBuilder.AppendLine(string.Format("- `{0}` {1}", type.RightType.GetName(), links));
+                    var links = CreateLinks(type.LeftType.GetValidSequencePoint(), type.RightType.GetValidSequencePoint(), info);
+                    writer.WriteLine("- `{0}` {1}", type.RightType.GetName(), links);
                 }
-                stringBuilder.AppendLine();
+                writer.WriteLine();
             }
 
-            stringBuilder.AppendLine();
-            stringBuilder.AppendLine("## The following types have differences.");
-            stringBuilder.AppendLine();
+            writer.WriteLine();
+            writer.WriteLine("## The following types have differences.");
+            writer.WriteLine();
             foreach (var typeDiff in diff.MatchingTypeDiffs)
             {
                 if (typeDiff.LeftType.HasObsoleteAttribute())
@@ -179,15 +166,15 @@ namespace APIComparer
                 }
                 if (HasDifferences(typeDiff))
                 {
-                    WriteOut(typeDiff);
+                    WriteOut(typeDiff, writer, info);
                 }
             }
 
-            WriteObsoletes(diff.RightAllTypes);
+            WriteObsoletes(diff.RightAllTypes, writer, info);
         }
 
 
-        public bool HasDifferences(TypeDiff typeDiff)
+        static bool HasDifferences(TypeDiff typeDiff)
         {
             return
                 typeDiff.PublicFieldsRemoved().Any() ||
@@ -196,30 +183,31 @@ namespace APIComparer
                 typeDiff.MethodsChangedToNonPublic().Any()
                 ;
         }
-        void WriteOut(TypeDiff typeDiff)
+
+        void WriteOut(TypeDiff typeDiff, TextWriter writer, FormattingInfo info)
         {
-            stringBuilder.AppendLine();
-            var links = CreateLinks(typeDiff.LeftType.GetValidSequencePoint(), typeDiff.RightType.GetValidSequencePoint());
-            stringBuilder.AppendFormat("### {0}  {1}", HttpUtility.HtmlEncode(typeDiff.RightType.GetName()), links);
-            stringBuilder.AppendLine();
+            writer.WriteLine();
+            var links = CreateLinks(typeDiff.LeftType.GetValidSequencePoint(), typeDiff.RightType.GetValidSequencePoint(), info);
+            writer.Write("### {0}  {1}", HttpUtility.HtmlEncode(typeDiff.RightType.GetName()), links);
+            writer.WriteLine();
 
-            WriteFields(typeDiff);
-            WriteMethods(typeDiff);
+            WriteFields(typeDiff, writer);
+            WriteMethods(typeDiff, writer, info);
 
-            stringBuilder.AppendLine();
+            writer.WriteLine();
         }
 
-        void WriteFields(TypeDiff typeDiff)
+        void WriteFields(TypeDiff typeDiff, TextWriter writer)
         {
             var changedToNonPublic = typeDiff.FieldsChangedToNonPublic().ToList();
             if (changedToNonPublic.Any())
             {
-                stringBuilder.AppendLine();
-                stringBuilder.AppendLine("#### Fields changed to non-public");
-                stringBuilder.AppendLine();
+                writer.WriteLine();
+                writer.WriteLine("#### Fields changed to non-public");
+                writer.WriteLine();
                 foreach (var field in changedToNonPublic)
                 {
-                    stringBuilder.AppendLine(string.Format("  - `{0}`", field.Right.GetName()));
+                    writer.WriteLine("  - `{0}`", field.Right.GetName());
                 }
             }
 
@@ -227,41 +215,41 @@ namespace APIComparer
             //var added = typeDiff.RightOrphanFields.ToList();
             //if (added.Any())
             //{
-            //    stringBuilder.AppendLine();
-            //    stringBuilder.AppendLine("#### Fields Added");
-            //    stringBuilder.AppendLine();
+            //    writer.WriteLine();
+            //    writer.WriteLine("#### Fields Added");
+            //    writer.WriteLine();
             //    foreach (var field in added)
             //    {
-            //        stringBuilder.AppendLine("  - " + field.HtmlEncodedName());
+            //        writer.WriteLine("  - " + field.HtmlEncodedName());
             //    }
             //}
 
             var removed = typeDiff.PublicFieldsRemoved().ToList();
             if (removed.Any())
             {
-                stringBuilder.AppendLine();
-                stringBuilder.AppendLine("#### Fields Removed"); 
-                stringBuilder.AppendLine();
+                writer.WriteLine();
+                writer.WriteLine("#### Fields Removed"); 
+                writer.WriteLine();
                 foreach (var field in removed)
                 {
-                    stringBuilder.AppendLine(string.Format("  - `{0}`", field.GetName()));
+                    writer.WriteLine("  - `{0}`", field.GetName());
                 }
             }
         }
 
-        void WriteMethods(TypeDiff typeDiff)
+        void WriteMethods(TypeDiff typeDiff, TextWriter writer, FormattingInfo info)
         {
             var changedToNonPublic = typeDiff.MethodsChangedToNonPublic().ToList();
             if (changedToNonPublic.Any())
             {
-                stringBuilder.AppendLine();
-                stringBuilder.AppendLine("#### Methods changed to non-public");
-                stringBuilder.AppendLine();
+                writer.WriteLine();
+                writer.WriteLine("#### Methods changed to non-public");
+                writer.WriteLine();
                 foreach (var method in changedToNonPublic)
                 {
                     var leftSP = method.Left.GetValidSequencePoint();
                     var rightSP = method.Right.GetValidSequencePoint();
-                    stringBuilder.AppendLine(string.Format("  - `{0}` {1}", method.Left.GetName(), CreateLinks(leftSP, rightSP)));
+                    writer.WriteLine("  - `{0}` {1}", method.Left.GetName(), CreateLinks(leftSP, rightSP, info));
                 }
             }
 
@@ -269,26 +257,26 @@ namespace APIComparer
             //var added = typeDiff.RightOrphanMethods.ToList();
             //if (added.Any())
             //{
-            //    stringBuilder.AppendLine();
-            //    stringBuilder.AppendLine("#### Methods Added");
-            //    stringBuilder.AppendLine();
+            //    writer.WriteLine();
+            //    writer.WriteLine("#### Methods Added");
+            //    writer.WriteLine();
             //    foreach (var method in added)
             //    {
             //        var sequencePoint = method.GetValidSequencePoint();
-            //        stringBuilder.AppendLine(string.Format("  - {0} {1}", method.HtmlEncodedName(), CreateLinks(null, sequencePoint, 2)));
+            //        writer.WriteLine(string.Format("  - {0} {1}", method.HtmlEncodedName(), CreateLinks(null, sequencePoint, 2)));
             //    }
             //}
 
             var removed = typeDiff.PublicMethodsRemoved().ToList();
             if (removed.Any())
             {
-                stringBuilder.AppendLine();
-                stringBuilder.AppendLine("#### Methods Removed");
-                stringBuilder.AppendLine();
+                writer.WriteLine();
+                writer.WriteLine("#### Methods Removed");
+                writer.WriteLine();
                 foreach (var method in removed)
                 {
                     var sequencePoint = method.GetValidSequencePoint();
-                    stringBuilder.AppendLine(string.Format("  - `{0}` {1}", method.GetName(), CreateLeftLink(sequencePoint)));
+                    writer.WriteLine("  - `{0}` {1}", method.GetName(), CreateLeftLink(sequencePoint, info));
                 }
             }
         }

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIComparer", "APIComparer\APIComparer.csproj", "{52BD5B46-5A1B-4D59-87F2-4D9D3533A220}"
 EndProject
@@ -12,6 +12,17 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleV1", "ExampleV1\ExampleV1.csproj", "{BA355065-B2A3-4F08-B5CD-FC6D5009A21F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleV2", "ExampleV2\ExampleV2.csproj", "{122B2478-B674-4EB5-B260-1984386D8D34}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIComparer.Website", "APIComparer.Website\APIComparer.Website.csproj", "{07383907-578C-4D74-B28C-D245AA9D9656}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{ADBE83F8-98A0-4EE4-BFFF-76A5F140EEE5}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIComparer.Backend", "APIComparer.Backend\APIComparer.Backend.csproj", "{829CA5E5-BA5D-4C4F-ABAF-6531AE2EF655}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIComparer.Contracts", "APIComparer.Contracts\APIComparer.Contracts.csproj", "{AC55CCCD-ADF5-4596-A1C2-52816F84CD9C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +50,18 @@ Global
 		{122B2478-B674-4EB5-B260-1984386D8D34}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{122B2478-B674-4EB5-B260-1984386D8D34}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{122B2478-B674-4EB5-B260-1984386D8D34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07383907-578C-4D74-B28C-D245AA9D9656}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07383907-578C-4D74-B28C-D245AA9D9656}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07383907-578C-4D74-B28C-D245AA9D9656}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07383907-578C-4D74-B28C-D245AA9D9656}.Release|Any CPU.Build.0 = Release|Any CPU
+		{829CA5E5-BA5D-4C4F-ABAF-6531AE2EF655}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{829CA5E5-BA5D-4C4F-ABAF-6531AE2EF655}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{829CA5E5-BA5D-4C4F-ABAF-6531AE2EF655}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{829CA5E5-BA5D-4C4F-ABAF-6531AE2EF655}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC55CCCD-ADF5-4596-A1C2-52816F84CD9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC55CCCD-ADF5-4596-A1C2-52816F84CD9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC55CCCD-ADF5-4596-A1C2-52816F84CD9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC55CCCD-ADF5-4596-A1C2-52816F84CD9C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

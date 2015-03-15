@@ -150,7 +150,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\PublishProfiles\Disk.pubxml" />
+    <None Include="Properties\PublishProfiles\LocalDir.pubxml" />
     <None Include="Properties\PublishProfiles\particular-apicomparer-live.pubxml" />
     <Content Include="Properties\webjobs-list.json" />
   </ItemGroup>

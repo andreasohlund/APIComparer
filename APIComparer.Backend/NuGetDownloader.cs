@@ -36,7 +36,7 @@ namespace APIComparer.Backend
             packageManager.InstallPackage(package, semVer, true, false);
 
 
-            var dirPath = Path.Combine("packages", string.Format("{0}.{1}", package, version), "lib");
+            var dirPath = Path.Combine(".\\packages", string.Format("{0}.{1}", package, version), "lib");
 
 
             if (Directory.Exists(Path.Combine(dirPath, "net20")))

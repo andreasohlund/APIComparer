@@ -1,6 +1,6 @@
 ﻿namespace APIComparer.Website
 {
-    using System.Configuration;
+    using System;
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;
 
@@ -10,7 +10,7 @@
         {
             return new AzureSubscriptionStorageConfig
             {
-                ConnectionString = ConfigurationManager.ConnectionStrings["NServiceBus/Transport"].ConnectionString,
+                ConnectionString = Environment.GetEnvironmentVariable("AzureStorageQueueTransport.ConnectionString", EnvironmentVariableTarget.User)
             };
         }
     }

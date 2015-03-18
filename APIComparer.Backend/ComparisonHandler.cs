@@ -9,6 +9,7 @@
     using APIComparer.VersionComparisons;
     using NServiceBus;
     using NServiceBus.Logging;
+    using NuGet;
 
     public class ComparisonHandler : IHandleMessages<CompareNugetPackage>
     {
@@ -31,7 +32,7 @@
             return GetExplicitNuGetVersions(message.PackageId, message.LeftVersion, message.RightVersion).ToList();
         }
 
-        private static IEnumerable<CompareSet> GetExplicitNuGetVersions(string nugetName, Version leftVersion, Version rightVersion)
+        private static IEnumerable<CompareSet> GetExplicitNuGetVersions(string nugetName, SemanticVersion leftVersion, SemanticVersion rightVersion)
         {
             yield return CreateCompareSet(nugetName, new VersionPair(leftVersion.ToString(), rightVersion.ToString()));
         }

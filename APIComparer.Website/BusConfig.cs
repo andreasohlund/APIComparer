@@ -16,7 +16,7 @@
             configuration.AssembliesToScan(AllAssemblies.Except("Microsoft.Windows.Azure.Storage"));
 
             configuration.UseTransport<AzureStorageQueueTransport>()
-                .ConnectionString(() => Environment.GetEnvironmentVariable("AzureStorageQueueTransport.ConnectionString", EnvironmentVariableTarget.User));
+                .ConnectionString(() => Environment.GetEnvironmentVariable("AzureStorageQueueTransport.ConnectionString"));
             configuration.UsePersistence<AzureStoragePersistence>();
             configuration.DisableFeature<SecondLevelRetries>();
             configuration.DisableFeature<Sagas>();

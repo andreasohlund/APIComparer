@@ -20,7 +20,7 @@
 
             configuration.AzureConfigurationSource();
             configuration.UseTransport<AzureStorageQueueTransport>()
-                .ConnectionString(Environment.GetEnvironmentVariable("AzureStorageQueueTransport.ConnectionString", EnvironmentVariableTarget.User));
+                .ConnectionString(Environment.GetEnvironmentVariable("AzureStorageQueueTransport.ConnectionString"));
             configuration.UsePersistence<AzureStoragePersistence>();
             //configuration.ApplyMessageConventions();
             

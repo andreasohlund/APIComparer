@@ -10,7 +10,7 @@
         {
             return new AzureSubscriptionStorageConfig
             {
-                ConnectionString = Environment.GetEnvironmentVariable("AzureStorageQueueTransport.ConnectionString", EnvironmentVariableTarget.User)
+                ConnectionString = Environment.GetEnvironmentVariable("AzureStorageQueueTransport.ConnectionString")
             };
         }
     }

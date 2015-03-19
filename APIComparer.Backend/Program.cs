@@ -14,7 +14,7 @@
             string connectionString;
             // To run webjobs locally, can't use storage emulator
             // for local execution, use connection string stored in environment variable
-            if ((connectionString = Environment.GetEnvironmentVariable("AzureStorageQueueTransport.ConnectionString", EnvironmentVariableTarget.User)) != null)
+            if ((connectionString = Environment.GetEnvironmentVariable("AzureStorageQueueTransport.ConnectionString")) != null)
             {
                 var configuration = new JobHostConfiguration
                 {

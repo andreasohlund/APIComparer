@@ -18,7 +18,6 @@
             configuration.DisableFeature<Sagas>();
             configuration.DisableFeature<TimeoutManager>();
 
-            configuration.AzureConfigurationSource();
             configuration.UseTransport<AzureStorageQueueTransport>()
                 .ConnectionString(Environment.GetEnvironmentVariable("AzureStorageQueueTransport.ConnectionString"));
             configuration.UsePersistence<AzureStoragePersistence>();

@@ -4,6 +4,7 @@ namespace APIComparer.Backend
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
+    using APIComparer.Shared;
     using NuGet;
 
     class NuGetDownloader
@@ -15,7 +16,8 @@ namespace APIComparer.Backend
         {
             package = nugetName;
 
-            var nugetCacheDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "NuGet", "Cache");
+            //var nugetCacheDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "NuGet", "Cache");
+            var nugetCacheDirectory = Path.Combine(AzureEnvironment.GetTempPath(), "packages");
 
 
             var reposToUse = new List<IPackageRepository>
@@ -26,7 +28,7 @@ namespace APIComparer.Backend
             reposToUse.AddRange(repositories.ToList().Select(r => PackageRepositoryFactory.Default.CreateRepository(r)));
             var repo = new AggregateRepository(reposToUse);
 
-            packageManager = new PackageManager(repo, "packages");
+            packageManager = new PackageManager(repo, /*"packages"*/nugetCacheDirectory);
         }
 
         public List<string> DownloadAndExtractVersion(string version)
@@ -35,8 +37,7 @@ namespace APIComparer.Backend
 
             packageManager.InstallPackage(package, semVer, true, false);
 
-
-            var dirPath = Path.Combine(".\\packages", string.Format("{0}.{1}", package, version), "lib");
+            var dirPath = Path.Combine(AzureEnvironment.GetTempPath(), "packages", string.Format("{0}.{1}", package, version), "lib");
 
 
             if (Directory.Exists(Path.Combine(dirPath, "net20")))

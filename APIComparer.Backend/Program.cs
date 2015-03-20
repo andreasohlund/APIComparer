@@ -1,6 +1,7 @@
 ﻿namespace APIComparer.Backend
 {
     using System;
+    using APIComparer.Shared;
     using Microsoft.Azure.WebJobs;
 
     // To learn more about Microsoft Azure WebJobs SDK, please see http://go.microsoft.com/fwlink/?LinkID=320976
@@ -11,22 +12,20 @@
         static void Main()
         {
             JobHost host;
-            string connectionString;
-            // To run webjobs locally, can't use storage emulator
-            // for local execution, use connection string stored in environment variable
-            if ((connectionString = Environment.GetEnvironmentVariable("AzureStorageQueueTransport.ConnectionString")) != null)
-            {
-                var configuration = new JobHostConfiguration
-                {
-                    DashboardConnectionString = connectionString,
-                    StorageConnectionString = connectionString
-                };
-                host = new JobHost(configuration);
-            }
-            // for production, use DashboardConnectionString and StorageConnectionString defined at Azure website
-            else
+            if (AzureEnvironment.IsRunningInCloud())
             {
                 host = new JobHost();
+            }
+            else
+            {
+                // To run webjobs locally, can't use storage emulator
+                // for local execution, use connection string stored in environment variable
+                var configuration = new JobHostConfiguration
+                {
+                    DashboardConnectionString = AzureEnvironment.GetConnectionString(),
+                    StorageConnectionString = AzureEnvironment.GetConnectionString()
+                };
+                host = new JobHost(configuration);
             }
 
             Console.WriteLine("Starting Host with NSB");

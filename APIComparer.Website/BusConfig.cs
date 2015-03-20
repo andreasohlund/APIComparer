@@ -1,6 +1,6 @@
 ﻿namespace APIComparer.Website
 {
-    using System;
+    using APIComparer.Shared;
     using Autofac;
     using NServiceBus;
     using NServiceBus.Features;
@@ -16,7 +16,7 @@
             configuration.AssembliesToScan(AllAssemblies.Except("Microsoft.Windows.Azure.Storage"));
 
             configuration.UseTransport<AzureStorageQueueTransport>()
-                .ConnectionString(() => Environment.GetEnvironmentVariable("AzureStorageQueueTransport.ConnectionString"));
+                .ConnectionString(AzureEnvironment.GetConnectionString);
             configuration.UsePersistence<AzureStoragePersistence>();
             configuration.DisableFeature<SecondLevelRetries>();
             configuration.DisableFeature<Sagas>();

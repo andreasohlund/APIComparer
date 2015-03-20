@@ -3,6 +3,7 @@
     using System;
     using System.IO;
     using System.Threading;
+    using APIComparer.Shared;
     using Microsoft.Azure.WebJobs;
     using NServiceBus;
     using NServiceBus.Features;
@@ -18,10 +19,10 @@
             configuration.DisableFeature<Sagas>();
             configuration.DisableFeature<TimeoutManager>();
 
+
             configuration.UseTransport<AzureStorageQueueTransport>()
-                .ConnectionString(Environment.GetEnvironmentVariable("AzureStorageQueueTransport.ConnectionString"));
+                .ConnectionString(AzureEnvironment.GetConnectionString);
             configuration.UsePersistence<AzureStoragePersistence>();
-            //configuration.ApplyMessageConventions();
             
             var startableBus = Bus.Create(configuration);
             startableBus.Start();

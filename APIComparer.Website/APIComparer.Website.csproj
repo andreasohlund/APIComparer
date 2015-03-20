@@ -155,6 +155,10 @@
       <Project>{ac55cccd-adf5-4596-a1c2-52816f84cd9c}</Project>
       <Name>APIComparer.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\APIComparer.Shared\APIComparer.Shared.csproj">
+      <Project>{10829280-6A1E-490F-A33F-4CB4468A28ED}</Project>
+      <Name>APIComparer.Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\LocalDir.pubxml" />

@@ -153,6 +153,10 @@
       <Project>{800763B7-C4F3-44EB-AF5A-C1D211FCE18F}</Project>
       <Name>APIComparer.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\APIComparer.Shared\APIComparer.Shared.csproj">
+      <Project>{10829280-6A1E-490F-A33F-4CB4468A28ED}</Project>
+      <Name>APIComparer.Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">

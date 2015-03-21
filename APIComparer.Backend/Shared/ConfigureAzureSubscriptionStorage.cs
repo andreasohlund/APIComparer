@@ -3,7 +3,7 @@
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;
 
-    public class ConfigureAzureSubscriptionStorage : IProvideConfiguration<AzureSubscriptionStorageConfig>
+    internal class ConfigureAzureSubscriptionStorage : IProvideConfiguration<AzureSubscriptionStorageConfig>
     {
         public AzureSubscriptionStorageConfig GetConfiguration()
         {

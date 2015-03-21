@@ -122,16 +122,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\APIComparer.Shared\Configuration\ConfigureAuditQueue.cs">
-      <Link>EndpointConfigurat\ConfigureAuditQueue.cs</Link>
-    </Compile>
-    <Compile Include="..\APIComparer.Shared\Configuration\ConfigureAzureSubscriptionStorage.cs">
-      <Link>EndpointConfigurat\ConfigureAzureSubscriptionStorage.cs</Link>
-    </Compile>
-    <Compile Include="..\APIComparer.Shared\Configuration\ConfigureErrorQueue.cs">
-      <Link>EndpointConfigurat\ConfigureErrorQueue.cs</Link>
-    </Compile>
     <Compile Include="ComparisonHandler.cs" />
+    <Compile Include="Shared\AzureEnvironment.cs" />
+    <Compile Include="Shared\ConfigureAuditQueue.cs" />
+    <Compile Include="Shared\ConfigureAzureSubscriptionStorage.cs" />
+    <Compile Include="Shared\ConfigureErrorQueue.cs" />
     <Compile Include="NuGetDownloader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Functions.cs" />
@@ -158,10 +153,6 @@
     <ProjectReference Include="..\APIComparer.Core\APIComparer.Core.csproj">
       <Project>{800763B7-C4F3-44EB-AF5A-C1D211FCE18F}</Project>
       <Name>APIComparer.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\APIComparer.Shared\APIComparer.Shared.csproj">
-      <Project>{10829280-6A1E-490F-A33F-4CB4468A28ED}</Project>
-      <Name>APIComparer.Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

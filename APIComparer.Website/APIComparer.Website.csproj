@@ -128,16 +128,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AzureSubscriptionStorageConfigProvider.cs" />
+    <Compile Include="..\APIComparer.Shared\Configuration\ConfigureAuditQueue.cs">
+      <Link>EndpointConfigurat\ConfigureAuditQueue.cs</Link>
+    </Compile>
+    <Compile Include="..\APIComparer.Shared\Configuration\ConfigureAzureSubscriptionStorage.cs">
+      <Link>EndpointConfigurat\ConfigureAzureSubscriptionStorage.cs</Link>
+    </Compile>
+    <Compile Include="..\APIComparer.Shared\Configuration\ConfigureErrorQueue.cs">
+      <Link>EndpointConfigurat\ConfigureErrorQueue.cs</Link>
+    </Compile>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="BusConfig.cs" />
     <Compile Include="CompareModule.cs" />
     <Compile Include="HomeModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnicastBusConfigProvider.cs" />
     <Compile Include="VersionRouteSegmentConstraint.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

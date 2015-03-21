@@ -1,10 +1,9 @@
-﻿namespace APIComparer.Website
+﻿namespace APIComparer.Shared
 {
-    using APIComparer.Shared;
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;
 
-    public class AzureSubscriptionStorageConfigProvider : IProvideConfiguration<AzureSubscriptionStorageConfig>
+    public class ConfigureAzureSubscriptionStorage : IProvideConfiguration<AzureSubscriptionStorageConfig>
     {
         public AzureSubscriptionStorageConfig GetConfiguration()
         {

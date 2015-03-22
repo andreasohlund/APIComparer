@@ -128,16 +128,30 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AzureSubscriptionStorageConfigProvider.cs" />
+    <Compile Include="..\APIComparer.Backend\Shared\AzureEnvironment.cs">
+      <Link>Shared\AzureEnvironment.cs</Link>
+    </Compile>
+    <Compile Include="..\APIComparer.Backend\Shared\ConfigureAuditQueue.cs">
+      <Link>Shared\ConfigureAuditQueue.cs</Link>
+    </Compile>
+    <Compile Include="..\APIComparer.Backend\Shared\ConfigureAzureSubscriptionStorage.cs">
+      <Link>Shared\ConfigureAzureSubscriptionStorage.cs</Link>
+    </Compile>
+    <Compile Include="..\APIComparer.Backend\Shared\ConfigureErrorQueue.cs">
+      <Link>Shared\ConfigureErrorQueue.cs</Link>
+    </Compile>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="BusConfig.cs" />
     <Compile Include="CompareModule.cs" />
     <Compile Include="HomeModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnicastBusConfigProvider.cs" />
     <Compile Include="VersionRouteSegmentConstraint.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -154,10 +168,6 @@
     <ProjectReference Include="..\APIComparer.Contracts\APIComparer.Contracts.csproj">
       <Project>{ac55cccd-adf5-4596-a1c2-52816f84cd9c}</Project>
       <Name>APIComparer.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\APIComparer.Shared\APIComparer.Shared.csproj">
-      <Project>{10829280-6A1E-490F-A33F-4CB4468A28ED}</Project>
-      <Name>APIComparer.Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

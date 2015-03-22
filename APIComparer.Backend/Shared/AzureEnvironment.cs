@@ -3,7 +3,7 @@
     using System;
     using System.Configuration;
 
-    public class AzureEnvironment
+    internal class AzureEnvironment
     {
         public static string GetConnectionString()
         {

@@ -122,10 +122,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Audit.cs" />
-    <Compile Include="AzureSubscriptionStorageConfigProvider.cs" />
     <Compile Include="ComparisonHandler.cs" />
-    <Compile Include="MessageForwardingInCaseOfFaultSource.cs" />
+    <Compile Include="Shared\AzureEnvironment.cs" />
+    <Compile Include="Shared\ConfigureAuditQueue.cs" />
+    <Compile Include="Shared\ConfigureAzureSubscriptionStorage.cs" />
+    <Compile Include="Shared\ConfigureErrorQueue.cs" />
     <Compile Include="NuGetDownloader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Functions.cs" />
@@ -153,10 +154,6 @@
       <Project>{800763B7-C4F3-44EB-AF5A-C1D211FCE18F}</Project>
       <Name>APIComparer.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\APIComparer.Shared\APIComparer.Shared.csproj">
-      <Project>{10829280-6A1E-490F-A33F-4CB4468A28ED}</Project>
-      <Name>APIComparer.Shared</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
@@ -175,6 +172,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Web.WebJobs.Publish.1.0.2\tools\webjobs.targets" Condition="Exists('..\packages\Microsoft.Web.WebJobs.Publish.1.0.2\tools\webjobs.targets')" />
   <Import Project="..\packages\GitVersionTask.3.0.0-beta0001\Build\GitVersionTask.targets" Condition="Exists('..\packages\GitVersionTask.3.0.0-beta0001\Build\GitVersionTask.targets')" />

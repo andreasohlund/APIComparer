@@ -9,7 +9,7 @@
         {
             var connectionString = IsRunningInCloud() ?
                 ConfigurationManager.ConnectionStrings["NServiceBus/Transport"].ConnectionString
-                : Environment.GetEnvironmentVariable("APICoparer.ConnectionString", EnvironmentVariableTarget.User);
+                : Environment.GetEnvironmentVariable("APIComparer.ConnectionString", EnvironmentVariableTarget.User);
 
             return connectionString;
         }

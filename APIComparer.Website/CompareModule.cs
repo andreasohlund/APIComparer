@@ -1,7 +1,10 @@
 ﻿namespace APIComparer.Website
 {
+    using System;
+    using System.IO;
     using APIComparer.Contracts;
     using Nancy;
+    using Nancy.Responses;
     using NServiceBus;
     using NuGet;
 
@@ -21,9 +24,17 @@
                     return 404;
                 }
 
+                var rootPath = Environment.GetEnvironmentVariable("HOME") ?? @".\";
+
+                var pathToAlreadyRenderedComparision = Path.Combine(rootPath, "Comparisons", string.Format("{0}-{1}..{2}.html", ctx.nugetpackageid, leftVersion, rightVersion));
+
+                if (File.Exists(pathToAlreadyRenderedComparision))
+                {
+                    return new GenericFileResponse(pathToAlreadyRenderedComparision,"text/html");
+                }
                 
                 bus.Send(new CompareNugetPackage(ctx.nugetpackageid, leftVersion, rightVersion));
-                return "Hello Nuget";
+                return "TODO refresh";
             };
         }
     }

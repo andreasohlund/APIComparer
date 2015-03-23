@@ -79,11 +79,17 @@
                     Logger.DebugFormat(" OK");
                 }
 
-                var resultFile = string.Format("{0}-{1}..{2}.md", compareSet.Name, compareSet.Versions.LeftVersion, compareSet.Versions.RightVersion);
-                var resultPath = Path.Combine(Environment.GetEnvironmentVariable("HOME"), resultFile);
+                var resultFile = string.Format("{0}-{1}..{2}.html", compareSet.Name, compareSet.Versions.LeftVersion, compareSet.Versions.RightVersion);
+
+
+                var rootPath = Environment.GetEnvironmentVariable("HOME") ?? @".\";
+
+                var resultPath = Path.Combine(rootPath, "Comparisons", resultFile);
+
                 using (var fileStream = File.OpenWrite(resultPath))
                 using (var into = new StreamWriter(fileStream))
                 {
+                    //just write the markdown for now
                     var formatter = new APIUpgradeToMarkdownFormatter();
                     formatter.WriteOut(diff, into, new FormattingInfo("tbd", "tbd"));
 
@@ -91,6 +97,8 @@
                     into.Close();
                     fileStream.Close();
                 }
+
+
 
                 Logger.DebugFormat(", Full report written to " + resultFile);
             }

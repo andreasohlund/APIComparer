@@ -91,7 +91,7 @@
                 }
                 else
                 {
-                    rootPath = Environment.GetEnvironmentVariable("APICOMPARER_WWWROOT");
+                    rootPath = Environment.GetEnvironmentVariable("APICOMPARER_WWWROOT", EnvironmentVariableTarget.User);
                 }
 
                 if (string.IsNullOrEmpty(rootPath))

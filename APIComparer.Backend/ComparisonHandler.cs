@@ -87,7 +87,7 @@
 
                 if (rootPath != null)
                 {
-                    rootPath = Path.Combine(rootPath, @".\site\wwroot");
+                    rootPath = Path.Combine(rootPath, @".\site\wwwroot");
                 }
                 else
                 {

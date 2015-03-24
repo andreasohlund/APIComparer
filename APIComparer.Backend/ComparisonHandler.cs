@@ -99,7 +99,14 @@
                     throw new Exception("No root path could be found. If in development please set the `APICOMPARER_WWWROOT` env variable to the root folder of the webproject");
                 }
 
-                var resultPath = Path.Combine(rootPath, "Comparisons", resultFile);
+                var directoryPath = Path.Combine(rootPath, "Comparisons");
+
+                if (!Directory.Exists(directoryPath))
+                {
+                    Directory.CreateDirectory(directoryPath);
+                }
+
+                var resultPath = Path.Combine(directoryPath, resultFile);
 
                 using (var fileStream = File.OpenWrite(resultPath))
                 using (var into = new StreamWriter(fileStream))

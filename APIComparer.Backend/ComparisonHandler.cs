@@ -82,7 +82,22 @@
                 var resultFile = string.Format("{0}-{1}..{2}.html", compareSet.Name, compareSet.Versions.LeftVersion, compareSet.Versions.RightVersion);
 
 
-                var rootPath = Environment.GetEnvironmentVariable("HOME") ?? @".\";
+                var rootPath = Environment.GetEnvironmentVariable("HOME");
+
+
+                if (rootPath != null)
+                {
+                    rootPath = Path.Combine(rootPath, @".\site\wwroot");
+                }
+                else
+                {
+                    rootPath = Environment.GetEnvironmentVariable("APICOMPARER_WWWROOT");
+                }
+
+                if (string.IsNullOrEmpty(rootPath))
+                {
+                    throw new Exception("No root path could be found. If in development please set the `APICOMPARER_WWWROOT` env variable to the root folder of the webproject");
+                }
 
                 var resultPath = Path.Combine(rootPath, "Comparisons", resultFile);
 
@@ -98,7 +113,7 @@
                     fileStream.Close();
                 }
 
-
+                
 
                 Logger.DebugFormat(", Full report written to " + resultFile);
             }

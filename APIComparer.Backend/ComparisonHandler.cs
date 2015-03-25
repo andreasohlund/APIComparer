@@ -79,8 +79,7 @@
                     Logger.DebugFormat(" OK");
                 }
 
-                var resultFile = string.Format("{0}-{1}..{2}.html", compareSet.Name, compareSet.Versions.LeftVersion, compareSet.Versions.RightVersion);
-
+                var resultFile = string.Format("{0}-{1}...{2}.md", compareSet.Name, compareSet.Versions.LeftVersion, compareSet.Versions.RightVersion);
 
                 var rootPath = Environment.GetEnvironmentVariable("HOME");
 

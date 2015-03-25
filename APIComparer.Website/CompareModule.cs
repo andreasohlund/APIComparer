@@ -24,7 +24,7 @@
                 }
 
                 
-                var pathToAlreadyRenderedComparision = string.Format("./Comparisons/{0}-{1}..{2}.html", ctx.nugetpackageid, leftVersion, rightVersion);
+                var pathToAlreadyRenderedComparision = string.Format("./Comparisons/{0}-{1}...{2}.html", ctx.nugetpackageid, leftVersion, rightVersion);
               
                 if (File.Exists(Path.Combine(rootPathProvider.GetRootPath(),pathToAlreadyRenderedComparision)))
                 {

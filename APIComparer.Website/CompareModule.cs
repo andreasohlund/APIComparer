@@ -31,8 +31,26 @@
                     return new GenericFileResponse(pathToAlreadyRenderedComparision, "text/html");
                 }
 
+                var pathToWorkingToken = string.Format("./Comparisons/{0}-{1}...{2}.running.html", ctx.nugetpackageid, leftVersion, rightVersion);
+                var fullPathToWorkingToken = Path.Combine(rootPathProvider.GetRootPath(), pathToWorkingToken);
+
+                if (File.Exists(fullPathToWorkingToken))
+                {
+                    return new GenericFileResponse(pathToWorkingToken, "text/html");
+                }
+
                 bus.Send(new CompareNugetPackage(ctx.nugetpackageid, leftVersion, rightVersion));
-                return "TODO refresh";
+
+                var fullPathToTemplate = Path.Combine(rootPathProvider.GetRootPath(), "./Comparisons/CompareRunning.html");
+                File.Copy(fullPathToTemplate, fullPathToWorkingToken);
+                string template = File.ReadAllText(fullPathToWorkingToken);
+                string content = template.Replace(@"{packageid}", ctx.nugetpackageid.ToString())
+                    .Replace(@"{leftversion}", leftVersion.ToString())
+                    .Replace(@"{rightversion}", rightVersion.ToString())
+                    .Replace(@"{uri}", Request.Url.ToString());
+                File.WriteAllText(fullPathToWorkingToken, content);
+
+                return new GenericFileResponse(pathToWorkingToken, "text/html");
             };
         }
     }

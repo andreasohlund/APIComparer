@@ -149,6 +149,8 @@
     <Compile Include="VersionRouteSegmentConstraint.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Comparisons\CompareRunning.html" />
+    <Content Include="Comparisons\.gitignore" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

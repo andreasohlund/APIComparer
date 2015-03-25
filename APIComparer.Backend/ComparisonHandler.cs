@@ -130,6 +130,9 @@
                     reader.Close();
                 }
 
+                File.Delete(resultPath);
+                File.Delete(Path.ChangeExtension(resultPath, ".running.html"));
+
                 Logger.DebugFormat(", Full report written to " + resultFile);
             }
         }

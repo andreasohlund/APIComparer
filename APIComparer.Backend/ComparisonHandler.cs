@@ -7,6 +7,7 @@
     using APIComparer.BreakingChanges;
     using APIComparer.Contracts;
     using APIComparer.VersionComparisons;
+    using CommonMark;
     using NServiceBus;
     using NServiceBus.Logging;
     using NuGet;
@@ -119,7 +120,15 @@
                     fileStream.Close();
                 }
 
-                
+                using (var reader = new StreamReader(resultPath))
+                using (var writer = new StreamWriter(Path.ChangeExtension(resultPath, "html")))
+                {
+                    CommonMarkConverter.Convert(reader, writer);
+
+                    writer.Flush();
+                    writer.Close();
+                    reader.Close();
+                }
 
                 Logger.DebugFormat(", Full report written to " + resultFile);
             }

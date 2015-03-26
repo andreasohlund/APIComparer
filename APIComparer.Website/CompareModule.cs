@@ -1,5 +1,6 @@
 ﻿namespace APIComparer.Website
 {
+    using System;
     using System.IO;
     using APIComparer.Contracts;
     using Nancy;
@@ -46,8 +47,7 @@
                 string template = File.ReadAllText(fullPathToWorkingToken);
                 string content = template.Replace(@"{packageid}", ctx.nugetpackageid.ToString())
                     .Replace(@"{leftversion}", leftVersion.ToString())
-                    .Replace(@"{rightversion}", rightVersion.ToString())
-                    .Replace(@"{uri}", Request.Url.ToString());
+                    .Replace(@"{rightversion}", rightVersion.ToString());
                 File.WriteAllText(fullPathToWorkingToken, content);
 
                 return new GenericFileResponse(pathToWorkingToken, "text/html");

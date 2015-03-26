@@ -1,6 +1,5 @@
 ﻿namespace APIComparer.Website
 {
-    using System;
     using System.IO;
     using APIComparer.Contracts;
     using Nancy;

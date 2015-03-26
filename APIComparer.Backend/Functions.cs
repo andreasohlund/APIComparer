@@ -23,14 +23,15 @@
             configuration.UseTransport<AzureStorageQueueTransport>()
                 .ConnectionString(AzureEnvironment.GetConnectionString);
             configuration.UsePersistence<AzureStoragePersistence>();
-            
-            var startableBus = Bus.Create(configuration);
-            startableBus.Start();
-            log.WriteLine("APIComparer.Backend - bus started");
+            configuration.EnableInstallers();
 
-            cancellationToken.WaitHandle.WaitOne();
+            using (Bus.Create(configuration).Start())
+            {
+                log.WriteLine("APIComparer.Backend - bus started");
 
-            startableBus.Dispose();
+                cancellationToken.WaitHandle.WaitOne();
+            }
+
             log.WriteLine("APIComparer.Backend cancelled at " + DateTimeOffset.UtcNow);
         }
     }

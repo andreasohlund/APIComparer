@@ -10,6 +10,8 @@
     {
         public static IBus Setup(ILifetimeScope container)
         {
+            LogManager.Use<DefaultFactory>().Directory(@".\");
+
             var configuration = new BusConfiguration();
             configuration.EndpointName("APIComparer.Website");
             configuration.UseContainer<AutofacBuilder>(x => x.ExistingLifetimeScope(container));
@@ -21,11 +23,9 @@
             configuration.DisableFeature<SecondLevelRetries>();
             configuration.DisableFeature<Sagas>();
             configuration.DisableFeature<TimeoutManager>();
+            configuration.EnableInstallers();
 
-            LogManager.Use<DefaultFactory>().Directory(@".\");
-
-            var startableBus = Bus.Create(configuration);
-            return startableBus.Start();
+            return Bus.Create(configuration).Start();
         }
     }
 }

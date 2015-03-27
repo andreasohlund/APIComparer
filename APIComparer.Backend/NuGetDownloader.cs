@@ -39,30 +39,11 @@ namespace APIComparer.Backend
 
             var dirPath = Path.Combine(AzureEnvironment.GetTempPath(), "packages", string.Format("{0}.{1}", package, version), "lib");
 
+            var netVersionDir = Directory.EnumerateDirectories(dirPath).FirstOrDefault(); //todo: how should we sort this?
 
-            if (Directory.Exists(Path.Combine(dirPath, "net20")))
+            if (netVersionDir != null)
             {
-                dirPath = Path.Combine(dirPath, "net20");
-            }
-
-            if (Directory.Exists(Path.Combine(dirPath, "net30")))
-            {
-                dirPath = Path.Combine(dirPath, "net30");
-            }
-
-            if (Directory.Exists(Path.Combine(dirPath, "net35")))
-            {
-                dirPath = Path.Combine(dirPath, "net35");
-            }
-
-            if (Directory.Exists(Path.Combine(dirPath, "net40")))
-            {
-                dirPath = Path.Combine(dirPath, "net40");
-            }
-
-            if (Directory.Exists(Path.Combine(dirPath, "net45")))
-            {
-                dirPath = Path.Combine(dirPath, "net45");
+                dirPath = netVersionDir;
             }
 
             var files = Directory.EnumerateFiles(dirPath)

@@ -39,7 +39,9 @@ namespace APIComparer.Backend
 
             var dirPath = Path.Combine(AzureEnvironment.GetTempPath(), "packages", string.Format("{0}.{1}", package, version), "lib");
 
-            var netVersionDir = Directory.EnumerateDirectories(dirPath).FirstOrDefault(); //todo: how should we sort this?
+            var netVersionDir = Directory.EnumerateDirectories(dirPath)
+                .OrderByDescending(name => name)
+                .FirstOrDefault(); //todo: how should we sort this? https://github.com/ParticularLabs/APIComparer/issues/23
 
             if (netVersionDir != null)
             {

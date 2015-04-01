@@ -10,7 +10,7 @@
     {
         public static IBus Setup(ILifetimeScope container)
         {
-            LogManager.Use<DefaultFactory>().Directory(@".\");
+            //LogManager.Use<DefaultFactory>().Directory(@".\"); 
 
             var configuration = new BusConfiguration();
             configuration.EndpointName("APIComparer.Website");

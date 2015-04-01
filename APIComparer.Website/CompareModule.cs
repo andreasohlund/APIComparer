@@ -5,10 +5,13 @@
     using Nancy;
     using Nancy.Responses;
     using NServiceBus;
+    using NServiceBus.Logging;
     using NuGet;
 
     public class CompareModule : NancyModule
     {
+        ILog logger = LogManager.GetLogger<CompareModule>();
+
         public CompareModule(IRootPathProvider rootPathProvider, IBus bus)
         {
             Get["/compare/{nugetpackageid}/{leftversion}...{rightversion}"] = ctx =>
@@ -39,6 +42,7 @@
                     return new GenericFileResponse(pathToWorkingToken, "text/html");
                 }
 
+                logger.DebugFormat("Sending command to backend to process '{0}' package versions '{1}' and '{2}'.", ctx.nugetpackageid, ctx.leftversion, ctx.rightversion);
                 bus.Send(new CompareNugetPackage(ctx.nugetpackageid, leftVersion, rightVersion));
 
                 var fullPathToTemplate = Path.Combine(rootPathProvider.GetRootPath(), "./Comparisons/CompareRunning.html");

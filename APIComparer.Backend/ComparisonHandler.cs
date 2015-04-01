@@ -14,7 +14,7 @@
 
     public class ComparisonHandler : IHandleMessages<CompareNugetPackage>
     {
-        static readonly ILog Logger = LogManager.GetLogger<ComparisonHandler>();
+        static readonly ILog logger = LogManager.GetLogger<ComparisonHandler>();
 
         public IBus Bus { get; set; }
 
@@ -42,12 +42,12 @@
         {
             var nugetDownloader = new NuGetDownloader(package, new List<string> { "https://www.nuget.org/api/v2" });
 
-            Logger.DebugFormat("Preparing {0}-{1}", package, versions);
+            logger.DebugFormat("Preparing {0}-{1}", package, versions);
 
             var leftAssemblyGroup = new AssemblyGroup(nugetDownloader.DownloadAndExtractVersion(versions.LeftVersion));
             var rightAssemblyGroup = new AssemblyGroup(nugetDownloader.DownloadAndExtractVersion(versions.RightVersion));
 
-            Logger.Debug(" done");
+            logger.DebugFormat("Done with {0}-{1}", package, versions);
 
             return new CompareSet
             {
@@ -69,20 +69,20 @@
 
             if (showAllVersions || breakingChanges.Any())
             {
-                Logger.DebugFormat("Checking {0}", compareSet);
+                logger.DebugFormat("Checking {0}", compareSet);
 
                 if (breakingChanges.Any())
                 {
-                    Logger.DebugFormat(": {0} Breaking Changes found", breakingChanges.Count());
+                    logger.DebugFormat(": {0} Breaking Changes found", breakingChanges.Count());
                 }
                 else
                 {
-                    Logger.DebugFormat(" OK");
+                    logger.DebugFormat(" OK");
                 }
 
                 var resultFile = string.Format("{0}-{1}...{2}.md", compareSet.Name, compareSet.Versions.LeftVersion, compareSet.Versions.RightVersion);
 
-                var rootPath = Environment.GetEnvironmentVariable("HOME");
+                var rootPath = Environment.GetEnvironmentVariable("HOME"); // TODO: use AzureEnvironment
 
 
                 if (rootPath != null)
@@ -133,7 +133,7 @@
                 File.Delete(resultPath);
                 File.Delete(Path.ChangeExtension(resultPath, ".running.html"));
 
-                Logger.DebugFormat(", Full report written to " + resultFile);
+                logger.DebugFormat("Full report written to {0}", resultFile);
             }
         }
     }

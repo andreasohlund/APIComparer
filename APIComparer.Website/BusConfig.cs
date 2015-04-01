@@ -4,7 +4,6 @@
     using Autofac;
     using NServiceBus;
     using NServiceBus.Features;
-    using NServiceBus.Logging;
 
     public static class BusConfig
     {

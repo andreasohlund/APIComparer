@@ -4,12 +4,13 @@
     using Autofac;
     using NServiceBus;
     using NServiceBus.Features;
+    using NServiceBus.Logging;
 
     public static class BusConfig
     {
         public static IBus Setup(ILifetimeScope container)
         {
-            //LogManager.Use<DefaultFactory>().Directory(@".\"); 
+            LogManager.Use<DefaultFactory>();
 
             var configuration = new BusConfiguration();
             configuration.EndpointName("APIComparer.Website");

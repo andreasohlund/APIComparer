@@ -76,7 +76,6 @@ namespace APIComparer
                 }
                 writer.WriteLine();
             }
-
         }
 
         void WriteObsoleteFields(TypeDefinition type, TextWriter writer)
@@ -142,31 +141,35 @@ namespace APIComparer
                 writer.WriteLine();
             }
 
-            writer.WriteLine();
-            writer.WriteLine("## The following types have differences.");
-            writer.WriteLine();
-            foreach (var typeDiff in diff.MatchingTypeDiffs)
+            var matchingTypeDiffs = diff.MatchingTypeDiffs.ToList();
+            if (matchingTypeDiffs.Any())
             {
-                if (typeDiff.LeftType.HasObsoleteAttribute())
+                writer.WriteLine();
+                writer.WriteLine("## The following types have differences.");
+                writer.WriteLine();
+                foreach (var typeDiff in diff.MatchingTypeDiffs)
                 {
-                    continue;
-                }
-                if (typeDiff.RightType.HasObsoleteAttribute())
-                {
-                    continue;
-                }
+                    if (typeDiff.LeftType.HasObsoleteAttribute())
+                    {
+                        continue;
+                    }
+                    if (typeDiff.RightType.HasObsoleteAttribute())
+                    {
+                        continue;
+                    }
 
-                if (!typeDiff.LeftType.IsPublic)
-                {
-                    continue;
-                }
-                if (!typeDiff.RightType.IsPublic)
-                {
-                    continue;
-                }
-                if (HasDifferences(typeDiff))
-                {
-                    WriteOut(typeDiff, writer, info);
+                    if (!typeDiff.LeftType.IsPublic)
+                    {
+                        continue;
+                    }
+                    if (!typeDiff.RightType.IsPublic)
+                    {
+                        continue;
+                    }
+                    if (HasDifferences(typeDiff))
+                    {
+                        WriteOut(typeDiff, writer, info);
+                    }
                 }
             }
 

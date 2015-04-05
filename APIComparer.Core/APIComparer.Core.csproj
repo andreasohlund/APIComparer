@@ -76,6 +76,7 @@
     <Compile Include="BreakingChanges\MethodChangedToNonPublic.cs" />
     <Compile Include="BreakingChanges\PublicFieldRemoved.cs" />
     <Compile Include="BreakingChanges\PublicMethodRemoved.cs" />
+    <Compile Include="EmptyAssemblyGroup.cs" />
     <Compile Include="TypeDiff.cs" />
     <Compile Include="BreakingChanges\TypeMadeNonPublic.cs" />
     <Compile Include="BreakingChanges\TypeRemoved.cs" />

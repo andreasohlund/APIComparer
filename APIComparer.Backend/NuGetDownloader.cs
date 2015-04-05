@@ -39,6 +39,12 @@ namespace APIComparer.Backend
 
             var dirPath = Path.Combine(AzureEnvironment.GetTempPath(), "packages", string.Format("{0}.{1}", package, version), "lib");
 
+            if (!Directory.Exists(dirPath))
+            {
+                // probably source only packages
+                return new List<string>();
+            }
+
             var netVersionDir = Directory.EnumerateDirectories(dirPath)
                 .FirstOrDefault(x => x.EndsWith(target));
 

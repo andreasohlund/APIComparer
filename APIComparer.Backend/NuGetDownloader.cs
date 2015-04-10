@@ -31,7 +31,7 @@ namespace APIComparer.Backend
             packageManager = new PackageManager(repo, /*"packages"*/nugetCacheDirectory);
         }
 
-        public List<string> DownloadAndExtractVersion(string version)
+        public List<string> DownloadAndExtractVersion(string version, string target)
         {
             var semVer = SemanticVersion.Parse(version);
 
@@ -40,8 +40,14 @@ namespace APIComparer.Backend
             var dirPath = Path.Combine(AzureEnvironment.GetTempPath(), "packages", string.Format("{0}.{1}", package, version), "lib");
 
             var netVersionDir = Directory.EnumerateDirectories(dirPath)
-                .OrderByDescending(name => name)
-                .FirstOrDefault(); //todo: how should we sort this? https://github.com/ParticularLabs/APIComparer/issues/23
+                .FirstOrDefault(x => x.EndsWith(target));
+
+            if (netVersionDir == null)
+            {
+                netVersionDir = Directory.EnumerateDirectories(dirPath)
+                    .OrderByDescending(name => name)
+                    .FirstOrDefault();
+            }
 
             if (netVersionDir != null)
             {

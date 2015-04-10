@@ -30,22 +30,22 @@
 
         static List<CompareSet> GetNuGetVersionsToCompare(CompareNugetPackage message)
         {
-            return GetExplicitNuGetVersions(message.PackageId, message.LeftVersion, message.RightVersion).ToList();
+            return GetExplicitNuGetVersions(message.PackageId, message.LeftVersion, message.RightVersion, message.Target).ToList();
         }
 
-        private static IEnumerable<CompareSet> GetExplicitNuGetVersions(string nugetName, SemanticVersion leftVersion, SemanticVersion rightVersion)
+        private static IEnumerable<CompareSet> GetExplicitNuGetVersions(string nugetName, SemanticVersion leftVersion, SemanticVersion rightVersion, string target)
         {
-            yield return CreateCompareSet(nugetName, new VersionPair(leftVersion.ToString(), rightVersion.ToString()));
+            yield return CreateCompareSet(nugetName, new VersionPair(leftVersion.ToString(), rightVersion.ToString()), target);
         }
 
-        static CompareSet CreateCompareSet(string package, VersionPair versions)
+        static CompareSet CreateCompareSet(string package, VersionPair versions, string target)
         {
             var nugetDownloader = new NuGetDownloader(package, new List<string> { "https://www.nuget.org/api/v2" });
 
             logger.DebugFormat("Preparing {0}-{1}", package, versions);
 
-            var leftAssemblyGroup = new AssemblyGroup(nugetDownloader.DownloadAndExtractVersion(versions.LeftVersion));
-            var rightAssemblyGroup = new AssemblyGroup(nugetDownloader.DownloadAndExtractVersion(versions.RightVersion));
+            var leftAssemblyGroup = new AssemblyGroup(nugetDownloader.DownloadAndExtractVersion(versions.LeftVersion, target));
+            var rightAssemblyGroup = new AssemblyGroup(nugetDownloader.DownloadAndExtractVersion(versions.RightVersion, target));
 
             logger.DebugFormat("Done with {0}-{1}", package, versions);
 

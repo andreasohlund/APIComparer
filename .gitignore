@@ -41,3 +41,4 @@ run-git.cmd
 *.jtconfig
 
 *.received.txt
+APIComparer.Website/App_Data/nsb_log_*.txt

@@ -10,7 +10,7 @@ http://apicomparer-preview.particular.net/compare/rabbitmq.client/3.4.3...3.5.0
 
 We currently have 2 environments. Please login to the particular azure account to manage them
 
-#### Live (no release yet)
+#### Live (not released yet)
 http://apicomparer.particular.net/
 
 #### Preview (Test)

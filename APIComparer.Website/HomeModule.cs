@@ -8,11 +8,10 @@
         public HomeModule()
         {
             Get["/"] = parameters =>
-              {
-                  var fileVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-
-                  return "Hello World - v" + fileVersion;
-              };
+            {
+                var fileVersion = Assembly.GetExecutingAssembly().GetName().Version;
+                return View["home.html", new { Version = fileVersion }];
+            };
         }
     }
 }

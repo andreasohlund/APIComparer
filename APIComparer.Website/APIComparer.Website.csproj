@@ -154,6 +154,8 @@
   <ItemGroup>
     <Content Include="Comparisons\CompareRunning.html" />
     <Content Include="Comparisons\.gitignore" />
+    <Content Include="Views\gtm.html" />
+    <Content Include="Views\home.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -180,6 +182,7 @@
     <None Include="Properties\PublishProfiles\particular-apicomparer-live.pubxml" />
     <Content Include="Properties\webjobs-list.json" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

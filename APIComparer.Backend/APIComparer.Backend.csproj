@@ -51,6 +51,9 @@
     <Reference Include="CommonMark">
       <HintPath>..\packages\CommonMark.NET.0.8.5\lib\net45\CommonMark.dll</HintPath>
     </Reference>
+    <Reference Include="Handlebars">
+      <HintPath>..\packages\Handlebars.Net.1.3.2\lib\Handlebars.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Azure.WebJobs, Version=1.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Azure.WebJobs.Core.1.0.1\lib\net45\Microsoft.Azure.WebJobs.dll</HintPath>
@@ -128,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CompareSets.cs" />
+    <Compile Include="CompareViewEngine.cs" />
     <Compile Include="ComparisonHandler.cs" />
     <Compile Include="Shared\AzureEnvironment.cs" />
     <Compile Include="Shared\ConfigureAuditQueue.cs" />
@@ -147,9 +151,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="comparisontemplate.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\particular-apicomparer-live.pubxml" />
     <None Include="Properties\webjob-publish-settings.json" />
+    <None Include="obsolete.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="publicinternal.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="target.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\APIComparer.Contracts\APIComparer.Contracts.csproj">

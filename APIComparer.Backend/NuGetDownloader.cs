@@ -64,14 +64,14 @@ namespace APIComparer.Backend
     }
 
 
-    class Target
+    public class Target
     {
-        public string GetDirectoryName { get; private set; }
+        public string Name { get; private set; }
         public List<string> Files { get; private set; }
 
-        public Target(string getDirectoryName, List<string> files)
+        public Target(string name, List<string> files)
         {
-            GetDirectoryName = getDirectoryName;
+            Name = name;
             Files = files;
         }
     }

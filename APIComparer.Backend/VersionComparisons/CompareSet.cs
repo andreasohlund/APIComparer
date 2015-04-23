@@ -1,6 +1,6 @@
 namespace APIComparer.VersionComparisons
 {
-    class CompareSet
+    public class CompareSet
     {
         public AssemblyGroup LeftAssemblyGroup;
         public AssemblyGroup RightAssemblyGroup;

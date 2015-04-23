@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
-    using APIComparer.BreakingChanges;
     using APIComparer.Contracts;
     using APIComparer.VersionComparisons;
     using CommonMark;
@@ -30,21 +29,10 @@
           
 
 
-            var compareSets = CreateCompareSets(leftTargets, rightTargets)
+            var compareSets = CompareSets.Create(leftTargets, rightTargets)
                 .ToList();
 
             Compare(message.PackageId, new VersionPair(message.LeftVersion, message.RightVersion), compareSets);
-        }
-
-        IEnumerable<CompareSet> CreateCompareSets(List<Target> leftTargets, List<Target> rightTargets)
-        {
-            //todo: smarter handling
-            yield return new CompareSet
-            {
-                LeftAssemblyGroup = new AssemblyGroup(leftTargets.First().Files),
-                RightAssemblyGroup = new AssemblyGroup(rightTargets.First().Files),
-                Name = "net40"//todo               
-            };
         }
 
 
@@ -61,26 +49,18 @@
             {
                 foreach (var compareSet in compareSets)
                 {
+                    into.WriteLine("# " + compareSet.Name);
 
-                    var diff = engine.CreateDiff(compareSet.LeftAssemblyGroup, compareSet.RightAssemblyGroup);
-
-                    var breakingChanges = BreakingChangeFinder.Find(diff)
-                        .ToList();
-
-            
-                    logger.DebugFormat("Checking {0}", compareSet);
-
-                    if (breakingChanges.Any())
+                    if (compareSet.LeftAssemblyGroup.Assemblies.Any())
                     {
-                        logger.DebugFormat(": {0} Breaking Changes found", breakingChanges.Count());
+                        var diff = engine.CreateDiff(compareSet.LeftAssemblyGroup, compareSet.RightAssemblyGroup);
+
+                        formatter.WriteOut(diff, into, new FormattingInfo("tbd", "tbd"));
                     }
                     else
                     {
-                        logger.DebugFormat(" OK");
+                        into.WriteLine("No longer supported");
                     }
-                    into.WriteLine("# " + compareSet.Name);
-
-                    formatter.WriteOut(diff, into, new FormattingInfo("tbd", "tbd"));
                 }
 
                 into.Flush();
@@ -141,5 +121,4 @@
             logger.DebugFormat("Full report written to {0}", resultPath);
         }
     }
-
 }

@@ -10,7 +10,6 @@
     using CommonMark;
     using NServiceBus;
     using NServiceBus.Logging;
-    using NuGet;
 
     public class ComparisonHandler : IHandleMessages<CompareNugetPackage>
     {
@@ -20,101 +19,80 @@
 
         public void Handle(CompareNugetPackage message)
         {
-            var compareSets = GetNuGetVersionsToCompare(message);
+            var nugetDownloader = new NuGetDownloader(message.PackageId, new List<string> { "https://www.nuget.org/api/v2" });
 
-            foreach (var set in compareSets)
+
+            var leftTargets = nugetDownloader.DownloadAndExtractVersion(message.LeftVersion)
+                .ToList();
+
+            var rightTargets = nugetDownloader.DownloadAndExtractVersion(message.RightVersion)
+                .ToList();
+          
+
+
+            var compareSets = CreateCompareSets(leftTargets, rightTargets)
+                .ToList();
+
+            Compare(message.PackageId, new VersionPair(message.LeftVersion, message.RightVersion), compareSets);
+        }
+
+        IEnumerable<CompareSet> CreateCompareSets(List<Target> leftTargets, List<Target> rightTargets)
+        {
+            //todo: smarter handling
+            yield return new CompareSet
             {
-                Compare(set);
-            }
-        }
-
-        static List<CompareSet> GetNuGetVersionsToCompare(CompareNugetPackage message)
-        {
-            return GetExplicitNuGetVersions(message.PackageId, message.LeftVersion, message.RightVersion, message.Target).ToList();
-        }
-
-        private static IEnumerable<CompareSet> GetExplicitNuGetVersions(string nugetName, SemanticVersion leftVersion, SemanticVersion rightVersion, string target)
-        {
-            yield return CreateCompareSet(nugetName, new VersionPair(leftVersion.ToString(), rightVersion.ToString()), target);
-        }
-
-        static CompareSet CreateCompareSet(string package, VersionPair versions, string target)
-        {
-            var nugetDownloader = new NuGetDownloader(package, new List<string> { "https://www.nuget.org/api/v2" });
-
-            logger.DebugFormat("Preparing {0}-{1}", package, versions);
-
-            var leftVersionAssemblies = nugetDownloader.DownloadAndExtractVersion(versions.LeftVersion, target);
-            var rightVersionAssemblies = nugetDownloader.DownloadAndExtractVersion(versions.RightVersion, target);
-
-            var leftAssemblyGroup = leftVersionAssemblies.Any() ? new AssemblyGroup(leftVersionAssemblies) : new EmptyAssemblyGroup();
-            var rightAssemblyGroup = rightVersionAssemblies.Any() ? new AssemblyGroup(rightVersionAssemblies) : new EmptyAssemblyGroup();
-
-            logger.DebugFormat("Done with {0}-{1}", package, versions);
-
-            return new CompareSet
-            {
-                Name = package,
-                RightAssemblyGroup = rightAssemblyGroup,
-                LeftAssemblyGroup = leftAssemblyGroup,
-                Versions = versions
+                LeftAssemblyGroup = new AssemblyGroup(leftTargets.First().Files),
+                RightAssemblyGroup = new AssemblyGroup(rightTargets.First().Files),
+                Name = "net40"//todo               
             };
         }
 
-        static void Compare(CompareSet compareSet, bool showAllVersions = true)
+
+        static void Compare(string packageId,VersionPair versions, List<CompareSet> compareSets)
         {
             var engine = new ComparerEngine();
+            var formatter = new APIUpgradeToMarkdownFormatter();
 
-            var diff = engine.CreateDiff(compareSet.LeftAssemblyGroup, compareSet.RightAssemblyGroup);
+            var resultPath = DetermineAndCreateResultPathIfNotExistant(packageId, versions);
 
-            var breakingChanges = BreakingChangeFinder.Find(diff)
-                .ToList();
 
-            var resultPath = DetermineAndCreateResultPathIfNotExistant(compareSet);
-
-            if (showAllVersions || breakingChanges.Any())
+            using (var fileStream = File.OpenWrite(resultPath))
+            using (var into = new StreamWriter(fileStream))
             {
-                logger.DebugFormat("Checking {0}", compareSet);
+                foreach (var compareSet in compareSets)
+                {
 
-                if (breakingChanges.Any())
-                {
-                    logger.DebugFormat(": {0} Breaking Changes found", breakingChanges.Count());
-                }
-                else
-                {
-                    logger.DebugFormat(" OK");
-                }
+                    var diff = engine.CreateDiff(compareSet.LeftAssemblyGroup, compareSet.RightAssemblyGroup);
 
-                using (var fileStream = File.OpenWrite(resultPath))
-                using (var into = new StreamWriter(fileStream))
-                {
-                    //just write the markdown for now
-                    var formatter = new APIUpgradeToMarkdownFormatter();
+                    var breakingChanges = BreakingChangeFinder.Find(diff)
+                        .ToList();
+
+            
+                    logger.DebugFormat("Checking {0}", compareSet);
+
+                    if (breakingChanges.Any())
+                    {
+                        logger.DebugFormat(": {0} Breaking Changes found", breakingChanges.Count());
+                    }
+                    else
+                    {
+                        logger.DebugFormat(" OK");
+                    }
+                    into.WriteLine("# " + compareSet.Name);
+
                     formatter.WriteOut(diff, into, new FormattingInfo("tbd", "tbd"));
-
-                    into.Flush();
-                    into.Close();
-                    fileStream.Close();
                 }
-            }
-            else
-            {
-                using (var fileStream = File.OpenWrite(resultPath))
-                using (var into = new StreamWriter(fileStream))
-                {
-                    into.Write("The comparison didn't find anything to compare against."); // TODO: Add detailed reason why this can happen
 
-                    into.Flush();
-                    into.Close();
-                    fileStream.Close();
-                }
+                into.Flush();
+                into.Close();
+                fileStream.Close();
             }
             ConvertResultToHtmlAndRemoveTemporaryWorkFiles(resultPath);
         }
 
-        static string DetermineAndCreateResultPathIfNotExistant(CompareSet compareSet)
+        static string DetermineAndCreateResultPathIfNotExistant(string packageId, VersionPair versions)
         {
-            var resultFile = string.Format("{0}-{1}...{2}.md", compareSet.Name, compareSet.Versions.LeftVersion, compareSet.Versions.RightVersion);
+            var resultFile = string.Format("{0}-{1}...{2}.md", packageId, versions.LeftVersion, versions.RightVersion);
 
             var rootPath = Environment.GetEnvironmentVariable("HOME"); // TODO: use AzureEnvironment
 
@@ -163,4 +141,5 @@
             logger.DebugFormat("Full report written to {0}", resultPath);
         }
     }
+
 }

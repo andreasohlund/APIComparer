@@ -14,7 +14,7 @@
 
         public CompareModule(IRootPathProvider rootPathProvider, IBus bus)
         {
-            Get["/compare/{nugetpackageid}/{leftversion:semver}...{rightversion:semver}/{target?net45}"] = ctx =>
+            Get["/compare/{nugetpackageid}/{leftversion:semver}...{rightversion:semver}"] = ctx =>
             {
                 var leftVersion = SemanticVersion.Parse(ctx.leftversion);
                 var rightVersion = SemanticVersion.Parse(ctx.rightversion);
@@ -35,17 +35,17 @@
                     return new GenericFileResponse(pathToWorkingToken, "text/html");
                 }
 
-                logger.DebugFormat("Sending command to backend to process '{0}' package versions '{1}' and '{2}' targetting '{3}'.",
-                    nugetPackageId, leftVersion, rightVersion, ctx.target);
-                bus.Send(new CompareNugetPackage(nugetPackageId, leftVersion, rightVersion, ctx.target));
+                logger.DebugFormat("Sending command to backend to process '{0}' package versions '{1}' and '{2}'.",
+                    nugetPackageId, leftVersion, rightVersion);
+                bus.Send(new CompareNugetPackage(nugetPackageId, leftVersion.ToString(), rightVersion.ToString()));
 
                 var fullPathToTemplate = Path.Combine(rootPathProvider.GetRootPath(), "./Comparisons/CompareRunning.html");
                 File.Copy(fullPathToTemplate, fullPathToWorkingToken);
                 string template = File.ReadAllText(fullPathToWorkingToken);
                 string content = template.Replace(@"{packageid}", nugetPackageId)
                     .Replace(@"{leftversion}", leftVersion.ToString())
-                    .Replace(@"{rightversion}", rightVersion.ToString())
-                    .Replace(@"{target}", ctx.target);
+                    .Replace(@"{rightversion}", rightVersion.ToString());
+
                 File.WriteAllText(fullPathToWorkingToken, content);
 
                 return new GenericFileResponse(pathToWorkingToken, "text/html");

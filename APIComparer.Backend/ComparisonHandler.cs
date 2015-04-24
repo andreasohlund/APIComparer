@@ -51,7 +51,7 @@
                 {
                     into.WriteLine("# " + compareSet.Name);
 
-                    if (compareSet.LeftAssemblyGroup.Assemblies.Any())
+                    if (compareSet.RightAssemblyGroup.Assemblies.Any())
                     {
                         var diff = engine.CreateDiff(compareSet.LeftAssemblyGroup, compareSet.RightAssemblyGroup);
 

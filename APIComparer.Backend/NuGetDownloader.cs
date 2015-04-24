@@ -16,7 +16,6 @@ namespace APIComparer.Backend
         {
             package = nugetName;
 
-            //var nugetCacheDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "NuGet", "Cache");
             var nugetCacheDirectory = Path.Combine(AzureEnvironment.GetTempPath(), "packages");
 
 
@@ -57,7 +56,7 @@ namespace APIComparer.Backend
                     throw new Exception("Couldn't find any assemblies in  " + directory);
                 }
 
-                yield return new Target(Path.GetDirectoryName(directory), files);
+                yield return new Target(Path.GetFileName(directory), files);
 
             }
         }

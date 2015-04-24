@@ -8,12 +8,53 @@
     {
         public static IEnumerable<CompareSet> Create(List<Target> leftTargets, List<Target> rightTargets)
         {
-            yield return new CompareSet
+
+            var allTargets = new List<string>();
+
+            allTargets.AddRange(leftTargets.Select(t => t.Name));
+
+            allTargets.AddRange(rightTargets.Select(t => t.Name));
+
+            foreach (var uniqueTarget in allTargets.Distinct().OrderBy(s => s))
             {
-                LeftAssemblyGroup = new AssemblyGroup(leftTargets.First().Files),
-                RightAssemblyGroup = new AssemblyGroup(rightTargets.First().Files),
-                Name = "net40"//todo               
-            };
+                var leftTarget = leftTargets.SingleOrDefault(t => t.Name == uniqueTarget);
+                AssemblyGroup leftAsmGroup;
+
+                var compareSetName = uniqueTarget;
+
+                if (leftTarget != null)
+                {
+                    leftAsmGroup = new AssemblyGroup(leftTarget.Files);
+                }
+                else
+                {
+                    var highestLeftTarget = leftTargets.OrderByDescending(t => t.Name).First();
+                    leftAsmGroup = new AssemblyGroup(highestLeftTarget.Files);
+
+                    compareSetName += string.Format("(Compared to {0})", highestLeftTarget.Name);
+                }
+
+                var rightTarget = rightTargets.SingleOrDefault(t => t.Name == uniqueTarget);
+                AssemblyGroup rightAsmGroup;
+
+                if (rightTarget != null)
+                {
+                    rightAsmGroup = new AssemblyGroup(rightTarget.Files);
+                }
+                else
+                {
+                    rightAsmGroup = new EmptyAssemblyGroup();
+                }
+
+
+                yield return new CompareSet
+                {
+                    LeftAssemblyGroup = leftAsmGroup,
+                    RightAssemblyGroup = rightAsmGroup,
+                    Name = compareSetName
+                };
+            }
+
         }
     }
 }

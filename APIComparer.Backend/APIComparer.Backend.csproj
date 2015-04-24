@@ -127,6 +127,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompareSets.cs" />
     <Compile Include="ComparisonHandler.cs" />
     <Compile Include="Shared\AzureEnvironment.cs" />
     <Compile Include="Shared\ConfigureAuditQueue.cs" />

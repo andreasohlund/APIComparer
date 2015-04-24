@@ -16,7 +16,6 @@ namespace APIComparer.Backend
         {
             package = nugetName;
 
-            //var nugetCacheDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "NuGet", "Cache");
             var nugetCacheDirectory = Path.Combine(AzureEnvironment.GetTempPath(), "packages");
 
 
@@ -31,7 +30,7 @@ namespace APIComparer.Backend
             packageManager = new PackageManager(repo, /*"packages"*/nugetCacheDirectory);
         }
 
-        public List<string> DownloadAndExtractVersion(string version, string target)
+        public IEnumerable<Target> DownloadAndExtractVersion(string version)
         {
             var semVer = SemanticVersion.Parse(version);
 
@@ -42,35 +41,37 @@ namespace APIComparer.Backend
             if (!Directory.Exists(dirPath))
             {
                 // probably source only packages
-                return new List<string>();
+                yield break;
             }
 
-            var netVersionDir = Directory.EnumerateDirectories(dirPath)
-                .FirstOrDefault(x => x.EndsWith(target));
-
-            if (netVersionDir == null)
+            foreach (var directory in Directory.EnumerateDirectories(dirPath))
             {
-                netVersionDir = Directory.EnumerateDirectories(dirPath)
-                    .OrderByDescending(name => name)
-                    .FirstOrDefault();
+                var files = Directory.EnumerateFiles(directory)
+                                        .Where(f => f.EndsWith(".dll") || f.EndsWith(".exe"))
+                                        .ToList();
+
+
+                if (!files.Any())
+                {
+                    throw new Exception("Couldn't find any assemblies in  " + directory);
+                }
+
+                yield return new Target(Path.GetFileName(directory), files);
+
             }
-
-            if (netVersionDir != null)
-            {
-                dirPath = netVersionDir;
-            }
-
-            var files = Directory.EnumerateFiles(dirPath)
-                .Where(f => f.EndsWith(".dll") || f.EndsWith(".exe"))
-                .ToList();
+        }
+    }
 
 
-            if (!files.Any())
-            {
-                throw new Exception("Couldn't find any assemblies in  " + dirPath);
-            }
+    public class Target
+    {
+        public string Name { get; private set; }
+        public List<string> Files { get; private set; }
 
-            return files;
+        public Target(string name, List<string> files)
+        {
+            Name = name;
+            Files = files;
         }
     }
 }

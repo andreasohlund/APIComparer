@@ -20,21 +20,17 @@
         {
             var nugetDownloader = new NuGetDownloader(message.PackageId, new List<string> { "https://www.nuget.org/api/v2" });
 
-
             var leftTargets = nugetDownloader.DownloadAndExtractVersion(message.LeftVersion)
                 .ToList();
 
             var rightTargets = nugetDownloader.DownloadAndExtractVersion(message.RightVersion)
                 .ToList();
           
-
-
             var compareSets = CompareSets.Create(leftTargets, rightTargets)
                 .ToList();
 
             Compare(message.PackageId, new VersionPair(message.LeftVersion, message.RightVersion), compareSets);
         }
-
 
         static void Compare(string packageId,VersionPair versions, List<CompareSet> compareSets)
         {
@@ -47,7 +43,7 @@
             using (var fileStream = File.OpenWrite(resultPath))
             using (var into = new StreamWriter(fileStream))
             {
-                foreach (var compareSet in compareSets)
+                foreach (var compareSet in compareSets.OrderByDescending(cs=>cs.Name))
                 {
                     into.WriteLine("# " + compareSet.Name);
 

@@ -127,8 +127,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompareNugetPackageExtensions.cs" />
+    <Compile Include="CompareSetCreator.cs" />
+    <Compile Include="CompareSetDiffer.cs" />
+    <Compile Include="CompareSetReporter.cs" />
     <Compile Include="CompareSets.cs" />
     <Compile Include="ComparisonHandler.cs" />
+    <Compile Include="DiffedCompareSet.cs" />
+    <Compile Include="PackageDescription.cs" />
     <Compile Include="Shared\AzureEnvironment.cs" />
     <Compile Include="Shared\ConfigureAuditQueue.cs" />
     <Compile Include="Shared\ConfigureAzureSubscriptionStorage.cs" />

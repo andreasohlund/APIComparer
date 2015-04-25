@@ -24,6 +24,10 @@ namespace APIComparer
         }
         public Diff CreateDiff(AssemblyGroup leftAssemblyGroup, AssemblyGroup rightAssemblyGroup)
         {
+            if (rightAssemblyGroup is EmptyAssemblyGroup)
+            {
+                return new EmptyDiff();
+            }
             return CreateDiff(ReadTypes(leftAssemblyGroup.Assemblies,leftAssemblyGroup.ReadSymbols), ReadTypes(rightAssemblyGroup.Assemblies,rightAssemblyGroup.ReadSymbols));
         }
         IEnumerable<TypeDefinition> ReadTypes(IEnumerable<string> assemblyGroup,bool readSymbols)

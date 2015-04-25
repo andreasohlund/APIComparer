@@ -100,6 +100,13 @@ class ComparerEngineTests
         Assert.AreEqual("TheMethod", diff.MatchingTypeDiffs.First().RightOrphanMethods.First().Name);
     }
 
+    [Test]
+    public void VerifyEmptyDiffForRightAssemblyGroupBeingEmpty()
+    {
+        var diff = new ComparerEngine().CreateDiff(new AssemblyGroup(new[] { "Some.dll" }), new EmptyAssemblyGroup());
+        Assert.IsInstanceOf<EmptyDiff>(diff);
+    }
+
     public TypeReference GetObjectType()
     {
         return new TypeReference("System", "Object", null, null, false);

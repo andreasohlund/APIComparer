@@ -114,6 +114,12 @@ namespace APIComparer
 
         public void WriteOut(Diff diff, TextWriter writer, FormattingInfo info)
         {
+            if (diff is EmptyDiff)
+            {
+                writer.WriteLine("No longer supported");
+                return;
+            }
+
             var removePublicTypes = diff.RemovedPublicTypes().ToList();
             if (removePublicTypes.Any())
             {

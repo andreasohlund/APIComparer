@@ -20,6 +20,5 @@ namespace APIComparer
         {
             return LeftOrphanTypes.Where(x => x.IsPublic && !x.HasObsoleteAttribute());
         }
-
     }
 }

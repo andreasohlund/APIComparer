@@ -8,7 +8,6 @@
     {
         public static IEnumerable<CompareSet> Create(List<Target> leftTargets, List<Target> rightTargets)
         {
-
             var allTargets = new List<string>();
 
             allTargets.AddRange(leftTargets.Select(t => t.Name));
@@ -21,6 +20,7 @@
                 AssemblyGroup leftAsmGroup;
 
                 var compareSetName = uniqueTarget;
+                string comparedToName = null;
 
                 if (leftTarget != null)
                 {
@@ -30,8 +30,7 @@
                 {
                     var highestLeftTarget = leftTargets.OrderByDescending(t => t.Name).First();
                     leftAsmGroup = new AssemblyGroup(highestLeftTarget.Files);
-
-                    compareSetName += string.Format("(Compared to {0})", highestLeftTarget.Name);
+                    comparedToName = highestLeftTarget.Name;
                 }
 
                 var rightTarget = rightTargets.SingleOrDefault(t => t.Name == uniqueTarget);
@@ -46,12 +45,12 @@
                     rightAsmGroup = new EmptyAssemblyGroup();
                 }
 
-
                 yield return new CompareSet
                 {
                     LeftAssemblyGroup = leftAsmGroup,
                     RightAssemblyGroup = rightAsmGroup,
-                    Name = compareSetName
+                    Name = compareSetName,
+                    ComparedTo = comparedToName
                 };
             }
 

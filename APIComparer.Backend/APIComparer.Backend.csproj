@@ -51,6 +51,10 @@
     <Reference Include="CommonMark">
       <HintPath>..\packages\CommonMark.NET.0.8.5\lib\net45\CommonMark.dll</HintPath>
     </Reference>
+    <Reference Include="Handlebars, Version=1.0.5579.20225, Culture=neutral, PublicKeyToken=22225d0bf33cd661, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Handlebars.Net.1.3.2\lib\Handlebars.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Azure.WebJobs, Version=1.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Azure.WebJobs.Core.1.0.1\lib\net45\Microsoft.Azure.WebJobs.dll</HintPath>
@@ -135,6 +139,7 @@
     <Compile Include="ComparisonHandler.cs" />
     <Compile Include="DiffedCompareSet.cs" />
     <Compile Include="PackageDescription.cs" />
+    <Compile Include="Reporting\APIUpgradeToHtmlFormatter.cs" />
     <Compile Include="Shared\AzureEnvironment.cs" />
     <Compile Include="Shared\ConfigureAuditQueue.cs" />
     <Compile Include="Shared\ConfigureAzureSubscriptionStorage.cs" />
@@ -156,6 +161,21 @@
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\particular-apicomparer-live.pubxml" />
     <None Include="Properties\webjob-publish-settings.json" />
+    <None Include="Reporting\comparison.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Reporting\madeinternal.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Reporting\obsolete.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Reporting\removedpublic.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Reporting\target.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\APIComparer.Contracts\APIComparer.Contracts.csproj">
@@ -199,6 +219,10 @@
     <Error Condition="Exists('..\packages\OctoPack.3.0.42\tools\OctoPack.targets') And ('$(RunOctoPack)' != '' And $(RunOctoPack))" Text="OctoPack cannot be run because NuGet packages were restored prior to the build running, and the targets file was unavailable when the build started. Please build the project again to include these packages in the build. You may also need to make sure that your build server does not delete packages prior to each build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
   </Target>
   <Import Project="..\packages\Microsoft.Web.WebJobs.Publish.1.0.3\tools\webjobs.targets" Condition="Exists('..\packages\Microsoft.Web.WebJobs.Publish.1.0.3\tools\webjobs.targets')" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

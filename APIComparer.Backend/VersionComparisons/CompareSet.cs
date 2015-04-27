@@ -6,6 +6,7 @@ namespace APIComparer.VersionComparisons
         public AssemblyGroup RightAssemblyGroup;
 
         public string Name;
+        public string ComparedTo;
 
         public override string ToString()
         {

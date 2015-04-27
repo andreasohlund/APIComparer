@@ -52,10 +52,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="APIUpgradeToHtmlFormatterTest.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="CompareLatestPatchTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

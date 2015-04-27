@@ -18,11 +18,15 @@ namespace APIComparer.Backend
 
             var nugetCacheDirectory = Path.Combine(AzureEnvironment.GetTempPath(), "packages");
 
-
             var reposToUse = new List<IPackageRepository>
             {
-                PackageRepositoryFactory.Default.CreateRepository(nugetCacheDirectory)
+                PackageRepositoryFactory.Default.CreateRepository(nugetCacheDirectory),
             };
+
+            if (!AzureEnvironment.IsRunningInCloud())
+            {
+                reposToUse.Add(MachineCache.Default);
+            }
 
             reposToUse.AddRange(repositories.ToList().Select(r => PackageRepositoryFactory.Default.CreateRepository(r)));
             var repo = new AggregateRepository(reposToUse);

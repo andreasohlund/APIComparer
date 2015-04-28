@@ -133,9 +133,9 @@
             var result = method.ReturnType.GetName() + " " + method.Name;
 
             if (genericParams.Any())
-                result = String.Format("{0}<{1}>", result, string.Join(", ", genericParams));
+                result = String.Format("{0}<{1}>", result, String.Join(", ", genericParams));
 
-            return String.Format("{0}({1})", result, string.Join(", ", methodParams));
+            return String.Format("{0}({1})", result, String.Join(", ", methodParams));
         }
 
         public static IEnumerable<TypeDefinition> RealTypes(this IEnumerable<TypeDefinition> types)
@@ -281,13 +281,13 @@
             if (genericInstanceType != null)
             {
                 var first = name.Split('`').First();
-                return first + "<" + string.Join(", ", genericInstanceType.GenericArguments.Select(x=>x.GetName())) + ">";
+                return first + "<" + String.Join(", ", genericInstanceType.GenericArguments.Select(x=>x.GetName())) + ">";
             }
 
             if (self.HasGenericParameters)
             {
                 var first = name.Split('`').First();
-                return first + "<" + string.Join(", ", self.GenericParameters.Select(x => x.GetName())) + ">";
+                return first + "<" + String.Join(", ", self.GenericParameters.Select(x => x.GetName())) + ">";
             }
             return name;
         }
@@ -299,5 +299,14 @@
         }
 
 
+        public static bool HasDifferences(this TypeDiff typeDiff)
+        {
+            return
+                typeDiff.PublicFieldsRemoved().Any() ||
+                typeDiff.PublicMethodsRemoved().Any() ||
+                typeDiff.FieldsChangedToNonPublic().Any() ||
+                typeDiff.MethodsChangedToNonPublic().Any()
+                ;
+        }
     }
 }

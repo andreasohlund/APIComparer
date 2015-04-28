@@ -172,7 +172,7 @@ namespace APIComparer
                     {
                         continue;
                     }
-                    if (HasDifferences(typeDiff))
+                    if (typeDiff.HasDifferences())
                     {
                         WriteOut(typeDiff, writer, info);
                     }
@@ -180,17 +180,6 @@ namespace APIComparer
             }
 
             WriteObsoletes(diff.RightAllTypes, writer, info);
-        }
-
-
-        static bool HasDifferences(TypeDiff typeDiff)
-        {
-            return
-                typeDiff.PublicFieldsRemoved().Any() ||
-                typeDiff.PublicMethodsRemoved().Any() ||
-                typeDiff.FieldsChangedToNonPublic().Any() ||
-                typeDiff.MethodsChangedToNonPublic().Any()
-                ;
         }
 
         void WriteOut(TypeDiff typeDiff, TextWriter writer, FormattingInfo info)

@@ -13,7 +13,7 @@
     public class APIUpgradeToHtmlFormatterTest
     {
         [Test]
-        public void TestCompliance()
+        public void TestComplianceNewtonsoftJson()
         {
             var formatter = new APIUpgradeToHtmlFormatter();
             var writer = new StringWriter();
@@ -21,6 +21,26 @@
             {
                 PackageId = "newtonsoft.json",
                 Versions = new VersionPair("5.0.8", "6.0.8")
+            };
+            var compareSetCreator = new CompareSetCreator();
+            var sets = compareSetCreator.Create(packageDescription);
+            var compareSetDiffer = new CompareSetDiffer();
+            var diff = compareSetDiffer.Diff(sets);
+
+            formatter.Render(writer, packageDescription, diff);
+
+            Approvals.VerifyHtml(writer.ToString());
+        }
+
+        [Test]
+        public void TestComplianceNServiceBus()
+        {
+            var formatter = new APIUpgradeToHtmlFormatter();
+            var writer = new StringWriter();
+            var packageDescription = new PackageDescription
+            {
+                PackageId = "nservicebus",
+                Versions = new VersionPair("4.0.0", "5.0.0")
             };
             var compareSetCreator = new CompareSetCreator();
             var sets = compareSetCreator.Create(packageDescription);

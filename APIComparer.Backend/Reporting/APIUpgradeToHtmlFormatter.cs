@@ -1,12 +1,11 @@
 ﻿namespace APIComparer.Backend.Reporting
 {
     using System;
-    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
+    using System.Reflection;
     using APIComparer.VersionComparisons;
     using HandlebarsDotNet;
-    using Mono.Cecil;
 
     public class APIUpgradeToHtmlFormatter
     {
@@ -14,34 +13,31 @@
 
         static APIUpgradeToHtmlFormatter()
         {
-            using (var templateReader = File.OpenText("./reporting/obsolete.tpl"))
-            {
-                var partialTemplate = Handlebars.Compile(templateReader);
-                Handlebars.RegisterTemplate("obsolete", partialTemplate);
-            }
+            var partials = typeof(Templates_Html)
+                .GetMethods(BindingFlags.Static | BindingFlags.Public)
+                .Select(m => new
+                {
+                    Name = m.Name.ToLowerInvariant(),
+                    Invoke = new Func<string>(() => (string)m.Invoke(null, null))
+                }).ToArray();
 
-            using (var templateReader = File.OpenText("./reporting/madeinternal.tpl"))
+            foreach (var @partial in partials)
             {
-                var partialTemplate = Handlebars.Compile(templateReader);
-                Handlebars.RegisterTemplate("madeinternal", partialTemplate);
-            }
+                if (@partial.Name == "comparison")
+                {
+                    using (var templateReader = new StringReader(@partial.Invoke()))
+                    {
+                        template = Handlebars.Compile(templateReader);
+                        templateReader.Close();
+                    }
+                    continue;
+                }
 
-            using (var templateReader = File.OpenText("./reporting/removedpublic.tpl"))
-            {
-                var partialTemplate = Handlebars.Compile(templateReader);
-                Handlebars.RegisterTemplate("removedpublic", partialTemplate);
-            }
-
-            using (var templateReader = File.OpenText("./reporting/target.tpl"))
-            {
-                var partialTemplate = Handlebars.Compile(templateReader);
-                Handlebars.RegisterTemplate("target", partialTemplate);
-            }
-
-            using (var templateReader = File.OpenText("./reporting/comparison.tpl"))
-            {
-                template = Handlebars.Compile(templateReader);
-                templateReader.Close();
+                using (var templateReader = new StringReader(@partial.Invoke()))
+                {
+                    var partialTemplate = Handlebars.Compile(templateReader);
+                    Handlebars.RegisterTemplate(@partial.Name, partialTemplate);
+                }
             }
         }
 
@@ -49,41 +45,7 @@
         {
             var data = ViewModelBuilder.Build(description, diffedCompareSets);
 
-            //var matchingTypeDiffs = diff.MatchingTypeDiffs.ToList();
-            //if (matchingTypeDiffs.Any())
-            //{
-            //    writer.WriteLine();
-            //    writer.WriteLine("## The following types have differences.");
-            //    writer.WriteLine();
-            //    foreach (var typeDiff in diff.MatchingTypeDiffs)
-            //    {
-            //        if (typeDiff.LeftType.HasObsoleteAttribute())
-            //        {
-            //            continue;
-            //        }
-            //        if (typeDiff.RightType.HasObsoleteAttribute())
-            //        {
-            //            continue;
-            //        }
-
-            //        if (!typeDiff.LeftType.IsPublic)
-            //        {
-            //            continue;
-            //        }
-            //        if (!typeDiff.RightType.IsPublic)
-            //        {
-            //            continue;
-            //        }
-            //        if (HasDifferences(typeDiff))
-            //        {
-            //            WriteOut(typeDiff, writer, info);
-            //        }
-            //    }
-            //}
-
             template(writer, data);
-        } 
-    }
 
     public class ViewModelBuilder
     {

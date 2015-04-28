@@ -161,21 +161,6 @@
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\particular-apicomparer-live.pubxml" />
     <None Include="Properties\webjob-publish-settings.json" />
-    <None Include="Reporting\comparison.tpl">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Reporting\madeinternal.tpl">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Reporting\obsolete.tpl">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Reporting\removedpublic.tpl">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Reporting\target.tpl">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\APIComparer.Contracts\APIComparer.Contracts.csproj">
@@ -204,7 +189,9 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Compile Include="Reporting\Templates.Html.cs" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\GitVersionTask.3.0.0-beta0001\Build\GitVersionTask.targets" Condition="Exists('..\packages\GitVersionTask.3.0.0-beta0001\Build\GitVersionTask.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

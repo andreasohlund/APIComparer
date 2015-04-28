@@ -1,3 +1,0 @@
-﻿{{#targets}}
-{{> target}}
-{{/targets}}

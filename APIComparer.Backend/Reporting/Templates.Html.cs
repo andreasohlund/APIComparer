@@ -3,7 +3,6 @@
     public class Templates_Html
     {
         // Root template
-
         public static string Comparison()
         {
             return @"
@@ -118,12 +117,40 @@
 <h2>The following types have differences.</h2>
 {{#typeDifferences }}
 <h3>{{ name }}</h3>
-{{> FieldsChangedToNonPublic }}
-{{> FieldsRemoved }}
-{{> MethodsChangedToNonPublic }}
-{{> MethodsRemoved }}
+{{> fieldsChangedToNonPublic }}
+{{> fieldsRemoved }}
+{{> methodsChangedToNonPublic }}
+{{> methodsRemoved }}
 {{/typeDifferences }}
 {{/if}}
+";
+        }
+
+        public static string ObsoleteMethods()
+        {
+            return @"
+{{ #if hasObsoleteMethods }}
+<h4>Obsolete Methods</h4>
+<ul>
+  {{ #obsoleteMethods }}
+  <li><code>{{ name }}</code><br/> {{ obsolete }}</li>
+  {{/obsoleteMethods }}
+</ul>
+{{ /if }}
+";
+        }
+
+        public static string ObsoleteFields()
+        {
+            return @"
+{{ #if hasObsoleteFields }}
+<h4>Obsolete Fields</h4>
+<ul>
+  {{ #obsoleteFields }}
+  <li><code>{{ name }}</code><br/> {{ obsolete }}</li>
+  {{/obsoleteFields }}
+</ul>
+{{ /if }}
 ";
         }
 
@@ -132,9 +159,11 @@
             return @"
 {{#if hasObsoletes}}
 <h2>The following types have Obsoletes.</h2>
-  {{#obsoletes}}
-  <h3>{{name}}</h3>
-  {{/obsoletes}}
+{{#obsoletes}}
+<h3>{{name}}</h3>
+{{> obsoleteFields }}
+{{> obsoleteMethods }}
+{{/obsoletes}}
 {{/if}}
 ";
         }

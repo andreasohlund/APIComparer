@@ -61,6 +61,8 @@ namespace APIComparer.Backend.Reporting
                     fieldsRemoved,
                     hasMethodsChangedToNonPublic = methodsChangedToNonPublic.Any(),
                     methodsChangedToNonPublic,
+                    hasMethodsRemoved = methodsRemoved.Any(),
+                    methodsRemoved
                 };
         }
 
@@ -132,13 +134,40 @@ namespace APIComparer.Backend.Reporting
 
         static IEnumerable<object> BuildTypesObsoleted(PackageDescription description, Diff diff)
         {
-            foreach (TypeDefinition typeDiff in diff.RightAllTypes.TypeWithObsoletes())
+            return from typeDiff in diff.RightAllTypes.TypeWithObsoletes()
+            let obsoleteMessage = typeDiff.HasObsoleteAttribute() ? typeDiff.GetObsoleteString() : null
+            let obsoleteFields = BuildObsoleteFields(typeDiff) 
+            let obsoleteMethods = BuildObsoleteMethods(typeDiff)
+            select
+            new
             {
-                yield return new
+                name = typeDiff.GetName(),
+                obsolete = obsoleteMessage,
+                hasObsoleteFields = obsoleteFields.Any(),
+                obsoleteFields,
+                hasObsoleteMethods = obsoleteMethods.Any(),
+                obsoleteMethods
+            };
+        }
+
+        static IEnumerable<object> BuildObsoleteFields(TypeDefinition typeDiff)
+        {
+            return from field in typeDiff.GetObsoleteFields()
+            select new
+            {
+                name = field.GetName(),
+                obsolete = field.GetObsoleteString()
+            };
+        }
+
+        static IEnumerable<object> BuildObsoleteMethods(TypeDefinition typeDiff)
+        {
+            return from method in typeDiff.GetObsoleteMethods()
+                select new
                 {
-                    name = typeDiff.GetName()
+                    name = method.GetName(),
+                    obsolete = method.GetObsoleteString()
                 };
-            }
         }
     }
 }

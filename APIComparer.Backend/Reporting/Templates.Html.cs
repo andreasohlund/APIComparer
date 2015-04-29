@@ -133,7 +133,7 @@
 <h4>Obsolete Methods</h4>
 <ul>
   {{ #obsoleteMethods }}
-  <li><code>{{ name }}</code><br/> {{ obsolete }}</li>
+  <li><code>{{ name }}</code><br/> {{ codify obsolete }}</li>
   {{/obsoleteMethods }}
 </ul>
 {{ /if }}
@@ -147,7 +147,7 @@
 <h4>Obsolete Fields</h4>
 <ul>
   {{ #obsoleteFields }}
-  <li><code>{{ name }}</code><br/> {{ obsolete }}</li>
+  <li><code>{{ name }}</code><br/> {{ codify obsolete }}</li>
   {{/obsoleteFields }}
 </ul>
 {{ /if }}

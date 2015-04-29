@@ -4,7 +4,6 @@
     using System.IO;
     using System.Linq;
     using System.Reflection;
-    using APIComparer.VersionComparisons;
     using HandlebarsDotNet;
 
     public class APIUpgradeToHtmlFormatter
@@ -12,6 +11,50 @@
         static Action<TextWriter, object> template;
 
         static APIUpgradeToHtmlFormatter()
+        {
+            DynamicLoadHelpers();
+            DynamicLoadTemplateAndPartials();
+        }
+
+        public void Render(TextWriter writer, PackageDescription description, DiffedCompareSet[] diffedCompareSets)
+        {
+            var data = ViewModelBuilder.Build(description, diffedCompareSets);
+
+            template(writer, data);
+        }
+
+        static void DynamicLoadHelpers()
+        {
+            var blockHelpers = from helper in typeof(Helpers_Html).GetMethods(BindingFlags.Static | BindingFlags.Public)
+                               let action = Delegate.CreateDelegate(typeof(HandlebarsBlockHelper), null, helper, false) as HandlebarsBlockHelper
+                               where action != null
+                               select new
+                               {
+                                   Name = helper.Name.ToLowerInvariant(),
+                                   Invoke = action
+                               };
+
+            foreach (var blockHelper in blockHelpers)
+            {
+                Handlebars.RegisterHelper(blockHelper.Name, blockHelper.Invoke);
+            }
+
+            var helpers = from helper in typeof(Helpers_Html).GetMethods(BindingFlags.Static | BindingFlags.Public)
+                          let action = Delegate.CreateDelegate(typeof(HandlebarsHelper), null, helper, false) as HandlebarsHelper
+                          where action != null
+                          select new
+                          {
+                              Name = helper.Name.ToLowerInvariant(),
+                              Invoke = action
+                          };
+
+            foreach (var helper in helpers)
+            {
+                Handlebars.RegisterHelper(helper.Name, helper.Invoke);
+            }
+        }
+
+        static void DynamicLoadTemplateAndPartials()
         {
             var partials = typeof(Templates_Html)
                 .GetMethods(BindingFlags.Static | BindingFlags.Public)
@@ -39,13 +82,6 @@
                     Handlebars.RegisterTemplate(@partial.Name, partialTemplate);
                 }
             }
-        }
-
-        public void Render(TextWriter writer, PackageDescription description, DiffedCompareSet[] diffedCompareSets)
-        {
-            var data = ViewModelBuilder.Build(description, diffedCompareSets);
-
-            template(writer, data);
         }
     }
 }

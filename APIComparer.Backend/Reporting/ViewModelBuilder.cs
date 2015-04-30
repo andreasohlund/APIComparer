@@ -1,29 +1,31 @@
 namespace APIComparer.Backend.Reporting
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using Mono.Cecil;
 
+    [SuppressMessage("ReSharper", "UnusedParameter.Global")]
     public class ViewModelBuilder
     {
         public static object Build(PackageDescription description, DiffedCompareSet[] diffedCompareSets)
         {
             return new
             {
-                targets = BuildTargets(description, diffedCompareSets)
+                targets = BuildTargets(diffedCompareSets)
             };
         }
 
-        static IEnumerable<object> BuildTargets(PackageDescription description, DiffedCompareSet[] diffedCompareSets)
+        static IEnumerable<object> BuildTargets(DiffedCompareSet[] diffedCompareSets)
         {
             return
                 from diffedSet in diffedCompareSets
                 let diff = diffedSet.Diff
                 let set = diffedSet.Set
-                let removedPublicTypes = BuildRemovedPublicTypes(description, diff)
-                let typesMadeInternal = BuildTypesMadeInternal(description, diff)
-                let typeDifferences = BuildTypeDifferences(description, diff)
-                let obsoletes = BuildTypesObsoleted(description, diff)
+                let removedPublicTypes = BuildRemovedPublicTypes(diff)
+                let typesMadeInternal = BuildTypesMadeInternal(diff)
+                let typeDifferences = BuildTypeDifferences(diff)
+                let obsoletes = BuildTypesObsoleted(diff)
                 select new
                 {
                     set.Name,
@@ -40,7 +42,7 @@ namespace APIComparer.Backend.Reporting
                 };
         }
 
-        static IEnumerable<object> BuildTypeDifferences(PackageDescription description, Diff diff)
+        static IEnumerable<object> BuildTypeDifferences(Diff diff)
         {
             return from typeDiff in diff.MatchingTypeDiffs
                 where !typeDiff.LeftType.HasObsoleteAttribute()
@@ -110,9 +112,9 @@ namespace APIComparer.Backend.Reporting
             }
         }
 
-        static IEnumerable<object> BuildRemovedPublicTypes(PackageDescription description, Diff diff)
+        static IEnumerable<object> BuildRemovedPublicTypes(Diff diff)
         {
-            foreach (TypeDefinition definition in diff.RemovedPublicTypes())
+            foreach (var definition in diff.RemovedPublicTypes())
             {
                 yield return new
                 {
@@ -121,9 +123,9 @@ namespace APIComparer.Backend.Reporting
             }
         }
 
-        static IEnumerable<object> BuildTypesMadeInternal(PackageDescription description, Diff diff)
+        static IEnumerable<object> BuildTypesMadeInternal(Diff diff)
         {
-            foreach (TypeDiff typeDiff in diff.TypesChangedToNonPublic())
+            foreach (var typeDiff in diff.TypesChangedToNonPublic())
             {
                 yield return new
                 {
@@ -132,7 +134,7 @@ namespace APIComparer.Backend.Reporting
             }
         }
 
-        static IEnumerable<object> BuildTypesObsoleted(PackageDescription description, Diff diff)
+        static IEnumerable<object> BuildTypesObsoleted(Diff diff)
         {
             return from typeDiff in diff.RightAllTypes.TypeWithObsoletes()
             let obsoleteMessage = typeDiff.HasObsoleteAttribute() ? typeDiff.GetObsoleteString() : null

@@ -1,10 +1,12 @@
 namespace APIComparer.Backend.Reporting
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Text.RegularExpressions;
     using HandlebarsDotNet;
 
+    [SuppressMessage("ReSharper", "UnusedParameter.Global")]
     public class Helpers_Html
     {
         private static readonly Regex codify = new Regex(@"`(?<x>[\w\.\(\)]*)`", RegexOptions.Compiled);

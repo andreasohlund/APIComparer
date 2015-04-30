@@ -20,7 +20,7 @@ namespace APIComparer.Backend
 
             var reposToUse = new List<IPackageRepository>
             {
-                PackageRepositoryFactory.Default.CreateRepository(nugetCacheDirectory),
+                PackageRepositoryFactory.Default.CreateRepository(nugetCacheDirectory)
             };
 
             if (!AzureEnvironment.IsRunningInCloud())

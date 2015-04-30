@@ -4,10 +4,12 @@
     using System.Collections.Generic;
     using System.Linq;
     using ApprovalTests;
+    using ApprovalTests.Reporters;
     using APIComparer.Backend;
     using NUnit.Framework;
 
     [TestFixture]
+    [UseReporter(typeof(DiffReporter))]
     public class CompareSetCreateTests
     {
         [Test]

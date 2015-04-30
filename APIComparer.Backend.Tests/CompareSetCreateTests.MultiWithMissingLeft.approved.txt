@@ -1,2 +1,2 @@
 ﻿net40
-net45(Compared to net40)
+net45

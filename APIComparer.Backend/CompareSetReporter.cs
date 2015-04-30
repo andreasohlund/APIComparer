@@ -2,24 +2,19 @@ namespace APIComparer.Backend
 {
     using System;
     using System.IO;
+    using APIComparer.Backend.Reporting;
 
     public class CompareSetReporter
     {
         public void Report(PackageDescription description, DiffedCompareSet[] diffedCompareSets)
         {
-            var formatter = new APIUpgradeToMarkdownFormatter();
-
             var resultPath = DetermineAndCreateResultPathIfNotExistant(description);
-
+            
             using (var fileStream = File.OpenWrite(resultPath))
             using (var into = new StreamWriter(fileStream))
             {
-                foreach (var diffedCompareSet in diffedCompareSets)
-                {
-                    @into.WriteLine("# " + diffedCompareSet.Set.Name);
-
-                    formatter.WriteOut(diffedCompareSet.Diff, @into, new FormattingInfo("tbd", "tbd"));
-                }
+                var formatter = new APIUpgradeToHtmlFormatter();
+                formatter.Render(into, description, diffedCompareSets);
 
                 @into.Flush();
                 @into.Close();
@@ -30,10 +25,9 @@ namespace APIComparer.Backend
 
         static string DetermineAndCreateResultPathIfNotExistant(PackageDescription description)
         {
-            var resultFile = String.Format("{0}-{1}...{2}.md", description.PackageId, description.Versions.LeftVersion, description.Versions.RightVersion);
+            var resultFile = String.Format("{0}-{1}...{2}.html", description.PackageId, description.Versions.LeftVersion, description.Versions.RightVersion);
 
             var rootPath = Environment.GetEnvironmentVariable("HOME"); // TODO: use AzureEnvironment
-
 
             if (rootPath != null)
             {
@@ -62,7 +56,6 @@ namespace APIComparer.Backend
 
         static void RemoveTemporaryWorkFiles(string resultPath)
         {
-            File.Delete(resultPath);
             File.Delete(Path.ChangeExtension(resultPath, ".running.html"));
         }
     }

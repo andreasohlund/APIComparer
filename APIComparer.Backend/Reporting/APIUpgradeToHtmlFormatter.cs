@@ -3,10 +3,11 @@
     using System;
     using System.IO;
     using System.Linq;
+    using System.Net.Mime;
     using System.Reflection;
     using HandlebarsDotNet;
 
-    public class APIUpgradeToHtmlFormatter
+    public class APIUpgradeToHtmlFormatter : IFormatter
     {
         static Action<TextWriter, object> template;
 
@@ -14,6 +15,11 @@
         {
             DynamicLoadHelpers();
             DynamicLoadTemplateAndPartials();
+        }
+
+        public ContentType ContentType
+        {
+            get { return new ContentType("text/html"); }
         }
 
         public void Render(TextWriter writer, PackageDescription description, DiffedCompareSet[] diffedCompareSets)

@@ -138,6 +138,7 @@
     <Compile Include="PackageDescription.cs" />
     <Compile Include="Reporting\APIUpgradeToHtmlFormatter.cs" />
     <Compile Include="Reporting\Helpers.Html.cs" />
+    <Compile Include="Reporting\IFormatter.cs" />
     <Compile Include="Reporting\ViewModelBuilder.cs" />
     <Compile Include="Shared\AzureEnvironment.cs" />
     <Compile Include="Shared\ConfigureAuditQueue.cs" />

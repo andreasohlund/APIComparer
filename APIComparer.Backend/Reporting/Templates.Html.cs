@@ -157,10 +157,11 @@
         public static string Obsolete()
         {
             return @"
-{{#if hasObsoletes}}
+{{ #if hasObsoletes }}
 <h2>The following types have Obsoletes.</h2>
-{{#obsoletes}}
-<h3>{{name}}</h3>
+{{ #obsoletes }}
+<h3>{{ name }}</h3>
+{{ codify obsolete }}
 {{> obsoleteFields }}
 {{> obsoleteMethods }}
 {{/obsoletes}}

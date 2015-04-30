@@ -6,16 +6,16 @@
         public static string Comparison()
         {
             return @"
-{{#targets}}
+{{ #targets }}
 {{> target}}
-{{/targets}}";
+{{ /targets }}";
         }
 
         public static string Target()
         {
             return @"
-<h1>{{Name}}</h1>
-{{#if noLongerSupported}}
+<h1>{{ Name }}(Compared to {{ ComparedTo }})</h1>
+{{#if noLongerSupported }}
 <p>No longer supported.</p>
 {{else}}
 {{> removedpublic }}
@@ -29,12 +29,12 @@
         public static string RemovedPublic()
         {
             return @"
-{{#if hasRemovedPublicTypes}}
+{{ #if hasRemovedPublicTypes }}
 <h2>The following public types have been removed</h2>
 <ul>
-  {{#removedPublicTypes}}
-  <li><code>{{name}}</code></li>
-  {{/removedPublicTypes}}
+  {{ #removedPublicTypes }}
+  <li><code>{{ name }}</code></li>
+  {{ /removedPublicTypes }}
 </ul>
 {{/if}}
 ";
@@ -43,12 +43,12 @@
         public static string MadeInternal()
         {
             return @"
-{{#if hasTypesMadeInternal}}
+{{ #if hasTypesMadeInternal }}
 <h2>The following public types have been made internal.</h2>
 <ul>
-  {{#typesMadeInternal}}
+  {{ #typesMadeInternal }}
   <li><code>{{name}}</code></li>
-  {{/typesMadeInternal}}
+  {{ /typesMadeInternal }}
 </ul>
 {{/if}}
 ";

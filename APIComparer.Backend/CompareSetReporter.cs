@@ -2,7 +2,6 @@ namespace APIComparer.Backend
 {
     using System;
     using System.IO;
-    using CommonMark;
 
     public class CompareSetReporter
     {
@@ -26,7 +25,7 @@ namespace APIComparer.Backend
                 @into.Close();
                 fileStream.Close();
             }
-            ConvertResultToHtmlAndRemoveTemporaryWorkFiles(resultPath);
+            RemoveTemporaryWorkFiles(resultPath);
         }
 
         static string DetermineAndCreateResultPathIfNotExistant(PackageDescription description)
@@ -61,20 +60,8 @@ namespace APIComparer.Backend
             return resultPath;
         }
 
-        static void ConvertResultToHtmlAndRemoveTemporaryWorkFiles(string resultPath)
+        static void RemoveTemporaryWorkFiles(string resultPath)
         {
-            using (var reader = new StreamReader(resultPath))
-            {
-                using (var writer = new StreamWriter(Path.ChangeExtension(resultPath, "html")))
-                {
-                    CommonMarkConverter.Convert(reader, writer);
-
-                    writer.Flush();
-                    writer.Close();
-                    reader.Close();
-                }
-            }
-
             File.Delete(resultPath);
             File.Delete(Path.ChangeExtension(resultPath, ".running.html"));
         }

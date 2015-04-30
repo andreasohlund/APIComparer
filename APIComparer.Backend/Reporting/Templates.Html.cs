@@ -14,7 +14,7 @@
         public static string Target()
         {
             return @"
-<h1>{{ Name }}(Compared to {{ ComparedTo }})</h1>
+<h1>{{ Name }}{{ ComparedTo }}</h1>
 {{#if noLongerSupported }}
 <p>No longer supported.</p>
 {{else}}

@@ -27,7 +27,7 @@ namespace APIComparer.Backend.Reporting
                 select new
                 {
                     set.Name,
-                    set.ComparedTo,
+                    ComparedTo = string.Format(" (Compared To {0})", set.ComparedTo),
                     noLongerSupported = diff is EmptyDiff,
                     hasRemovedPublicTypes = removedPublicTypes.Any(),
                     removedPublicTypes,

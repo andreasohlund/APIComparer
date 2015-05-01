@@ -1,6 +1,5 @@
 namespace APIComparer.Backend
 {
-    using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
@@ -38,34 +37,15 @@ namespace APIComparer.Backend
         {
             var semVer = SemanticVersion.Parse(version);
 
-            packageManager.InstallPackage(package, semVer, true, false);
+            IPackage pkg = PackageRepositoryHelper.ResolvePackage(packageManager.SourceRepository, packageManager.LocalRepository, package, semVer, false);
 
-            var dirPath = Path.Combine(AzureEnvironment.GetTempPath(), "packages", string.Format("{0}.{1}", package, version), "lib");
-
-            if (!Directory.Exists(dirPath))
-            {
-                // probably source only packages
-                yield break;
-            }
-
-            foreach (var directory in Directory.EnumerateDirectories(dirPath))
-            {
-                var files = Directory.EnumerateFiles(directory)
-                                        .Where(f => f.EndsWith(".dll") || f.EndsWith(".exe"))
-                                        .ToList();
-
-
-                if (!files.Any())
-                {
-                    throw new Exception("Couldn't find any assemblies in  " + directory);
-                }
-
-                yield return new Target(Path.GetFileName(directory), files);
-
-            }
+            return 
+                from file in pkg.AssemblyReferences.OfType<PhysicalPackageAssemblyReference>()
+                group file by file.TargetFramework
+                into framework
+                select new Target(framework.Key.FullName, framework.Select(f => f.SourcePath).ToList());
         }
     }
-
 
     public class Target
     {

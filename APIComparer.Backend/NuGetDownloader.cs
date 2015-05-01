@@ -2,8 +2,10 @@ namespace APIComparer.Backend
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.IO;
     using System.Linq;
+    using System.Runtime.Versioning;
     using APIComparer.Shared;
     using NuGet;
 
@@ -11,12 +13,14 @@ namespace APIComparer.Backend
     {
         readonly string package;
         PackageManager packageManager;
+        AggregateRepository repo;
+        string nugetCacheDirectory;
 
         public NuGetDownloader(string nugetName, IEnumerable<string> repositories)
         {
             package = nugetName;
 
-            var nugetCacheDirectory = Path.Combine(AzureEnvironment.GetTempPath(), "packages");
+            nugetCacheDirectory = Path.Combine(AzureEnvironment.GetTempPath(), "packages");
 
             var reposToUse = new List<IPackageRepository>
             {
@@ -29,7 +33,7 @@ namespace APIComparer.Backend
             }
 
             reposToUse.AddRange(repositories.ToList().Select(r => PackageRepositoryFactory.Default.CreateRepository(r)));
-            var repo = new AggregateRepository(reposToUse);
+            repo = new AggregateRepository(reposToUse);
 
             packageManager = new PackageManager(repo, /*"packages"*/nugetCacheDirectory);
         }
@@ -38,34 +42,15 @@ namespace APIComparer.Backend
         {
             var semVer = SemanticVersion.Parse(version);
 
-            packageManager.InstallPackage(package, semVer, true, false);
+            IPackage pkg = PackageRepositoryHelper.ResolvePackage(packageManager.SourceRepository, packageManager.LocalRepository, package, semVer, false);
 
-            var dirPath = Path.Combine(AzureEnvironment.GetTempPath(), "packages", string.Format("{0}.{1}", package, version), "lib");
-
-            if (!Directory.Exists(dirPath))
-            {
-                // probably source only packages
-                yield break;
-            }
-
-            foreach (var directory in Directory.EnumerateDirectories(dirPath))
-            {
-                var files = Directory.EnumerateFiles(directory)
-                                        .Where(f => f.EndsWith(".dll") || f.EndsWith(".exe"))
-                                        .ToList();
-
-
-                if (!files.Any())
-                {
-                    throw new Exception("Couldn't find any assemblies in  " + directory);
-                }
-
-                yield return new Target(Path.GetFileName(directory), files);
-
-            }
+            return 
+                from file in pkg.AssemblyReferences.OfType<PhysicalPackageAssemblyReference>()
+                group file by file.TargetFramework
+                into framework
+                select new Target(framework.Key.FullName, framework.Select(f => f.SourcePath).ToList());
         }
     }
-
 
     public class Target
     {

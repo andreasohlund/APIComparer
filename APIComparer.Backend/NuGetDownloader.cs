@@ -37,7 +37,7 @@ namespace APIComparer.Backend
         {
             var semVer = SemanticVersion.Parse(version);
 
-            IPackage pkg = PackageRepositoryHelper.ResolvePackage(packageManager.SourceRepository, packageManager.LocalRepository, package, semVer, false);
+            var pkg = PackageRepositoryHelper.ResolvePackage(packageManager.SourceRepository, packageManager.LocalRepository, package, semVer, false);
 
             return 
                 from file in pkg.AssemblyReferences.OfType<PhysicalPackageAssemblyReference>()

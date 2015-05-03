@@ -1,6 +1,7 @@
 ﻿namespace APIComparer.Website
 {
     using System.IO;
+    using System.Linq;
     using APIComparer.Contracts;
     using Nancy;
     using Nancy.Responses;
@@ -12,19 +13,47 @@
     {
         ILog logger = LogManager.GetLogger<CompareModule>();
 
-        public CompareModule(IRootPathProvider rootPathProvider, IBus bus)
+        public CompareModule(IRootPathProvider rootPathProvider, IBus bus, NuGetBrowser nuGetBrowser)
         {
-            Get["/compare/{nugetpackageid}/{leftversion:semver}...{rightversion:semver}"] = ctx =>
+            Get["/compare/{nugetpackageid}/{leftversion}...{rightversion}"] = ctx =>
             {
-                var leftVersion = SemanticVersion.Parse(ctx.leftversion);
-                var rightVersion = SemanticVersion.Parse(ctx.rightversion);
                 var nugetPackageId = (string)ctx.nugetpackageid;
 
-                var pathToAlreadyRenderedComparision = string.Format("./Comparisons/{0}-{1}...{2}.html", nugetPackageId, leftVersion, rightVersion);
-              
-                if (File.Exists(Path.Combine(rootPathProvider.GetRootPath(),pathToAlreadyRenderedComparision)))
+                SemanticVersion leftVersion;
+                SemanticVersion rightVersion;
+
+                bool redirectToExactComparison = false;
+
+                try
                 {
-                    return new GenericFileResponse(pathToAlreadyRenderedComparision, "text/html");
+                    if (TryExpandVersion(nuGetBrowser, nugetPackageId, ctx.leftversion, out leftVersion))
+                    {
+                        redirectToExactComparison = true;
+                    }
+                    if (TryExpandVersion(nuGetBrowser, nugetPackageId, ctx.rightversion, out rightVersion))
+                    {
+                        redirectToExactComparison = true;
+                    }
+         
+                }
+                catch (NotFoundException ex) //for now
+                {
+                    return new NotFoundResponse
+                    {
+                       ReasonPhrase = ex.Message 
+                    }; 
+                }
+
+                if (redirectToExactComparison)
+                {
+                    return Response.AsRedirect(string.Format("/compare/{0}/{1}...{2}", nugetPackageId, leftVersion, rightVersion));
+                }
+
+                var pathToAlreadyRenderedComparison = string.Format("./Comparisons/{0}-{1}...{2}.html", nugetPackageId, leftVersion, rightVersion);
+
+                if (File.Exists(Path.Combine(rootPathProvider.GetRootPath(), pathToAlreadyRenderedComparison)))
+                {
+                    return new GenericFileResponse(pathToAlreadyRenderedComparison, "text/html");
                 }
 
                 var pathToWorkingToken = string.Format("./Comparisons/{0}-{1}...{2}.running.html", nugetPackageId, leftVersion, rightVersion);
@@ -50,6 +79,41 @@
 
                 return new GenericFileResponse(pathToWorkingToken, "text/html");
             };
+        }
+
+        bool TryExpandVersion(NuGetBrowser nuGetBrowser, string nugetPackageId, string requestedVersion, out SemanticVersion expandedVersion)
+        {
+            var parts = requestedVersion.Split('.');
+
+            if (parts.Count() > 2 || !parts.Any())
+            {
+                expandedVersion = SemanticVersion.Parse(requestedVersion);
+                return false;
+            }
+
+            if (parts.Count() == 2)
+            {
+                expandedVersion = nuGetBrowser.GetAllVersions(nugetPackageId)
+                    .Where(p => p.Version.Major == int.Parse(parts[0]) && p.Version.Minor == int.Parse(parts[1]))
+                    .OrderByDescending(p => p.Version)
+                    .FirstOrDefault();
+
+            }
+            else
+            {
+                expandedVersion = nuGetBrowser.GetAllVersions(nugetPackageId)
+                .Where(p => p.Version.Major == int.Parse(parts[0]))
+                .OrderByDescending(p => p.Version)
+                .FirstOrDefault();
+
+            }
+
+            if (expandedVersion == null)
+            {
+                throw new NotFoundException(string.Format("Can't find any versions for {0} matching version pattern {1}.*", nugetPackageId, requestedVersion));
+            }
+
+            return true;
         }
     }
 }

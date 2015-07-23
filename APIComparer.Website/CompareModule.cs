@@ -22,7 +22,7 @@
                 SemanticVersion leftVersion;
                 SemanticVersion rightVersion;
 
-                bool redirectToExactComparison = false;
+                var redirectToExactComparison = false;
 
                 try
                 {
@@ -70,8 +70,8 @@
 
                 var fullPathToTemplate = Path.Combine(rootPathProvider.GetRootPath(), "./Comparisons/CompareRunning.html");
                 File.Copy(fullPathToTemplate, fullPathToWorkingToken);
-                string template = File.ReadAllText(fullPathToWorkingToken);
-                string content = template.Replace(@"{packageid}", nugetPackageId)
+                var template = File.ReadAllText(fullPathToWorkingToken);
+                var content = template.Replace(@"{packageid}", nugetPackageId)
                     .Replace(@"{leftversion}", leftVersion.ToString())
                     .Replace(@"{rightversion}", rightVersion.ToString());
 

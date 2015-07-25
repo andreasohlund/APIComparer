@@ -9,7 +9,7 @@
     using NUnit.Framework;
 
     [TestFixture]
-    [UseReporter(typeof(DiffReporter))]
+    [UseReporter(typeof(DiffReporter),typeof(ClipboardReporter))]
     public class APIUpgradeToHtmlFormatterTest
     {
         [Test]
@@ -81,6 +81,26 @@
             {
                 PackageId = "LibLog",
                 Versions = new VersionPair("3.0.0", "4.1.1")
+            };
+            var compareSetCreator = new CompareSetCreator();
+            var sets = compareSetCreator.Create(packageDescription);
+            var compareSetDiffer = new CompareSetDiffer();
+            var diff = compareSetDiffer.Diff(sets);
+
+            formatter.Render(writer, packageDescription, diff);
+
+            Approvals.VerifyHtml(writer.ToString());
+        }
+
+        [Test]
+        public void AppccelerateEventBrokerNoChanges()
+        {
+            var formatter = new APIUpgradeToHtmlFormatter();
+            var writer = new StringWriter();
+            var packageDescription = new PackageDescription
+            {
+                PackageId = "Appccelerate.EventBroker",
+                Versions = new VersionPair("3.1.0", "3.15.0")
             };
             var compareSetCreator = new CompareSetCreator();
             var sets = compareSetCreator.Create(packageDescription);

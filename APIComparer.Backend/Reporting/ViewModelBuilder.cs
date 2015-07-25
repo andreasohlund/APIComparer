@@ -38,7 +38,8 @@ namespace APIComparer.Backend.Reporting
                     hasTypeDifferences = typeDifferences.Any(),
                     typeDifferences,
                     hasObsoletes = obsoletes.Any(),
-                    obsoletes
+                    obsoletes,
+                    hasChanges = removedPublicTypes.Any() || typesMadeInternal.Any() || typeDifferences.Any() || obsoletes.Any()
                 };
         }
 

@@ -26,6 +26,7 @@ namespace APIComparer.Backend.Reporting
                 let typesMadeInternal = BuildTypesMadeInternal(diff)
                 let typeDifferences = BuildTypeDifferences(diff)
                 let obsoletes = BuildTypesObsoleted(diff)
+                let hasChanges = removedPublicTypes.Any() || typesMadeInternal.Any() || typeDifferences.Any() || obsoletes.Any()
                 select new
                 {
                     set.Name,
@@ -38,7 +39,8 @@ namespace APIComparer.Backend.Reporting
                     hasTypeDifferences = typeDifferences.Any(),
                     typeDifferences,
                     hasObsoletes = obsoletes.Any(),
-                    obsoletes
+                    obsoletes,
+                    hasChanges
                 };
         }
 

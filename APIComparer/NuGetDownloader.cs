@@ -62,6 +62,11 @@ class NuGetDownloader
             dirPath = Path.Combine(dirPath, "net45");
         }
 
+        if (Directory.Exists(Path.Combine(dirPath, "net451")))
+        {
+            dirPath = Path.Combine(dirPath, "net451");
+        }
+
         var files = Directory.EnumerateFiles(dirPath)
             .Where(f => f.EndsWith(".dll") || f.EndsWith(".exe"))
             .ToList();

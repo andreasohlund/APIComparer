@@ -31,3 +31,7 @@ http://apicomparer-preview.particular.net/
 ### Continous deployment
 
 The current setup auto deploys each successful build to the preview slot. 
+
+### Buildserver
+
+http://builds.particular.net/project.html?projectId=Tooling_APIComparer&tab=projectOverview

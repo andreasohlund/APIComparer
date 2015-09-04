@@ -42,6 +42,12 @@
             Approvals.VerifyHtml(HtmlDiff("Appccelerate.EventBroker", "3.1.0", "3.15.0"));
         }
 
+        [Test]
+        public void TestComplianceLibGit2SharpNativeBinaries()
+        {
+            Approvals.VerifyHtml(HtmlDiff("LibGit2Sharp.NativeBinaries", "1.0.72", "1.0.81"));
+        }
+
         private string HtmlDiff(string packageName, string fromVersion, string untilVersion)
         {
             using (var writer = new StringWriter())

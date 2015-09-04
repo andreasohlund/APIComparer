@@ -43,6 +43,12 @@
         }
 
         [Test]
+        public void TestComplianceLibGit2SharpPackageEmbeddingNativeBinaries()
+        {
+            Approvals.VerifyHtml(HtmlDiff("LibGit2Sharp", "0.20.0", "0.20.1"));
+        }
+
+        [Test]
         public void TestComplianceLibGit2SharpNativeBinaries()
         {
             Approvals.VerifyHtml(HtmlDiff("LibGit2Sharp.NativeBinaries", "1.0.72", "1.0.81"));

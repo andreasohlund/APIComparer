@@ -1,7 +1,9 @@
 namespace APIComparer
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Reflection;
     using EqualityComparers;
     using Mono.Cecil;
 
@@ -22,30 +24,49 @@ namespace APIComparer
         {
             return CreateDiff(ReadTypes(leftAssembly,true), ReadTypes(rightAssembly,true));
         }
+
         public Diff CreateDiff(AssemblyGroup leftAssemblyGroup, AssemblyGroup rightAssemblyGroup)
         {
             if (rightAssemblyGroup is EmptyAssemblyGroup)
             {
                 return new EmptyDiff();
             }
-            return CreateDiff(ReadTypes(leftAssemblyGroup.Assemblies,leftAssemblyGroup.ReadSymbols), ReadTypes(rightAssemblyGroup.Assemblies,rightAssemblyGroup.ReadSymbols));
+
+            return CreateDiff(ReadTypes(leftAssemblyGroup.Assemblies, leftAssemblyGroup.ReadSymbols), ReadTypes(rightAssemblyGroup.Assemblies, rightAssemblyGroup.ReadSymbols));
         }
-        IEnumerable<TypeDefinition> ReadTypes(IEnumerable<string> assemblyGroup,bool readSymbols)
-        {
-            var readerParams = new ReaderParameters
-            {
-                ReadSymbols = readSymbols
-            };
-            return assemblyGroup.SelectMany(assembly => AssemblyDefinition.ReadAssembly(assembly, readerParams).MainModule.Types);
-        }
-        IEnumerable<TypeDefinition> ReadTypes(string leftAssembly,bool readSymbols)
+
+        IEnumerable<TypeDefinition> ReadTypes(IEnumerable<string> assemblyGroup, bool readSymbols)
         {
             var readerParams = new ReaderParameters
             {
                 ReadSymbols = readSymbols
             };
 
-            return AssemblyDefinition.ReadAssembly(leftAssembly, readerParams).MainModule.Types.ToList();
+            return assemblyGroup
+                .Where(assembly => IsManagedAssembly(assembly))
+                .SelectMany(assembly => AssemblyDefinition.ReadAssembly(assembly, readerParams).MainModule.Types);
+        }
+
+        IEnumerable<TypeDefinition> ReadTypes(string leftAssembly, bool readSymbols)
+        {
+            return ReadTypes(new[] { leftAssembly }, readSymbols);
+        }
+
+        private bool IsManagedAssembly(string assemblyPath)
+        {
+            // From https://github.com/scriptcs/scriptcs/pull/250/files by @aaronpowell
+            // License: Apache 2.0 (https://github.com/scriptcs/scriptcs/blob/dev/LICENSE.md)
+
+            try
+            {
+                AssemblyName.GetAssemblyName(assemblyPath);
+            }
+            catch(BadImageFormatException)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public Diff CreateDiff(IEnumerable<TypeDefinition> left, IEnumerable<TypeDefinition> right)

@@ -85,13 +85,13 @@
         {
             var parts = requestedVersion.Split('.');
 
-            if (parts.Count() > 2 || !parts.Any())
+            if (parts.Length > 2 || !parts.Any())
             {
                 expandedVersion = SemanticVersion.Parse(requestedVersion);
                 return false;
             }
 
-            if (parts.Count() == 2)
+            if (parts.Length == 2)
             {
                 expandedVersion = nuGetBrowser.GetAllVersions(nugetPackageId)
                     .Where(p => p.Version.Major == int.Parse(parts[0]) && p.Version.Minor == int.Parse(parts[1]))

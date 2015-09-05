@@ -42,3 +42,5 @@ run-git.cmd
 
 *.received.txt
 APIComparer.Website/App_Data/nsb_log_*.txt
+
+.vs/

@@ -1,7 +1,6 @@
 namespace APIComparer
 {
     using System;
-    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Web;
@@ -10,32 +9,6 @@ namespace APIComparer
 
     public class APIUpgradeToMarkdownFormatter
     {
-        void WriteObsoletes(IEnumerable<TypeDefinition> allTypes, TextWriter writer, FormattingInfo info)
-        {
-            var obsoleteTypes = allTypes.TypeWithObsoletes().ToList();
-
-            if (obsoleteTypes.Any())
-            {
-                writer.WriteLine();
-                writer.WriteLine("## The following types have Obsoletes.");
-                writer.WriteLine();
-                foreach (var type in obsoleteTypes)
-                {
-                    writer.WriteLine("### " + HttpUtility.HtmlEncode(type.GetName()));
-                    writer.WriteLine();
-                    if (type.HasObsoleteAttribute())
-                    {
-                        writer.WriteLine(type.GetObsoleteString());
-                        writer.WriteLine();
-                    }
-
-                    WriteObsoleteFields(type, writer);
-                    WriteObsoleteMethods(type, writer, info);
-                }
-                writer.WriteLine();
-            }
-        }
-
         void WriteObsoleteFields(TypeDefinition type, TextWriter writer)
         {
             var obsoletes = type.GetObsoleteFields().ToList();
@@ -133,8 +106,6 @@ namespace APIComparer
                     }
                 }
             }
-
-            WriteObsoletes(diff.RightAllTypes, writer, info);
         }
 
         void WriteOut(TypeDiff typeDiff, TextWriter writer, FormattingInfo info)

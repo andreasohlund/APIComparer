@@ -61,7 +61,7 @@ class Program
 
             if (breakingChanges.Any())
             {
-                Console.Out.Write(": {0} Breaking Changes found", breakingChanges.Count());
+                Console.Out.Write(": {0} Breaking Changes found", breakingChanges.Count);
             }
             else
             {
@@ -113,11 +113,8 @@ class Program
 
             return GetAllNuGetVersions(package,compareStrategy).ToList();
         }
-        else
-        {
-            return GetExplicitNuGetVersions(package, versions).ToList();
-        }
 
+        return GetExplicitNuGetVersions(package, versions).ToList();
     }
 
     static IEnumerable<CompareSet> GetAllNuGetVersions(string package, ICompareStrategy compareStrategy)

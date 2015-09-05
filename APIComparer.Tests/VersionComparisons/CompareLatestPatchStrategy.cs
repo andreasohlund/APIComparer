@@ -15,7 +15,7 @@
             foreach (var major in majorGroups)
             {
 
-                var minorGroups = major.GroupBy(v => v.Version.Minor);
+                var minorGroups = major.GroupBy(v => v.Version.Minor).ToList();
                 var left = minorGroups.First().Max();
 
                 foreach (var minor in minorGroups)

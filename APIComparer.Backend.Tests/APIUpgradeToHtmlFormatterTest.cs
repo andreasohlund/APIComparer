@@ -54,6 +54,12 @@
             Approvals.VerifyHtml(HtmlDiff("LibGit2Sharp.NativeBinaries", "1.0.72", "1.0.81"));
         }
 
+        [Test]
+        public void TestComplianceLibGit2SharpNativeBinariesWithRightMissingNativeAssemblies()
+        {
+            Approvals.VerifyHtml(HtmlDiff("LibGit2Sharp", "0.21.0.176", "0.22.0-pre20150716071016"));
+        }
+
         private string HtmlDiff(string packageName, string fromVersion, string untilVersion)
         {
             using (var writer = new StringWriter())

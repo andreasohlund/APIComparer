@@ -14,6 +14,23 @@
             return value.GetObsoleteAttribute() != null;
         }
 
+        public static bool IsObsoletedWithError(this ICustomAttributeProvider value)
+        {
+            var attribute =  value.GetObsoleteAttribute();
+
+            if (attribute == null)
+            {
+                return false;
+            }
+
+            if (attribute.ConstructorArguments.Count < 2)
+            {
+                return false;
+            }
+
+            return (bool)attribute.ConstructorArguments[1].Value;
+        }
+
         public static bool IsCompilerGenerated(this ICustomAttributeProvider definition)
         {
             var fullName = typeof(CompilerGeneratedAttribute).FullName;
@@ -34,7 +51,6 @@
                 !x.AttributeType.Name.StartsWith("Assembly");
         }
 
-
         public static void RemoveType(this ModuleDefinition module, TypeDefinition typeDefinition)
         {
 
@@ -45,6 +61,7 @@
             }
             module.Types.Remove(typeDefinition);
         }
+
         public static CustomAttribute GetObsoleteAttribute(this ICustomAttributeProvider value)
         {
             var obsoleteAttribute = value.CustomAttributes.FirstOrDefault(a => a.AttributeType.Name == "ObsoleteAttribute");
@@ -305,8 +322,8 @@
                 typeDiff.PublicFieldsRemoved().Any() ||
                 typeDiff.PublicMethodsRemoved().Any() ||
                 typeDiff.FieldsChangedToNonPublic().Any() ||
-                typeDiff.MethodsChangedToNonPublic().Any()
-                ;
+                typeDiff.MethodsChangedToNonPublic().Any() ||
+                typeDiff.TypeObsoleted();
         }
     }
 }

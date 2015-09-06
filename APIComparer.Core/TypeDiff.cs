@@ -4,6 +4,9 @@ using Mono.Cecil;
 
 namespace APIComparer
 {
+    using System.Diagnostics;
+
+    [DebuggerDisplay("{RightType.FullName} => {LeftType.FullName}")]
     public class TypeDiff
     {
         public TypeDefinition LeftType;
@@ -26,14 +29,20 @@ namespace APIComparer
         {
             return MatchingFields.Where(x => !x.Right.IsPublic && x.Left.IsPublic && !x.Left.HasObsoleteAttribute());
         }
+
         public IEnumerable<FieldDefinition> PublicFieldsRemoved()
         {
             return LeftOrphanFields.Where(x => x.IsPublic && !x.HasObsoleteAttribute());
         }
+
         public IEnumerable<MethodDefinition> PublicMethodsRemoved()
         {
             return LeftOrphanMethods.Where(x => x.IsPublic && !x.HasObsoleteAttribute());
         }
 
+        public bool TypeObsoleted()
+        {
+            return !LeftType.HasObsoleteAttribute() && RightType.HasObsoleteAttribute();
+        }
     }
 }

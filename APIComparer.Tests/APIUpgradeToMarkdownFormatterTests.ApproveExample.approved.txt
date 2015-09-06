@@ -12,6 +12,10 @@
 ## The following types have differences.
 
 
+### Example.ClassToBeObsoletedWithErrorInNextVersion
+This type should no longer be used, use XYZ instead. Obsoleted with error.
+
+
 ### Example.IMethodChangesParametersNextVersion
 
 #### Methods Removed

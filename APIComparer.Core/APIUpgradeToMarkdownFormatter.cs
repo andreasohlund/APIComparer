@@ -65,11 +65,17 @@ namespace APIComparer
 
         void WriteOut(TypeDiff typeDiff, TextWriter writer, FormattingInfo info)
         {
+            var typeObsoleted = typeDiff.TypeObsoleted();
             writer.WriteLine();
             writer.Write("### {0}", HttpUtility.HtmlEncode(typeDiff.RightType.GetName()));
+            if (typeObsoleted)
+            {
+                writer.Write("(Obsoleted)");
+            }
+
             writer.WriteLine();
 
-            if (typeDiff.TypeObsoleted())
+            if (typeObsoleted)
             {
                 writer.WriteLine(typeDiff.RightType.GetObsoleteString());
             }

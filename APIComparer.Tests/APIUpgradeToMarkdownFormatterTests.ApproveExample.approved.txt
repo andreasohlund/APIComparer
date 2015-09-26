@@ -20,7 +20,13 @@ This type should no longer be used, use XYZ instead. Obsoleted with error.
 
 #### Fields Obsoleted
 
-  - `string FieldToBeObsoleted`: FieldToBeObsoleted. Will be removed in version 2.0.0. Obsoleted with error.
+  - `string StringField`: StringField. Will be removed in version 2.0.0. Obsoleted with error.
+
+#### Methods Obsoleted
+
+  - `string get_StringProperty()`: StringProperty. Will be removed in version 2.0.0. Obsoleted with error.
+  - `void Method()`: Method. Will be removed in version 2.0.0. Obsoleted with error.
+  - `void set_StringProperty(string)`: StringProperty. Will be removed in version 2.0.0. Obsoleted with error.
 
 
 ### Example.IMethodChangesParametersNextVersion

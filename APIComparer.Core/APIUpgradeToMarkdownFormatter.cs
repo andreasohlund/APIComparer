@@ -150,6 +150,19 @@ namespace APIComparer
                     writer.WriteLine("  - `{0}`", method.GetName());
                 }
             }
+
+            var obsoleted = typeDiff.PublicMethodsObsoleted().ToList();
+            if (obsoleted.Any())
+            {
+                writer.WriteLine();
+                writer.WriteLine("#### Methods Obsoleted");
+                writer.WriteLine();
+                foreach (var method in obsoleted)
+                {
+                    writer.WriteLine("  - `{0}`: {1}", method.Right.GetName(), method.Right.GetObsoleteString());
+                }
+            }
+
         }
     }
 }

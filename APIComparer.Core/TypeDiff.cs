@@ -25,6 +25,16 @@ namespace APIComparer
             return MatchingMethods.Where(x => !x.Right.IsPublic && x.Left.IsPublic && !x.Left.HasObsoleteAttribute());
         }
 
+        public IEnumerable<MatchingMember<MethodDefinition>> PublicMethodsObsoleted()
+        {
+            return MatchingMethods.Where(x => x.Left.IsPublic && x.Right.IsPublic && !x.Left.HasObsoleteAttribute() && x.Right.HasObsoleteAttribute());
+        }
+        
+        public IEnumerable<MethodDefinition> PublicMethodsRemoved()
+        {
+            return LeftOrphanMethods.Where(x => x.IsPublic && !x.HasObsoleteAttribute());
+        }
+
         public IEnumerable<MatchingMember<FieldDefinition>> FieldsChangedToNonPublic()
         {
             return MatchingFields.Where(x => !x.Right.IsPublic && x.Left.IsPublic && !x.Left.HasObsoleteAttribute());
@@ -34,12 +44,7 @@ namespace APIComparer
         {
             return LeftOrphanFields.Where(x => x.IsPublic && !x.HasObsoleteAttribute());
         }
-
-        public IEnumerable<MethodDefinition> PublicMethodsRemoved()
-        {
-            return LeftOrphanMethods.Where(x => x.IsPublic && !x.HasObsoleteAttribute());
-        }
-
+        
         public bool TypeObsoleted()
         {
             return !LeftType.HasObsoleteAttribute() && RightType.HasObsoleteAttribute();
@@ -49,5 +54,7 @@ namespace APIComparer
         {
             return MatchingFields.Where(x => x.Left.IsPublic && x.Right.IsPublic && !x.Left.HasObsoleteAttribute() && x.Right.HasObsoleteAttribute());
         }
+
+    
     }
 }

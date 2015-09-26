@@ -65,7 +65,7 @@ class Program
             }
             else
             {
-                Console.Out.Write(" OK");
+                Console.Out.Write(" No breaking changes found");
             }
 
             var resultFile = Path.Combine(Path.GetTempPath(),Guid.NewGuid() + ".md");

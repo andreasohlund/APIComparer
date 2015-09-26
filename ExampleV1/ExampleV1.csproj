@@ -44,6 +44,7 @@
     <Compile Include="ClassObsoletedInBothVersions.cs" />
     <Compile Include="ClassToBeObsoletedWithErrorInNextVersion.cs" />
     <Compile Include="ClassWithFieldToRemovedInNextMajor.cs" />
+    <Compile Include="ClassWithMembersToBeObsoletedWithErrorInNextVersion.cs" />
     <Compile Include="ClassWithReadOnlyPropToBeRemovedInNextMajor.cs" />
     <Compile Include="IMethodChangesParametersNextVersion.cs" />
     <Compile Include="InternalNextVersionClass.cs" />

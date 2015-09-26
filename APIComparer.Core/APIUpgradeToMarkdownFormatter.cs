@@ -111,6 +111,18 @@ namespace APIComparer
                     writer.WriteLine("  - `{0}`", field.GetName());
                 }
             }
+
+            var obsoleted = typeDiff.PublicFieldsObsoleted().ToList();
+            if (obsoleted.Any())
+            {
+                writer.WriteLine();
+                writer.WriteLine("#### Fields Obsoleted");
+                writer.WriteLine();
+                foreach (var field in obsoleted)
+                {
+                    writer.WriteLine("  - `{0}`: {1}", field.Right.GetName(), field.Right.GetObsoleteString());
+                }
+            }
         }
 
         void WriteMethods(TypeDiff typeDiff, TextWriter writer, FormattingInfo info)

@@ -323,6 +323,7 @@
                 typeDiff.PublicMethodsRemoved().Any() ||
                 typeDiff.FieldsChangedToNonPublic().Any() ||
                 typeDiff.MethodsChangedToNonPublic().Any() ||
+                typeDiff.PublicFieldsObsoleted().Any() ||
                 typeDiff.TypeObsoleted();
         }
     }

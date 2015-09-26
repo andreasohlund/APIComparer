@@ -16,6 +16,13 @@
 This type should no longer be used, use XYZ instead. Obsoleted with error.
 
 
+### Example.ClassWithMembersToBeObsoletedWithErrorInNextVersion
+
+#### Fields Obsoleted
+
+  - `string FieldToBeObsoleted`: FieldToBeObsoleted. Will be removed in version 2.0.0. Obsoleted with error.
+
+
 ### Example.IMethodChangesParametersNextVersion
 
 #### Methods Removed

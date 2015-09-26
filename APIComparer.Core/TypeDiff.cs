@@ -44,5 +44,10 @@ namespace APIComparer
         {
             return !LeftType.HasObsoleteAttribute() && RightType.HasObsoleteAttribute();
         }
+
+        public IEnumerable<MatchingMember<FieldDefinition>> PublicFieldsObsoleted()
+        {
+            return MatchingFields.Where(x => x.Left.IsPublic && x.Right.IsPublic && !x.Left.HasObsoleteAttribute() && x.Right.HasObsoleteAttribute());
+        }
     }
 }

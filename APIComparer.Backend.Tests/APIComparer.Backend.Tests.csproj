@@ -40,6 +40,22 @@
     <Reference Include="ApprovalUtilities.Net45">
       <HintPath>..\packages\ApprovalUtilities.3.0.8\lib\net45\ApprovalUtilities.Net45.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.Cecil, Version=0.9.5.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mono.Cecil.0.9.5.4\lib\net40\Mono.Cecil.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Mono.Cecil.Mdb, Version=0.9.5.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mono.Cecil.0.9.5.4\lib\net40\Mono.Cecil.Mdb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Mono.Cecil.Pdb, Version=0.9.5.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mono.Cecil.0.9.5.4\lib\net40\Mono.Cecil.Pdb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Mono.Cecil.Rocks, Version=0.9.5.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mono.Cecil.0.9.5.4\lib\net40\Mono.Cecil.Rocks.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
@@ -64,6 +80,18 @@
     <ProjectReference Include="..\APIComparer.Backend\APIComparer.Backend.csproj">
       <Project>{829CA5E5-BA5D-4C4F-ABAF-6531AE2EF655}</Project>
       <Name>APIComparer.Backend</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\APIComparer.Core\APIComparer.Core.csproj">
+      <Project>{800763B7-C4F3-44EB-AF5A-C1D211FCE18F}</Project>
+      <Name>APIComparer.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ExampleV1\ExampleV1.csproj">
+      <Project>{ba355065-b2a3-4f08-b5cd-fc6d5009a21f}</Project>
+      <Name>ExampleV1</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ExampleV2\ExampleV2.csproj">
+      <Project>{122b2478-b674-4eb5-b260-1984386d8d34}</Project>
+      <Name>ExampleV2</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

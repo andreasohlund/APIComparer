@@ -22,7 +22,6 @@
         {{> removedpublic }}
         {{> madeinternal }}
         {{> typedifference }}
-        {{> obsolete }}
     {{else}}
         <p>No differences found.<p/>
     {{/if}}
@@ -123,6 +122,7 @@
 <h3>{{ name }}</h3>
 {{> fieldsChangedToNonPublic }}
 {{> fieldsRemoved }}
+{{> fieldsObsoleted }}
 {{> methodsChangedToNonPublic }}
 {{> methodsRemoved }}
 {{/typeDifferences }}
@@ -144,32 +144,17 @@
 ";
         }
 
-        public static string ObsoleteFields()
+        public static string FieldsObsoleted()
         {
             return @"
-{{ #if hasObsoleteFields }}
-<h4>Obsolete Fields</h4>
+{{ #if hasFieldsObsoleted }}
+<h4>Fields Obsoleted</h4>
 <ul>
-  {{ #obsoleteFields }}
+  {{ #fieldsObsoleted }}
   <li><code>{{ name }}</code><br/> {{ codify obsolete }}</li>
-  {{/obsoleteFields }}
+  {{/fieldsObsoleted }}
 </ul>
 {{ /if }}
-";
-        }
-
-        public static string Obsolete()
-        {
-            return @"
-{{ #if hasObsoletes }}
-<h2>The following types have Obsoletes.</h2>
-{{ #obsoletes }}
-<h3>{{ name }}</h3>
-{{ codify obsolete }}
-{{> obsoleteFields }}
-{{> obsoleteMethods }}
-{{/obsoletes}}
-{{/if}}
 ";
         }
     }

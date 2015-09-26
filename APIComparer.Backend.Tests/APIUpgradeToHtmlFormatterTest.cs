@@ -3,8 +3,8 @@
     using System.IO;
     using ApprovalTests;
     using ApprovalTests.Reporters;
-    using APIComparer.Backend;
-    using APIComparer.Backend.Reporting;
+    using Backend;
+    using Backend.Reporting;
     using APIComparer.VersionComparisons;
     using NUnit.Framework;
 
@@ -111,5 +111,31 @@
 
             Approvals.VerifyHtml(writer.ToString());
         }
+
+        [Test]
+        public void Example()
+        {
+            var engine = new ComparerEngine();
+            var diff = engine.CreateDiff("ExampleV1.dll", "ExampleV2.dll");
+
+            var writer = new StringWriter();
+            var formatter = new APIUpgradeToHtmlFormatter();
+            var packageDescription = new PackageDescription
+            {
+                PackageId = "Example",
+                Versions = new VersionPair("1.0.0", "2.0.0")
+            };
+
+            var diffedCompareSet = new DiffedCompareSet
+            {
+                Diff = diff,
+                Set = new CompareSet()
+            };
+            
+            formatter.Render(writer, packageDescription, new [] {diffedCompareSet});
+
+            Approvals.VerifyHtml(writer.ToString());
+        }
+
     }
 }

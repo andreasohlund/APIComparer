@@ -119,9 +119,11 @@
 {{#if hasTypeDifferences }}
 <h2>The following types have differences.</h2>
 {{#typeDifferences }}
-<h3>{{ name }}</h3>
 {{ #if hasBeenObsoleted ~}}
+    <h3>{{ name }} - Obsoleted</h3>
     <p>{{ obsoleteMessage }}</p>
+{{~else~}}
+  <h3>{{ name }}</h3>
 {{~ /if }}
 {{> fieldsChangedToNonPublic }}
 {{> fieldsRemoved }}

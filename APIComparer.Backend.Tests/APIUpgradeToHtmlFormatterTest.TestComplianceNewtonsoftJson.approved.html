@@ -12,28 +12,7 @@
 
         
 
-
-        
-
-<h2>The following types have Obsoletes.</h2>
-
-<h3>Newtonsoft.Json.Bson.BsonReader</h3>
-
-
-
-
-
-
-<h4>Obsolete Methods</h4>
-<ul>
-  
-  <li><code>bool get_JsonNet35BinaryCompatibility()</code><br/> JsonNet35BinaryCompatibility will be removed in a future version of Json.NET. Obsoleted with warning.</li>
-  
-  <li><code>void set_JsonNet35BinaryCompatibility(bool)</code><br/> JsonNet35BinaryCompatibility will be removed in a future version of Json.NET. Obsoleted with warning.</li>
-  
-</ul>
-
-
+<h2>The following types have differences.</h2>
 
 <h3>Newtonsoft.Json.JsonConvert</h3>
 
@@ -42,60 +21,16 @@
 
 
 
-<h4>Obsolete Methods</h4>
-<ul>
-  
-  <li><code>System.Threading.Tasks.Task&lt;string&gt; SerializeObjectAsync(object)</code><br/> SerializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to serialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.SerializeObject(value)). Obsoleted with warning.</li>
-  
-  <li><code>System.Threading.Tasks.Task&lt;string&gt; SerializeObjectAsync(object, Newtonsoft.Json.Formatting)</code><br/> SerializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to serialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.SerializeObject(value, formatting)). Obsoleted with warning.</li>
-  
-  <li><code>System.Threading.Tasks.Task&lt;string&gt; SerializeObjectAsync(object, Newtonsoft.Json.Formatting, Newtonsoft.Json.JsonSerializerSettings)</code><br/> SerializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to serialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.SerializeObject(value, formatting, settings)). Obsoleted with warning.</li>
-  
-  <li><code>System.Threading.Tasks.Task&lt;T&gt; DeserializeObjectAsync&lt;T&gt;(string)</code><br/> DeserializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to deserialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.DeserializeObject<T>(value)). Obsoleted with warning.</li>
-  
-  <li><code>System.Threading.Tasks.Task&lt;T&gt; DeserializeObjectAsync&lt;T&gt;(string, Newtonsoft.Json.JsonSerializerSettings)</code><br/> DeserializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to deserialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.DeserializeObject<T>(value, settings)). Obsoleted with warning.</li>
-  
-  <li><code>System.Threading.Tasks.Task&lt;object&gt; DeserializeObjectAsync(string)</code><br/> DeserializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to deserialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.DeserializeObject(value)). Obsoleted with warning.</li>
-  
-  <li><code>System.Threading.Tasks.Task&lt;object&gt; DeserializeObjectAsync(string, System.Type, Newtonsoft.Json.JsonSerializerSettings)</code><br/> DeserializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to deserialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.DeserializeObject(value, type, settings)). Obsoleted with warning.</li>
-  
-  <li><code>System.Threading.Tasks.Task PopulateObjectAsync(string, object, Newtonsoft.Json.JsonSerializerSettings)</code><br/> PopulateObjectAsync is obsolete. Use the Task.Factory.StartNew method to populate an object with JSON values asynchronously: Task.Factory.StartNew(() => JsonConvert.PopulateObject(value, target, settings)). Obsoleted with warning.</li>
-  
-</ul>
-
-
-
-<h3>Newtonsoft.Json.Serialization.JsonContract</h3>
 
 
 
 
 
 
-<h4>Obsolete Methods</h4>
-<ul>
-  
-  <li><code>System.Reflection.MethodInfo get_OnDeserialized()</code><br/> This property is obsolete and has been replaced by the OnDeserializedCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>void set_OnDeserialized(System.Reflection.MethodInfo)</code><br/> This property is obsolete and has been replaced by the OnDeserializedCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>System.Reflection.MethodInfo get_OnDeserializing()</code><br/> This property is obsolete and has been replaced by the OnDeserializingCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>void set_OnDeserializing(System.Reflection.MethodInfo)</code><br/> This property is obsolete and has been replaced by the OnDeserializingCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>System.Reflection.MethodInfo get_OnSerialized()</code><br/> This property is obsolete and has been replaced by the OnSerializedCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>void set_OnSerialized(System.Reflection.MethodInfo)</code><br/> This property is obsolete and has been replaced by the OnSerializedCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>System.Reflection.MethodInfo get_OnSerializing()</code><br/> This property is obsolete and has been replaced by the OnSerializingCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>void set_OnSerializing(System.Reflection.MethodInfo)</code><br/> This property is obsolete and has been replaced by the OnSerializingCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>System.Reflection.MethodInfo get_OnError()</code><br/> This property is obsolete and has been replaced by the OnErrorCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>void set_OnError(System.Reflection.MethodInfo)</code><br/> This property is obsolete and has been replaced by the OnErrorCallbacks collection. Obsoleted with warning.</li>
-  
-</ul>
+
+
+
+
 
 
 
@@ -106,20 +41,16 @@
 
 
 
-<h4>Obsolete Methods</h4>
-<ul>
-  
-  <li><code>Newtonsoft.Json.Serialization.JsonPropertyCollection get_ConstructorParameters()</code><br/> ConstructorParameters is obsolete. Use CreatorParameters instead. Obsoleted with warning.</li>
-  
-  <li><code>System.Reflection.ConstructorInfo get_OverrideConstructor()</code><br/> OverrideConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
-  
-  <li><code>void set_OverrideConstructor(System.Reflection.ConstructorInfo)</code><br/> OverrideConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
-  
-  <li><code>System.Reflection.ConstructorInfo get_ParametrizedConstructor()</code><br/> ParametrizedConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
-  
-  <li><code>void set_ParametrizedConstructor(System.Reflection.ConstructorInfo)</code><br/> ParametrizedConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
-  
-</ul>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -173,6 +104,9 @@
 
 
 
+
+
+
 <h4>Methods Removed</h4>
 <ul>
   
@@ -208,7 +142,13 @@
 
 
 
+
+
+
 <h3>Newtonsoft.Json.Linq.JContainer</h3>
+
+
+
 
 
 
@@ -233,79 +173,6 @@
 
 
 
-        
-
-<h2>The following types have Obsoletes.</h2>
-
-<h3>Newtonsoft.Json.Bson.BsonReader</h3>
-
-
-
-
-
-
-<h4>Obsolete Methods</h4>
-<ul>
-  
-  <li><code>bool get_JsonNet35BinaryCompatibility()</code><br/> JsonNet35BinaryCompatibility will be removed in a future version of Json.NET. Obsoleted with warning.</li>
-  
-  <li><code>void set_JsonNet35BinaryCompatibility(bool)</code><br/> JsonNet35BinaryCompatibility will be removed in a future version of Json.NET. Obsoleted with warning.</li>
-  
-</ul>
-
-
-
-<h3>Newtonsoft.Json.Serialization.DefaultContractResolver</h3>
-
-
-
-
-
-
-<h4>Obsolete Methods</h4>
-<ul>
-  
-  <li><code>System.Reflection.BindingFlags get_DefaultMembersSearchFlags()</code><br/> DefaultMembersSearchFlags is obsolete. To modify the members serialized inherit from DefaultContractResolver and override the GetSerializableMembers method instead. Obsoleted with warning.</li>
-  
-  <li><code>void set_DefaultMembersSearchFlags(System.Reflection.BindingFlags)</code><br/> DefaultMembersSearchFlags is obsolete. To modify the members serialized inherit from DefaultContractResolver and override the GetSerializableMembers method instead. Obsoleted with warning.</li>
-  
-</ul>
-
-
-
-<h3>Newtonsoft.Json.Serialization.JsonContract</h3>
-
-
-
-
-
-
-<h4>Obsolete Methods</h4>
-<ul>
-  
-  <li><code>System.Reflection.MethodInfo get_OnDeserialized()</code><br/> This property is obsolete and has been replaced by the OnDeserializedCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>void set_OnDeserialized(System.Reflection.MethodInfo)</code><br/> This property is obsolete and has been replaced by the OnDeserializedCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>System.Reflection.MethodInfo get_OnDeserializing()</code><br/> This property is obsolete and has been replaced by the OnDeserializingCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>void set_OnDeserializing(System.Reflection.MethodInfo)</code><br/> This property is obsolete and has been replaced by the OnDeserializingCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>System.Reflection.MethodInfo get_OnSerialized()</code><br/> This property is obsolete and has been replaced by the OnSerializedCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>void set_OnSerialized(System.Reflection.MethodInfo)</code><br/> This property is obsolete and has been replaced by the OnSerializedCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>System.Reflection.MethodInfo get_OnSerializing()</code><br/> This property is obsolete and has been replaced by the OnSerializingCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>void set_OnSerializing(System.Reflection.MethodInfo)</code><br/> This property is obsolete and has been replaced by the OnSerializingCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>System.Reflection.MethodInfo get_OnError()</code><br/> This property is obsolete and has been replaced by the OnErrorCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>void set_OnError(System.Reflection.MethodInfo)</code><br/> This property is obsolete and has been replaced by the OnErrorCallbacks collection. Obsoleted with warning.</li>
-  
-</ul>
-
-
 
 <h3>Newtonsoft.Json.Serialization.JsonObjectContract</h3>
 
@@ -314,20 +181,16 @@
 
 
 
-<h4>Obsolete Methods</h4>
-<ul>
-  
-  <li><code>Newtonsoft.Json.Serialization.JsonPropertyCollection get_ConstructorParameters()</code><br/> ConstructorParameters is obsolete. Use CreatorParameters instead. Obsoleted with warning.</li>
-  
-  <li><code>System.Reflection.ConstructorInfo get_OverrideConstructor()</code><br/> OverrideConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
-  
-  <li><code>void set_OverrideConstructor(System.Reflection.ConstructorInfo)</code><br/> OverrideConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
-  
-  <li><code>System.Reflection.ConstructorInfo get_ParametrizedConstructor()</code><br/> ParametrizedConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
-  
-  <li><code>void set_ParametrizedConstructor(System.Reflection.ConstructorInfo)</code><br/> ParametrizedConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
-  
-</ul>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -358,7 +221,30 @@
 
 <h2>The following types have differences.</h2>
 
+<h3>Newtonsoft.Json.JsonConvert</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <h3>Newtonsoft.Json.Linq.JPropertyDescriptor</h3>
+
+
+
 
 
 
@@ -381,57 +267,6 @@
 
 
 
-        
-
-<h2>The following types have Obsoletes.</h2>
-
-<h3>Newtonsoft.Json.Bson.BsonReader</h3>
-
-
-
-
-
-
-<h4>Obsolete Methods</h4>
-<ul>
-  
-  <li><code>bool get_JsonNet35BinaryCompatibility()</code><br/> JsonNet35BinaryCompatibility will be removed in a future version of Json.NET. Obsoleted with warning.</li>
-  
-  <li><code>void set_JsonNet35BinaryCompatibility(bool)</code><br/> JsonNet35BinaryCompatibility will be removed in a future version of Json.NET. Obsoleted with warning.</li>
-  
-</ul>
-
-
-
-<h3>Newtonsoft.Json.JsonConvert</h3>
-
-
-
-
-
-
-<h4>Obsolete Methods</h4>
-<ul>
-  
-  <li><code>Task&lt;string&gt; SerializeObjectAsync(object)</code><br/> SerializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to serialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.SerializeObject(value)). Obsoleted with warning.</li>
-  
-  <li><code>Task&lt;string&gt; SerializeObjectAsync(object, Newtonsoft.Json.Formatting)</code><br/> SerializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to serialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.SerializeObject(value, formatting)). Obsoleted with warning.</li>
-  
-  <li><code>Task&lt;string&gt; SerializeObjectAsync(object, Newtonsoft.Json.Formatting, Newtonsoft.Json.JsonSerializerSettings)</code><br/> SerializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to serialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.SerializeObject(value, formatting, settings)). Obsoleted with warning.</li>
-  
-  <li><code>Task&lt;T&gt; DeserializeObjectAsync&lt;T&gt;(string)</code><br/> DeserializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to deserialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.DeserializeObject<T>(value)). Obsoleted with warning.</li>
-  
-  <li><code>Task&lt;T&gt; DeserializeObjectAsync&lt;T&gt;(string, Newtonsoft.Json.JsonSerializerSettings)</code><br/> DeserializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to deserialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.DeserializeObject<T>(value, settings)). Obsoleted with warning.</li>
-  
-  <li><code>Task&lt;object&gt; DeserializeObjectAsync(string)</code><br/> DeserializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to deserialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.DeserializeObject(value)). Obsoleted with warning.</li>
-  
-  <li><code>Task&lt;object&gt; DeserializeObjectAsync(string, Type, Newtonsoft.Json.JsonSerializerSettings)</code><br/> DeserializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to deserialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.DeserializeObject(value, type, settings)). Obsoleted with warning.</li>
-  
-  <li><code>Task PopulateObjectAsync(string, object, Newtonsoft.Json.JsonSerializerSettings)</code><br/> PopulateObjectAsync is obsolete. Use the Task.Factory.StartNew method to populate an object with JSON values asynchronously: Task.Factory.StartNew(() => JsonConvert.PopulateObject(value, target, settings)). Obsoleted with warning.</li>
-  
-</ul>
-
-
 
 <h3>Newtonsoft.Json.Serialization.DefaultContractResolver</h3>
 
@@ -440,48 +275,16 @@
 
 
 
-<h4>Obsolete Methods</h4>
-<ul>
-  
-  <li><code>BindingFlags get_DefaultMembersSearchFlags()</code><br/> DefaultMembersSearchFlags is obsolete. To modify the members serialized inherit from DefaultContractResolver and override the GetSerializableMembers method instead. Obsoleted with warning.</li>
-  
-  <li><code>void set_DefaultMembersSearchFlags(BindingFlags)</code><br/> DefaultMembersSearchFlags is obsolete. To modify the members serialized inherit from DefaultContractResolver and override the GetSerializableMembers method instead. Obsoleted with warning.</li>
-  
-</ul>
-
-
-
-<h3>Newtonsoft.Json.Serialization.JsonContract</h3>
 
 
 
 
 
 
-<h4>Obsolete Methods</h4>
-<ul>
-  
-  <li><code>MethodInfo get_OnDeserialized()</code><br/> This property is obsolete and has been replaced by the OnDeserializedCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>void set_OnDeserialized(MethodInfo)</code><br/> This property is obsolete and has been replaced by the OnDeserializedCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>MethodInfo get_OnDeserializing()</code><br/> This property is obsolete and has been replaced by the OnDeserializingCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>void set_OnDeserializing(MethodInfo)</code><br/> This property is obsolete and has been replaced by the OnDeserializingCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>MethodInfo get_OnSerialized()</code><br/> This property is obsolete and has been replaced by the OnSerializedCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>void set_OnSerialized(MethodInfo)</code><br/> This property is obsolete and has been replaced by the OnSerializedCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>MethodInfo get_OnSerializing()</code><br/> This property is obsolete and has been replaced by the OnSerializingCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>void set_OnSerializing(MethodInfo)</code><br/> This property is obsolete and has been replaced by the OnSerializingCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>MethodInfo get_OnError()</code><br/> This property is obsolete and has been replaced by the OnErrorCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>void set_OnError(MethodInfo)</code><br/> This property is obsolete and has been replaced by the OnErrorCallbacks collection. Obsoleted with warning.</li>
-  
-</ul>
+
+
+
+
 
 
 
@@ -492,20 +295,16 @@
 
 
 
-<h4>Obsolete Methods</h4>
-<ul>
-  
-  <li><code>Newtonsoft.Json.Serialization.JsonPropertyCollection get_ConstructorParameters()</code><br/> ConstructorParameters is obsolete. Use CreatorParameters instead. Obsoleted with warning.</li>
-  
-  <li><code>ConstructorInfo get_OverrideConstructor()</code><br/> OverrideConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
-  
-  <li><code>void set_OverrideConstructor(ConstructorInfo)</code><br/> OverrideConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
-  
-  <li><code>ConstructorInfo get_ParametrizedConstructor()</code><br/> ParametrizedConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
-  
-  <li><code>void set_ParametrizedConstructor(ConstructorInfo)</code><br/> ParametrizedConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
-  
-</ul>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -529,7 +328,30 @@
 
 <h2>The following types have differences.</h2>
 
+<h3>Newtonsoft.Json.JsonConvert</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <h3>Newtonsoft.Json.Linq.JPropertyDescriptor</h3>
+
+
+
 
 
 
@@ -552,91 +374,6 @@
 
 
 
-        
-
-<h2>The following types have Obsoletes.</h2>
-
-<h3>Newtonsoft.Json.Bson.BsonReader</h3>
-
-
-
-
-
-
-<h4>Obsolete Methods</h4>
-<ul>
-  
-  <li><code>bool get_JsonNet35BinaryCompatibility()</code><br/> JsonNet35BinaryCompatibility will be removed in a future version of Json.NET. Obsoleted with warning.</li>
-  
-  <li><code>void set_JsonNet35BinaryCompatibility(bool)</code><br/> JsonNet35BinaryCompatibility will be removed in a future version of Json.NET. Obsoleted with warning.</li>
-  
-</ul>
-
-
-
-<h3>Newtonsoft.Json.Serialization.JsonContract</h3>
-
-
-
-
-
-
-<h4>Obsolete Methods</h4>
-<ul>
-  
-  <li><code>MethodInfo get_OnDeserialized()</code><br/> This property is obsolete and has been replaced by the OnDeserializedCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>void set_OnDeserialized(MethodInfo)</code><br/> This property is obsolete and has been replaced by the OnDeserializedCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>MethodInfo get_OnDeserializing()</code><br/> This property is obsolete and has been replaced by the OnDeserializingCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>void set_OnDeserializing(MethodInfo)</code><br/> This property is obsolete and has been replaced by the OnDeserializingCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>MethodInfo get_OnSerialized()</code><br/> This property is obsolete and has been replaced by the OnSerializedCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>void set_OnSerialized(MethodInfo)</code><br/> This property is obsolete and has been replaced by the OnSerializedCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>MethodInfo get_OnSerializing()</code><br/> This property is obsolete and has been replaced by the OnSerializingCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>void set_OnSerializing(MethodInfo)</code><br/> This property is obsolete and has been replaced by the OnSerializingCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>MethodInfo get_OnError()</code><br/> This property is obsolete and has been replaced by the OnErrorCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>void set_OnError(MethodInfo)</code><br/> This property is obsolete and has been replaced by the OnErrorCallbacks collection. Obsoleted with warning.</li>
-  
-</ul>
-
-
-
-<h3>Newtonsoft.Json.JsonConvert</h3>
-
-
-
-
-
-
-<h4>Obsolete Methods</h4>
-<ul>
-  
-  <li><code>Task&lt;string&gt; SerializeObjectAsync(object)</code><br/> SerializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to serialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.SerializeObject(value)). Obsoleted with warning.</li>
-  
-  <li><code>Task&lt;string&gt; SerializeObjectAsync(object, Newtonsoft.Json.Formatting)</code><br/> SerializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to serialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.SerializeObject(value, formatting)). Obsoleted with warning.</li>
-  
-  <li><code>Task&lt;string&gt; SerializeObjectAsync(object, Newtonsoft.Json.Formatting, Newtonsoft.Json.JsonSerializerSettings)</code><br/> SerializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to serialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.SerializeObject(value, formatting, settings)). Obsoleted with warning.</li>
-  
-  <li><code>Task&lt;T&gt; DeserializeObjectAsync&lt;T&gt;(string)</code><br/> DeserializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to deserialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.DeserializeObject<T>(value)). Obsoleted with warning.</li>
-  
-  <li><code>Task&lt;T&gt; DeserializeObjectAsync&lt;T&gt;(string, Newtonsoft.Json.JsonSerializerSettings)</code><br/> DeserializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to deserialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.DeserializeObject<T>(value, settings)). Obsoleted with warning.</li>
-  
-  <li><code>Task&lt;object&gt; DeserializeObjectAsync(string)</code><br/> DeserializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to deserialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.DeserializeObject(value)). Obsoleted with warning.</li>
-  
-  <li><code>Task&lt;object&gt; DeserializeObjectAsync(string, Type, Newtonsoft.Json.JsonSerializerSettings)</code><br/> DeserializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to deserialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.DeserializeObject(value, type, settings)). Obsoleted with warning.</li>
-  
-  <li><code>Task PopulateObjectAsync(string, object, Newtonsoft.Json.JsonSerializerSettings)</code><br/> PopulateObjectAsync is obsolete. Use the Task.Factory.StartNew method to populate an object with JSON values asynchronously: Task.Factory.StartNew(() => JsonConvert.PopulateObject(value, target, settings)). Obsoleted with warning.</li>
-  
-</ul>
-
-
 
 <h3>Newtonsoft.Json.Serialization.DefaultContractResolver</h3>
 
@@ -645,14 +382,16 @@
 
 
 
-<h4>Obsolete Methods</h4>
-<ul>
-  
-  <li><code>BindingFlags get_DefaultMembersSearchFlags()</code><br/> DefaultMembersSearchFlags is obsolete. To modify the members serialized inherit from DefaultContractResolver and override the GetSerializableMembers method instead. Obsoleted with warning.</li>
-  
-  <li><code>void set_DefaultMembersSearchFlags(BindingFlags)</code><br/> DefaultMembersSearchFlags is obsolete. To modify the members serialized inherit from DefaultContractResolver and override the GetSerializableMembers method instead. Obsoleted with warning.</li>
-  
-</ul>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -663,20 +402,16 @@
 
 
 
-<h4>Obsolete Methods</h4>
-<ul>
-  
-  <li><code>Newtonsoft.Json.Serialization.JsonPropertyCollection get_ConstructorParameters()</code><br/> ConstructorParameters is obsolete. Use CreatorParameters instead. Obsoleted with warning.</li>
-  
-  <li><code>ConstructorInfo get_OverrideConstructor()</code><br/> OverrideConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
-  
-  <li><code>void set_OverrideConstructor(ConstructorInfo)</code><br/> OverrideConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
-  
-  <li><code>ConstructorInfo get_ParametrizedConstructor()</code><br/> ParametrizedConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
-  
-  <li><code>void set_ParametrizedConstructor(ConstructorInfo)</code><br/> ParametrizedConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
-  
-</ul>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -712,6 +447,9 @@
 
 
 
+
+
+
 <h4>Methods Removed</h4>
 <ul>
   
@@ -723,61 +461,6 @@
 
 
 
-        
-
-<h2>The following types have Obsoletes.</h2>
-
-<h3>Newtonsoft.Json.Bson.BsonReader</h3>
-
-
-
-
-
-
-<h4>Obsolete Methods</h4>
-<ul>
-  
-  <li><code>bool get_JsonNet35BinaryCompatibility()</code><br/> JsonNet35BinaryCompatibility will be removed in a future version of Json.NET. Obsoleted with warning.</li>
-  
-  <li><code>void set_JsonNet35BinaryCompatibility(bool)</code><br/> JsonNet35BinaryCompatibility will be removed in a future version of Json.NET. Obsoleted with warning.</li>
-  
-</ul>
-
-
-
-<h3>Newtonsoft.Json.Serialization.JsonContract</h3>
-
-
-
-
-
-
-<h4>Obsolete Methods</h4>
-<ul>
-  
-  <li><code>MethodInfo get_OnDeserialized()</code><br/> This property is obsolete and has been replaced by the OnDeserializedCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>void set_OnDeserialized(MethodInfo)</code><br/> This property is obsolete and has been replaced by the OnDeserializedCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>MethodInfo get_OnDeserializing()</code><br/> This property is obsolete and has been replaced by the OnDeserializingCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>void set_OnDeserializing(MethodInfo)</code><br/> This property is obsolete and has been replaced by the OnDeserializingCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>MethodInfo get_OnSerialized()</code><br/> This property is obsolete and has been replaced by the OnSerializedCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>void set_OnSerialized(MethodInfo)</code><br/> This property is obsolete and has been replaced by the OnSerializedCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>MethodInfo get_OnSerializing()</code><br/> This property is obsolete and has been replaced by the OnSerializingCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>void set_OnSerializing(MethodInfo)</code><br/> This property is obsolete and has been replaced by the OnSerializingCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>MethodInfo get_OnError()</code><br/> This property is obsolete and has been replaced by the OnErrorCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>void set_OnError(MethodInfo)</code><br/> This property is obsolete and has been replaced by the OnErrorCallbacks collection. Obsoleted with warning.</li>
-  
-</ul>
-
-
 
 <h3>Newtonsoft.Json.Serialization.DefaultContractResolver</h3>
 
@@ -786,14 +469,16 @@
 
 
 
-<h4>Obsolete Methods</h4>
-<ul>
-  
-  <li><code>BindingFlags get_DefaultMembersSearchFlags()</code><br/> DefaultMembersSearchFlags is obsolete. To modify the members serialized inherit from DefaultContractResolver and override the GetSerializableMembers method instead. Obsoleted with warning.</li>
-  
-  <li><code>void set_DefaultMembersSearchFlags(BindingFlags)</code><br/> DefaultMembersSearchFlags is obsolete. To modify the members serialized inherit from DefaultContractResolver and override the GetSerializableMembers method instead. Obsoleted with warning.</li>
-  
-</ul>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -804,20 +489,16 @@
 
 
 
-<h4>Obsolete Methods</h4>
-<ul>
-  
-  <li><code>Newtonsoft.Json.Serialization.JsonPropertyCollection get_ConstructorParameters()</code><br/> ConstructorParameters is obsolete. Use CreatorParameters instead. Obsoleted with warning.</li>
-  
-  <li><code>ConstructorInfo get_OverrideConstructor()</code><br/> OverrideConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
-  
-  <li><code>void set_OverrideConstructor(ConstructorInfo)</code><br/> OverrideConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
-  
-  <li><code>ConstructorInfo get_ParametrizedConstructor()</code><br/> ParametrizedConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
-  
-  <li><code>void set_ParametrizedConstructor(ConstructorInfo)</code><br/> ParametrizedConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
-  
-</ul>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -853,6 +534,9 @@
 
 
 
+
+
+
 <h4>Methods Removed</h4>
 <ul>
   
@@ -864,61 +548,6 @@
 
 
 
-        
-
-<h2>The following types have Obsoletes.</h2>
-
-<h3>Newtonsoft.Json.Bson.BsonReader</h3>
-
-
-
-
-
-
-<h4>Obsolete Methods</h4>
-<ul>
-  
-  <li><code>bool get_JsonNet35BinaryCompatibility()</code><br/> JsonNet35BinaryCompatibility will be removed in a future version of Json.NET. Obsoleted with warning.</li>
-  
-  <li><code>void set_JsonNet35BinaryCompatibility(bool)</code><br/> JsonNet35BinaryCompatibility will be removed in a future version of Json.NET. Obsoleted with warning.</li>
-  
-</ul>
-
-
-
-<h3>Newtonsoft.Json.Serialization.JsonContract</h3>
-
-
-
-
-
-
-<h4>Obsolete Methods</h4>
-<ul>
-  
-  <li><code>MethodInfo get_OnDeserialized()</code><br/> This property is obsolete and has been replaced by the OnDeserializedCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>void set_OnDeserialized(MethodInfo)</code><br/> This property is obsolete and has been replaced by the OnDeserializedCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>MethodInfo get_OnDeserializing()</code><br/> This property is obsolete and has been replaced by the OnDeserializingCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>void set_OnDeserializing(MethodInfo)</code><br/> This property is obsolete and has been replaced by the OnDeserializingCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>MethodInfo get_OnSerialized()</code><br/> This property is obsolete and has been replaced by the OnSerializedCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>void set_OnSerialized(MethodInfo)</code><br/> This property is obsolete and has been replaced by the OnSerializedCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>MethodInfo get_OnSerializing()</code><br/> This property is obsolete and has been replaced by the OnSerializingCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>void set_OnSerializing(MethodInfo)</code><br/> This property is obsolete and has been replaced by the OnSerializingCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>MethodInfo get_OnError()</code><br/> This property is obsolete and has been replaced by the OnErrorCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>void set_OnError(MethodInfo)</code><br/> This property is obsolete and has been replaced by the OnErrorCallbacks collection. Obsoleted with warning.</li>
-  
-</ul>
-
-
 
 <h3>Newtonsoft.Json.Serialization.DefaultContractResolver</h3>
 
@@ -927,14 +556,16 @@
 
 
 
-<h4>Obsolete Methods</h4>
-<ul>
-  
-  <li><code>BindingFlags get_DefaultMembersSearchFlags()</code><br/> DefaultMembersSearchFlags is obsolete. To modify the members serialized inherit from DefaultContractResolver and override the GetSerializableMembers method instead. Obsoleted with warning.</li>
-  
-  <li><code>void set_DefaultMembersSearchFlags(BindingFlags)</code><br/> DefaultMembersSearchFlags is obsolete. To modify the members serialized inherit from DefaultContractResolver and override the GetSerializableMembers method instead. Obsoleted with warning.</li>
-  
-</ul>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -945,20 +576,16 @@
 
 
 
-<h4>Obsolete Methods</h4>
-<ul>
-  
-  <li><code>Newtonsoft.Json.Serialization.JsonPropertyCollection get_ConstructorParameters()</code><br/> ConstructorParameters is obsolete. Use CreatorParameters instead. Obsoleted with warning.</li>
-  
-  <li><code>ConstructorInfo get_OverrideConstructor()</code><br/> OverrideConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
-  
-  <li><code>void set_OverrideConstructor(ConstructorInfo)</code><br/> OverrideConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
-  
-  <li><code>ConstructorInfo get_ParametrizedConstructor()</code><br/> ParametrizedConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
-  
-  <li><code>void set_ParametrizedConstructor(ConstructorInfo)</code><br/> ParametrizedConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
-  
-</ul>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -980,28 +607,7 @@
 
         
 
-
-        
-
-<h2>The following types have Obsoletes.</h2>
-
-<h3>Newtonsoft.Json.Bson.BsonReader</h3>
-
-
-
-
-
-
-<h4>Obsolete Methods</h4>
-<ul>
-  
-  <li><code>bool get_JsonNet35BinaryCompatibility()</code><br/> JsonNet35BinaryCompatibility will be removed in a future version of Json.NET. Obsoleted with warning.</li>
-  
-  <li><code>void set_JsonNet35BinaryCompatibility(bool)</code><br/> JsonNet35BinaryCompatibility will be removed in a future version of Json.NET. Obsoleted with warning.</li>
-  
-</ul>
-
-
+<h2>The following types have differences.</h2>
 
 <h3>Newtonsoft.Json.JsonConvert</h3>
 
@@ -1010,60 +616,16 @@
 
 
 
-<h4>Obsolete Methods</h4>
-<ul>
-  
-  <li><code>System.Threading.Tasks.Task&lt;string&gt; SerializeObjectAsync(object)</code><br/> SerializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to serialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.SerializeObject(value)). Obsoleted with warning.</li>
-  
-  <li><code>System.Threading.Tasks.Task&lt;string&gt; SerializeObjectAsync(object, Newtonsoft.Json.Formatting)</code><br/> SerializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to serialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.SerializeObject(value, formatting)). Obsoleted with warning.</li>
-  
-  <li><code>System.Threading.Tasks.Task&lt;string&gt; SerializeObjectAsync(object, Newtonsoft.Json.Formatting, Newtonsoft.Json.JsonSerializerSettings)</code><br/> SerializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to serialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.SerializeObject(value, formatting, settings)). Obsoleted with warning.</li>
-  
-  <li><code>System.Threading.Tasks.Task&lt;T&gt; DeserializeObjectAsync&lt;T&gt;(string)</code><br/> DeserializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to deserialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.DeserializeObject<T>(value)). Obsoleted with warning.</li>
-  
-  <li><code>System.Threading.Tasks.Task&lt;T&gt; DeserializeObjectAsync&lt;T&gt;(string, Newtonsoft.Json.JsonSerializerSettings)</code><br/> DeserializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to deserialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.DeserializeObject<T>(value, settings)). Obsoleted with warning.</li>
-  
-  <li><code>System.Threading.Tasks.Task&lt;object&gt; DeserializeObjectAsync(string)</code><br/> DeserializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to deserialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.DeserializeObject(value)). Obsoleted with warning.</li>
-  
-  <li><code>System.Threading.Tasks.Task&lt;object&gt; DeserializeObjectAsync(string, System.Type, Newtonsoft.Json.JsonSerializerSettings)</code><br/> DeserializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to deserialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.DeserializeObject(value, type, settings)). Obsoleted with warning.</li>
-  
-  <li><code>System.Threading.Tasks.Task PopulateObjectAsync(string, object, Newtonsoft.Json.JsonSerializerSettings)</code><br/> PopulateObjectAsync is obsolete. Use the Task.Factory.StartNew method to populate an object with JSON values asynchronously: Task.Factory.StartNew(() => JsonConvert.PopulateObject(value, target, settings)). Obsoleted with warning.</li>
-  
-</ul>
-
-
-
-<h3>Newtonsoft.Json.Serialization.JsonContract</h3>
 
 
 
 
 
 
-<h4>Obsolete Methods</h4>
-<ul>
-  
-  <li><code>System.Reflection.MethodInfo get_OnDeserialized()</code><br/> This property is obsolete and has been replaced by the OnDeserializedCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>void set_OnDeserialized(System.Reflection.MethodInfo)</code><br/> This property is obsolete and has been replaced by the OnDeserializedCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>System.Reflection.MethodInfo get_OnDeserializing()</code><br/> This property is obsolete and has been replaced by the OnDeserializingCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>void set_OnDeserializing(System.Reflection.MethodInfo)</code><br/> This property is obsolete and has been replaced by the OnDeserializingCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>System.Reflection.MethodInfo get_OnSerialized()</code><br/> This property is obsolete and has been replaced by the OnSerializedCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>void set_OnSerialized(System.Reflection.MethodInfo)</code><br/> This property is obsolete and has been replaced by the OnSerializedCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>System.Reflection.MethodInfo get_OnSerializing()</code><br/> This property is obsolete and has been replaced by the OnSerializingCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>void set_OnSerializing(System.Reflection.MethodInfo)</code><br/> This property is obsolete and has been replaced by the OnSerializingCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>System.Reflection.MethodInfo get_OnError()</code><br/> This property is obsolete and has been replaced by the OnErrorCallbacks collection. Obsoleted with warning.</li>
-  
-  <li><code>void set_OnError(System.Reflection.MethodInfo)</code><br/> This property is obsolete and has been replaced by the OnErrorCallbacks collection. Obsoleted with warning.</li>
-  
-</ul>
+
+
+
+
 
 
 
@@ -1074,20 +636,16 @@
 
 
 
-<h4>Obsolete Methods</h4>
-<ul>
-  
-  <li><code>Newtonsoft.Json.Serialization.JsonPropertyCollection get_ConstructorParameters()</code><br/> ConstructorParameters is obsolete. Use CreatorParameters instead. Obsoleted with warning.</li>
-  
-  <li><code>System.Reflection.ConstructorInfo get_OverrideConstructor()</code><br/> OverrideConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
-  
-  <li><code>void set_OverrideConstructor(System.Reflection.ConstructorInfo)</code><br/> OverrideConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
-  
-  <li><code>System.Reflection.ConstructorInfo get_ParametrizedConstructor()</code><br/> ParametrizedConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
-  
-  <li><code>void set_ParametrizedConstructor(System.Reflection.ConstructorInfo)</code><br/> ParametrizedConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
-  
-</ul>
+
+
+
+
+
+
+
+
+
+
 
 
 

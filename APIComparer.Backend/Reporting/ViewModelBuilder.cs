@@ -53,9 +53,12 @@ namespace APIComparer.Backend.Reporting
                    let methodsChangedToNonPublic = BuildMethodsChangedToNonPublic(typeDiff)
                    let methodsRemoved = BuildMethodsRemoved(typeDiff)
                    let methodsObsoleted = BuildMethodsObsoleted(typeDiff)
+                   let hasBeenObsoleted = !typeDiff.LeftType.HasObsoleteAttribute() && typeDiff.RightType.HasObsoleteAttribute() 
                    select new
                    {
                        name = typeDiff.RightType.GetName(),
+                       hasBeenObsoleted,
+                       obsoleteMessage = hasBeenObsoleted ? typeDiff.RightType.GetObsoleteString() : "",
                        hasFieldsChangedToNonPublic = fieldsChangedToNonPublic.Any(),
                        fieldsChangedToNonPublic,
                        hasFieldsObsoleted = fieldsObsoleted.Any(),

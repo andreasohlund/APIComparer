@@ -120,6 +120,9 @@
 <h2>The following types have differences.</h2>
 {{#typeDifferences }}
 <h3>{{ name }}</h3>
+{{ #if hasBeenObsoleted ~}}
+    <p>{{ obsoleteMessage }}</p>
+{{~ /if }}
 {{> fieldsChangedToNonPublic }}
 {{> fieldsRemoved }}
 {{> fieldsObsoleted }}

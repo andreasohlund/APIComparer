@@ -125,22 +125,23 @@
 {{> fieldsObsoleted }}
 {{> methodsChangedToNonPublic }}
 {{> methodsRemoved }}
+{{> methodsObsoleted }}
 {{/typeDifferences }}
 {{/if}}
 ";
         }
 
-        public static string ObsoleteMethods()
+        public static string MethodsObsoleted()
         {
             return @"
-{{ #if hasObsoleteMethods }}
-<h4>Obsolete Methods</h4>
+{{ #if hasMethodsObsoleted ~}}
+<h4>Methods Obsoleted</h4>
 <ul>
-  {{ #obsoleteMethods }}
+  {{ #methodsObsoleted ~}}
   <li><code>{{ name }}</code><br/> {{ codify obsolete }}</li>
-  {{/obsoleteMethods }}
+  {{~/methodsObsoleted }}
 </ul>
-{{ /if }}
+{{~ /if }}
 ";
         }
 

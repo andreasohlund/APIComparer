@@ -52,6 +52,7 @@ namespace APIComparer.Backend.Reporting
                    let fieldsObsoleted = BuildFieldsObsoleted(typeDiff)
                    let methodsChangedToNonPublic = BuildMethodsChangedToNonPublic(typeDiff)
                    let methodsRemoved = BuildMethodsRemoved(typeDiff)
+                   let methodsObsoleted = BuildMethodsObsoleted(typeDiff)
                    select new
                    {
                        name = typeDiff.RightType.GetName(),
@@ -64,7 +65,9 @@ namespace APIComparer.Backend.Reporting
                        hasMethodsChangedToNonPublic = methodsChangedToNonPublic.Any(),
                        methodsChangedToNonPublic,
                        hasMethodsRemoved = methodsRemoved.Any(),
-                       methodsRemoved
+                       methodsRemoved,
+                       hasMethodsObsoleted = fieldsObsoleted.Any(),
+                       methodsObsoleted,
                    };
         }
 
@@ -75,6 +78,17 @@ namespace APIComparer.Backend.Reporting
                 yield return new
                 {
                     name = method.GetName()
+                };
+            }
+        }
+        static IEnumerable<object> BuildMethodsObsoleted(TypeDiff typeDiff)
+        {
+            foreach (var field in typeDiff.PublicMethodsObsoleted())
+            {
+                yield return new
+                {
+                    name = field.Right.GetName(),
+                    obsolete = field.Right.GetObsoleteString()
                 };
             }
         }

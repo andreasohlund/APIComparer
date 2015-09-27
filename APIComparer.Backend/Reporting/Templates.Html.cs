@@ -147,14 +147,14 @@
         public static string FieldsObsoleted()
         {
             return @"
-{{ #if hasFieldsObsoleted }}
+{{ #if hasFieldsObsoleted ~}}
 <h4>Fields Obsoleted</h4>
 <ul>
-  {{ #fieldsObsoleted }}
+  {{ #fieldsObsoleted ~}}
   <li><code>{{ name }}</code><br/> {{ codify obsolete }}</li>
-  {{/fieldsObsoleted }}
+  {{~/fieldsObsoleted }}
 </ul>
-{{ /if }}
+{{~ /if }}
 ";
         }
     }

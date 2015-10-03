@@ -6,123 +6,123 @@
         public static string Comparison()
         {
             return @"
-{{ #targets }}
-{{> target}}
-{{ /targets }}";
+{{~ #targets ~}}
+{{> target }}
+{{~ /targets ~}}";
         }
 
         public static string Target()
         {
             return @"
 <h1>{{ Name }}{{ ComparedTo }}</h1>
-{{#if noLongerSupported }}
+{{~#if noLongerSupported }}
     <p>No longer supported.</p>
 {{else}}
-    {{#if hasChanges }}
+    {{~#if hasChanges }}
         {{> removedpublic }}
         {{> madeinternal }}
         {{> typedifference }}
     {{else}}
         <p>No differences found.<p/>
-    {{/if}}
-{{/if}}
+    {{~/if}}
+{{~/if}}
 ";
         }
 
         public static string RemovedPublic()
         {
             return @"
-{{ #if hasRemovedPublicTypes }}
+{{~ #if hasRemovedPublicTypes }}
 <h2>The following public types have been removed</h2>
 <ul>
-  {{ #removedPublicTypes }}
+  {{~ #removedPublicTypes }}
   <li><code>{{ name }}</code></li>
-  {{ /removedPublicTypes }}
+  {{~/removedPublicTypes }}
 </ul>
-{{/if}}
+{{~/if}}
 ";
         }
 
         public static string MadeInternal()
         {
             return @"
-{{ #if hasTypesMadeInternal }}
+{{~ #if hasTypesMadeInternal }}
 <h2>The following public types have been made internal.</h2>
 <ul>
-  {{ #typesMadeInternal }}
+  {{~ #typesMadeInternal }}
   <li><code>{{name}}</code></li>
-  {{ /typesMadeInternal }}
+  {{~ /typesMadeInternal }}
 </ul>
-{{/if}}
+{{~/if}}
 ";
         }
 
         public static string FieldsChangedToNonPublic()
         {
             return @"
-{{ #if hasFieldsChangedToNonPublic }}
+{{~ #if hasFieldsChangedToNonPublic }}
 <h4>Fields changed to non-public</h4>
 <ul>
-  {{ #fieldsChangedToNonPublic }}
+  {{~ #fieldsChangedToNonPublic }}
   <li><code>{{ name }}</code></li>
-  {{ /fieldsChangedToNonPublic }}
+  {{~ /fieldsChangedToNonPublic }}
 </ul>
-{{ /if }}
+{{~ /if }}
 ";
         }
 
         public static string FieldsRemoved()
         {
             return @"
-{{ #if hasFieldsRemoved }}
+{{~ #if hasFieldsRemoved }}
 <h4>Fields Removed</h4>
 <ul>
-  {{ #fieldsRemoved }}
+  {{~ #fieldsRemoved }}
   <li><code>{{ name }}</code></li>
-  {{/fieldsRemoved }}
+  {{~/fieldsRemoved }}
 </ul>
-{{ /if }}
+{{~ /if }}
 ";
         }
 
         public static string MethodsChangedToNonPublic()
         {
             return @"
-{{ #if hasMethodsChangedToNonPublic }}
+{{~ #if hasMethodsChangedToNonPublic }}
 <h4>Methods changed to non-public</h4>
 <ul>
-  {{ #methodsChangedToNonPublic }}
+  {{~ #methodsChangedToNonPublic }}
   <li><code>{{ name }}</code></li>
-  {{ /methodsChangedToNonPublic }}
+  {{~ /methodsChangedToNonPublic }}
 </ul>
-{{ /if }}
+{{~ /if }}
 ";
         }
 
         public static string MethodsRemoved()
         {
             return @"
-{{ #if hasMethodsRemoved }}
+{{~ #if hasMethodsRemoved }}
 <h4>Methods Removed</h4>
 <ul>
-  {{ #methodsRemoved }}
+  {{~ #methodsRemoved }}
   <li><code>{{ name }}</code></li>
-  {{ /methodsRemoved }}
+  {{~ /methodsRemoved }}
 </ul>
-{{ /if }}
+{{~ /if }}
 ";
         }
 
         public static string TypeDifference()
         {
             return @"
-{{#if hasTypeDifferences }}
+{{~#if hasTypeDifferences }}
 <h2>The following types have differences.</h2>
 {{#typeDifferences }}
-{{ #if hasBeenObsoleted ~}}
+{{~ #if hasBeenObsoleted }}
     <h3>{{ name }} - Obsoleted</h3>
     <p>{{ obsoleteMessage }}</p>
-{{~else~}}
+{{else}}
   <h3>{{ name }}</h3>
 {{~ /if }}
 {{> fieldsChangedToNonPublic }}
@@ -132,17 +132,17 @@
 {{> methodsRemoved }}
 {{> methodsObsoleted }}
 {{/typeDifferences }}
-{{/if}}
+{{~/if}}
 ";
         }
 
         public static string MethodsObsoleted()
         {
             return @"
-{{ #if hasMethodsObsoleted ~}}
+{{~ #if hasMethodsObsoleted }}
 <h4>Methods Obsoleted</h4>
 <ul>
-  {{ #methodsObsoleted ~}}
+  {{~ #methodsObsoleted }}
   <li><code>{{ name }}</code><br/> {{ codify obsolete }}</li>
   {{~/methodsObsoleted }}
 </ul>
@@ -153,10 +153,10 @@
         public static string FieldsObsoleted()
         {
             return @"
-{{ #if hasFieldsObsoleted ~}}
+{{~ #if hasFieldsObsoleted }}
 <h4>Fields Obsoleted</h4>
 <ul>
-  {{ #fieldsObsoleted ~}}
+  {{~ #fieldsObsoleted }}
   <li><code>{{ name }}</code><br/> {{ codify obsolete }}</li>
   {{~/fieldsObsoleted }}
 </ul>

@@ -6,7 +6,6 @@ namespace APIComparer
 {
     public class Diff
     {
-        public List<TypeDefinition> RightAllTypes;
         public List<TypeDefinition> LeftOrphanTypes;
         public List<TypeDefinition> RightOrphanTypes;
         public List<TypeDiff> MatchingTypeDiffs;

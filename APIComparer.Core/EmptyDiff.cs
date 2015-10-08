@@ -7,7 +7,6 @@
     {
         public EmptyDiff()
         {
-            RightAllTypes = new List<TypeDefinition>();
             LeftOrphanTypes = new List<TypeDefinition>();
             RightOrphanTypes = new List<TypeDefinition>();
             MatchingTypeDiffs = new List<TypeDiff>();

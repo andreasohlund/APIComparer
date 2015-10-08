@@ -85,7 +85,6 @@ namespace APIComparer
 
             return new Diff
             {
-                RightAllTypes = rightRealTypes,
                 LeftOrphanTypes = leftOrphans.OrderBy(x=>x.FullName).ToList(),
                 RightOrphanTypes = rightOrphans.OrderBy(x => x.FullName).ToList(),
                 MatchingTypeDiffs = typeDiffs.OrderBy(x => x.RightType.FullName).ToList(),

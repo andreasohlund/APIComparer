@@ -46,7 +46,7 @@ class Program
         }
     }
 
-    private static void Compare(CompareSet compareSet,bool showAllVersions = true)
+    private static void Compare(CompareSet compareSet, bool showAllVersions = true)
     {
         var engine = new ComparerEngine();
 
@@ -65,12 +65,13 @@ class Program
             }
             else
             {
-                Console.Out.Write(" OK");
+                Console.Out.Write(" No breaking changes found");
             }
 
-            var resultFile = string.Format("{0}-{1}..{2}.md", compareSet.Name, compareSet.Versions.LeftVersion, compareSet.Versions.RightVersion);
+            var resultFile = Path.Combine(Path.GetTempPath(),Guid.NewGuid() + ".md");
+
             using (var fileStream = File.OpenWrite(resultFile))
-            using(var into = new StreamWriter(fileStream))
+            using (var into = new StreamWriter(fileStream))
             {
                 var formatter = new APIUpgradeToMarkdownFormatter();
                 formatter.WriteOut(diff, into, new FormattingInfo("tbd", "tbd"));
@@ -80,7 +81,7 @@ class Program
                 fileStream.Close();
             }
 
-            Console.Out.WriteLine(", Full report written to " + resultFile);            
+            Process.Start(resultFile);
         }
     }
 
@@ -111,7 +112,7 @@ class Program
                 compareStrategy = CompareStrategies.Parse(args[strategyIndex + 1]);
             }
 
-            return GetAllNuGetVersions(package,compareStrategy).ToList();
+            return GetAllNuGetVersions(package, compareStrategy).ToList();
         }
 
         return GetExplicitNuGetVersions(package, versions).ToList();
@@ -122,7 +123,7 @@ class Program
         var browser = new NuGetBrowser(new List<string> { "https://www.nuget.org/api/v2" });
 
         Console.Out.Write("Loading version history for {0}", package);
-     
+
         var allVersions = browser.GetAllVersions(package);
 
         Console.Out.WriteLine(" - done");
@@ -144,7 +145,7 @@ class Program
         var leftVersion = versionParts[0];
 
         var rightVersion = versionParts[1];
-        yield return CreateCompareSet(nugetName, new VersionPair(leftVersion,rightVersion));
+        yield return CreateCompareSet(nugetName, new VersionPair(leftVersion, rightVersion));
     }
 
     static CompareSet CreateCompareSet(string package, VersionPair versions)
@@ -152,12 +153,12 @@ class Program
         var nugetDownloader = new NuGetDownloader(package, new List<string> { "https://www.nuget.org/api/v2" });
 
         Console.Out.Write("Preparing {0}-{1}", package, versions);
-     
+
         var leftAssemblyGroup = new AssemblyGroup(nugetDownloader.DownloadAndExtractVersion(versions.LeftVersion));
         var rightAssemblyGroup = new AssemblyGroup(nugetDownloader.DownloadAndExtractVersion(versions.RightVersion));
 
         Console.Out.WriteLine(" done");
-     
+
         return new CompareSet
         {
             Name = package,
@@ -205,7 +206,7 @@ class Program
 
             var nugetBrowser = new NuGetBrowser(feeds);
 
-            var version = nugetBrowser.GetAllVersions(nugetName,args.Contains("--include-prerelease")).Max();
+            var version = nugetBrowser.GetAllVersions(nugetName, args.Contains("--include-prerelease")).Max();
 
             var nugetDownloader = new NuGetDownloader(nugetName, feeds);
 

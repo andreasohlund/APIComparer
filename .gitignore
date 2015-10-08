@@ -36,6 +36,7 @@ csx
 *.ncrunchsolution
 _NCrunch_*
 logs
+.vs
 run-git.cmd
 
 *.jtconfig

@@ -1,56 +1,29 @@
 ﻿
-
-
 <h1>.NETFramework,Version=v4.0</h1>
-
-    
         
-
 <h2>The following public types have been removed</h2>
 <ul>
-  
   <li><code>LibGit2Sharp.BlobExtensions</code></li>
-  
   <li><code>LibGit2Sharp.BranchCollectionExtensions</code></li>
-  
   <li><code>LibGit2Sharp.ConfigurationExtensions</code></li>
-  
   <li><code>LibGit2Sharp.NetworkExtensions</code></li>
-  
   <li><code>LibGit2Sharp.NoteCollectionExtensions</code></li>
-  
   <li><code>LibGit2Sharp.ObjectDatabaseExtensions</code></li>
-  
   <li><code>LibGit2Sharp.ReferenceCollectionExtensions</code></li>
-  
   <li><code>LibGit2Sharp.TagCollectionExtensions</code></li>
-  
   <li><code>LibGit2Sharp.TreeDefinitionExtensions</code></li>
-  
 </ul>
-
-
         
-
 <h2>The following public types have been made internal.</h2>
 <ul>
-  
   <li><code>LibGit2Sharp.Core.Epoch</code></li>
-  
   <li><code>LibGit2Sharp.Core.GitCredentialType</code></li>
-  
   <li><code>LibGit2Sharp.ReferenceExtensions</code></li>
-  
 </ul>
-
-
         
-
 <h2>The following types have differences.</h2>
 
-<h3>LibGit2Sharp.BranchCollection</h3>
-
-
+  <h3>LibGit2Sharp.BranchCollection</h3>
 
 
 
@@ -62,30 +35,22 @@
 
 <h4>Methods Removed</h4>
 <ul>
-  
   <li><code>LibGit2Sharp.Branch Add(string, LibGit2Sharp.Commit, LibGit2Sharp.Signature, string, bool)</code></li>
-  
   <li><code>LibGit2Sharp.Branch Rename(LibGit2Sharp.Branch, string, LibGit2Sharp.Signature, string, bool)</code></li>
-  
 </ul>
 
 
 
-<h3>LibGit2Sharp.CherryPickOptions</h3>
 
-
+  <h3>LibGit2Sharp.CherryPickOptions</h3>
 
 
 
 <h4>Fields Removed</h4>
 <ul>
-  
   <li><code>int RenameThreshold</code></li>
-  
   <li><code>int TargetLimit</code></li>
-  
 </ul>
-
 
 
 
@@ -94,61 +59,27 @@
 
 <h4>Methods Removed</h4>
 <ul>
-  
   <li><code>LibGit2Sharp.CheckoutNotifyFlags get_CheckoutNotifyFlags()</code></li>
-  
   <li><code>bool get_CommitOnSuccess()</code></li>
-  
   <li><code>LibGit2Sharp.CheckoutFileConflictStrategy get_FileConflictStrategy()</code></li>
-  
   <li><code>bool get_FindRenames()</code></li>
-  
   <li><code>LibGit2Sharp.MergeFileFavor get_MergeFileFavor()</code></li>
-  
   <li><code>LibGit2Sharp.Handlers.CheckoutNotifyHandler get_OnCheckoutNotify()</code></li>
-  
   <li><code>LibGit2Sharp.Handlers.CheckoutProgressHandler get_OnCheckoutProgress()</code></li>
-  
   <li><code>void set_CheckoutNotifyFlags(LibGit2Sharp.CheckoutNotifyFlags)</code></li>
-  
   <li><code>void set_CommitOnSuccess(bool)</code></li>
-  
   <li><code>void set_FileConflictStrategy(LibGit2Sharp.CheckoutFileConflictStrategy)</code></li>
-  
   <li><code>void set_FindRenames(bool)</code></li>
-  
   <li><code>void set_MergeFileFavor(LibGit2Sharp.MergeFileFavor)</code></li>
-  
   <li><code>void set_OnCheckoutNotify(LibGit2Sharp.Handlers.CheckoutNotifyHandler)</code></li>
-  
   <li><code>void set_OnCheckoutProgress(LibGit2Sharp.Handlers.CheckoutProgressHandler)</code></li>
-  
-</ul>
-
-
-
-<h3>LibGit2Sharp.FileStatus</h3>
-
-
-
-
-
-<h4>Fields Removed</h4>
-<ul>
-  
-  <li><code>LibGit2Sharp.FileStatus RenamedInWorkDir</code></li>
-  
 </ul>
 
 
 
 
+  <h3>LibGit2Sharp.CommitLog</h3>
 
-
-
-
-
-<h3>LibGit2Sharp.IRepository</h3>
 
 
 
@@ -160,378 +91,30 @@
 
 
 
-<h4>Methods Removed</h4>
+
+  <h3>LibGit2Sharp.Configuration</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h3>LibGit2Sharp.FastForwardStrategy</h3>
+
+
+
+
+
+<h4>Fields Obsoleted</h4>
 <ul>
-  
-  <li><code>LibGit2Sharp.Branch Checkout(LibGit2Sharp.Branch, LibGit2Sharp.CheckoutOptions, LibGit2Sharp.Signature)</code></li>
-  
-  <li><code>LibGit2Sharp.Branch Checkout(string, LibGit2Sharp.CheckoutOptions, LibGit2Sharp.Signature)</code></li>
-  
-  <li><code>LibGit2Sharp.Branch Checkout(LibGit2Sharp.Commit, LibGit2Sharp.CheckoutOptions, LibGit2Sharp.Signature)</code></li>
-  
-  <li><code>void Reset(LibGit2Sharp.ResetMode, LibGit2Sharp.Commit, LibGit2Sharp.Signature, string)</code></li>
-  
-</ul>
-
-
-
-<h3>LibGit2Sharp.MergeOptions</h3>
-
-
-
-
-
-<h4>Fields Removed</h4>
-<ul>
-  
-  <li><code>int RenameThreshold</code></li>
-  
-  <li><code>int TargetLimit</code></li>
-  
-</ul>
-
-
-
-
-
-
-
-<h4>Methods Removed</h4>
-<ul>
-  
-  <li><code>LibGit2Sharp.CheckoutNotifyFlags get_CheckoutNotifyFlags()</code></li>
-  
-  <li><code>bool get_CommitOnSuccess()</code></li>
-  
-  <li><code>LibGit2Sharp.CheckoutFileConflictStrategy get_FileConflictStrategy()</code></li>
-  
-  <li><code>bool get_FindRenames()</code></li>
-  
-  <li><code>LibGit2Sharp.MergeFileFavor get_MergeFileFavor()</code></li>
-  
-  <li><code>LibGit2Sharp.Handlers.CheckoutNotifyHandler get_OnCheckoutNotify()</code></li>
-  
-  <li><code>LibGit2Sharp.Handlers.CheckoutProgressHandler get_OnCheckoutProgress()</code></li>
-  
-  <li><code>void set_CheckoutNotifyFlags(LibGit2Sharp.CheckoutNotifyFlags)</code></li>
-  
-  <li><code>void set_CommitOnSuccess(bool)</code></li>
-  
-  <li><code>void set_FileConflictStrategy(LibGit2Sharp.CheckoutFileConflictStrategy)</code></li>
-  
-  <li><code>void set_FindRenames(bool)</code></li>
-  
-  <li><code>void set_MergeFileFavor(LibGit2Sharp.MergeFileFavor)</code></li>
-  
-  <li><code>void set_OnCheckoutNotify(LibGit2Sharp.Handlers.CheckoutNotifyHandler)</code></li>
-  
-  <li><code>void set_OnCheckoutProgress(LibGit2Sharp.Handlers.CheckoutProgressHandler)</code></li>
-  
-</ul>
-
-
-
-<h3>LibGit2Sharp.Network</h3>
-
-
-
-
-
-
-
-
-
-
-
-<h4>Methods Removed</h4>
-<ul>
-  
-  <li><code>void Fetch(LibGit2Sharp.Remote, LibGit2Sharp.FetchOptions, LibGit2Sharp.Signature, string)</code></li>
-  
-  <li><code>void Fetch(LibGit2Sharp.Remote, IEnumerable&lt;string&gt;, LibGit2Sharp.FetchOptions, LibGit2Sharp.Signature, string)</code></li>
-  
-  <li><code>void Fetch(string, IEnumerable&lt;string&gt;, LibGit2Sharp.FetchOptions, LibGit2Sharp.Signature, string)</code></li>
-  
-  <li><code>void Push(LibGit2Sharp.Remote, string, string, LibGit2Sharp.PushOptions, LibGit2Sharp.Signature, string)</code></li>
-  
-  <li><code>void Push(LibGit2Sharp.Remote, string, LibGit2Sharp.PushOptions, LibGit2Sharp.Signature, string)</code></li>
-  
-  <li><code>void Push(LibGit2Sharp.Remote, IEnumerable&lt;string&gt;, LibGit2Sharp.PushOptions, LibGit2Sharp.Signature, string)</code></li>
-  
-</ul>
-
-
-
-<h3>LibGit2Sharp.ObjectDatabase</h3>
-
-
-
-
-
-
-
-
-
-
-
-<h4>Methods Removed</h4>
-<ul>
-  
-  <li><code>LibGit2Sharp.Blob CreateBlob(Stream, string, Nullable&lt;int&gt;)</code></li>
-  
-  <li><code>LibGit2Sharp.Blob CreateBlob(Stream, int)</code></li>
-  
-  <li><code>string ShortenObjectId(LibGit2Sharp.GitObject, Nullable&lt;int&gt;)</code></li>
-  
-</ul>
-
-
-
-<h3>LibGit2Sharp.ReferenceCollection</h3>
-
-
-
-
-
-
-
-
-
-
-
-<h4>Methods Removed</h4>
-<ul>
-  
-  <li><code>LibGit2Sharp.DirectReference Add(string, LibGit2Sharp.ObjectId, LibGit2Sharp.Signature, string, bool)</code></li>
-  
-  <li><code>LibGit2Sharp.SymbolicReference Add(string, LibGit2Sharp.Reference, LibGit2Sharp.Signature, string, bool)</code></li>
-  
-  <li><code>LibGit2Sharp.Reference Rename(LibGit2Sharp.Reference, string, LibGit2Sharp.Signature, string, bool)</code></li>
-  
-  <li><code>LibGit2Sharp.Reference UpdateTarget(LibGit2Sharp.Reference, LibGit2Sharp.ObjectId, LibGit2Sharp.Signature, string)</code></li>
-  
-  <li><code>LibGit2Sharp.Reference UpdateTarget(LibGit2Sharp.Reference, LibGit2Sharp.Reference, LibGit2Sharp.Signature, string)</code></li>
-  
-</ul>
-
-
-
-<h3>LibGit2Sharp.RemoteUpdater</h3>
-
-
-
-
-
-
-
-
-
-
-
-<h4>Methods Removed</h4>
-<ul>
-  
-  <li><code>void Dispose()</code></li>
-  
-</ul>
-
-
-
-<h3>LibGit2Sharp.Repository</h3>
-
-
-
-
-
-
-
-
-
-
-
-<h4>Methods Removed</h4>
-<ul>
-  
-  <li><code>LibGit2Sharp.Branch Checkout(string, LibGit2Sharp.CheckoutOptions, LibGit2Sharp.Signature)</code></li>
-  
-  <li><code>LibGit2Sharp.Branch Checkout(LibGit2Sharp.Branch, LibGit2Sharp.CheckoutOptions, LibGit2Sharp.Signature)</code></li>
-  
-  <li><code>LibGit2Sharp.Branch Checkout(LibGit2Sharp.Commit, LibGit2Sharp.CheckoutOptions, LibGit2Sharp.Signature)</code></li>
-  
-  <li><code>void Reset(LibGit2Sharp.ResetMode, LibGit2Sharp.Commit, LibGit2Sharp.Signature, string)</code></li>
-  
-</ul>
-
-
-
-<h3>LibGit2Sharp.RepositoryExtensions</h3>
-
-
-
-
-
-
-
-
-
-
-
-<h4>Methods Removed</h4>
-<ul>
-  
-  <li><code>LibGit2Sharp.Branch Checkout(LibGit2Sharp.IRepository, string, LibGit2Sharp.Signature)</code></li>
-  
-  <li><code>LibGit2Sharp.Branch Checkout(LibGit2Sharp.IRepository, LibGit2Sharp.Branch, LibGit2Sharp.Signature)</code></li>
-  
-  <li><code>LibGit2Sharp.Branch Checkout(LibGit2Sharp.IRepository, LibGit2Sharp.Commit, LibGit2Sharp.Signature)</code></li>
-  
-  <li><code>LibGit2Sharp.Branch CreateBranch(LibGit2Sharp.IRepository, string, LibGit2Sharp.Signature, string)</code></li>
-  
-  <li><code>LibGit2Sharp.Branch CreateBranch(LibGit2Sharp.IRepository, string, LibGit2Sharp.Commit, LibGit2Sharp.Signature, string)</code></li>
-  
-  <li><code>LibGit2Sharp.Branch CreateBranch(LibGit2Sharp.IRepository, string, string, LibGit2Sharp.Signature, string)</code></li>
-  
-  <li><code>void Reset(LibGit2Sharp.IRepository, LibGit2Sharp.ResetMode, string, LibGit2Sharp.Signature, string)</code></li>
-  
-</ul>
-
-
-
-<h3>LibGit2Sharp.RevertOptions</h3>
-
-
-
-
-
-<h4>Fields Removed</h4>
-<ul>
-  
-  <li><code>int RenameThreshold</code></li>
-  
-  <li><code>int TargetLimit</code></li>
-  
-</ul>
-
-
-
-
-
-
-
-<h4>Methods Removed</h4>
-<ul>
-  
-  <li><code>LibGit2Sharp.CheckoutNotifyFlags get_CheckoutNotifyFlags()</code></li>
-  
-  <li><code>bool get_CommitOnSuccess()</code></li>
-  
-  <li><code>LibGit2Sharp.CheckoutFileConflictStrategy get_FileConflictStrategy()</code></li>
-  
-  <li><code>bool get_FindRenames()</code></li>
-  
-  <li><code>LibGit2Sharp.MergeFileFavor get_MergeFileFavor()</code></li>
-  
-  <li><code>LibGit2Sharp.Handlers.CheckoutNotifyHandler get_OnCheckoutNotify()</code></li>
-  
-  <li><code>LibGit2Sharp.Handlers.CheckoutProgressHandler get_OnCheckoutProgress()</code></li>
-  
-  <li><code>void set_CheckoutNotifyFlags(LibGit2Sharp.CheckoutNotifyFlags)</code></li>
-  
-  <li><code>void set_CommitOnSuccess(bool)</code></li>
-  
-  <li><code>void set_FileConflictStrategy(LibGit2Sharp.CheckoutFileConflictStrategy)</code></li>
-  
-  <li><code>void set_FindRenames(bool)</code></li>
-  
-  <li><code>void set_MergeFileFavor(LibGit2Sharp.MergeFileFavor)</code></li>
-  
-  <li><code>void set_OnCheckoutNotify(LibGit2Sharp.Handlers.CheckoutNotifyHandler)</code></li>
-  
-  <li><code>void set_OnCheckoutProgress(LibGit2Sharp.Handlers.CheckoutProgressHandler)</code></li>
-  
-</ul>
-
-
-
-<h3>LibGit2Sharp.TreeChanges</h3>
-
-
-
-
-
-
-
-
-
-
-
-<h4>Methods Removed</h4>
-<ul>
-  
-  <li><code>LibGit2Sharp.TreeEntryChanges get_Item(string)</code></li>
-  
-</ul>
-
-
-
-
-
-        
-
-<h2>The following types have Obsoletes.</h2>
-
-<h3>LibGit2Sharp.ReferenceWrapper&lt;TObject&gt;</h3>
-
-
-
-
-
-
-<h4>Obsolete Methods</h4>
-<ul>
-  
-  <li><code>string get_Name()</code><br/> This property will be removed in the next release. Please use FriendlyName instead. Obsoleted with warning.</li>
-  
-</ul>
-
-
-
-<h3>LibGit2Sharp.CompareOptions</h3>
-
-
-
-
-
-
-<h4>Obsolete Methods</h4>
-<ul>
-  
-  <li><code>bool get_UsePatienceAlgorithm()</code><br/> This property will be removed in the next release. Please use Algorithm instead. Obsoleted with warning.</li>
-  
-  <li><code>void set_UsePatienceAlgorithm(bool)</code><br/> This property will be removed in the next release. Please use Algorithm instead. Obsoleted with warning.</li>
-  
-</ul>
-
-
-
-<h3>LibGit2Sharp.MergeConflictException</h3>
-This type will be removed in the next release. Please use CheckoutConflictException instead. Obsoleted with warning.
-
-
-
-
-
-
-
-<h3>LibGit2Sharp.FastForwardStrategy</h3>
-
-
-
-<h4>Obsolete Fields</h4>
-<ul>
-  
   <li><code>LibGit2Sharp.FastForwardStrategy NoFastFoward</code><br/> This enum member will be removed in the next release. Please use NoFastForward instead. Obsoleted with warning.</li>
-  
 </ul>
 
 
@@ -539,117 +122,31 @@ This type will be removed in the next release. Please use CheckoutConflictExcept
 
 
 
-<h3>LibGit2Sharp.ReflogEntry</h3>
-
-
-
-
-
-
-<h4>Obsolete Methods</h4>
+<h4>Methods Obsoleted</h4>
 <ul>
-  
-  <li><code>LibGit2Sharp.Signature get_Commiter()</code><br/> This property will be removed in the next release. Please use Committer instead. Obsoleted with warning.</li>
-  
 </ul>
 
 
-
-<h3>LibGit2Sharp.IQueryableCommitLog</h3>
-
+  <h3>LibGit2Sharp.FileStatus</h3>
 
 
 
-
-
-<h4>Obsolete Methods</h4>
+<h4>Fields Removed</h4>
 <ul>
-  
-  <li><code>LibGit2Sharp.Commit FindMergeBase(LibGit2Sharp.Commit, LibGit2Sharp.Commit)</code><br/> This method will be removed in the next release. Please use ObjectDatabase.FindMergeBase() instead. Obsoleted with warning.</li>
-  
-  <li><code>LibGit2Sharp.Commit FindMergeBase(IEnumerable&lt;LibGit2Sharp.Commit&gt;, LibGit2Sharp.MergeBaseFindingStrategy)</code><br/> This method will be removed in the next release. Please use ObjectDatabase.FindMergeBase() instead. Obsoleted with warning.</li>
-  
+  <li><code>LibGit2Sharp.FileStatus RenamedInWorkDir</code></li>
 </ul>
 
 
-
-<h3>LibGit2Sharp.CommitLog</h3>
-
-
-
-
-
-
-<h4>Obsolete Methods</h4>
+<h4>Fields Obsoleted</h4>
 <ul>
-  
-  <li><code>LibGit2Sharp.Commit FindMergeBase(LibGit2Sharp.Commit, LibGit2Sharp.Commit)</code><br/> This method will be removed in the next release. Please use ObjectDatabase.FindMergeBase() instead. Obsoleted with warning.</li>
-  
-  <li><code>LibGit2Sharp.Commit FindMergeBase(IEnumerable&lt;LibGit2Sharp.Commit&gt;, LibGit2Sharp.MergeBaseFindingStrategy)</code><br/> This method will be removed in the next release. Please use ObjectDatabase.FindMergeBase() instead. Obsoleted with warning.</li>
-  
-</ul>
-
-
-
-<h3>LibGit2Sharp.Configuration</h3>
-
-
-
-
-
-
-<h4>Obsolete Methods</h4>
-<ul>
-  
-  <li><code>void .ctor(string)</code><br/> This method will be removed in the next release. Please use Configuration.BuildFrom(string, string) instead. Obsoleted with warning.</li>
-  
-  <li><code>void .ctor(string, string)</code><br/> This method will be removed in the next release. Please use Configuration.BuildFrom(string, string, string) instead. Obsoleted with warning.</li>
-  
-  <li><code>void .ctor(string, string, string)</code><br/> This method will be removed in the next release. Please use Configuration.BuildFrom(string, string, string, string) instead. Obsoleted with warning.</li>
-  
-</ul>
-
-
-
-<h3>LibGit2Sharp.IRepository</h3>
-
-
-
-
-
-
-<h4>Obsolete Methods</h4>
-<ul>
-  
-  <li><code>void Reset(LibGit2Sharp.Commit, IEnumerable&lt;string&gt;, LibGit2Sharp.ExplicitPathsOptions)</code><br/> This method will be removed in the next release. Please use Index.Replace() instead. Obsoleted with warning.</li>
-  
-</ul>
-
-
-
-<h3>LibGit2Sharp.FileStatus</h3>
-
-
-
-<h4>Obsolete Fields</h4>
-<ul>
-  
   <li><code>LibGit2Sharp.FileStatus Added</code><br/> This enum member will be removed in the next release. Please use NewInIndex instead. Obsoleted with warning.</li>
-  
-  <li><code>LibGit2Sharp.FileStatus Staged</code><br/> This enum member will be removed in the next release. Please use ModifiedInIndex instead. Obsoleted with warning.</li>
-  
-  <li><code>LibGit2Sharp.FileStatus Removed</code><br/> This enum member will be removed in the next release. Please use DeletedFromIndex instead. Obsoleted with warning.</li>
-  
-  <li><code>LibGit2Sharp.FileStatus StagedTypeChange</code><br/> This enum member will be removed in the next release. Please use TypeChangeInIndex instead. Obsoleted with warning.</li>
-  
-  <li><code>LibGit2Sharp.FileStatus Untracked</code><br/> This enum member will be removed in the next release. Please use NewInWorkdir instead. Obsoleted with warning.</li>
-  
-  <li><code>LibGit2Sharp.FileStatus Modified</code><br/> This enum member will be removed in the next release. Please use ModifiedInWorkdir instead. Obsoleted with warning.</li>
-  
   <li><code>LibGit2Sharp.FileStatus Missing</code><br/> This enum member will be removed in the next release. Please use DeletedFromWorkdir instead. Obsoleted with warning.</li>
-  
+  <li><code>LibGit2Sharp.FileStatus Modified</code><br/> This enum member will be removed in the next release. Please use ModifiedInWorkdir instead. Obsoleted with warning.</li>
+  <li><code>LibGit2Sharp.FileStatus Removed</code><br/> This enum member will be removed in the next release. Please use DeletedFromIndex instead. Obsoleted with warning.</li>
+  <li><code>LibGit2Sharp.FileStatus Staged</code><br/> This enum member will be removed in the next release. Please use ModifiedInIndex instead. Obsoleted with warning.</li>
+  <li><code>LibGit2Sharp.FileStatus StagedTypeChange</code><br/> This enum member will be removed in the next release. Please use TypeChangeInIndex instead. Obsoleted with warning.</li>
   <li><code>LibGit2Sharp.FileStatus TypeChanged</code><br/> This enum member will be removed in the next release. Please use TypeChangeInWorkdir instead. Obsoleted with warning.</li>
-  
+  <li><code>LibGit2Sharp.FileStatus Untracked</code><br/> This enum member will be removed in the next release. Please use NewInWorkdir instead. Obsoleted with warning.</li>
 </ul>
 
 
@@ -657,44 +154,311 @@ This type will be removed in the next release. Please use CheckoutConflictExcept
 
 
 
-<h3>LibGit2Sharp.Repository</h3>
-
-
-
-
-
-
-<h4>Obsolete Methods</h4>
+<h4>Methods Obsoleted</h4>
 <ul>
-  
-  <li><code>void Reset(LibGit2Sharp.Commit, IEnumerable&lt;string&gt;, LibGit2Sharp.ExplicitPathsOptions)</code><br/> This method will be removed in the next release. Please use Index.Replace() instead. Obsoleted with warning.</li>
-  
 </ul>
 
 
-
-<h3>LibGit2Sharp.RepositoryExtensions</h3>
-
+  <h3>LibGit2Sharp.IQueryableCommitLog</h3>
 
 
 
 
 
-<h4>Obsolete Methods</h4>
+
+
+
+
+
+
+
+
+  <h3>LibGit2Sharp.IRepository</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
 <ul>
-  
-  <li><code>void Reset(LibGit2Sharp.IRepository, string, IEnumerable&lt;string&gt;, LibGit2Sharp.ExplicitPathsOptions)</code><br/> This method will be removed in the next release. Please use Index.Replace() instead. Obsoleted with warning.</li>
-  
-  <li><code>void Reset(LibGit2Sharp.IRepository, LibGit2Sharp.Commit, IEnumerable&lt;string&gt;)</code><br/> This method will be removed in the next release. Please use Index.Replace() instead. Obsoleted with warning.</li>
-  
-  <li><code>void Reset(LibGit2Sharp.IRepository, LibGit2Sharp.Commit)</code><br/> This method will be removed in the next release. Please use Index.Replace() instead. Obsoleted with warning.</li>
-  
+  <li><code>LibGit2Sharp.Branch Checkout(LibGit2Sharp.Branch, LibGit2Sharp.CheckoutOptions, LibGit2Sharp.Signature)</code></li>
+  <li><code>LibGit2Sharp.Branch Checkout(string, LibGit2Sharp.CheckoutOptions, LibGit2Sharp.Signature)</code></li>
+  <li><code>LibGit2Sharp.Branch Checkout(LibGit2Sharp.Commit, LibGit2Sharp.CheckoutOptions, LibGit2Sharp.Signature)</code></li>
+  <li><code>void Reset(LibGit2Sharp.ResetMode, LibGit2Sharp.Commit, LibGit2Sharp.Signature, string)</code></li>
 </ul>
 
+
+
+
+    <h3>LibGit2Sharp.MergeConflictException - Obsoleted</h3>
+    <p>This type will be removed in the next release. Please use CheckoutConflictException instead. Obsoleted with warning.</p>
+
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void .ctor(string)</code></li>
+  <li><code>void .ctor(string, Exception)</code></li>
+</ul>
+
+
+
+
+  <h3>LibGit2Sharp.MergeOptions</h3>
+
+
+
+<h4>Fields Removed</h4>
+<ul>
+  <li><code>int RenameThreshold</code></li>
+  <li><code>int TargetLimit</code></li>
+</ul>
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>LibGit2Sharp.CheckoutNotifyFlags get_CheckoutNotifyFlags()</code></li>
+  <li><code>bool get_CommitOnSuccess()</code></li>
+  <li><code>LibGit2Sharp.CheckoutFileConflictStrategy get_FileConflictStrategy()</code></li>
+  <li><code>bool get_FindRenames()</code></li>
+  <li><code>LibGit2Sharp.MergeFileFavor get_MergeFileFavor()</code></li>
+  <li><code>LibGit2Sharp.Handlers.CheckoutNotifyHandler get_OnCheckoutNotify()</code></li>
+  <li><code>LibGit2Sharp.Handlers.CheckoutProgressHandler get_OnCheckoutProgress()</code></li>
+  <li><code>void set_CheckoutNotifyFlags(LibGit2Sharp.CheckoutNotifyFlags)</code></li>
+  <li><code>void set_CommitOnSuccess(bool)</code></li>
+  <li><code>void set_FileConflictStrategy(LibGit2Sharp.CheckoutFileConflictStrategy)</code></li>
+  <li><code>void set_FindRenames(bool)</code></li>
+  <li><code>void set_MergeFileFavor(LibGit2Sharp.MergeFileFavor)</code></li>
+  <li><code>void set_OnCheckoutNotify(LibGit2Sharp.Handlers.CheckoutNotifyHandler)</code></li>
+  <li><code>void set_OnCheckoutProgress(LibGit2Sharp.Handlers.CheckoutProgressHandler)</code></li>
+</ul>
+
+
+
+
+  <h3>LibGit2Sharp.Network</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void Fetch(LibGit2Sharp.Remote, LibGit2Sharp.FetchOptions, LibGit2Sharp.Signature, string)</code></li>
+  <li><code>void Fetch(LibGit2Sharp.Remote, IEnumerable&lt;string&gt;, LibGit2Sharp.FetchOptions, LibGit2Sharp.Signature, string)</code></li>
+  <li><code>void Fetch(string, IEnumerable&lt;string&gt;, LibGit2Sharp.FetchOptions, LibGit2Sharp.Signature, string)</code></li>
+  <li><code>void Push(LibGit2Sharp.Remote, string, string, LibGit2Sharp.PushOptions, LibGit2Sharp.Signature, string)</code></li>
+  <li><code>void Push(LibGit2Sharp.Remote, string, LibGit2Sharp.PushOptions, LibGit2Sharp.Signature, string)</code></li>
+  <li><code>void Push(LibGit2Sharp.Remote, IEnumerable&lt;string&gt;, LibGit2Sharp.PushOptions, LibGit2Sharp.Signature, string)</code></li>
+</ul>
+
+
+
+
+  <h3>LibGit2Sharp.ObjectDatabase</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>LibGit2Sharp.Blob CreateBlob(Stream, string, Nullable&lt;int&gt;)</code></li>
+  <li><code>LibGit2Sharp.Blob CreateBlob(Stream, int)</code></li>
+  <li><code>string ShortenObjectId(LibGit2Sharp.GitObject, Nullable&lt;int&gt;)</code></li>
+</ul>
+
+
+
+
+  <h3>LibGit2Sharp.ReferenceCollection</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>LibGit2Sharp.DirectReference Add(string, LibGit2Sharp.ObjectId, LibGit2Sharp.Signature, string, bool)</code></li>
+  <li><code>LibGit2Sharp.SymbolicReference Add(string, LibGit2Sharp.Reference, LibGit2Sharp.Signature, string, bool)</code></li>
+  <li><code>LibGit2Sharp.Reference Rename(LibGit2Sharp.Reference, string, LibGit2Sharp.Signature, string, bool)</code></li>
+  <li><code>LibGit2Sharp.Reference UpdateTarget(LibGit2Sharp.Reference, LibGit2Sharp.ObjectId, LibGit2Sharp.Signature, string)</code></li>
+  <li><code>LibGit2Sharp.Reference UpdateTarget(LibGit2Sharp.Reference, LibGit2Sharp.Reference, LibGit2Sharp.Signature, string)</code></li>
+</ul>
+
+
+
+
+  <h3>LibGit2Sharp.ReferenceWrapper&lt;TObject&gt;</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h3>LibGit2Sharp.ReflogEntry</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h3>LibGit2Sharp.RemoteUpdater</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void Dispose()</code></li>
+</ul>
+
+
+
+
+  <h3>LibGit2Sharp.Repository</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>LibGit2Sharp.Branch Checkout(string, LibGit2Sharp.CheckoutOptions, LibGit2Sharp.Signature)</code></li>
+  <li><code>LibGit2Sharp.Branch Checkout(LibGit2Sharp.Branch, LibGit2Sharp.CheckoutOptions, LibGit2Sharp.Signature)</code></li>
+  <li><code>LibGit2Sharp.Branch Checkout(LibGit2Sharp.Commit, LibGit2Sharp.CheckoutOptions, LibGit2Sharp.Signature)</code></li>
+  <li><code>void Reset(LibGit2Sharp.ResetMode, LibGit2Sharp.Commit, LibGit2Sharp.Signature, string)</code></li>
+</ul>
+
+
+
+
+  <h3>LibGit2Sharp.RepositoryExtensions</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>LibGit2Sharp.Branch Checkout(LibGit2Sharp.IRepository, string, LibGit2Sharp.Signature)</code></li>
+  <li><code>LibGit2Sharp.Branch Checkout(LibGit2Sharp.IRepository, LibGit2Sharp.Branch, LibGit2Sharp.Signature)</code></li>
+  <li><code>LibGit2Sharp.Branch Checkout(LibGit2Sharp.IRepository, LibGit2Sharp.Commit, LibGit2Sharp.Signature)</code></li>
+  <li><code>LibGit2Sharp.Branch CreateBranch(LibGit2Sharp.IRepository, string, LibGit2Sharp.Signature, string)</code></li>
+  <li><code>LibGit2Sharp.Branch CreateBranch(LibGit2Sharp.IRepository, string, LibGit2Sharp.Commit, LibGit2Sharp.Signature, string)</code></li>
+  <li><code>LibGit2Sharp.Branch CreateBranch(LibGit2Sharp.IRepository, string, string, LibGit2Sharp.Signature, string)</code></li>
+  <li><code>void Reset(LibGit2Sharp.IRepository, LibGit2Sharp.ResetMode, string, LibGit2Sharp.Signature, string)</code></li>
+</ul>
+
+
+
+
+  <h3>LibGit2Sharp.RevertOptions</h3>
+
+
+
+<h4>Fields Removed</h4>
+<ul>
+  <li><code>int RenameThreshold</code></li>
+  <li><code>int TargetLimit</code></li>
+</ul>
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>LibGit2Sharp.CheckoutNotifyFlags get_CheckoutNotifyFlags()</code></li>
+  <li><code>bool get_CommitOnSuccess()</code></li>
+  <li><code>LibGit2Sharp.CheckoutFileConflictStrategy get_FileConflictStrategy()</code></li>
+  <li><code>bool get_FindRenames()</code></li>
+  <li><code>LibGit2Sharp.MergeFileFavor get_MergeFileFavor()</code></li>
+  <li><code>LibGit2Sharp.Handlers.CheckoutNotifyHandler get_OnCheckoutNotify()</code></li>
+  <li><code>LibGit2Sharp.Handlers.CheckoutProgressHandler get_OnCheckoutProgress()</code></li>
+  <li><code>void set_CheckoutNotifyFlags(LibGit2Sharp.CheckoutNotifyFlags)</code></li>
+  <li><code>void set_CommitOnSuccess(bool)</code></li>
+  <li><code>void set_FileConflictStrategy(LibGit2Sharp.CheckoutFileConflictStrategy)</code></li>
+  <li><code>void set_FindRenames(bool)</code></li>
+  <li><code>void set_MergeFileFavor(LibGit2Sharp.MergeFileFavor)</code></li>
+  <li><code>void set_OnCheckoutNotify(LibGit2Sharp.Handlers.CheckoutNotifyHandler)</code></li>
+  <li><code>void set_OnCheckoutProgress(LibGit2Sharp.Handlers.CheckoutProgressHandler)</code></li>
+</ul>
+
+
+
+
+  <h3>LibGit2Sharp.TreeChanges</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>LibGit2Sharp.TreeEntryChanges get_Item(string)</code></li>
+</ul>
 
 
 
 
     
-
-

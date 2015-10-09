@@ -21,7 +21,7 @@
         [Test]
         public void TestComplianceNServiceBus()
         {
-            Approvals.VerifyHtml(HtmlDiff("nservicebus", "4.0.0", "5.0.0"));
+            Approvals.VerifyHtml(HtmlDiff("nservicebus", "5.0.0", "5.1.3"));
         }
 
         [Test]

@@ -6,6 +6,7 @@
     using System.Runtime.CompilerServices;
     using Mono.Cecil;
     using Mono.Cecil.Cil;
+    using static System.String;
 
     public static class CecilExtensions
     {
@@ -13,24 +14,7 @@
         {
             return value.GetObsoleteAttribute() != null;
         }
-
-        public static bool IsObsoletedWithError(this ICustomAttributeProvider value)
-        {
-            var attribute =  value.GetObsoleteAttribute();
-
-            if (attribute == null)
-            {
-                return false;
-            }
-
-            if (attribute.ConstructorArguments.Count < 2)
-            {
-                return false;
-            }
-
-            return (bool)attribute.ConstructorArguments[1].Value;
-        }
-
+        
         public static bool IsCompilerGenerated(this ICustomAttributeProvider definition)
         {
             var fullName = typeof(CompilerGeneratedAttribute).FullName;
@@ -53,16 +37,11 @@
 
         public static void RemoveType(this ModuleDefinition module, TypeDefinition typeDefinition)
         {
-
-            if (typeDefinition.DeclaringType != null)
-            {
-                typeDefinition.DeclaringType.NestedTypes.Remove(typeDefinition);
-
-            }
+            typeDefinition.DeclaringType?.NestedTypes.Remove(typeDefinition);
             module.Types.Remove(typeDefinition);
         }
 
-        public static CustomAttribute GetObsoleteAttribute(this ICustomAttributeProvider value)
+        static CustomAttribute GetObsoleteAttribute(this ICustomAttributeProvider value)
         {
             var obsoleteAttribute = value.CustomAttributes.FirstOrDefault(a => a.AttributeType.Name == "ObsoleteAttribute");
 
@@ -150,9 +129,9 @@
             var result = method.ReturnType.GetName() + " " + method.Name;
 
             if (genericParams.Any())
-                result = String.Format("{0}<{1}>", result, String.Join(", ", genericParams));
+                result = $"{result}<{Join(", ", genericParams)}>";
 
-            return String.Format("{0}({1})", result, String.Join(", ", methodParams));
+            return $"{result}({Join(", ", methodParams)})";
         }
 
         public static IEnumerable<TypeDefinition> RealTypes(this IEnumerable<TypeDefinition> types)
@@ -180,7 +159,7 @@
             return type.Methods.Where(x => !x.IsAnonymous() && x.Name !=  ".cctor");
         }
 
-        public static bool IsAnonymous(this IMemberDefinition member)
+        static bool IsAnonymous(this IMemberDefinition member)
         {
 
             return member.Name.StartsWith("<") ||
@@ -193,59 +172,7 @@
         {
             return field.FieldType.GetName() + " " + field.Name;
         }
-
-
-        public static IEnumerable<TypeDefinition> TypeWithObsoletes(this IEnumerable<TypeDefinition> diff)
-        {
-            foreach (var typeDefinition in diff)
-            {
-                if (!typeDefinition.IsPublic)
-                {
-                    continue;
-                }
-                if (typeDefinition.HasObsoleteAttribute())
-                {
-                    yield return typeDefinition;
-                    continue;
-                }
-                if (typeDefinition.GetObsoleteFields().Any())
-                {
-                    yield return typeDefinition;
-                }
-                if (typeDefinition.GetObsoleteMethods().Any())
-                {
-                    yield return typeDefinition;
-                }
-            }
-        }
-
-        public static IEnumerable<FieldDefinition> GetObsoleteFields(this TypeDefinition typeDefinition)
-        {
-            return typeDefinition.Fields.Where(x => x.IsPublic && x.HasObsoleteAttribute());
-        }
-        public static IEnumerable<MethodDefinition> GetObsoleteMethods(this TypeDefinition typeDefinition)
-        {
-            return typeDefinition.Methods.Where(x => x.IsPublic && x.HasObsoleteAttribute());
-        }
-
-        public static SequencePoint GetValidSequencePoint(this TypeDefinition type)
-        {
-            var sp = GetFirstSequencePoint(
-                type.Methods.Select(x => x.GetValidSequencePoint()));
-
-            if (sp == null)
-                return null;
-
-            return new SequencePoint(sp.Document);
-        }
-
-        public static SequencePoint GetFirstSequencePoint(this IEnumerable<SequencePoint> sequencePoints)
-        {
-            return sequencePoints.Where(sp => sp != null)
-                .DefaultIfEmpty()
-                .Aggregate((a, sp) => sp.StartLine < a.StartLine ? sp : a);
-        }
-
+       
         public static SequencePoint GetValidSequencePoint(this MethodDefinition method)
         {
             if (!method.HasBody)
@@ -298,13 +225,13 @@
             if (genericInstanceType != null)
             {
                 var first = name.Split('`').First();
-                return first + "<" + String.Join(", ", genericInstanceType.GenericArguments.Select(x=>x.GetName())) + ">";
+                return first + "<" + Join(", ", genericInstanceType.GenericArguments.Select(x=>x.GetName())) + ">";
             }
 
             if (self.HasGenericParameters)
             {
                 var first = name.Split('`').First();
-                return first + "<" + String.Join(", ", self.GenericParameters.Select(x => x.GetName())) + ">";
+                return first + "<" + Join(", ", self.GenericParameters.Select(x => x.GetName())) + ">";
             }
             return name;
         }

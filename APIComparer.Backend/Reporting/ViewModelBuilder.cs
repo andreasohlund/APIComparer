@@ -86,12 +86,12 @@ namespace APIComparer.Backend.Reporting
         }
         static IEnumerable<object> BuildMethodsObsoleted(TypeDiff typeDiff)
         {
-            foreach (var field in typeDiff.PublicMethodsObsoleted())
+            foreach (var method in typeDiff.PublicMethodsObsoleted())
             {
                 yield return new
                 {
-                    name = field.Right.GetName(),
-                    obsolete = field.Right.GetObsoleteString()
+                    name = method.Right.GetName(),
+                    obsolete = method.Right.GetObsoleteString()
                 };
             }
         }

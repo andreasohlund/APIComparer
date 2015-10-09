@@ -69,7 +69,7 @@ namespace APIComparer.Backend.Reporting
                        methodsChangedToNonPublic,
                        hasMethodsRemoved = methodsRemoved.Any(),
                        methodsRemoved,
-                       hasMethodsObsoleted = fieldsObsoleted.Any(),
+                       hasMethodsObsoleted = methodsObsoleted.Any(),
                        methodsObsoleted,
                    };
         }

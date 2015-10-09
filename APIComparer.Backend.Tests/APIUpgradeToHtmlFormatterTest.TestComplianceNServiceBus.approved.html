@@ -17,6 +17,10 @@
 
 
 
+<h4>Methods Obsoleted</h4>
+<ul>
+  <li><code>void FileShareDataBus(NServiceBus.BusConfiguration, string)</code><br/> Use `configuration.UseDataBus<FileShareDataBus>().BasePath(basePath)`, where <code>configuration</code> is an instance of <code>BusConfiguration</code>. If self-hosting the instance can be obtained from `new BusConfiguration()`. if using the NServiceBus Host the instance of <code>BusConfiguration</code> will be passed in via the <code>INeedInitialization</code> or <code>IConfigureThisEndpoint</code> interfaces. Will be treated as an error from version 5.5.0. Will be removed in version 6.0.0. Obsoleted with warning.</li>
+</ul>
 
 
   <h3>NServiceBus.Sagas.ActiveSagaInstance</h3>
@@ -31,6 +35,11 @@
 
 
 
+<h4>Methods Obsoleted</h4>
+<ul>
+  <li><code>NServiceBus.Saga.Saga get_Instance()</code><br/> Please use <code>context.MessageHandler.Instance</code> instead. Will be treated as an error from version 6.0.0. Will be removed in version 7.0.0. Obsoleted with warning.</li>
+  <li><code>Type get_SagaType()</code><br/> Please use <code>.Metadata.SagaType</code> instead. Will be treated as an error from version 6.0.0. Will be removed in version 7.0.0. Obsoleted with warning.</li>
+</ul>
 
 
     <h3>NServiceBus.Unicast.IMessageHandlerRegistry - Obsoleted</h3>
@@ -61,6 +70,11 @@
 
 
 
+<h4>Methods Obsoleted</h4>
+<ul>
+  <li><code>NServiceBus.Hosting.HostInformation get_HostInformation()</code><br/> We have introduced a more explicit API to set the host identifier, see busConfiguration.UniquelyIdentifyRunningInstance(). Will be treated as an error from version 6.0.0. Will be removed in version 7.0.0. Obsoleted with warning.</li>
+  <li><code>void set_HostInformation(NServiceBus.Hosting.HostInformation)</code><br/> We have introduced a more explicit API to set the host identifier, see busConfiguration.UniquelyIdentifyRunningInstance(). Will be treated as an error from version 6.0.0. Will be removed in version 7.0.0. Obsoleted with warning.</li>
+</ul>
 
 
   <h3>NServiceBus.WireEncryptedString</h3>
@@ -75,6 +89,13 @@
 
 
 
+<h4>Methods Obsoleted</h4>
+<ul>
+  <li><code>string get_Base64Iv()</code><br/> No longer required. Will be treated as an error from version 6.0.0. Will be removed in version 6.0.0. Obsoleted with warning.</li>
+  <li><code>string get_EncryptedBase64Value()</code><br/> No longer required. Will be treated as an error from version 6.0.0. Will be removed in version 6.0.0. Obsoleted with warning.</li>
+  <li><code>void set_Base64Iv(string)</code><br/> No longer required. Will be treated as an error from version 6.0.0. Will be removed in version 6.0.0. Obsoleted with warning.</li>
+  <li><code>void set_EncryptedBase64Value(string)</code><br/> No longer required. Will be treated as an error from version 6.0.0. Will be removed in version 6.0.0. Obsoleted with warning.</li>
+</ul>
 
 
     

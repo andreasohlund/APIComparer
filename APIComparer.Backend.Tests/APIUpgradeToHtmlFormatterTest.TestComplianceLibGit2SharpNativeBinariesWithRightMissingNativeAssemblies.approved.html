@@ -90,6 +90,11 @@
 
 
 
+<h4>Methods Obsoleted</h4>
+<ul>
+  <li><code>LibGit2Sharp.Commit FindMergeBase(LibGit2Sharp.Commit, LibGit2Sharp.Commit)</code><br/> This method will be removed in the next release. Please use ObjectDatabase.FindMergeBase() instead. Obsoleted with warning.</li>
+  <li><code>LibGit2Sharp.Commit FindMergeBase(IEnumerable&lt;LibGit2Sharp.Commit&gt;, LibGit2Sharp.MergeBaseFindingStrategy)</code><br/> This method will be removed in the next release. Please use ObjectDatabase.FindMergeBase() instead. Obsoleted with warning.</li>
+</ul>
 
 
   <h3>LibGit2Sharp.Configuration</h3>
@@ -104,6 +109,10 @@
 
 
 
+<h4>Methods Obsoleted</h4>
+<ul>
+  <li><code>void .ctor(string, string, string)</code><br/> This method will be removed in the next release. Please use Configuration.BuildFrom(string, string, string, string) instead. Obsoleted with warning.</li>
+</ul>
 
 
   <h3>LibGit2Sharp.FastForwardStrategy</h3>
@@ -122,9 +131,6 @@
 
 
 
-<h4>Methods Obsoleted</h4>
-<ul>
-</ul>
 
 
   <h3>LibGit2Sharp.FileStatus</h3>
@@ -154,9 +160,6 @@
 
 
 
-<h4>Methods Obsoleted</h4>
-<ul>
-</ul>
 
 
   <h3>LibGit2Sharp.IQueryableCommitLog</h3>
@@ -171,6 +174,11 @@
 
 
 
+<h4>Methods Obsoleted</h4>
+<ul>
+  <li><code>LibGit2Sharp.Commit FindMergeBase(LibGit2Sharp.Commit, LibGit2Sharp.Commit)</code><br/> This method will be removed in the next release. Please use ObjectDatabase.FindMergeBase() instead. Obsoleted with warning.</li>
+  <li><code>LibGit2Sharp.Commit FindMergeBase(IEnumerable&lt;LibGit2Sharp.Commit&gt;, LibGit2Sharp.MergeBaseFindingStrategy)</code><br/> This method will be removed in the next release. Please use ObjectDatabase.FindMergeBase() instead. Obsoleted with warning.</li>
+</ul>
 
 
   <h3>LibGit2Sharp.IRepository</h3>
@@ -192,6 +200,10 @@
 </ul>
 
 
+<h4>Methods Obsoleted</h4>
+<ul>
+  <li><code>void Reset(LibGit2Sharp.Commit, IEnumerable&lt;string&gt;, LibGit2Sharp.ExplicitPathsOptions)</code><br/> This method will be removed in the next release. Please use Index.Replace() instead. Obsoleted with warning.</li>
+</ul>
 
 
     <h3>LibGit2Sharp.MergeConflictException - Obsoleted</h3>
@@ -328,6 +340,10 @@
 
 
 
+<h4>Methods Obsoleted</h4>
+<ul>
+  <li><code>string get_Name()</code><br/> This property will be removed in the next release. Please use FriendlyName instead. Obsoleted with warning.</li>
+</ul>
 
 
   <h3>LibGit2Sharp.ReflogEntry</h3>
@@ -342,6 +358,10 @@
 
 
 
+<h4>Methods Obsoleted</h4>
+<ul>
+  <li><code>LibGit2Sharp.Signature get_Commiter()</code><br/> This property will be removed in the next release. Please use Committer instead. Obsoleted with warning.</li>
+</ul>
 
 
   <h3>LibGit2Sharp.RemoteUpdater</h3>
@@ -381,6 +401,10 @@
 </ul>
 
 
+<h4>Methods Obsoleted</h4>
+<ul>
+  <li><code>void Reset(LibGit2Sharp.Commit, IEnumerable&lt;string&gt;, LibGit2Sharp.ExplicitPathsOptions)</code><br/> This method will be removed in the next release. Please use Index.Replace() instead. Obsoleted with warning.</li>
+</ul>
 
 
   <h3>LibGit2Sharp.RepositoryExtensions</h3>
@@ -405,6 +429,12 @@
 </ul>
 
 
+<h4>Methods Obsoleted</h4>
+<ul>
+  <li><code>void Reset(LibGit2Sharp.IRepository, string, IEnumerable&lt;string&gt;, LibGit2Sharp.ExplicitPathsOptions)</code><br/> This method will be removed in the next release. Please use Index.Replace() instead. Obsoleted with warning.</li>
+  <li><code>void Reset(LibGit2Sharp.IRepository, LibGit2Sharp.Commit, IEnumerable&lt;string&gt;)</code><br/> This method will be removed in the next release. Please use Index.Replace() instead. Obsoleted with warning.</li>
+  <li><code>void Reset(LibGit2Sharp.IRepository, LibGit2Sharp.Commit)</code><br/> This method will be removed in the next release. Please use Index.Replace() instead. Obsoleted with warning.</li>
+</ul>
 
 
   <h3>LibGit2Sharp.RevertOptions</h3>

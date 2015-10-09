@@ -17,6 +17,17 @@
 
 
 
+<h4>Methods Obsoleted</h4>
+<ul>
+  <li><code>System.Threading.Tasks.Task&lt;T&gt; DeserializeObjectAsync&lt;T&gt;(string)</code><br/> DeserializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to deserialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.DeserializeObject<T>(value)). Obsoleted with warning.</li>
+  <li><code>System.Threading.Tasks.Task&lt;T&gt; DeserializeObjectAsync&lt;T&gt;(string, Newtonsoft.Json.JsonSerializerSettings)</code><br/> DeserializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to deserialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.DeserializeObject<T>(value, settings)). Obsoleted with warning.</li>
+  <li><code>System.Threading.Tasks.Task&lt;object&gt; DeserializeObjectAsync(string)</code><br/> DeserializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to deserialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.DeserializeObject(value)). Obsoleted with warning.</li>
+  <li><code>System.Threading.Tasks.Task&lt;object&gt; DeserializeObjectAsync(string, System.Type, Newtonsoft.Json.JsonSerializerSettings)</code><br/> DeserializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to deserialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.DeserializeObject(value, type, settings)). Obsoleted with warning.</li>
+  <li><code>System.Threading.Tasks.Task PopulateObjectAsync(string, object, Newtonsoft.Json.JsonSerializerSettings)</code><br/> PopulateObjectAsync is obsolete. Use the Task.Factory.StartNew method to populate an object with JSON values asynchronously: Task.Factory.StartNew(() => JsonConvert.PopulateObject(value, target, settings)). Obsoleted with warning.</li>
+  <li><code>System.Threading.Tasks.Task&lt;string&gt; SerializeObjectAsync(object)</code><br/> SerializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to serialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.SerializeObject(value)). Obsoleted with warning.</li>
+  <li><code>System.Threading.Tasks.Task&lt;string&gt; SerializeObjectAsync(object, Newtonsoft.Json.Formatting)</code><br/> SerializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to serialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.SerializeObject(value, formatting)). Obsoleted with warning.</li>
+  <li><code>System.Threading.Tasks.Task&lt;string&gt; SerializeObjectAsync(object, Newtonsoft.Json.Formatting, Newtonsoft.Json.JsonSerializerSettings)</code><br/> SerializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to serialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.SerializeObject(value, formatting, settings)). Obsoleted with warning.</li>
+</ul>
 
 
   <h3>Newtonsoft.Json.Serialization.JsonObjectContract</h3>
@@ -31,6 +42,14 @@
 
 
 
+<h4>Methods Obsoleted</h4>
+<ul>
+  <li><code>Newtonsoft.Json.Serialization.JsonPropertyCollection get_ConstructorParameters()</code><br/> ConstructorParameters is obsolete. Use CreatorParameters instead. Obsoleted with warning.</li>
+  <li><code>System.Reflection.ConstructorInfo get_OverrideConstructor()</code><br/> OverrideConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
+  <li><code>System.Reflection.ConstructorInfo get_ParametrizedConstructor()</code><br/> ParametrizedConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
+  <li><code>void set_OverrideConstructor(System.Reflection.ConstructorInfo)</code><br/> OverrideConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
+  <li><code>void set_ParametrizedConstructor(System.Reflection.ConstructorInfo)</code><br/> ParametrizedConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
+</ul>
 
 
     
@@ -111,6 +130,14 @@
 
 
 
+<h4>Methods Obsoleted</h4>
+<ul>
+  <li><code>Newtonsoft.Json.Serialization.JsonPropertyCollection get_ConstructorParameters()</code><br/> ConstructorParameters is obsolete. Use CreatorParameters instead. Obsoleted with warning.</li>
+  <li><code>System.Reflection.ConstructorInfo get_OverrideConstructor()</code><br/> OverrideConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
+  <li><code>System.Reflection.ConstructorInfo get_ParametrizedConstructor()</code><br/> ParametrizedConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
+  <li><code>void set_OverrideConstructor(System.Reflection.ConstructorInfo)</code><br/> OverrideConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
+  <li><code>void set_ParametrizedConstructor(System.Reflection.ConstructorInfo)</code><br/> ParametrizedConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
+</ul>
 
 
     
@@ -135,6 +162,17 @@
 
 
 
+<h4>Methods Obsoleted</h4>
+<ul>
+  <li><code>Task&lt;T&gt; DeserializeObjectAsync&lt;T&gt;(string)</code><br/> DeserializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to deserialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.DeserializeObject<T>(value)). Obsoleted with warning.</li>
+  <li><code>Task&lt;T&gt; DeserializeObjectAsync&lt;T&gt;(string, Newtonsoft.Json.JsonSerializerSettings)</code><br/> DeserializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to deserialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.DeserializeObject<T>(value, settings)). Obsoleted with warning.</li>
+  <li><code>Task&lt;object&gt; DeserializeObjectAsync(string)</code><br/> DeserializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to deserialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.DeserializeObject(value)). Obsoleted with warning.</li>
+  <li><code>Task&lt;object&gt; DeserializeObjectAsync(string, Type, Newtonsoft.Json.JsonSerializerSettings)</code><br/> DeserializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to deserialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.DeserializeObject(value, type, settings)). Obsoleted with warning.</li>
+  <li><code>Task PopulateObjectAsync(string, object, Newtonsoft.Json.JsonSerializerSettings)</code><br/> PopulateObjectAsync is obsolete. Use the Task.Factory.StartNew method to populate an object with JSON values asynchronously: Task.Factory.StartNew(() => JsonConvert.PopulateObject(value, target, settings)). Obsoleted with warning.</li>
+  <li><code>Task&lt;string&gt; SerializeObjectAsync(object)</code><br/> SerializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to serialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.SerializeObject(value)). Obsoleted with warning.</li>
+  <li><code>Task&lt;string&gt; SerializeObjectAsync(object, Newtonsoft.Json.Formatting)</code><br/> SerializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to serialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.SerializeObject(value, formatting)). Obsoleted with warning.</li>
+  <li><code>Task&lt;string&gt; SerializeObjectAsync(object, Newtonsoft.Json.Formatting, Newtonsoft.Json.JsonSerializerSettings)</code><br/> SerializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to serialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.SerializeObject(value, formatting, settings)). Obsoleted with warning.</li>
+</ul>
 
 
   <h3>Newtonsoft.Json.Linq.JPropertyDescriptor</h3>
@@ -167,6 +205,11 @@
 
 
 
+<h4>Methods Obsoleted</h4>
+<ul>
+  <li><code>BindingFlags get_DefaultMembersSearchFlags()</code><br/> DefaultMembersSearchFlags is obsolete. To modify the members serialized inherit from DefaultContractResolver and override the GetSerializableMembers method instead. Obsoleted with warning.</li>
+  <li><code>void set_DefaultMembersSearchFlags(BindingFlags)</code><br/> DefaultMembersSearchFlags is obsolete. To modify the members serialized inherit from DefaultContractResolver and override the GetSerializableMembers method instead. Obsoleted with warning.</li>
+</ul>
 
 
   <h3>Newtonsoft.Json.Serialization.JsonObjectContract</h3>
@@ -181,6 +224,14 @@
 
 
 
+<h4>Methods Obsoleted</h4>
+<ul>
+  <li><code>Newtonsoft.Json.Serialization.JsonPropertyCollection get_ConstructorParameters()</code><br/> ConstructorParameters is obsolete. Use CreatorParameters instead. Obsoleted with warning.</li>
+  <li><code>ConstructorInfo get_OverrideConstructor()</code><br/> OverrideConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
+  <li><code>ConstructorInfo get_ParametrizedConstructor()</code><br/> ParametrizedConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
+  <li><code>void set_OverrideConstructor(ConstructorInfo)</code><br/> OverrideConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
+  <li><code>void set_ParametrizedConstructor(ConstructorInfo)</code><br/> ParametrizedConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
+</ul>
 
 
     
@@ -202,6 +253,17 @@
 
 
 
+<h4>Methods Obsoleted</h4>
+<ul>
+  <li><code>Task&lt;T&gt; DeserializeObjectAsync&lt;T&gt;(string)</code><br/> DeserializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to deserialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.DeserializeObject<T>(value)). Obsoleted with warning.</li>
+  <li><code>Task&lt;T&gt; DeserializeObjectAsync&lt;T&gt;(string, Newtonsoft.Json.JsonSerializerSettings)</code><br/> DeserializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to deserialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.DeserializeObject<T>(value, settings)). Obsoleted with warning.</li>
+  <li><code>Task&lt;object&gt; DeserializeObjectAsync(string)</code><br/> DeserializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to deserialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.DeserializeObject(value)). Obsoleted with warning.</li>
+  <li><code>Task&lt;object&gt; DeserializeObjectAsync(string, Type, Newtonsoft.Json.JsonSerializerSettings)</code><br/> DeserializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to deserialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.DeserializeObject(value, type, settings)). Obsoleted with warning.</li>
+  <li><code>Task PopulateObjectAsync(string, object, Newtonsoft.Json.JsonSerializerSettings)</code><br/> PopulateObjectAsync is obsolete. Use the Task.Factory.StartNew method to populate an object with JSON values asynchronously: Task.Factory.StartNew(() => JsonConvert.PopulateObject(value, target, settings)). Obsoleted with warning.</li>
+  <li><code>Task&lt;string&gt; SerializeObjectAsync(object)</code><br/> SerializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to serialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.SerializeObject(value)). Obsoleted with warning.</li>
+  <li><code>Task&lt;string&gt; SerializeObjectAsync(object, Newtonsoft.Json.Formatting)</code><br/> SerializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to serialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.SerializeObject(value, formatting)). Obsoleted with warning.</li>
+  <li><code>Task&lt;string&gt; SerializeObjectAsync(object, Newtonsoft.Json.Formatting, Newtonsoft.Json.JsonSerializerSettings)</code><br/> SerializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to serialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.SerializeObject(value, formatting, settings)). Obsoleted with warning.</li>
+</ul>
 
 
   <h3>Newtonsoft.Json.Linq.JPropertyDescriptor</h3>
@@ -234,6 +296,11 @@
 
 
 
+<h4>Methods Obsoleted</h4>
+<ul>
+  <li><code>BindingFlags get_DefaultMembersSearchFlags()</code><br/> DefaultMembersSearchFlags is obsolete. To modify the members serialized inherit from DefaultContractResolver and override the GetSerializableMembers method instead. Obsoleted with warning.</li>
+  <li><code>void set_DefaultMembersSearchFlags(BindingFlags)</code><br/> DefaultMembersSearchFlags is obsolete. To modify the members serialized inherit from DefaultContractResolver and override the GetSerializableMembers method instead. Obsoleted with warning.</li>
+</ul>
 
 
   <h3>Newtonsoft.Json.Serialization.JsonObjectContract</h3>
@@ -248,6 +315,14 @@
 
 
 
+<h4>Methods Obsoleted</h4>
+<ul>
+  <li><code>Newtonsoft.Json.Serialization.JsonPropertyCollection get_ConstructorParameters()</code><br/> ConstructorParameters is obsolete. Use CreatorParameters instead. Obsoleted with warning.</li>
+  <li><code>ConstructorInfo get_OverrideConstructor()</code><br/> OverrideConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
+  <li><code>ConstructorInfo get_ParametrizedConstructor()</code><br/> ParametrizedConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
+  <li><code>void set_OverrideConstructor(ConstructorInfo)</code><br/> OverrideConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
+  <li><code>void set_ParametrizedConstructor(ConstructorInfo)</code><br/> ParametrizedConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
+</ul>
 
 
     
@@ -287,6 +362,11 @@
 
 
 
+<h4>Methods Obsoleted</h4>
+<ul>
+  <li><code>BindingFlags get_DefaultMembersSearchFlags()</code><br/> DefaultMembersSearchFlags is obsolete. To modify the members serialized inherit from DefaultContractResolver and override the GetSerializableMembers method instead. Obsoleted with warning.</li>
+  <li><code>void set_DefaultMembersSearchFlags(BindingFlags)</code><br/> DefaultMembersSearchFlags is obsolete. To modify the members serialized inherit from DefaultContractResolver and override the GetSerializableMembers method instead. Obsoleted with warning.</li>
+</ul>
 
 
   <h3>Newtonsoft.Json.Serialization.JsonObjectContract</h3>
@@ -301,6 +381,14 @@
 
 
 
+<h4>Methods Obsoleted</h4>
+<ul>
+  <li><code>Newtonsoft.Json.Serialization.JsonPropertyCollection get_ConstructorParameters()</code><br/> ConstructorParameters is obsolete. Use CreatorParameters instead. Obsoleted with warning.</li>
+  <li><code>ConstructorInfo get_OverrideConstructor()</code><br/> OverrideConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
+  <li><code>ConstructorInfo get_ParametrizedConstructor()</code><br/> ParametrizedConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
+  <li><code>void set_OverrideConstructor(ConstructorInfo)</code><br/> OverrideConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
+  <li><code>void set_ParametrizedConstructor(ConstructorInfo)</code><br/> ParametrizedConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
+</ul>
 
 
     
@@ -340,6 +428,11 @@
 
 
 
+<h4>Methods Obsoleted</h4>
+<ul>
+  <li><code>BindingFlags get_DefaultMembersSearchFlags()</code><br/> DefaultMembersSearchFlags is obsolete. To modify the members serialized inherit from DefaultContractResolver and override the GetSerializableMembers method instead. Obsoleted with warning.</li>
+  <li><code>void set_DefaultMembersSearchFlags(BindingFlags)</code><br/> DefaultMembersSearchFlags is obsolete. To modify the members serialized inherit from DefaultContractResolver and override the GetSerializableMembers method instead. Obsoleted with warning.</li>
+</ul>
 
 
   <h3>Newtonsoft.Json.Serialization.JsonObjectContract</h3>
@@ -354,6 +447,14 @@
 
 
 
+<h4>Methods Obsoleted</h4>
+<ul>
+  <li><code>Newtonsoft.Json.Serialization.JsonPropertyCollection get_ConstructorParameters()</code><br/> ConstructorParameters is obsolete. Use CreatorParameters instead. Obsoleted with warning.</li>
+  <li><code>ConstructorInfo get_OverrideConstructor()</code><br/> OverrideConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
+  <li><code>ConstructorInfo get_ParametrizedConstructor()</code><br/> ParametrizedConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
+  <li><code>void set_OverrideConstructor(ConstructorInfo)</code><br/> OverrideConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
+  <li><code>void set_ParametrizedConstructor(ConstructorInfo)</code><br/> ParametrizedConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
+</ul>
 
 
     
@@ -375,6 +476,17 @@
 
 
 
+<h4>Methods Obsoleted</h4>
+<ul>
+  <li><code>System.Threading.Tasks.Task&lt;T&gt; DeserializeObjectAsync&lt;T&gt;(string)</code><br/> DeserializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to deserialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.DeserializeObject<T>(value)). Obsoleted with warning.</li>
+  <li><code>System.Threading.Tasks.Task&lt;T&gt; DeserializeObjectAsync&lt;T&gt;(string, Newtonsoft.Json.JsonSerializerSettings)</code><br/> DeserializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to deserialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.DeserializeObject<T>(value, settings)). Obsoleted with warning.</li>
+  <li><code>System.Threading.Tasks.Task&lt;object&gt; DeserializeObjectAsync(string)</code><br/> DeserializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to deserialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.DeserializeObject(value)). Obsoleted with warning.</li>
+  <li><code>System.Threading.Tasks.Task&lt;object&gt; DeserializeObjectAsync(string, System.Type, Newtonsoft.Json.JsonSerializerSettings)</code><br/> DeserializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to deserialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.DeserializeObject(value, type, settings)). Obsoleted with warning.</li>
+  <li><code>System.Threading.Tasks.Task PopulateObjectAsync(string, object, Newtonsoft.Json.JsonSerializerSettings)</code><br/> PopulateObjectAsync is obsolete. Use the Task.Factory.StartNew method to populate an object with JSON values asynchronously: Task.Factory.StartNew(() => JsonConvert.PopulateObject(value, target, settings)). Obsoleted with warning.</li>
+  <li><code>System.Threading.Tasks.Task&lt;string&gt; SerializeObjectAsync(object)</code><br/> SerializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to serialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.SerializeObject(value)). Obsoleted with warning.</li>
+  <li><code>System.Threading.Tasks.Task&lt;string&gt; SerializeObjectAsync(object, Newtonsoft.Json.Formatting)</code><br/> SerializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to serialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.SerializeObject(value, formatting)). Obsoleted with warning.</li>
+  <li><code>System.Threading.Tasks.Task&lt;string&gt; SerializeObjectAsync(object, Newtonsoft.Json.Formatting, Newtonsoft.Json.JsonSerializerSettings)</code><br/> SerializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to serialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.SerializeObject(value, formatting, settings)). Obsoleted with warning.</li>
+</ul>
 
 
   <h3>Newtonsoft.Json.Serialization.JsonObjectContract</h3>
@@ -389,6 +501,14 @@
 
 
 
+<h4>Methods Obsoleted</h4>
+<ul>
+  <li><code>Newtonsoft.Json.Serialization.JsonPropertyCollection get_ConstructorParameters()</code><br/> ConstructorParameters is obsolete. Use CreatorParameters instead. Obsoleted with warning.</li>
+  <li><code>System.Reflection.ConstructorInfo get_OverrideConstructor()</code><br/> OverrideConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
+  <li><code>System.Reflection.ConstructorInfo get_ParametrizedConstructor()</code><br/> ParametrizedConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
+  <li><code>void set_OverrideConstructor(System.Reflection.ConstructorInfo)</code><br/> OverrideConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
+  <li><code>void set_ParametrizedConstructor(System.Reflection.ConstructorInfo)</code><br/> ParametrizedConstructor is obsolete. Use OverrideCreator instead. Obsoleted with warning.</li>
+</ul>
 
 
     

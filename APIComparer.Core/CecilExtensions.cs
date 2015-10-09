@@ -14,7 +14,7 @@
         {
             return value.GetObsoleteAttribute() != null;
         }
-        
+
         public static bool IsCompilerGenerated(this ICustomAttributeProvider definition)
         {
             var fullName = typeof(CompilerGeneratedAttribute).FullName;
@@ -32,7 +32,7 @@
         static bool IsUnwantedAttribute(CustomAttribute x)
         {
             return x.AttributeType.Name != typeof(ObsoleteAttribute).Name &&
-                !x.AttributeType.Name.StartsWith("Assembly");
+                   !x.AttributeType.Name.StartsWith("Assembly");
         }
 
         public static void RemoveType(this ModuleDefinition module, TypeDefinition typeDefinition)
@@ -59,7 +59,6 @@
                 {
                     return obsoleteAttribute;
                 }
-
             }
             var @event = value as EventDefinition;
             if (@event != null)
@@ -88,13 +87,13 @@
                                 return obsoleteAttribute;
                             }
                         }
-                    }              
+                    }
                 }
             }
-      
+
             return null;
         }
-        
+
         public static string GetObsoleteString(this ICustomAttributeProvider value)
         {
             var arguments = value.GetObsoleteAttribute().ConstructorArguments;
@@ -129,7 +128,9 @@
             var result = method.ReturnType.GetName() + " " + method.Name;
 
             if (genericParams.Any())
+            {
                 result = $"{result}<{Join(", ", genericParams)}>";
+            }
 
             return $"{result}({Join(", ", methodParams)})";
         }
@@ -156,23 +157,22 @@
 
         public static IEnumerable<MethodDefinition> RealMethods(this TypeDefinition type)
         {
-            return type.Methods.Where(x => !x.IsAnonymous() && x.Name !=  ".cctor");
+            return type.Methods.Where(x => !x.IsAnonymous() && x.Name != ".cctor");
         }
 
         static bool IsAnonymous(this IMemberDefinition member)
         {
-
             return member.Name.StartsWith("<") ||
-                member.Name.Contains(".<") || 
-                member.Name.Contains("<>") || 
-                member.Name.Contains("$<");
+                   member.Name.Contains(".<") ||
+                   member.Name.Contains("<>") ||
+                   member.Name.Contains("$<");
         }
 
         public static string GetName(this FieldDefinition field)
         {
             return field.FieldType.GetName() + " " + field.Name;
         }
-       
+
         public static SequencePoint GetValidSequencePoint(this MethodDefinition method)
         {
             if (!method.HasBody)
@@ -219,13 +219,13 @@
             }
             else
             {
-                name = self.FullName;   
+                name = self.FullName;
             }
             var genericInstanceType = self as GenericInstanceType;
             if (genericInstanceType != null)
             {
                 var first = name.Split('`').First();
-                return first + "<" + Join(", ", genericInstanceType.GenericArguments.Select(x=>x.GetName())) + ">";
+                return first + "<" + Join(", ", genericInstanceType.GenericArguments.Select(x => x.GetName())) + ">";
             }
 
             if (self.HasGenericParameters)

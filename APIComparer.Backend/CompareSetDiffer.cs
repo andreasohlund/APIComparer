@@ -1,14 +1,14 @@
 ﻿namespace APIComparer.Backend
 {
     using System.Linq;
-    using APIComparer.VersionComparisons;
+    using VersionComparisons;
 
     public class CompareSetDiffer
     {
         public DiffedCompareSet[] Diff(CompareSet[] compareSets)
         {
             var engine = new ComparerEngine();
-            return 
+            return
                 (
                     from set in compareSets.OrderByDescending(cs => cs.Name)
                     let diff = engine.CreateDiff(set.LeftAssemblyGroup, set.RightAssemblyGroup)
@@ -17,7 +17,7 @@
                         Set = set,
                         Diff = diff
                     }
-                ).ToArray();
+                    ).ToArray();
         }
     }
 }

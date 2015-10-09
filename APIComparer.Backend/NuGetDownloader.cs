@@ -3,14 +3,11 @@ namespace APIComparer.Backend
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
-    using APIComparer.Shared;
     using NuGet;
+    using Shared;
 
     class NuGetDownloader
     {
-        readonly string package;
-        PackageManager packageManager;
-
         public NuGetDownloader(string nugetName, IEnumerable<string> repositories)
         {
             package = nugetName;
@@ -39,23 +36,26 @@ namespace APIComparer.Backend
 
             var pkg = PackageRepositoryHelper.ResolvePackage(packageManager.SourceRepository, packageManager.LocalRepository, package, semVer, false);
 
-            return 
+            return
                 from file in pkg.AssemblyReferences.OfType<PhysicalPackageAssemblyReference>()
                 group file by file.TargetFramework
                 into framework
                 select new Target(framework.Key.FullName, framework.Select(f => f.SourcePath).ToList());
         }
+
+        readonly string package;
+        PackageManager packageManager;
     }
 
     public class Target
     {
-        public string Name { get; private set; }
-        public List<string> Files { get; private set; }
-
         public Target(string name, List<string> files)
         {
             Name = name;
             Files = files;
         }
+
+        public string Name { get; private set; }
+        public List<string> Files { get; private set; }
     }
 }

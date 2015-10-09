@@ -5,7 +5,7 @@
     using System.Linq;
     using ApprovalTests;
     using ApprovalTests.Reporters;
-    using APIComparer.Backend;
+    using Backend;
     using NUnit.Framework;
 
     [TestFixture]
@@ -15,8 +15,9 @@
         [Test]
         public void SingleMatchingTarget()
         {
-            Verify("net40","net40");
+            Verify("net40", "net40");
         }
+
         [Test]
         public void MultiMatchingTargets()
         {
@@ -28,6 +29,7 @@
         {
             Verify("net40", "net40;net45");
         }
+
         [Test]
         public void MultiWithMissingRight()
         {
@@ -37,9 +39,9 @@
         static void Verify(string leftTargets, string rightTargets)
         {
             var left = leftTargets.Split(';').Select(t => new Target(t, new List<string>())).ToList();
-                
+
             var right = rightTargets.Split(';').Select(t => new Target(t, new List<string>())).ToList();
-            var compareSets = CompareSets.Create(left,right);
+            var compareSets = CompareSets.Create(left, right);
 
 
             var output = string.Join(Environment.NewLine, compareSets.Select(cs => cs.Name));

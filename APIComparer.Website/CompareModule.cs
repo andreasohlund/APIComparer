@@ -2,7 +2,7 @@
 {
     using System.IO;
     using System.Linq;
-    using APIComparer.Contracts;
+    using Contracts;
     using Nancy;
     using Nancy.Responses;
     using NServiceBus;
@@ -11,13 +11,11 @@
 
     public class CompareModule : NancyModule
     {
-        ILog logger = LogManager.GetLogger<CompareModule>();
-
         public CompareModule(IRootPathProvider rootPathProvider, IBus bus, NuGetBrowser nuGetBrowser)
         {
             Get["/compare/{nugetpackageid}/{leftversion}...{rightversion}"] = ctx =>
             {
-                var nugetPackageId = (string)ctx.nugetpackageid;
+                var nugetPackageId = (string) ctx.nugetpackageid;
 
                 SemanticVersion leftVersion;
                 SemanticVersion rightVersion;
@@ -34,14 +32,13 @@
                     {
                         redirectToExactComparison = true;
                     }
-         
                 }
                 catch (NotFoundException ex) //for now
                 {
                     return new NotFoundResponse
                     {
-                       ReasonPhrase = ex.Message 
-                    }; 
+                        ReasonPhrase = ex.Message
+                    };
                 }
 
                 if (redirectToExactComparison)
@@ -97,15 +94,13 @@
                     .Where(p => p.Version.Major == int.Parse(parts[0]) && p.Version.Minor == int.Parse(parts[1]))
                     .OrderByDescending(p => p.Version)
                     .FirstOrDefault();
-
             }
             else
             {
                 expandedVersion = nuGetBrowser.GetAllVersions(nugetPackageId)
-                .Where(p => p.Version.Major == int.Parse(parts[0]))
-                .OrderByDescending(p => p.Version)
-                .FirstOrDefault();
-
+                    .Where(p => p.Version.Major == int.Parse(parts[0]))
+                    .OrderByDescending(p => p.Version)
+                    .FirstOrDefault();
             }
 
             if (expandedVersion == null)
@@ -115,5 +110,7 @@
 
             return true;
         }
+
+        ILog logger = LogManager.GetLogger<CompareModule>();
     }
 }

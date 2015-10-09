@@ -1,10 +1,10 @@
 ﻿namespace APIComparer.Backend
 {
-    using APIComparer.VersionComparisons;
+    using VersionComparisons;
 
     public class DiffedCompareSet
     {
-        public CompareSet Set;
         public Diff Diff;
+        public CompareSet Set;
     }
 }

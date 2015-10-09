@@ -2,30 +2,32 @@ namespace APIComparer.Backend
 {
     using System;
     using System.IO;
-    using APIComparer.Backend.Reporting;
+    using Reporting;
 
     public class CompareSetReporter
     {
         public void Report(PackageDescription description, DiffedCompareSet[] diffedCompareSets)
         {
             var resultPath = DetermineAndCreateResultPathIfNotExistant(description);
-            
-            using (var fileStream = File.OpenWrite(resultPath))
-            using (var into = new StreamWriter(fileStream))
-            {
-                var formatter = new APIUpgradeToHtmlFormatter();
-                formatter.Render(into, description, diffedCompareSets);
 
-                @into.Flush();
-                @into.Close();
-                fileStream.Close();
+            using (var fileStream = File.OpenWrite(resultPath))
+            {
+                using (var into = new StreamWriter(fileStream))
+                {
+                    var formatter = new APIUpgradeToHtmlFormatter();
+                    formatter.Render(into, description, diffedCompareSets);
+
+                    @into.Flush();
+                    @into.Close();
+                    fileStream.Close();
+                }
             }
             RemoveTemporaryWorkFiles(resultPath);
         }
 
         static string DetermineAndCreateResultPathIfNotExistant(PackageDescription description)
         {
-            var resultFile = String.Format("{0}-{1}...{2}.html", description.PackageId, description.Versions.LeftVersion, description.Versions.RightVersion);
+            var resultFile = string.Format("{0}-{1}...{2}.html", description.PackageId, description.Versions.LeftVersion, description.Versions.RightVersion);
 
             var rootPath = Environment.GetEnvironmentVariable("HOME"); // TODO: use AzureEnvironment
 
@@ -38,7 +40,7 @@ namespace APIComparer.Backend
                 rootPath = Environment.GetEnvironmentVariable("APICOMPARER_WWWROOT", EnvironmentVariableTarget.User);
             }
 
-            if (String.IsNullOrEmpty(rootPath))
+            if (string.IsNullOrEmpty(rootPath))
             {
                 throw new Exception("No root path could be found. If in development please set the `APICOMPARER_WWWROOT` env variable to the root folder of the webproject");
             }

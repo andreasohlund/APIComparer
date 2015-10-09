@@ -1,8 +1,8 @@
 ﻿namespace APIComparer.Backend
 {
     using System;
-    using APIComparer.Shared;
     using Microsoft.Azure.WebJobs;
+    using Shared;
 
     // To learn more about Microsoft Azure WebJobs SDK, please see http://go.microsoft.com/fwlink/?LinkID=320976
     class Program

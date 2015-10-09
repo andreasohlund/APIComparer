@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using APIComparer.VersionComparisons;
+    using VersionComparisons;
 
     public static class CompareSets
     {
@@ -53,7 +53,6 @@
                     ComparedTo = comparedToName
                 };
             }
-
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace APIComparer.Backend
 {
-    using APIComparer.Contracts;
+    using Contracts;
     using NServiceBus;
 
     public class ComparisonHandler : IHandleMessages<CompareNugetPackage>

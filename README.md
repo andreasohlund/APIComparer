@@ -16,11 +16,11 @@ http://apicomparer.particular.net/compare/rabbitmq.client/3.4...3.5 - latest 3.4
 http://apicomparer.particular.net/compare/rabbitmq.client/2...3 - latest 2 against latest 3
 http://apicomparer.particular.net/compare/rabbitmq.client/3.4.3...3.5.0 - fully qualified version, will not be expanded
 
-This feature is helpful if you want to include links in release notes how a give version compare the the latest X.Y of older versions.
+This feature is helpful if you want to include links in release notes for how a given version compare to the latest X.Y of older versions.
 
 ### Environments
 
-We currently have 2 environments. Please login to the particular azure account to manage them
+We currently have 2 environments. Please login to the particular azure account to manage them.
 
 #### Live
 http://apicomparer.particular.net/

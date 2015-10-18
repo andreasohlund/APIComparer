@@ -17,10 +17,7 @@
             DynamicLoadTemplateAndPartials();
         }
 
-        public ContentType ContentType
-        {
-            get { return new ContentType("text/html"); }
-        }
+        public ContentType ContentType => new ContentType("text/html");
 
         public void Render(TextWriter writer, PackageDescription description, DiffedCompareSet[] diffedCompareSets)
         {

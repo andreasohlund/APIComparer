@@ -6,6 +6,7 @@
         public static string Comparison()
         {
             return @"
+<head><link rel=""stylesheet"" type=""text/css"" href=""/Content/style.css"" ></head>
 {{~ #targets ~}}
 {{> target }}
 {{~ /targets ~}}";
@@ -14,6 +15,9 @@
         public static string Target()
         {
             return @"
+<section id=""{{ Name }}"">
+<a class=""tab"" href=""#{{ Name }}"">{{ Name }}</a>
+<div class=""content"">
 <h1>{{ Name }}{{ ComparedTo }}</h1>
 {{~#if noLongerSupported }}
     <p>No longer supported.</p>
@@ -26,6 +30,8 @@
         <p>No differences found.<p/>
     {{~/if}}
 {{~/if}}
+</div>
+</section>
 ";
         }
 

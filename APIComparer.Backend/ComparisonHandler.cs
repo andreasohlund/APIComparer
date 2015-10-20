@@ -2,11 +2,16 @@
 {
     using Contracts;
     using NServiceBus;
+    using NServiceBus.Logging;
 
     public class ComparisonHandler : IHandleMessages<CompareNugetPackage>
     {
+        static ILog log = LogManager.GetLogger<ComparisonHandler>();
+
         public void Handle(CompareNugetPackage message)
         {
+            log.Info($"Received request to handle comparison for '{message.PackageId}' versions '{message.LeftVersion}' and '{message.RightVersion}'");
+
             var creator = new CompareSetCreator();
             var differ = new CompareSetDiffer();
             var reporter = new CompareSetReporter();

@@ -6,6 +6,7 @@
     using Microsoft.Azure.WebJobs;
     using NServiceBus;
     using NServiceBus.Features;
+    using NServiceBus.Logging;
     using Shared;
 
     public class Functions
@@ -13,6 +14,9 @@
         [NoAutomaticTrigger]
         public static void Host(TextWriter log, CancellationToken cancellationToken)
         {
+            var defaultFactory = LogManager.Use<DefaultFactory>();
+            defaultFactory.Level(LogLevel.Info);
+
             var configuration = new BusConfiguration();
             configuration.EndpointName("APIComparer.Backend");
             configuration.DisableFeature<SecondLevelRetries>();

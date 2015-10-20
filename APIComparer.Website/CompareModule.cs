@@ -43,17 +43,17 @@
 
                 if (redirectToExactComparison)
                 {
-                    return Response.AsRedirect(string.Format("/compare/{0}/{1}...{2}", nugetPackageId, leftVersion, rightVersion));
+                    return Response.AsRedirect($"/compare/{nugetPackageId}/{leftVersion}...{rightVersion}");
                 }
 
-                var pathToAlreadyRenderedComparison = string.Format("./Comparisons/{0}-{1}...{2}.html", nugetPackageId, leftVersion, rightVersion);
+                var pathToAlreadyRenderedComparison = $"./Comparisons/{nugetPackageId}-{leftVersion}...{rightVersion}.html";
 
                 if (File.Exists(Path.Combine(rootPathProvider.GetRootPath(), pathToAlreadyRenderedComparison)))
                 {
                     return new GenericFileResponse(pathToAlreadyRenderedComparison, "text/html");
                 }
 
-                var pathToWorkingToken = string.Format("./Comparisons/{0}-{1}...{2}.running.html", nugetPackageId, leftVersion, rightVersion);
+                var pathToWorkingToken = $"./Comparisons/{nugetPackageId}-{leftVersion}...{rightVersion}.running.html";
                 var fullPathToWorkingToken = Path.Combine(rootPathProvider.GetRootPath(), pathToWorkingToken);
 
                 if (File.Exists(fullPathToWorkingToken))
@@ -105,7 +105,7 @@
 
             if (expandedVersion == null)
             {
-                throw new NotFoundException(string.Format("Can't find any versions for {0} matching version pattern {1}.*", nugetPackageId, requestedVersion));
+                throw new NotFoundException($"Can't find any versions for {nugetPackageId} matching version pattern {requestedVersion}.*");
             }
 
             return true;

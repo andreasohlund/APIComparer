@@ -6,14 +6,20 @@
         public static string Comparison()
         {
             return @"
+<head><link rel=""stylesheet"" type=""text/css"" href=""/Content/style.css"" ></head>
+<body>
 {{~ #targets ~}}
 {{> target }}
-{{~ /targets ~}}";
+{{~ /targets ~}}
+</body>";
         }
 
         public static string Target()
         {
             return @"
+<section id=""{{ ShortName }}"" title=""{{ Name }}"">
+<a class=""tab"" href=""#{{ ShortName }}"">{{ ShortName }}</a>
+<div class=""content"">
 <h1>{{ Name }}{{ ComparedTo }}</h1>
 {{~#if noLongerSupported }}
     <p>No longer supported.</p>
@@ -26,6 +32,8 @@
         <p>No differences found.<p/>
     {{~/if}}
 {{~/if}}
+</div>
+</section>
 ";
         }
 

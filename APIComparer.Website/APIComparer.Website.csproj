@@ -22,6 +22,7 @@
     <IISExpressUseClassicPipelineMode />
     <NuGetPackageImportStamp>f5ac57f1</NuGetPackageImportStamp>
     <ApplicationInsightsResourceId>/subscriptions/421099c3-b4a3-4955-8fac-b4a9c9abf65a/resourcegroups/Default-ApplicationInsights-CentralUS/providers/microsoft.insights/components/APIComparer.Website</ApplicationInsightsResourceId>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -156,6 +157,7 @@
   <ItemGroup>
     <Content Include="Comparisons\CompareRunning.html" />
     <Content Include="Comparisons\.gitignore" />
+    <Content Include="Content\style.css" />
     <Content Include="Views\gtm.html" />
     <Content Include="Views\home.html" />
     <Content Include="Web.config">

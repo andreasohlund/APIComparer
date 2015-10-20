@@ -7,16 +7,18 @@
         {
             return @"
 <head><link rel=""stylesheet"" type=""text/css"" href=""/Content/style.css"" ></head>
+<body>
 {{~ #targets ~}}
 {{> target }}
-{{~ /targets ~}}";
+{{~ /targets ~}}
+</body>";
         }
 
         public static string Target()
         {
             return @"
-<section id=""{{ Name }}"">
-<a class=""tab"" href=""#{{ Name }}"">{{ Name }}</a>
+<section id=""{{ ShortName }}"" title=""{{ Name }}"">
+<a class=""tab"" href=""#{{ ShortName }}"">{{ ShortName }}</a>
 <div class=""content"">
 <h1>{{ Name }}{{ ComparedTo }}</h1>
 {{~#if noLongerSupported }}

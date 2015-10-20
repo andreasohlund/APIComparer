@@ -18,6 +18,7 @@ namespace APIComparer.Backend.Reporting
 
         static IEnumerable<object> BuildTargets(DiffedCompareSet[] diffedCompareSets)
         {
+            var setCount = 0;
             return
                 from diffedSet in diffedCompareSets
                 let diff = diffedSet.Diff
@@ -26,9 +27,11 @@ namespace APIComparer.Backend.Reporting
                 let typesMadeInternal = BuildTypesMadeInternal(diff)
                 let typeDifferences = BuildTypeDifferences(diff)
                 let hasChanges = removedPublicTypes.Any() || typesMadeInternal.Any() || typeDifferences.Any()
+                let count = setCount++
                 select new
                 {
                     set.Name,
+                    ShortName = diffedCompareSets.Length < 5 ? set.Name : "Set #" + count,
                     ComparedTo = !string.IsNullOrEmpty(set.ComparedTo) ? $" (Compared To {set.ComparedTo})" : null,
                     noLongerSupported = diff is EmptyDiff,
                     hasRemovedPublicTypes = removedPublicTypes.Any(),

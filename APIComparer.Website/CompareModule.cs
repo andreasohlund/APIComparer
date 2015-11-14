@@ -2,7 +2,7 @@
 {
     using System.IO;
     using System.Linq;
-    using Contracts;
+    using APIComparer.Contracts;
     using Nancy;
     using Nancy.Responses;
     using NServiceBus;
@@ -78,7 +78,7 @@
             };
         }
 
-        bool TryExpandVersion(NuGetBrowser nuGetBrowser, string nugetPackageId, string requestedVersion, out SemanticVersion expandedVersion)
+        private bool TryExpandVersion(NuGetBrowser nuGetBrowser, string nugetPackageId, string requestedVersion, out SemanticVersion expandedVersion)
         {
             var parts = requestedVersion.Split('.');
 
@@ -111,6 +111,6 @@
             return true;
         }
 
-        ILog logger = LogManager.GetLogger<CompareModule>();
+        private ILog logger = LogManager.GetLogger<CompareModule>();
     }
 }

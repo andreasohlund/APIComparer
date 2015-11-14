@@ -1,10 +1,10 @@
-using System.Collections.Generic;
-using System.Linq;
-using NuGet;
-
 namespace APIComparer.VersionComparisons
 {
-    class CompareAgainstNextReleaseStrategy : ICompareStrategy
+    using System.Collections.Generic;
+    using System.Linq;
+    using NuGet;
+
+    internal class CompareAgainstNextReleaseStrategy : ICompareStrategy
     {
         public IEnumerable<VersionPair> GetVersionsToCompare(List<SemanticVersion> semverCompliantVersions)
         {
@@ -16,7 +16,6 @@ namespace APIComparer.VersionComparisons
 
                 foreach (var right in major)
                 {
-
                     if (right == left)
                     {
                         continue;

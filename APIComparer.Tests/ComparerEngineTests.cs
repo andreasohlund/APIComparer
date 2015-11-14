@@ -5,15 +5,21 @@ using Mono.Cecil;
 using NUnit.Framework;
 
 [TestFixture]
-class ComparerEngineTests
+internal class ComparerEngineTests
 {
     [Test]
     public void VerifyMissingField()
     {
         var leftType = new TypeDefinition("", "TheType", TypeAttributes.Public);
         leftType.Fields.Add(new FieldDefinition("TheField", FieldAttributes.Public, GetObjectType()));
-        var left = new List<TypeDefinition> { leftType };
-        var right = new List<TypeDefinition> { new TypeDefinition("", "TheType", TypeAttributes.Public) };
+        var left = new List<TypeDefinition>
+        {
+            leftType
+        };
+        var right = new List<TypeDefinition>
+        {
+            new TypeDefinition("", "TheType", TypeAttributes.Public)
+        };
         var diff = new ComparerEngine().CreateDiff(left, right);
         Assert.AreEqual("TheField", diff.MatchingTypeDiffs.First().LeftOrphanFields.First().Name);
     }
@@ -24,11 +30,17 @@ class ComparerEngineTests
         var leftType = new TypeDefinition("", "TheType", TypeAttributes.Public);
         leftType.Fields.Add(new FieldDefinition("TheField", FieldAttributes.Public, GetObjectType()));
         leftType.Methods.Add(new MethodDefinition("TheMethod", MethodAttributes.Public, GetObjectType()));
-        var left = new List<TypeDefinition> { leftType };
+        var left = new List<TypeDefinition>
+        {
+            leftType
+        };
         var rightType = new TypeDefinition("", "TheType", TypeAttributes.Public);
         rightType.Fields.Add(new FieldDefinition("TheField", FieldAttributes.Public, GetObjectType()));
         rightType.Methods.Add(new MethodDefinition("TheMethod", MethodAttributes.Public, GetObjectType()));
-        var right = new List<TypeDefinition> { rightType };
+        var right = new List<TypeDefinition>
+        {
+            rightType
+        };
         var diff = new ComparerEngine().CreateDiff(left, right);
         Assert.IsEmpty(diff.MatchingTypeDiffs);
 
@@ -40,9 +52,15 @@ class ComparerEngineTests
     public void VerifyEmptyMatchingTypesAreExcluded()
     {
         var leftType = new TypeDefinition("", "TheType", TypeAttributes.Public);
-        var left = new List<TypeDefinition> { leftType };
+        var left = new List<TypeDefinition>
+        {
+            leftType
+        };
         var rightType = new TypeDefinition("", "TheType", TypeAttributes.Public);
-        var right = new List<TypeDefinition> { rightType };
+        var right = new List<TypeDefinition>
+        {
+            rightType
+        };
         var diff = new ComparerEngine().CreateDiff(left, right);
         Assert.IsEmpty(diff.MatchingTypeDiffs);
     }
@@ -50,10 +68,16 @@ class ComparerEngineTests
     [Test]
     public void VerifyAddedField()
     {
-        var left = new List<TypeDefinition> { new TypeDefinition("", "TheType", TypeAttributes.Public) };
+        var left = new List<TypeDefinition>
+        {
+            new TypeDefinition("", "TheType", TypeAttributes.Public)
+        };
         var rightType = new TypeDefinition("", "TheType", TypeAttributes.Public);
         rightType.Fields.Add(new FieldDefinition("TheField", FieldAttributes.Public, GetObjectType()));
-        var right = new List<TypeDefinition> { rightType };
+        var right = new List<TypeDefinition>
+        {
+            rightType
+        };
         var diff = new ComparerEngine().CreateDiff(left, right);
         Assert.AreEqual("TheField", diff.MatchingTypeDiffs.First().RightOrphanFields.First().Name);
     }
@@ -62,7 +86,10 @@ class ComparerEngineTests
     public void VerifyMissingType()
     {
         var leftType = new TypeDefinition("", "TheType", TypeAttributes.Public);
-        var left = new List<TypeDefinition> { leftType };
+        var left = new List<TypeDefinition>
+        {
+            leftType
+        };
         var right = new List<TypeDefinition>();
         var diff = new ComparerEngine().CreateDiff(left, right);
         Assert.AreEqual("TheType", diff.LeftOrphanTypes.First().Name);
@@ -73,7 +100,10 @@ class ComparerEngineTests
     {
         var left = new List<TypeDefinition>();
         var rightType = new TypeDefinition("", "TheType", TypeAttributes.Public);
-        var right = new List<TypeDefinition> { rightType };
+        var right = new List<TypeDefinition>
+        {
+            rightType
+        };
         var diff = new ComparerEngine().CreateDiff(left, right);
         Assert.AreEqual("TheType", diff.RightOrphanTypes.First().Name);
     }
@@ -83,8 +113,14 @@ class ComparerEngineTests
     {
         var leftType = new TypeDefinition("", "TheType", TypeAttributes.Public);
         leftType.Methods.Add(new MethodDefinition("TheMethod", MethodAttributes.Public, GetObjectType()));
-        var left = new List<TypeDefinition> { leftType };
-        var right = new List<TypeDefinition> { new TypeDefinition("", "TheType", TypeAttributes.Public) };
+        var left = new List<TypeDefinition>
+        {
+            leftType
+        };
+        var right = new List<TypeDefinition>
+        {
+            new TypeDefinition("", "TheType", TypeAttributes.Public)
+        };
         var diff = new ComparerEngine().CreateDiff(left, right);
         Assert.AreEqual("TheMethod", diff.MatchingTypeDiffs.First().LeftOrphanMethods.First().Name);
     }
@@ -92,10 +128,16 @@ class ComparerEngineTests
     [Test]
     public void VerifyAddedMethod()
     {
-        var left = new List<TypeDefinition> { new TypeDefinition("", "TheType", TypeAttributes.Public) };
+        var left = new List<TypeDefinition>
+        {
+            new TypeDefinition("", "TheType", TypeAttributes.Public)
+        };
         var rightType = new TypeDefinition("", "TheType", TypeAttributes.Public);
         rightType.Methods.Add(new MethodDefinition("TheMethod", MethodAttributes.Public, GetObjectType()));
-        var right = new List<TypeDefinition> { rightType };
+        var right = new List<TypeDefinition>
+        {
+            rightType
+        };
         var diff = new ComparerEngine().CreateDiff(left, right);
         Assert.AreEqual("TheMethod", diff.MatchingTypeDiffs.First().RightOrphanMethods.First().Name);
     }
@@ -103,7 +145,10 @@ class ComparerEngineTests
     [Test]
     public void VerifyEmptyDiffForRightAssemblyGroupBeingEmpty()
     {
-        var diff = new ComparerEngine().CreateDiff(new AssemblyGroup(new[] { "Some.dll" }), new EmptyAssemblyGroup());
+        var diff = new ComparerEngine().CreateDiff(new AssemblyGroup(new[]
+        {
+            "Some.dll"
+        }), new EmptyAssemblyGroup());
         Assert.IsInstanceOf<EmptyDiff>(diff);
     }
 

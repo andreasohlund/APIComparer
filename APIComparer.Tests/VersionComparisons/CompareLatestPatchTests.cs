@@ -21,7 +21,7 @@
                 new SemanticVersion("1.2.1"),
                 new SemanticVersion("1.2.3"),
                 new SemanticVersion("2.0.0"),
-                new SemanticVersion("2.1.0"),
+                new SemanticVersion("2.1.0")
             };
 
             var versions = new CompareLatestPatchStrategy()

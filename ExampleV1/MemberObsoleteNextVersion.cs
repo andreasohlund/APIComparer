@@ -1,12 +1,9 @@
-using System;
-
 namespace Example
 {
+    using System;
+
     public class MemberObsoleteNextVersion
     {
-        [Obsolete]
-        public string StringField;
-
         [Obsolete]
         public string StringProperty { get; set; }
 
@@ -14,5 +11,7 @@ namespace Example
         public void Method()
         {
         }
+
+        [Obsolete] public string StringField;
     }
 }

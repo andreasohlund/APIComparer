@@ -1,6 +1,6 @@
 namespace APIComparer.Backend
 {
-    using VersionComparisons;
+    using APIComparer.VersionComparisons;
 
     public class PackageDescription
     {

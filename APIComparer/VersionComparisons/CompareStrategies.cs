@@ -1,8 +1,8 @@
-using System;
-
 namespace APIComparer.VersionComparisons
 {
-    class CompareStrategies
+    using System;
+
+    internal class CompareStrategies
     {
         public static ICompareStrategy Default
         {

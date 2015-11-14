@@ -2,9 +2,9 @@ namespace APIComparer.Website
 {
     using System;
 
-    class NotFoundException : Exception
+    internal class NotFoundException : Exception
     {
-        public NotFoundException(string message):base(message)
+        public NotFoundException(string message) : base(message)
         {
         }
     }

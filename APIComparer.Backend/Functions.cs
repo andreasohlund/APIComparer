@@ -3,11 +3,11 @@
     using System;
     using System.IO;
     using System.Threading;
+    using APIComparer.Shared;
     using Microsoft.Azure.WebJobs;
     using NServiceBus;
     using NServiceBus.Features;
     using NServiceBus.Logging;
-    using Shared;
 
     public class Functions
     {

@@ -9,8 +9,6 @@ namespace APIComparer.Backend.Reporting
     [SuppressMessage("ReSharper", "UnusedParameter.Global")]
     public class Helpers_Html
     {
-        private static readonly Regex codify = new Regex(@"`(?<x>[\w\.\(\)]*)`", RegexOptions.Compiled);
-
         public static void Codify(TextWriter writer, dynamic context, params object[] args)
         {
             if (args.Length != 1)
@@ -21,5 +19,7 @@ namespace APIComparer.Backend.Reporting
             var input = args[0] as string ?? string.Empty;
             writer.WriteSafeString(codify.Replace(input, @"<code>${x}</code>"));
         }
+
+        private static readonly Regex codify = new Regex(@"`(?<x>[\w\.\(\)]*)`", RegexOptions.Compiled);
     }
 }

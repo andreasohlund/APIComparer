@@ -63,7 +63,7 @@ namespace APIComparer
             }
         }
 
-        void WriteOut(TypeDiff typeDiff, TextWriter writer, FormattingInfo info)
+        private void WriteOut(TypeDiff typeDiff, TextWriter writer, FormattingInfo info)
         {
             var typeObsoleted = typeDiff.TypeObsoleted();
             writer.WriteLine();
@@ -86,7 +86,7 @@ namespace APIComparer
             writer.WriteLine();
         }
 
-        void WriteFields(TypeDiff typeDiff, TextWriter writer)
+        private void WriteFields(TypeDiff typeDiff, TextWriter writer)
         {
             var changedToNonPublic = typeDiff.FieldsChangedToNonPublic().ToList();
             if (changedToNonPublic.Any())
@@ -125,7 +125,7 @@ namespace APIComparer
             }
         }
 
-        void WriteMethods(TypeDiff typeDiff, TextWriter writer, FormattingInfo info)
+        private void WriteMethods(TypeDiff typeDiff, TextWriter writer, FormattingInfo info)
         {
             var changedToNonPublic = typeDiff.MethodsChangedToNonPublic().ToList();
             if (changedToNonPublic.Any())
@@ -162,7 +162,6 @@ namespace APIComparer
                     writer.WriteLine("  - `{0}`: {1}", method.Right.GetName(), method.Right.GetObsoleteString());
                 }
             }
-
         }
     }
 }

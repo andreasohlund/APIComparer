@@ -25,19 +25,19 @@ public class AssemblyCompressionTests
         File.Delete(afterAssemblyPath);
 
         var writerParameters = new WriterParameters
-                               {
-                                   WriteSymbols = true
-                               };
+        {
+            WriteSymbols = true
+        };
         moduleDefinition.Write(afterAssemblyPath, writerParameters);
         var beforeSize = new FileInfo(beforeAssemblyPath).Length + new FileInfo(beforeAssemblyPath.Replace(".dll", ".pdb")).Length;
-        Trace.WriteLine(string.Format("before {0} kbytes", beforeSize / 1024));
+        Trace.WriteLine($"before {beforeSize/1024} kbytes");
         var afterSize = new FileInfo(afterAssemblyPath).Length + new FileInfo(afterAssemblyPath.Replace(".dll", ".pdb")).Length;
-        Trace.WriteLine(string.Format("after {0} kbytes", afterSize / 1024));
+        Trace.WriteLine($"after {afterSize/1024} kbytes");
 
         Verifier.Verify(afterAssemblyPath);
     }
 
-    static void CompressAssembly(ModuleDefinition moduleDefinition)
+    private static void CompressAssembly(ModuleDefinition moduleDefinition)
     {
         moduleDefinition.RemoveUnwantedAttributes();
         moduleDefinition.Assembly.RemoveUnwantedAttributes();
@@ -54,7 +54,7 @@ public class AssemblyCompressionTests
         }
     }
 
-    static void ProcessType(ModuleDefinition moduleDefinition, TypeDefinition type)
+    private static void ProcessType(ModuleDefinition moduleDefinition, TypeDefinition type)
     {
         foreach (var toRemove in type.Properties.Where(x => x.IsCompilerGenerated()).ToList())
         {

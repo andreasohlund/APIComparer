@@ -1,4 +1,5 @@
 ﻿// ReSharper disable MemberCanBePrivate.Global
+
 namespace APIComparer.Contracts
 {
     using NServiceBus;

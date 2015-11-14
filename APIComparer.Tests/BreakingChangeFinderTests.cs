@@ -5,9 +5,8 @@ using APIComparer.BreakingChanges;
 using NUnit.Framework;
 
 [TestFixture]
-class BreakingChangeFinderTests
+internal class BreakingChangeFinderTests
 {
-
     [Test]
     public void ApproveExample()
     {
@@ -15,6 +14,6 @@ class BreakingChangeFinderTests
         var diff = engine.CreateDiff("ExampleV1.dll", "ExampleV2.dll");
 
         var breakingChanges = BreakingChangeFinder.Find(diff);
-        Approvals.Verify(string.Join(Environment.NewLine,breakingChanges));
+        Approvals.Verify(string.Join(Environment.NewLine, breakingChanges));
     }
 }

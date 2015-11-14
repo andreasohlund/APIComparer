@@ -2,7 +2,7 @@ namespace APIComparer.Backend
 {
     using System.Collections.Generic;
     using System.Linq;
-    using VersionComparisons;
+    using APIComparer.VersionComparisons;
 
     public class CompareSetCreator
     {

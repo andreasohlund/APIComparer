@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace APIComparer.BreakingChanges
+﻿namespace APIComparer.BreakingChanges
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
     public static class BreakingChangeFinder
     {
         public static IEnumerable<BreakingChange> Find(Diff diff)
@@ -38,12 +38,9 @@ namespace APIComparer.BreakingChanges
                 breakingChanges.AddRange(typeDiff.PublicMethodsRemoved().Select(method => new PublicMethodRemoved(typeDiff.LeftType, method)));
                 breakingChanges.AddRange(typeDiff.FieldsChangedToNonPublic().Select(field => new FieldChangedToNonPublic(typeDiff.LeftType, field.Left)));
                 breakingChanges.AddRange(typeDiff.MethodsChangedToNonPublic().Select(method => new MethodChangedToNonPublic(typeDiff.LeftType, method.Left)));
-         
             }
 
             return breakingChanges;
         }
-
-
     }
 }

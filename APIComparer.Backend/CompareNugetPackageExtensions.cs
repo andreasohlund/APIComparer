@@ -1,7 +1,7 @@
 namespace APIComparer.Backend
 {
-    using Contracts;
-    using VersionComparisons;
+    using APIComparer.Contracts;
+    using APIComparer.VersionComparisons;
 
     public static class CompareNugetPackageExtensions
     {

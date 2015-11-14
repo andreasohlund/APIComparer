@@ -1,7 +1,7 @@
 ﻿namespace APIComparer.Backend
 {
     using System.Linq;
-    using VersionComparisons;
+    using APIComparer.VersionComparisons;
 
     public class CompareSetDiffer
     {

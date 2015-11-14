@@ -1,10 +1,10 @@
-using System.Collections.Generic;
-using System.Linq;
-using NuGet;
-
 namespace APIComparer.VersionComparisons
 {
-    class CompareAgainstFirstReleaseStrategy: ICompareStrategy
+    using System.Collections.Generic;
+    using System.Linq;
+    using NuGet;
+
+    internal class CompareAgainstFirstReleaseStrategy : ICompareStrategy
     {
         public IEnumerable<VersionPair> GetVersionsToCompare(List<SemanticVersion> semverCompliantVersions)
         {

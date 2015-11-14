@@ -3,13 +3,13 @@
     using System.IO;
     using ApprovalTests;
     using ApprovalTests.Reporters;
-    using Backend;
-    using Backend.Reporting;
+    using APIComparer.Backend;
+    using APIComparer.Backend.Reporting;
     using APIComparer.VersionComparisons;
     using NUnit.Framework;
 
     [TestFixture]
-    [UseReporter(typeof(DiffReporter),typeof(ClipboardReporter))]
+    [UseReporter(typeof(DiffReporter), typeof(ClipboardReporter))]
     public class APIUpgradeToHtmlFormatterTest
     {
         [Test]
@@ -102,11 +102,13 @@
                 Diff = diff,
                 Set = new CompareSet()
             };
-            
-            formatter.Render(writer, packageDescription, new [] {diffedCompareSet});
+
+            formatter.Render(writer, packageDescription, new[]
+            {
+                diffedCompareSet
+            });
 
             Approvals.VerifyHtml(writer.ToString());
         }
-
     }
 }

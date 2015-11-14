@@ -9,10 +9,6 @@ namespace APIComparer
 
     public class ComparerEngine
     {
-        IEqualityComparer<TypeDefinition> typeComparer;
-        IEqualityComparer<FieldDefinition> fieldComparer;
-        IEqualityComparer<MethodDefinition> methodComparer;
-
         public ComparerEngine()
         {
             typeComparer = EqualityCompare<TypeDefinition>.EquateBy(t => t.FullName);
@@ -22,7 +18,7 @@ namespace APIComparer
 
         public Diff CreateDiff(string leftAssembly, string rightAssembly)
         {
-            return CreateDiff(ReadTypes(leftAssembly,true), ReadTypes(rightAssembly,true));
+            return CreateDiff(ReadTypes(leftAssembly, true), ReadTypes(rightAssembly, true));
         }
 
         public Diff CreateDiff(AssemblyGroup leftAssemblyGroup, AssemblyGroup rightAssemblyGroup)
@@ -35,7 +31,7 @@ namespace APIComparer
             return CreateDiff(ReadTypes(leftAssemblyGroup.Assemblies, leftAssemblyGroup.ReadSymbols), ReadTypes(rightAssemblyGroup.Assemblies, rightAssemblyGroup.ReadSymbols));
         }
 
-        IEnumerable<TypeDefinition> ReadTypes(IEnumerable<string> assemblyGroup, bool readSymbols)
+        private IEnumerable<TypeDefinition> ReadTypes(IEnumerable<string> assemblyGroup, bool readSymbols)
         {
             var readerParams = new ReaderParameters
             {
@@ -47,9 +43,12 @@ namespace APIComparer
                 .SelectMany(assembly => AssemblyDefinition.ReadAssembly(assembly, readerParams).MainModule.Types);
         }
 
-        IEnumerable<TypeDefinition> ReadTypes(string leftAssembly, bool readSymbols)
+        private IEnumerable<TypeDefinition> ReadTypes(string leftAssembly, bool readSymbols)
         {
-            return ReadTypes(new[] { leftAssembly }, readSymbols);
+            return ReadTypes(new[]
+            {
+                leftAssembly
+            }, readSymbols);
         }
 
         private bool IsManagedAssembly(string assemblyPath)
@@ -61,7 +60,7 @@ namespace APIComparer
             {
                 AssemblyName.GetAssemblyName(assemblyPath);
             }
-            catch(BadImageFormatException)
+            catch (BadImageFormatException)
             {
                 return false;
             }
@@ -85,13 +84,13 @@ namespace APIComparer
 
             return new Diff
             {
-                LeftOrphanTypes = leftOrphans.OrderBy(x=>x.FullName).ToList(),
+                LeftOrphanTypes = leftOrphans.OrderBy(x => x.FullName).ToList(),
                 RightOrphanTypes = rightOrphans.OrderBy(x => x.FullName).ToList(),
-                MatchingTypeDiffs = typeDiffs.OrderBy(x => x.RightType.FullName).ToList(),
+                MatchingTypeDiffs = typeDiffs.OrderBy(x => x.RightType.FullName).ToList()
             };
         }
 
-        TypeDiff DiffTypes(TypeDefinition leftType, TypeDefinition rightType)
+        private TypeDiff DiffTypes(TypeDefinition leftType, TypeDefinition rightType)
         {
             List<FieldDefinition> leftOrphanFields;
             List<FieldDefinition> rightOrphanFields;
@@ -109,17 +108,16 @@ namespace APIComparer
             {
                 LeftType = leftType,
                 RightType = rightType,
-
                 LeftOrphanFields = leftOrphanFields.OrderBy(x => x.Name).ToList(),
                 RightOrphanFields = rightOrphanFields.OrderBy(x => x.Name).ToList(),
                 MatchingFields = matchingFields.OrderBy(x => x.Right.Name).ToList(),
                 LeftOrphanMethods = leftOrphanMethods.OrderBy(x => x.Name).ToList(),
                 RightOrphanMethods = rightOrphanMethods.OrderBy(x => x.Name).ToList(),
-                MatchingMethods = matchingMethods.OrderBy(x => x.Right.Name).ToList(),
+                MatchingMethods = matchingMethods.OrderBy(x => x.Right.Name).ToList()
             };
         }
 
-        static void Diff<TSource>(IEnumerable<TSource> left, IEnumerable<TSource> right, IEqualityComparer<TSource> comparer, out List<TSource> leftOrphans, out List<TSource> rightOrphans, out List<MatchingMember<TSource>> matching) where TSource : IMemberDefinition
+        private static void Diff<TSource>(IEnumerable<TSource> left, IEnumerable<TSource> right, IEqualityComparer<TSource> comparer, out List<TSource> leftOrphans, out List<TSource> rightOrphans, out List<MatchingMember<TSource>> matching) where TSource : IMemberDefinition
         {
             leftOrphans = left.ToList();
             rightOrphans = new List<TSource>();
@@ -143,5 +141,9 @@ namespace APIComparer
                 leftOrphans.RemoveAt(index);
             }
         }
+
+        private IEqualityComparer<FieldDefinition> fieldComparer;
+        private IEqualityComparer<MethodDefinition> methodComparer;
+        private IEqualityComparer<TypeDefinition> typeComparer;
     }
 }

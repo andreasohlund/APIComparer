@@ -5,7 +5,7 @@
     using System.Linq;
     using ApprovalTests;
     using ApprovalTests.Reporters;
-    using Backend;
+    using APIComparer.Backend;
     using NUnit.Framework;
 
     [TestFixture]
@@ -36,7 +36,7 @@
             Verify("net35;net40", "net40;net45");
         }
 
-        static void Verify(string leftTargets, string rightTargets)
+        private static void Verify(string leftTargets, string rightTargets)
         {
             var left = leftTargets.Split(';').Select(t => new Target(t, new List<string>())).ToList();
 

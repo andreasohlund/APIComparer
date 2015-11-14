@@ -5,9 +5,6 @@ using NUnit.Framework;
 
 public static class Verifier
 {
-    static string exePath;
-    static bool peverifyFound;
-
     static Verifier()
     {
         exePath = Environment.ExpandEnvironmentVariables(@"%programfiles(x86)%\Microsoft SDKs\Windows\v7.0A\Bin\NETFX 4.0 Tools\PEVerify.exe");
@@ -22,6 +19,7 @@ public static class Verifier
             Assert.Ignore("Could not find PEVerify");
         }
     }
+
     public static void Verify(string assemblyPath)
     {
         if (!peverifyFound)
@@ -62,4 +60,7 @@ public static class Verifier
         process.WaitForExit();
         return process.StandardOutput.ReadToEnd().Trim().Replace(assemblyPath2, "");
     }
+
+    private static string exePath;
+    private static bool peverifyFound;
 }

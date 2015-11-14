@@ -3,10 +3,10 @@ namespace APIComparer.Backend
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
+    using APIComparer.Shared;
     using NuGet;
-    using Shared;
 
-    class NuGetDownloader
+    internal class NuGetDownloader
     {
         public NuGetDownloader(string nugetName, IEnumerable<string> repositories)
         {
@@ -43,8 +43,8 @@ namespace APIComparer.Backend
                 select new Target(framework.Key.FullName, framework.Select(f => f.SourcePath).ToList());
         }
 
-        readonly string package;
-        PackageManager packageManager;
+        private readonly string package;
+        private PackageManager packageManager;
     }
 
     public class Target

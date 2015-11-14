@@ -1,7 +1,7 @@
-using Mono.Cecil;
-
 namespace APIComparer
 {
+    using Mono.Cecil;
+
     public class MatchingMember<T> where T : IMemberDefinition
     {
         public T Left;

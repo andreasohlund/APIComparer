@@ -10,7 +10,10 @@
             Get["/"] = parameters =>
             {
                 var fileVersion = Assembly.GetExecutingAssembly().GetName().Version;
-                return View["home.html", new { Version = fileVersion }];
+                return View["home.html", new
+                {
+                    Version = fileVersion
+                }];
             };
         }
     }

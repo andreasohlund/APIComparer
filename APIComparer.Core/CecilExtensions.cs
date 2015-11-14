@@ -29,7 +29,7 @@
             }
         }
 
-        static bool IsUnwantedAttribute(CustomAttribute x)
+        private static bool IsUnwantedAttribute(CustomAttribute x)
         {
             return x.AttributeType.Name != typeof(ObsoleteAttribute).Name &&
                    !x.AttributeType.Name.StartsWith("Assembly");
@@ -41,7 +41,7 @@
             module.Types.Remove(typeDefinition);
         }
 
-        static CustomAttribute GetObsoleteAttribute(this ICustomAttributeProvider value)
+        private static CustomAttribute GetObsoleteAttribute(this ICustomAttributeProvider value)
         {
             var obsoleteAttribute = value.CustomAttributes.FirstOrDefault(a => a.AttributeType.Name == "ObsoleteAttribute");
 
@@ -160,7 +160,7 @@
             return type.Methods.Where(x => !x.IsAnonymous() && x.Name != ".cctor");
         }
 
-        static bool IsAnonymous(this IMemberDefinition member)
+        private static bool IsAnonymous(this IMemberDefinition member)
         {
             return member.Name.StartsWith("<") ||
                    member.Name.Contains(".<") ||
@@ -236,7 +236,7 @@
             return name;
         }
 
-        static bool IsSystemType(this TypeReference type)
+        private static bool IsSystemType(this TypeReference type)
         {
             var assemblyNameReference = type.Scope as AssemblyNameReference;
             return assemblyNameReference != null && assemblyNameReference.FullName.Contains("b77a5c561934e089");

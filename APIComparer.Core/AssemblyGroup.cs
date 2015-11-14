@@ -10,10 +10,10 @@ namespace APIComparer
         {
             Assemblies = assemblies.ToList();
 
-            ReadSymbols = Assemblies.All(a => File.Exists(Path.Combine(Path.GetDirectoryName(a),Path.GetFileNameWithoutExtension(a) +".pdb")));
+            ReadSymbols = Assemblies.All(a => File.Exists(Path.Combine(Path.GetDirectoryName(a), Path.GetFileNameWithoutExtension(a) + ".pdb")));
         }
 
-        public IEnumerable<string> Assemblies { get; private set; }
+        public IEnumerable<string> Assemblies { get; }
         public bool ReadSymbols { get; private set; }
     }
 }

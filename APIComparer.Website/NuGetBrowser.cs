@@ -6,9 +6,6 @@ namespace APIComparer.Website
 
     public class NuGetBrowser
     {
-        IPackageRepository repository;
-
- 
         public NuGetBrowser(IEnumerable<string> repositories)
         {
             var reposToUse = new List<IPackageRepository>();
@@ -19,13 +16,13 @@ namespace APIComparer.Website
 
         public IList<SemanticVersion> GetAllVersions(string package)
         {
-
             var packages = repository.FindPackagesById(package).ToList();
 
             return packages.Where(item => item.IsReleaseVersion() && item.IsListed())
                 .Select(p => p.Version)
                 .ToList();
-
         }
+
+        private IPackageRepository repository;
     }
 }

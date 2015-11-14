@@ -10,11 +10,13 @@
         {
             var builder = new ContainerBuilder();
 
-            builder.Register(c => new NuGetBrowser(new List<string> { "https://www.nuget.org/api/v2" }));
+            builder.Register(c => new NuGetBrowser(new List<string>
+            {
+                "https://www.nuget.org/api/v2"
+            }));
 
             BusConfig.Setup(existingContainer);
             builder.Update(existingContainer.ComponentRegistry);
-
         }
     }
 }

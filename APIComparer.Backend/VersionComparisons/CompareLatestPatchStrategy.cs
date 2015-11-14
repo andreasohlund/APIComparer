@@ -8,12 +8,10 @@
     {
         public IEnumerable<VersionPair> GetVersionsToCompare(List<SemanticVersion> semverCompliantVersions)
         {
-
             var majorGroups = semverCompliantVersions.GroupBy(v => v.Version.Major);
 
             foreach (var major in majorGroups)
             {
-
                 var minorGroups = major.GroupBy(v => v.Version.Minor).ToList();
                 var left = minorGroups.First().Max();
 
@@ -31,7 +29,6 @@
                     left = right;
                 }
             }
-         
         }
     }
 }

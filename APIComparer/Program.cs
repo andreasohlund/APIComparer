@@ -7,7 +7,7 @@ using APIComparer;
 using APIComparer.BreakingChanges;
 using APIComparer.VersionComparisons;
 
-class Program
+internal class Program
 {
     /* 
     Example cmd line
@@ -17,9 +17,9 @@ class Program
      
      * comparing local bin to latest build: --target C:\dev\NServiceBus\binaries\NServiceBus.Core.dll --source nuget:NServiceBus --feeds http://builds.particular.net/guestAuth/app/nuget/v1/FeedService.svc --include-prerelease
          */
-    static void Main(string[] args)
-    {
 
+    private static void Main(string[] args)
+    {
         List<CompareSet> compareSets;
 
         if (args.Any(a => a == "--nuget"))
@@ -68,24 +68,26 @@ class Program
                 Console.Out.Write(" No breaking changes found");
             }
 
-            var resultFile = Path.Combine(Path.GetTempPath(),Guid.NewGuid() + ".md");
+            var resultFile = Path.Combine(Path.GetTempPath(), Guid.NewGuid() + ".md");
 
             using (var fileStream = File.OpenWrite(resultFile))
-            using (var into = new StreamWriter(fileStream))
             {
-                var formatter = new APIUpgradeToMarkdownFormatter();
-                formatter.WriteOut(diff, into, new FormattingInfo("tbd", "tbd"));
+                using (var into = new StreamWriter(fileStream))
+                {
+                    var formatter = new APIUpgradeToMarkdownFormatter();
+                    formatter.WriteOut(diff, into, new FormattingInfo("tbd", "tbd"));
 
-                into.Flush();
-                into.Close();
-                fileStream.Close();
+                    into.Flush();
+                    into.Close();
+                    fileStream.Close();
+                }
             }
 
             Process.Start(resultFile);
         }
     }
 
-    static List<CompareSet> GetNuGetVersionsToCompare(string[] args)
+    private static List<CompareSet> GetNuGetVersionsToCompare(string[] args)
     {
         var nugetIndex = Array.FindIndex(args, arg => arg == "--nuget");
 
@@ -118,9 +120,12 @@ class Program
         return GetExplicitNuGetVersions(package, versions).ToList();
     }
 
-    static IEnumerable<CompareSet> GetAllNuGetVersions(string package, ICompareStrategy compareStrategy)
+    private static IEnumerable<CompareSet> GetAllNuGetVersions(string package, ICompareStrategy compareStrategy)
     {
-        var browser = new NuGetBrowser(new List<string> { "https://www.nuget.org/api/v2" });
+        var browser = new NuGetBrowser(new List<string>
+        {
+            "https://www.nuget.org/api/v2"
+        });
 
         Console.Out.Write("Loading version history for {0}", package);
 
@@ -132,7 +137,6 @@ class Program
             .ToList();
 
 
-
         return compareStrategy.GetVersionsToCompare(semverCompliantVersions)
             .Select(pair => CreateCompareSet(package, pair))
             .ToList();
@@ -140,7 +144,10 @@ class Program
 
     private static IEnumerable<CompareSet> GetExplicitNuGetVersions(string nugetName, string versions)
     {
-        var versionParts = versions.Split(new[] { ".." }, StringSplitOptions.None);
+        var versionParts = versions.Split(new[]
+        {
+            ".."
+        }, StringSplitOptions.None);
 
         var leftVersion = versionParts[0];
 
@@ -148,9 +155,12 @@ class Program
         yield return CreateCompareSet(nugetName, new VersionPair(leftVersion, rightVersion));
     }
 
-    static CompareSet CreateCompareSet(string package, VersionPair versions)
+    private static CompareSet CreateCompareSet(string package, VersionPair versions)
     {
-        var nugetDownloader = new NuGetDownloader(package, new List<string> { "https://www.nuget.org/api/v2" });
+        var nugetDownloader = new NuGetDownloader(package, new List<string>
+        {
+            "https://www.nuget.org/api/v2"
+        });
 
         Console.Out.Write("Preparing {0}-{1}", package, versions);
 
@@ -178,7 +188,6 @@ class Program
         }
 
 
-
         var targetIndex = Array.FindIndex(args, arg => arg == "--target");
 
         if (targetIndex < 0)
@@ -196,7 +205,6 @@ class Program
 
         if (source.StartsWith("nuget:"))
         {
-
             var nugetName = source.Replace("nuget:", "").Trim();
 
 
@@ -227,19 +235,20 @@ class Program
             RightAssemblyGroup = new AssemblyGroup(args[targetIndex + 1].Split(';').Select(Path.GetFullPath).ToList()),
             LeftAssemblyGroup = leftAsmGroup,
             Versions = new VersionPair(leftVersion, "TBD-Right")
-
         };
-
     }
 
-    static List<string> GetFeedsToUse(string[] args)
+    private static List<string> GetFeedsToUse(string[] args)
     {
         var feedsIndex = Array.FindIndex(args, arg => arg == "--feeds");
 
         List<string> feeds;
         if (feedsIndex < 0)
         {
-            feeds = new List<string> { "https://www.nuget.org/api/v2" };
+            feeds = new List<string>
+            {
+                "https://www.nuget.org/api/v2"
+            };
         }
         else
         {
@@ -247,5 +256,4 @@ class Program
         }
         return feeds;
     }
-
 }

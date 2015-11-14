@@ -9,8 +9,6 @@
 
     public class APIUpgradeToHtmlFormatter : IFormatter
     {
-        static Action<TextWriter, object> template;
-
         static APIUpgradeToHtmlFormatter()
         {
             DynamicLoadHelpers();
@@ -26,16 +24,16 @@
             template(writer, data);
         }
 
-        static void DynamicLoadHelpers()
+        private static void DynamicLoadHelpers()
         {
             var blockHelpers = from helper in typeof(Helpers_Html).GetMethods(BindingFlags.Static | BindingFlags.Public)
-                               let action = Delegate.CreateDelegate(typeof(HandlebarsBlockHelper), null, helper, false) as HandlebarsBlockHelper
-                               where action != null
-                               select new
-                               {
-                                   Name = helper.Name.ToLowerInvariant(),
-                                   Invoke = action
-                               };
+                let action = Delegate.CreateDelegate(typeof(HandlebarsBlockHelper), null, helper, false) as HandlebarsBlockHelper
+                where action != null
+                select new
+                {
+                    Name = helper.Name.ToLowerInvariant(),
+                    Invoke = action
+                };
 
             foreach (var blockHelper in blockHelpers)
             {
@@ -43,13 +41,13 @@
             }
 
             var helpers = from helper in typeof(Helpers_Html).GetMethods(BindingFlags.Static | BindingFlags.Public)
-                          let action = Delegate.CreateDelegate(typeof(HandlebarsHelper), null, helper, false) as HandlebarsHelper
-                          where action != null
-                          select new
-                          {
-                              Name = helper.Name.ToLowerInvariant(),
-                              Invoke = action
-                          };
+                let action = Delegate.CreateDelegate(typeof(HandlebarsHelper), null, helper, false) as HandlebarsHelper
+                where action != null
+                select new
+                {
+                    Name = helper.Name.ToLowerInvariant(),
+                    Invoke = action
+                };
 
             foreach (var helper in helpers)
             {
@@ -57,14 +55,14 @@
             }
         }
 
-        static void DynamicLoadTemplateAndPartials()
+        private static void DynamicLoadTemplateAndPartials()
         {
             var partials = typeof(Templates_Html)
                 .GetMethods(BindingFlags.Static | BindingFlags.Public)
                 .Select(m => new
                 {
                     Name = m.Name.ToLowerInvariant(),
-                    Invoke = new Func<string>(() => (string)m.Invoke(null, null))
+                    Invoke = new Func<string>(() => (string) m.Invoke(null, null))
                 }).ToArray();
 
             foreach (var @partial in partials)
@@ -86,5 +84,7 @@
                 }
             }
         }
+
+        private static Action<TextWriter, object> template;
     }
 }

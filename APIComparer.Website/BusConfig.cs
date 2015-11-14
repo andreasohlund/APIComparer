@@ -1,10 +1,10 @@
 ﻿namespace APIComparer.Website
 {
+    using APIComparer.Shared;
     using Autofac;
     using NServiceBus;
     using NServiceBus.Features;
     using NServiceBus.Logging;
-    using Shared;
 
     public static class BusConfig
     {

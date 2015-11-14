@@ -2,11 +2,8 @@ using System.Collections.Generic;
 using System.Linq;
 using NuGet;
 
-class NuGetBrowser
+internal class NuGetBrowser
 {
-    IPackageRepository repository;
-
- 
     public NuGetBrowser(IEnumerable<string> repositories)
     {
         var reposToUse = new List<IPackageRepository>();
@@ -15,14 +12,14 @@ class NuGetBrowser
         repository = new AggregateRepository(reposToUse);
     }
 
-    public IList<SemanticVersion> GetAllVersions(string package,bool includePreReleases = false)
+    public IList<SemanticVersion> GetAllVersions(string package, bool includePreReleases = false)
     {
-
         var packages = repository.FindPackagesById(package).ToList();
 
-        return packages.Where(item => (item.IsReleaseVersion()||includePreReleases) && item.IsListed())
+        return packages.Where(item => (item.IsReleaseVersion() || includePreReleases) && item.IsListed())
             .Select(p => p.Version)
             .ToList();
-
     }
+
+    private IPackageRepository repository;
 }

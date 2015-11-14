@@ -2,7 +2,7 @@ namespace APIComparer.Backend
 {
     using System;
     using System.IO;
-    using APIComparer.Backend.Reporting;
+    using Reporting;
 
     public class CompareSetReporter
     {

@@ -6,9 +6,6 @@ using NuGet;
 
 class NuGetDownloader
 {
-    readonly string package;
-    PackageManager packageManager;
-
     public NuGetDownloader(string nugetName, IEnumerable<string> repositories)
     {
         package = nugetName;
@@ -34,7 +31,7 @@ class NuGetDownloader
         packageManager.InstallPackage(package, semVer, true, false);
 
 
-        var dirPath = Path.Combine("packages", string.Format("{0}.{1}", package, version), "lib");
+        var dirPath = Path.Combine("packages", $"{package}.{version}", "lib");
 
 
         if (Directory.Exists(Path.Combine(dirPath, "net20")))
@@ -79,4 +76,7 @@ class NuGetDownloader
 
         return files;
     }
+
+    readonly string package;
+    PackageManager packageManager;
 }

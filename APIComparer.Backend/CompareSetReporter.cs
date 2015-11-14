@@ -2,7 +2,7 @@ namespace APIComparer.Backend
 {
     using System;
     using System.IO;
-    using Reporting;
+    using APIComparer.Backend.Reporting;
 
     public class CompareSetReporter
     {
@@ -27,7 +27,7 @@ namespace APIComparer.Backend
 
         static string DetermineAndCreateResultPathIfNotExistant(PackageDescription description)
         {
-            var resultFile = string.Format("{0}-{1}...{2}.html", description.PackageId, description.Versions.LeftVersion, description.Versions.RightVersion);
+            var resultFile = $"{description.PackageId}-{description.Versions.LeftVersion}...{description.Versions.RightVersion}.html";
 
             var rootPath = Environment.GetEnvironmentVariable("HOME"); // TODO: use AzureEnvironment
 

@@ -1,12 +1,9 @@
-﻿using Mono.Cecil;
-
-namespace APIComparer.BreakingChanges
+﻿namespace APIComparer.BreakingChanges
 {
-    public class PublicFieldRemoved:BreakingChange
-    {
-        readonly TypeDefinition typeDefinition;
-        readonly FieldDefinition fieldDefinition;
+    using Mono.Cecil;
 
+    public class PublicFieldRemoved : BreakingChange
+    {
         public PublicFieldRemoved(TypeDefinition typeDefinition, FieldDefinition fieldDefinition)
         {
             this.typeDefinition = typeDefinition;
@@ -14,12 +11,9 @@ namespace APIComparer.BreakingChanges
         }
 
 
-        public override string Reason
-        {
-            get
-            {
-                return string.Format("Public field {0} removed from {1}", fieldDefinition.Name,typeDefinition);
-            }
-        }
+        public override string Reason => $"Public field {fieldDefinition.Name} removed from {typeDefinition}";
+
+        FieldDefinition fieldDefinition;
+        TypeDefinition typeDefinition;
     }
 }

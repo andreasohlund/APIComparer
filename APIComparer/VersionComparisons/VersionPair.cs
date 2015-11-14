@@ -2,7 +2,7 @@
 {
     public class VersionPair
     {
-        public VersionPair(string leftVersion,string rightVersion)
+        public VersionPair(string leftVersion, string rightVersion)
         {
             LeftVersion = leftVersion;
             RightVersion = rightVersion;
@@ -13,7 +13,7 @@
 
         public override string ToString()
         {
-            return string.Format("{0}..{1}", LeftVersion, RightVersion);
+            return $"{LeftVersion}..{RightVersion}";
         }
     }
 }

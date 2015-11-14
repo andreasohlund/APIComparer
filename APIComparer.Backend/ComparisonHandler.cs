@@ -6,8 +6,6 @@
 
     public class ComparisonHandler : IHandleMessages<CompareNugetPackage>
     {
-        static ILog log = LogManager.GetLogger<ComparisonHandler>();
-
         public void Handle(CompareNugetPackage message)
         {
             log.Info($"Received request to handle comparison for '{message.PackageId}' versions '{message.LeftVersion}' and '{message.RightVersion}'");
@@ -22,5 +20,7 @@
             var diffedCompareSets = differ.Diff(compareSets);
             reporter.Report(packageDescription, diffedCompareSets);
         }
+
+        static ILog log = LogManager.GetLogger<ComparisonHandler>();
     }
 }

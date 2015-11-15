@@ -1,9 +1,6 @@
-using System;
-
 namespace Example
 {
-    [Obsolete]
-    public class ObsoleteNextVersionClass
+    public class ClassWithMembersToBeObsoletedWithWarnInNextVersion
     {
         public string StringField;
 

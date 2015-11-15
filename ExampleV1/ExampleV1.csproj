@@ -42,9 +42,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ClassObsoletedInBothVersions.cs" />
+    <Compile Include="ClassObsoletedWithErrorShouldNotBeIncludedIfRemoved.cs" />
+    <Compile Include="ClassObsoletedWithErrorShouldNotBeIncludedIfStillObsolete.cs" />
+    <Compile Include="ClassObsoletedWithWarnShouldBeIncludedIfInternalized.cs" />
+    <Compile Include="ClassObsoletedWithWarnShouldBeIncludedIfRemoved.cs" />
     <Compile Include="ClassToBeObsoletedWithErrorInNextVersion.cs" />
+    <Compile Include="ClassToBeObsoletedWithWarnInNextVersion.cs" />
     <Compile Include="ClassWithFieldToRemovedInNextMajor.cs" />
+    <Compile Include="ClassWithMembersObsoletedInBothVersionsShouldNotBeIncluded.cs" />
     <Compile Include="ClassWithMembersToBeObsoletedWithErrorInNextVersion.cs" />
+    <Compile Include="ClassWithMembersToBeObsoletedWithWarnInNextVersion.cs" />
+    <Compile Include="ClassWithPrivateMembersRemovedShouldNotBeIncluded.cs" />
     <Compile Include="ClassWithReadOnlyPropToBeRemovedInNextMajor.cs" />
     <Compile Include="IMethodChangesParametersNextVersion.cs" />
     <Compile Include="InternalNextVersionClass.cs" />
@@ -53,7 +61,7 @@
     <Compile Include="MemberObsoleteNextVersion.cs" />
     <Compile Include="MissingNextVersionClass.cs" />
     <Compile Include="MissingNextVersionClassWithRemoveInNextMajor.cs" />
-    <Compile Include="ObsoleteNextVersionClass.cs" />
+    <Compile Include="ClassObsoletedWithErrorShouldNotBeIncludedIfInternalized.cs" />
     <Compile Include="PublicClass.cs" />
   </ItemGroup>
   <ItemGroup>

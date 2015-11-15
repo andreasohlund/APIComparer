@@ -9,10 +9,6 @@ namespace APIComparer
 
     public class ComparerEngine
     {
-        IEqualityComparer<TypeDefinition> typeComparer;
-        IEqualityComparer<FieldDefinition> fieldComparer;
-        IEqualityComparer<MethodDefinition> methodComparer;
-
         public ComparerEngine()
         {
             typeComparer = EqualityCompare<TypeDefinition>.EquateBy(t => t.FullName);
@@ -22,7 +18,7 @@ namespace APIComparer
 
         public Diff CreateDiff(string leftAssembly, string rightAssembly)
         {
-            return CreateDiff(ReadTypes(leftAssembly,true), ReadTypes(rightAssembly,true));
+            return CreateDiff(ReadTypes(leftAssembly, true), ReadTypes(rightAssembly, true));
         }
 
         public Diff CreateDiff(AssemblyGroup leftAssemblyGroup, AssemblyGroup rightAssemblyGroup)
@@ -49,7 +45,10 @@ namespace APIComparer
 
         IEnumerable<TypeDefinition> ReadTypes(string leftAssembly, bool readSymbols)
         {
-            return ReadTypes(new[] { leftAssembly }, readSymbols);
+            return ReadTypes(new[]
+            {
+                leftAssembly
+            }, readSymbols);
         }
 
         private bool IsManagedAssembly(string assemblyPath)
@@ -61,7 +60,7 @@ namespace APIComparer
             {
                 AssemblyName.GetAssemblyName(assemblyPath);
             }
-            catch(BadImageFormatException)
+            catch (BadImageFormatException)
             {
                 return false;
             }
@@ -85,9 +84,9 @@ namespace APIComparer
 
             return new Diff
             {
-                LeftOrphanTypes = leftOrphans.OrderBy(x=>x.FullName).ToList(),
+                LeftOrphanTypes = leftOrphans.OrderBy(x => x.FullName).ToList(),
                 RightOrphanTypes = rightOrphans.OrderBy(x => x.FullName).ToList(),
-                MatchingTypeDiffs = typeDiffs.OrderBy(x => x.RightType.FullName).ToList(),
+                MatchingTypeDiffs = typeDiffs.OrderBy(x => x.RightType.FullName).ToList()
             };
         }
 
@@ -109,13 +108,12 @@ namespace APIComparer
             {
                 LeftType = leftType,
                 RightType = rightType,
-
                 LeftOrphanFields = leftOrphanFields.OrderBy(x => x.Name).ToList(),
                 RightOrphanFields = rightOrphanFields.OrderBy(x => x.Name).ToList(),
                 MatchingFields = matchingFields.OrderBy(x => x.Right.Name).ToList(),
                 LeftOrphanMethods = leftOrphanMethods.OrderBy(x => x.Name).ToList(),
                 RightOrphanMethods = rightOrphanMethods.OrderBy(x => x.Name).ToList(),
-                MatchingMethods = matchingMethods.OrderBy(x => x.Right.Name).ToList(),
+                MatchingMethods = matchingMethods.OrderBy(x => x.Right.Name).ToList()
             };
         }
 
@@ -143,5 +141,9 @@ namespace APIComparer
                 leftOrphans.RemoveAt(index);
             }
         }
+
+        IEqualityComparer<FieldDefinition> fieldComparer;
+        IEqualityComparer<MethodDefinition> methodComparer;
+        IEqualityComparer<TypeDefinition> typeComparer;
     }
 }

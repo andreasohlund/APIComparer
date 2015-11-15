@@ -1,63 +1,88 @@
-﻿
-## The following public types have been removed.
+﻿# Changes in current version
 
-- `Example.MissingNextVersionClass`
+## The following types are no longer available
 
+### Example.ClassObsoletedWithWarnShouldBeIncludedIfRemoved
+Some message.
 
-## The following public types have been made internal.
+### Example.MissingNextVersionClass
+No upgrade instructions provided.
 
-- `Example.InternalNextVersionClass`
+### Example.ClassObsoletedWithWarnShouldBeIncludedIfInternalized
+Some message.
 
+### Example.InternalNextVersionClass
+No upgrade instructions provided.
 
-## The following types have differences.
+### Example.ClassToBeObsoletedWithErrorInNextVersion
+This type should no longer be used, use XYZ instead.
 
-
-### Example.ClassToBeObsoletedWithErrorInNextVersion(Obsoleted)
-This type should no longer be used, use XYZ instead. Obsoleted with error.
-
-
-### Example.ClassWithMembersToBeObsoletedWithErrorInNextVersion
-
-#### Fields Obsoleted
-
-  - `string StringField`: StringField. Will be removed in version 2.0.0. Obsoleted with error.
-
-#### Methods Obsoleted
-
-  - `string get_StringProperty()`: StringProperty. Will be removed in version 2.0.0. Obsoleted with error.
-  - `void Method()`: Method. Will be removed in version 2.0.0. Obsoleted with error.
-  - `void set_StringProperty(string)`: StringProperty. Will be removed in version 2.0.0. Obsoleted with error.
-
-
-### Example.IMethodChangesParametersNextVersion
-
-#### Methods Removed
-
-  - `void MethodName(string)`
-
-
-### Example.MemberInternalNextVersion
-
-#### Fields changed to non-public
-
-  - `string StringField`
-
-#### Methods changed to non-public
-
-  - `string get_StringProperty()`
-  - `void Method()`
-  - `void set_StringProperty(string)`
-
+## Types with removed members
 
 ### Example.MemberMissingNextVersion
+#### Removed fields
 
-#### Fields Removed
+* `string StringField` - No upgrade instructions provided.
 
-  - `string StringField`
+#### Removed methods
 
-#### Methods Removed
+* `string get_StringProperty()` - No upgrade instructions provided.
+* `void Method()` - No upgrade instructions provided.
+* `void set_StringProperty(string)` - No upgrade instructions provided.
 
-  - `string get_StringProperty()`
-  - `void Method()`
-  - `void set_StringProperty(string)`
+### Example.MemberObsoleteNextVersion
+#### Removed fields
+
+* `string NotObsoletedFieldShouldBeIncluded` - No upgrade instructions provided.
+
+#### Removed methods
+
+* `void NotObsoletedMethodShouldBeIncluded()` - No upgrade instructions provided.
+
+### Example.IMethodChangesParametersNextVersion
+#### Removed methods
+
+* `void MethodName(string)` - No upgrade instructions provided.
+
+### Example.ClassWithMembersToBeObsoletedWithErrorInNextVersion
+#### Removed fields
+
+* `string StringField` - Use xyz instead.
+
+#### Removed methods
+
+* `string get_StringProperty()` - Can safely be removed.
+* `void Method()` - This is how to do it.
+* `void set_StringProperty(string)` - Can safely be removed.
+
+### Example.MemberInternalNextVersion
+#### Removed fields
+
+* `string StringField` - No upgrade instructions provided.
+
+#### Removed methods
+
+* `string get_StringProperty()` - No upgrade instructions provided.
+* `void Method()` - No upgrade instructions provided.
+* `void set_StringProperty(string)` - No upgrade instructions provided.
+
+# Upcoming changes in Version - 2.0.0
+
+## The following types are no longer available
+
+### Example.ClassToBeObsoletedWithWarnInNextVersion
+This type should no longer be used, use XYZ instead.
+
+## Types with removed members
+
+### Example.ClassWithMembersToBeObsoletedWithWarnInNextVersion
+#### Removed fields
+
+* `string StringField` - Use xyz instead.
+
+#### Removed methods
+
+* `string get_StringProperty()` - Can safely be removed.
+* `void Method()` - This is how to do it.
+* `void set_StringProperty(string)` - Can safely be removed.
 

@@ -140,6 +140,11 @@
     <Compile Include="Reporting\Helpers.Html.cs" />
     <Compile Include="Reporting\IFormatter.cs" />
     <Compile Include="Reporting\ViewModelBuilder.cs" />
+    <Compile Include="Reporting\ViewModel\APIComparison.cs" />
+    <Compile Include="Reporting\ViewModel\ObsoletedItem.cs" />
+    <Compile Include="Reporting\ViewModel\RemovedItem.cs" />
+    <Compile Include="Reporting\ViewModel\TargetReport.cs" />
+    <Compile Include="Reporting\ViewModel\TypeDifferencesReport.cs" />
     <Compile Include="Shared\AzureEnvironment.cs" />
     <Compile Include="Shared\ConfigureAuditQueue.cs" />
     <Compile Include="Shared\ConfigureAzureSubscriptionStorage.cs" />

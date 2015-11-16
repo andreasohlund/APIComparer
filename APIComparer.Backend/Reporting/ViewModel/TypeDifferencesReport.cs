@@ -1,6 +1,7 @@
 ﻿namespace APIComparer.Backend.Reporting
 {
     using System.Collections.Generic;
+    using System.Linq;
 
     public class TypeDifferencesReport
     {
@@ -25,5 +26,16 @@
 
         public bool hasMethodsObsoleted { get; set; }
         public IEnumerable<ObsoletedItem> methodsObsoleted { get; set; }
+
+        public int BreakingChanges
+        {
+            get
+            {
+                return fieldsChangedToNonPublic.Count()
+                       + fieldsRemoved.Count()
+                       + methodsChangedToNonPublic.Count()
+                       + methodsRemoved.Count();
+            }
+        }
     }
 }

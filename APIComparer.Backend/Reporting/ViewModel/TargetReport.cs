@@ -1,6 +1,7 @@
 ﻿namespace APIComparer.Backend.Reporting
 {
     using System.Collections.Generic;
+    using System.Linq;
 
     public class TargetReport
     {
@@ -15,5 +16,15 @@
         public bool hasTypeDifferences { get; set; }
         public IEnumerable<TypeDifferencesReport> typeDifferences { get; set; }
         public bool hasChanges { get; set; }
+
+        public int BreakingChanges
+        {
+            get
+            {
+                return removedPublicTypes.Count()
+                       + typesMadeInternal.Count()
+                       + typeDifferences.Sum(td => td.BreakingChanges);
+            }
+        }
     }
 }

@@ -13,25 +13,26 @@
     {
         IPackageRepository repo;
         IPackageManager packageManager;
+        readonly string[] frameworks;
 
         public TopXNugets()
         {
             repo = PackageRepositoryFactory.Default.CreateRepository("https://packages.nuget.org/api/v2");
             packageManager = new PackageManager(repo, "packages");
-        }
 
-        [Test]
-        public void Should_calculate_stats_for_top_10_packages()
-        {
-            var frameworks = new []
+            frameworks = new[]
             {
                 ".NETFramework,Version=v4.5",
                 ".NETFramework,Version=v4.0"
             };
+        }
 
+        [Test]
+        public void Should_calculate_stats_for_top_25_packages()
+        {
             var packages = repo.Search(String.Empty, frameworks, false)
                 .Skip(0)
-                .Take(25)
+                .Take(50)
                 .ToList();
 
             var output = new List<PackageResults>();
@@ -40,11 +41,7 @@
             {
                 Console.WriteLine($"Processing package {pkg.Id}...");
 
-                var dotNetRefs = pkg.AssemblyReferences.OfType<PhysicalPackageAssemblyReference>()
-                    .Where(pkgRef => frameworks.Contains(pkgRef.TargetFramework?.FullName))
-                    .ToList();
-
-                if (!dotNetRefs.Any())
+                if (!HasDotNetAssemblies(pkg))
                 {
                     Console.WriteLine("    Not a .NET package");
                     continue;
@@ -59,44 +56,76 @@
                 var minor = versions.Last(p => p.Version.Version.Major == latest.Version.Version.Major && p.Version.Version.Minor == latest.Version.Version.Minor);
                 var major = versions.Last(p => p.Version.Version.Major == latest.Version.Version.Major);
 
+                if (!HasDotNetAssemblies(minor) && !HasDotNetAssemblies(major))
+                {
+                    Console.WriteLine("    Lastest major/minor not .NET packages");
+                    continue;
+                }
+
                 packageManager.InstallPackage(pkg.Id, major.Version, true, false);
                 packageManager.InstallPackage(pkg.Id, minor.Version, true, false);
                 packageManager.InstallPackage(pkg.Id, latest.Version, true, false);
 
-                var minorDiff = Diff(pkg, minor.Version, latest.Version);
-                var majorDiff = Diff(pkg, major.Version, latest.Version);
-
-                output.Add(new PackageResults()
+                var pkgResult = new PackageResults()
                 {
                     Id = pkg.Id,
                     CurrentVersion = latest.Version,
-                    MajorVersion = major.Version,
-                    MinorVersion = minor.Version,
-                    MinorDiff = minorDiff,
-                    MajorDiff = majorDiff
-                });
+                    Major = new VersionReport(pkg.Id, latest.Version, major.Version),
+                    Minor = new VersionReport(pkg.Id, latest.Version, minor.Version)
+                };
 
-                if (output.Count == 10)
+                if (HasDotNetAssemblies(minor))
+                    pkgResult.Minor.Diff = Diff(pkg, minor.Version, latest.Version);
+                if (HasDotNetAssemblies(major))
+                    pkgResult.Major.Diff = Diff(pkg, major.Version, latest.Version);
+
+                output.Add(pkgResult);
+
+                if (output.Count == 25)
                     break;
             }
 
             Console.WriteLine();
-            Console.WriteLine("== Output ==");
+            Console.WriteLine("| Package Name | Current Version | Latest Minor | Latest Major |");
+            Console.WriteLine("| --------------|:---------------:|:------------------:|:-------------------:|");
             foreach (var res in output)
-                Console.WriteLine($"{res.Id} {res.MajorVersion} {res.MinorVersion} {res.CurrentVersion}");
+            {
+                Console.WriteLine($"| {res.Id} | {res.CurrentVersion} | {res.Minor.Report()} | {res.Major.Report()} |");
+            }
         }
 
         internal class PackageResults
         {
             public string Id { get; set; }
             public SemanticVersion CurrentVersion { get; set; }
-            public SemanticVersion MinorVersion { get; set; }
-            public SemanticVersion MajorVersion { get; set; }
-            public object MinorDiff { get; set; }
-            public object MajorDiff { get; set; }
+            public VersionReport Minor { get; set; }
+            public VersionReport Major { get; set; }
         }
 
-        private object Diff(IPackage pkg, SemanticVersion left, SemanticVersion right)
+        internal class VersionReport
+        {
+            public string PackageId { get; }
+            public SemanticVersion Version { get; }
+            public SemanticVersion Current { get; }
+            public TargetReport Diff { get; set; }
+
+            public VersionReport(string packageId, SemanticVersion current, SemanticVersion version)
+            {
+                PackageId = packageId;
+                Current = current;
+                Version = version;
+            }
+
+            public string Report()
+            {
+                if (Diff == null)
+                    return $"<span title=\"Comparing {Version}...{Current}\">Not .NET</span>";
+
+                return $"<a title=\"Comparing {Version}...{Current}\" href=\"http://apicomparer.particular.net/Compare/{PackageId}/{Version}...{Current}\">{Diff.BreakingChanges}</a>";
+            }
+        }
+
+        TargetReport Diff(IPackage pkg, SemanticVersion left, SemanticVersion right)
         {
             var creator = new CompareSetCreator();
             var differ = new CompareSetDiffer();
@@ -109,7 +138,23 @@
 
             var compareSets = creator.Create(packageDescription);
             var diffedCompareSets = differ.Diff(compareSets);
-            return ViewModelBuilder.Build(packageDescription, diffedCompareSets);
+            var vm = ViewModelBuilder.Build(packageDescription, diffedCompareSets);
+
+            foreach (var framework in frameworks)
+            {
+                var target = vm.targets.FirstOrDefault(trg => trg.Name == framework);
+                if (target != null)
+                    return target;
+            }
+
+            return null;
+        }
+
+        bool HasDotNetAssemblies(IPackage pkg)
+        {
+            return pkg.AssemblyReferences
+                .OfType<PhysicalPackageAssemblyReference>()
+                .Any(pkgRef => frameworks.Contains(pkgRef.TargetFramework?.FullName));
         }
     }
 }

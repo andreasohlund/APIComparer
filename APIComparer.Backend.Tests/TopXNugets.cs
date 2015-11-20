@@ -20,12 +20,13 @@
             ".NETFramework,Version=v4.0"
         };
 
-
-        [Test]
+        /// <summary>
+        /// Ad-hoc report to calculate breaking change statistics for the top 25 .NET NuGet packages. Could be useful on an APIComparer homepage one day.
+        /// </summary>
+        [Test, Explicit]
         public void Should_calculate_stats_for_top_25_packages()
         {
             var packages = repo.Search(String.Empty, Frameworks, false)
-                .Skip(0)
                 .Take(50)
                 .ToList();
 
@@ -35,11 +36,13 @@
             statCollector.Report();
         }
 
-        [Test]
+        /// <summary>
+        /// Ad-hoc report to calculate breaking change statistics for the top 50 NServiceBus packages.
+        /// </summary>
+        [Test, Explicit]
         public void Should_calculate_stats_for_NServiceBus_packages()
         {
             var packages = repo.Search("NServiceBus", Frameworks, false)
-                .Skip(0)
                 .Take(50)
                 .ToList()
                 .Where(p => p.Authors.Contains("NServiceBus Ltd"))

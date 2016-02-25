@@ -1,5 +1,6 @@
 ﻿namespace APIComparer.Backend
 {
+    using System;
     using Contracts;
     using NServiceBus;
     using NServiceBus.Logging;
@@ -16,9 +17,18 @@
 
             var packageDescription = message.ToDescription();
 
-            var compareSets = creator.Create(packageDescription);
-            var diffedCompareSets = differ.Diff(compareSets);
-            reporter.Report(packageDescription, diffedCompareSets);
+            try
+            {
+                var compareSets = creator.Create(packageDescription);
+                var diffedCompareSets = differ.Diff(compareSets);
+                reporter.Report(packageDescription, diffedCompareSets);
+            }
+            catch (Exception exception)
+            {
+                log.Info($"Failed to process request to handle comparison for '{message.PackageId}' versions '{message.LeftVersion}' and '{message.RightVersion}'");
+
+                reporter.ReportFailure(packageDescription, exception);
+            }
         }
 
         static ILog log = LogManager.GetLogger<ComparisonHandler>();

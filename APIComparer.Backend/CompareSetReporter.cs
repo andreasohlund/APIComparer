@@ -25,6 +25,13 @@ namespace APIComparer.Backend
             RemoveTemporaryWorkFiles(resultPath);
         }
 
+        public void ReportFailure(PackageDescription packageDescription, Exception exception)
+        {
+            var resultPath = DetermineAndCreateResultPathIfNotExistant(packageDescription);
+            File.WriteAllText(resultPath, $"{packageDescription.PackageId} comparison between {packageDescription.Versions.LeftVersion} and {packageDescription.Versions.RightVersion} has failed with the following error: {exception.Message}");
+            RemoveTemporaryWorkFiles(resultPath);
+        }
+
         static string DetermineAndCreateResultPathIfNotExistant(PackageDescription description)
         {
             var resultFile = $"{description.PackageId}-{description.Versions.LeftVersion}...{description.Versions.RightVersion}.html";

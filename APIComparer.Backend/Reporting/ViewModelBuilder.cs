@@ -8,15 +8,15 @@ namespace APIComparer.Backend.Reporting
     [SuppressMessage("ReSharper", "UnusedParameter.Global")]
     public class ViewModelBuilder
     {
-        public static object Build(PackageDescription description, DiffedCompareSet[] diffedCompareSets)
+        public static APIComparison Build(PackageDescription description, DiffedCompareSet[] diffedCompareSets)
         {
-            return new
+            return new APIComparison
             {
                 targets = BuildTargets(diffedCompareSets)
             };
         }
 
-        static IEnumerable<object> BuildTargets(DiffedCompareSet[] diffedCompareSets)
+        static IEnumerable<TargetReport> BuildTargets(DiffedCompareSet[] diffedCompareSets)
         {
             var setCount = 0;
             return
@@ -28,23 +28,23 @@ namespace APIComparer.Backend.Reporting
                 let typeDifferences = BuildTypeDifferences(diff)
                 let hasChanges = removedPublicTypes.Any() || typesMadeInternal.Any() || typeDifferences.Any()
                 let count = setCount++
-                select new
+                select new TargetReport
                 {
-                    set.Name,
+                    Name = set.Name,
                     ShortName = diffedCompareSets.Length < 5 ? set.Name : "Set #" + count,
                     ComparedTo = !string.IsNullOrEmpty(set.ComparedTo) ? $" (Compared To {set.ComparedTo})" : null,
                     noLongerSupported = diff is EmptyDiff,
                     hasRemovedPublicTypes = removedPublicTypes.Any(),
-                    removedPublicTypes,
+                    removedPublicTypes = removedPublicTypes,
                     hasTypesMadeInternal = typesMadeInternal.Any(),
-                    typesMadeInternal,
+                    typesMadeInternal = typesMadeInternal,
                     hasTypeDifferences = typeDifferences.Any(),
-                    typeDifferences,
-                    hasChanges
+                    typeDifferences = typeDifferences,
+                    hasChanges = hasChanges
                 };
         }
 
-        static IEnumerable<object> BuildTypeDifferences(Diff diff)
+        static IEnumerable<TypeDifferencesReport> BuildTypeDifferences(Diff diff)
         {
             return from typeDiff in diff.MatchingTypeDiffs
                    where typeDiff.LeftType.IsPublic
@@ -57,41 +57,44 @@ namespace APIComparer.Backend.Reporting
                    let methodsRemoved = BuildMethodsRemoved(typeDiff)
                    let methodsObsoleted = BuildMethodsObsoleted(typeDiff)
                    let hasBeenObsoleted = !typeDiff.LeftType.HasObsoleteAttribute() && typeDiff.RightType.HasObsoleteAttribute() 
-                   select new
+                   select new TypeDifferencesReport
                    {
                        name = typeDiff.RightType.GetName(),
-                       hasBeenObsoleted,
+                       hasBeenObsoleted = hasBeenObsoleted,
                        obsoleteMessage = hasBeenObsoleted ? typeDiff.RightType.GetObsoleteString() : "",
                        hasFieldsChangedToNonPublic = fieldsChangedToNonPublic.Any(),
-                       fieldsChangedToNonPublic,
+                       fieldsChangedToNonPublic = fieldsChangedToNonPublic,
                        hasFieldsObsoleted = fieldsObsoleted.Any(),
-                       fieldsObsoleted,
+                       fieldsObsoleted = fieldsObsoleted,
                        hasFieldsRemoved = fieldsRemoved.Any(),
-                       fieldsRemoved,
+                       fieldsRemoved = fieldsRemoved,
                        hasMethodsChangedToNonPublic = methodsChangedToNonPublic.Any(),
-                       methodsChangedToNonPublic,
+                       methodsChangedToNonPublic = methodsChangedToNonPublic,
                        hasMethodsRemoved = methodsRemoved.Any(),
-                       methodsRemoved,
+                       methodsRemoved = methodsRemoved,
                        hasMethodsObsoleted = methodsObsoleted.Any(),
-                       methodsObsoleted,
+                       methodsObsoleted = methodsObsoleted,
                    };
         }
 
-        static IEnumerable<object> BuildMethodsRemoved(TypeDiff typeDiff)
+       
+
+
+        static IEnumerable<RemovedItem> BuildMethodsRemoved(TypeDiff typeDiff)
         {
             foreach (var method in typeDiff.PublicMethodsRemoved())
             {
-                yield return new
+                yield return new RemovedItem
                 {
                     name = method.GetName()
                 };
             }
         }
-        static IEnumerable<object> BuildMethodsObsoleted(TypeDiff typeDiff)
+        static IEnumerable<ObsoletedItem> BuildMethodsObsoleted(TypeDiff typeDiff)
         {
             foreach (var method in typeDiff.PublicMethodsObsoleted())
             {
-                yield return new
+                yield return new ObsoletedItem
                 {
                     name = method.Right.GetName(),
                     obsolete = method.Right.GetObsoleteString()
@@ -99,43 +102,43 @@ namespace APIComparer.Backend.Reporting
             }
         }
 
-        static IEnumerable<object> BuildMethodsChangedToNonPublic(TypeDiff typeDiff)
+        static IEnumerable<RemovedItem> BuildMethodsChangedToNonPublic(TypeDiff typeDiff)
         {
             foreach (var method in typeDiff.MethodsChangedToNonPublic())
             {
-                yield return new
+                yield return new RemovedItem
                 {
                     name = method.Left.GetName()
                 };
             }
         }
 
-        static IEnumerable<object> BuildFieldsRemoved(TypeDiff typeDiff)
+        static IEnumerable<RemovedItem> BuildFieldsRemoved(TypeDiff typeDiff)
         {
             foreach (var field in typeDiff.PublicFieldsRemoved())
             {
-                yield return new
+                yield return new RemovedItem
                 {
                     name = field.GetName()
                 };
             }
         }
 
-        static IEnumerable<object> BuildFieldsChangedToNonPublic(TypeDiff typeDiff)
+        static IEnumerable<RemovedItem> BuildFieldsChangedToNonPublic(TypeDiff typeDiff)
         {
             foreach (var field in typeDiff.FieldsChangedToNonPublic())
             {
-                yield return new
+                yield return new RemovedItem
                 {
                     name = field.Right.GetName()
                 };
             }
         }
-        static IEnumerable<object> BuildFieldsObsoleted(TypeDiff typeDiff)
+        static IEnumerable<ObsoletedItem> BuildFieldsObsoleted(TypeDiff typeDiff)
         {
             foreach (var field in typeDiff.PublicFieldsObsoleted())
             {
-                yield return new
+                yield return new ObsoletedItem
                 {
                     name = field.Right.GetName(),      
                     obsolete = field.Right.GetObsoleteString()
@@ -143,22 +146,22 @@ namespace APIComparer.Backend.Reporting
             }
         }
 
-        static IEnumerable<object> BuildRemovedPublicTypes(Diff diff)
+        static IEnumerable<RemovedItem> BuildRemovedPublicTypes(Diff diff)
         {
             foreach (var definition in diff.RemovedPublicTypes())
             {
-                yield return new
+                yield return new RemovedItem
                 {
                     name = definition.GetName()
                 };
             }
         }
 
-        static IEnumerable<object> BuildTypesMadeInternal(Diff diff)
+        static IEnumerable<RemovedItem> BuildTypesMadeInternal(Diff diff)
         {
             foreach (var typeDiff in diff.TypesChangedToNonPublic())
             {
-                yield return new
+                yield return new RemovedItem
                 {
                     name = typeDiff.RightType.GetName()
                 };

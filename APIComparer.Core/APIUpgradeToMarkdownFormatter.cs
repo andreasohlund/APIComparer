@@ -1,168 +1,115 @@
 namespace APIComparer
 {
+    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
-    using System.Web;
 
     public class APIUpgradeToMarkdownFormatter
     {
-        public void WriteOut(Diff diff, TextWriter writer, FormattingInfo info)
+        public void WriteOut(List<ApiChanges> apiChanges, TextWriter writer)
         {
-            if (diff is EmptyDiff)
+            var currentChanges = apiChanges.Single(c => c.Version == "Current");
+            var upcomingChanges = apiChanges.Where(c => c.Version != "Current").ToList();
+            if (upcomingChanges.Any())
+            {
+                writer.WriteLine("# Changes in current version");
+                writer.WriteLine();
+            }
+
+            WriteOut(currentChanges, writer);
+
+            foreach (var change in upcomingChanges)
+            {
+                writer.WriteLine($"# Upcoming changes in Version - {change.Version}");
+                writer.WriteLine();
+
+                WriteOut(change, writer);
+            }
+        }
+
+        void WriteOut(ApiChanges apiChanges, TextWriter writer)
+        {
+            if (apiChanges.NoLongerSupported)
             {
                 writer.WriteLine("No longer supported");
                 return;
             }
 
-            var removePublicTypes = diff.RemovedPublicTypes().ToList();
-            if (removePublicTypes.Any())
+            if (apiChanges.RemovedTypes.Any())
             {
+                writer.WriteLine("## The following types are no longer available");
                 writer.WriteLine();
-                writer.WriteLine("## The following public types have been removed.");
-                writer.WriteLine();
-                foreach (var type in removePublicTypes)
+
+                foreach (var removedType in apiChanges.RemovedTypes)
                 {
-                    writer.WriteLine("- `{0}`", type.GetName());
+                    WriteRemovedType(writer, removedType, 3);
                 }
-                writer.WriteLine();
-            }
-            var typesChangedToNonPublic = diff.TypesChangedToNonPublic().ToList();
-            if (typesChangedToNonPublic.Any())
-            {
-                writer.WriteLine();
-                writer.WriteLine("## The following public types have been made internal.");
-                writer.WriteLine();
-                foreach (var type in typesChangedToNonPublic)
-                {
-                    writer.WriteLine("- `{0}`", type.RightType.GetName());
-                }
-                writer.WriteLine();
             }
 
-            var matchingTypeDiffs = diff.MatchingTypeDiffs.ToList();
-            if (matchingTypeDiffs.Any())
+            if (apiChanges.ChangedTypes.Any())
             {
+                writer.WriteLine("## Types with removed members");
                 writer.WriteLine();
-                writer.WriteLine("## The following types have differences.");
-                writer.WriteLine();
-                foreach (var typeDiff in diff.MatchingTypeDiffs)
+
+                foreach (var changedType in apiChanges.ChangedTypes)
                 {
-                    if (!typeDiff.LeftType.IsPublic)
-                    {
-                        continue;
-                    }
-                    if (!typeDiff.RightType.IsPublic)
-                    {
-                        continue;
-                    }
-                    if (typeDiff.HasDifferences())
-                    {
-                        WriteOut(typeDiff, writer, info);
-                    }
+                    WriteChangedType(writer, changedType, 3);
                 }
             }
+
         }
 
-        void WriteOut(TypeDiff typeDiff, TextWriter writer, FormattingInfo info)
+        static void WriteRemovedType(TextWriter writer, RemovedType removedType, int headingSize)
         {
-            var typeObsoleted = typeDiff.TypeObsoleted();
-            writer.WriteLine();
-            writer.Write("### {0}", HttpUtility.HtmlEncode(typeDiff.RightType.GetName()));
-            if (typeObsoleted)
-            {
-                writer.Write("(Obsoleted)");
-            }
+            writer.WriteLine($"{new string('#', headingSize)} {removedType.Name}");
 
-            writer.WriteLine();
+            var upgradeInstructions = removedType.UpgradeInstructions ?? "No upgrade instructions provided.";
 
-            if (typeObsoleted)
-            {
-                writer.WriteLine(typeDiff.RightType.GetObsoleteString());
-            }
-
-            WriteFields(typeDiff, writer);
-            WriteMethods(typeDiff, writer, info);
-
+            writer.WriteLine(upgradeInstructions);
             writer.WriteLine();
         }
 
-        void WriteFields(TypeDiff typeDiff, TextWriter writer)
+        static void WriteChangedType(TextWriter writer, ChangedType changedType, int headingSize)
         {
-            var changedToNonPublic = typeDiff.FieldsChangedToNonPublic().ToList();
-            if (changedToNonPublic.Any())
+            writer.WriteLine($"{new string('#', headingSize)} {changedType.Name}");
+
+            var removedFields = changedType.RemovedMembers.Where(tc => tc.IsField)
+                .ToList();
+
+            if (removedFields.Any())
             {
+                writer.WriteLine($"{new string('#', headingSize + 1)} Removed fields");
                 writer.WriteLine();
-                writer.WriteLine("#### Fields changed to non-public");
-                writer.WriteLine();
-                foreach (var field in changedToNonPublic)
+
+                foreach (var typeChange in removedFields)
                 {
-                    writer.WriteLine("  - `{0}`", field.Right.GetName());
+                    WriteRemovedMember(writer, typeChange);
                 }
+
+                writer.WriteLine();
             }
 
-            var removed = typeDiff.PublicFieldsRemoved().ToList();
-            if (removed.Any())
-            {
-                writer.WriteLine();
-                writer.WriteLine("#### Fields Removed");
-                writer.WriteLine();
-                foreach (var field in removed)
-                {
-                    writer.WriteLine("  - `{0}`", field.GetName());
-                }
-            }
+            var removedMethods = changedType.RemovedMembers.Where(tc => tc.IsMethod)
+              .ToList();
 
-            var obsoleted = typeDiff.PublicFieldsObsoleted().ToList();
-            if (obsoleted.Any())
+            if (removedMethods.Any())
             {
+                writer.WriteLine($"{new string('#', headingSize + 1)} Removed methods");
                 writer.WriteLine();
-                writer.WriteLine("#### Fields Obsoleted");
-                writer.WriteLine();
-                foreach (var field in obsoleted)
+
+                foreach (var typeChange in removedMethods)
                 {
-                    writer.WriteLine("  - `{0}`: {1}", field.Right.GetName(), field.Right.GetObsoleteString());
+                    WriteRemovedMember(writer, typeChange);
                 }
+
+                writer.WriteLine();
             }
         }
 
-        void WriteMethods(TypeDiff typeDiff, TextWriter writer, FormattingInfo info)
+        static void WriteRemovedMember(TextWriter writer, ChangedType.RemovedMember removedMember)
         {
-            var changedToNonPublic = typeDiff.MethodsChangedToNonPublic().ToList();
-            if (changedToNonPublic.Any())
-            {
-                writer.WriteLine();
-                writer.WriteLine("#### Methods changed to non-public");
-                writer.WriteLine();
-                foreach (var method in changedToNonPublic)
-                {
-                    writer.WriteLine("  - `{0}`", method.Left.GetName());
-                }
-            }
-
-            var removed = typeDiff.PublicMethodsRemoved().ToList();
-            if (removed.Any())
-            {
-                writer.WriteLine();
-                writer.WriteLine("#### Methods Removed");
-                writer.WriteLine();
-                foreach (var method in removed)
-                {
-                    writer.WriteLine("  - `{0}`", method.GetName());
-                }
-            }
-
-            var obsoleted = typeDiff.PublicMethodsObsoleted().ToList();
-            if (obsoleted.Any())
-            {
-                writer.WriteLine();
-                writer.WriteLine("#### Methods Obsoleted");
-                writer.WriteLine();
-                foreach (var method in obsoleted)
-                {
-                    writer.WriteLine("  - `{0}`: {1}", method.Right.GetName(), method.Right.GetObsoleteString());
-                }
-            }
-
+            var upgradeInstructions = removedMember.UpgradeInstructions ?? "No upgrade instructions provided.";
+            writer.WriteLine($"* `{removedMember.Name}` - {upgradeInstructions}");
         }
     }
 }

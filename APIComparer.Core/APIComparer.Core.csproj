@@ -61,10 +61,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiChanges.cs" />
     <Compile Include="AssemblyGroup.cs" />
     <Compile Include="BreakingChanges\BreakingChange.cs" />
     <Compile Include="BreakingChanges\BreakingChangeFinder.cs" />
     <Compile Include="CecilExtensions.cs" />
+    <Compile Include="ChangedType.cs" />
+    <Compile Include="ObsoleteInfo.cs" />
+    <Compile Include="RemovedType.cs" />
     <Compile Include="CollectionExtensions.cs" />
     <Compile Include="ComparerEngine.cs" />
     <Compile Include="Diff.cs" />

@@ -1,5 +1,7 @@
 namespace Example
 {
+    using System;
+
     public class MemberObsoleteNextVersion
     {
 #pragma warning disable 169
@@ -11,5 +13,18 @@ namespace Example
         internal void Method()
         {
         }
+
+
+        [Obsolete("", true)]
+        public void MethodObsoleteInBothVersionsShouldNotBeIncluded()
+        {
+        }
+
+        [Obsolete("", true)]
+        public string PropertyObsoleteInBothVersionsShouldNotBeIncluded { get; set; }
+
+        [Obsolete("", true)]
+        public string FieldObsoleteInBothVersionsShouldNotBeIncluded;
+
     }
 }

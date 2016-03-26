@@ -15,11 +15,10 @@ class Program
     or
     .\APIComparer.exe --nuget NServiceBus.RabbitMQ --versions 1.0.1..1.1.5
      
-     * comparing local bin to latest build: --target C:\dev\NServiceBus\binaries\NServiceBus.Core.dll --source nuget:NServiceBus --feeds http://builds.particular.net/guestAuth/app/nuget/v1/FeedService.svc --include-prerelease
+     * comparing local bin to latest build: --target C:\dev\NServiceBus\binaries\NServiceBus.Core.dll --source nuget:NServiceBus --feeds myget:particular --include-prerelease
          */
     static void Main(string[] args)
     {
-
         List<CompareSet> compareSets;
 
         if (args.Any(a => a == "--nuget"))
@@ -34,7 +33,6 @@ class Program
             };
         }
 
-
         foreach (var set in compareSets)
         {
             Compare(set, args.All(a => a != "--show-failed-only"));
@@ -46,7 +44,7 @@ class Program
         }
     }
 
-    private static void Compare(CompareSet compareSet, bool showAllVersions = true)
+    static void Compare(CompareSet compareSet, bool showAllVersions = true)
     {
         var engine = new ComparerEngine();
 
@@ -68,7 +66,7 @@ class Program
                 Console.Out.Write(" No breaking changes found");
             }
 
-            var resultFile = Path.Combine(Path.GetTempPath(),Guid.NewGuid() + ".md");
+            var resultFile = Path.Combine(Path.GetTempPath(), Guid.NewGuid() + ".md");
 
             using (var fileStream = File.OpenWrite(resultFile))
             using (var into = new StreamWriter(fileStream))
@@ -81,6 +79,7 @@ class Program
                 fileStream.Close();
             }
 
+            Console.Out.WriteLine(resultFile);
             Process.Start(resultFile);
         }
     }
@@ -138,7 +137,7 @@ class Program
             .ToList();
     }
 
-    private static IEnumerable<CompareSet> GetExplicitNuGetVersions(string nugetName, string versions)
+    static IEnumerable<CompareSet> GetExplicitNuGetVersions(string nugetName, string versions)
     {
         var versionParts = versions.Split(new[] { ".." }, StringSplitOptions.None);
 
@@ -168,7 +167,7 @@ class Program
         };
     }
 
-    private static CompareSet GetExplicitAssembliesToCompare(string[] args)
+    static CompareSet GetExplicitAssembliesToCompare(string[] args)
     {
         var sourceIndex = Array.FindIndex(args, arg => arg == "--source");
 
@@ -176,8 +175,6 @@ class Program
         {
             throw new Exception("No target assemblies specified, please use --source {asm1};{asm2}...");
         }
-
-
 
         var targetIndex = Array.FindIndex(args, arg => arg == "--target");
 
@@ -236,15 +233,28 @@ class Program
     {
         var feedsIndex = Array.FindIndex(args, arg => arg == "--feeds");
 
-        List<string> feeds;
         if (feedsIndex < 0)
         {
-            feeds = new List<string> { "https://www.nuget.org/api/v2" };
+            return new List<string> { "https://www.nuget.org/api/v2" };
         }
-        else
+
+        var feeds = new List<string>();
+        var parts = args[feedsIndex + 1].Split(';').ToList();
+
+        foreach (var feed in parts)
         {
-            feeds = args[feedsIndex + 1].Split(';').ToList();
+            if (feed.ToLower().StartsWith("myget:"))
+            {
+                var mygetFeedName = feed.Split(':')[1];
+
+                feeds.Add($"https://www.myget.org/F/{mygetFeedName}/api/v2");
+            }
+            else
+            {
+                feeds.Add(feed);
+            }
         }
+
         return feeds;
     }
 

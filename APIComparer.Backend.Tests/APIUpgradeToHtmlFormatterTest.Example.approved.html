@@ -34,6 +34,22 @@
 
 
 
+    <h3>Example.ClassToBeObsoletedWithWarnInNextVersion - Obsoleted</h3>
+    <p>This type should no longer be used, use XYZ instead. Will be treated as an error from version 2.0.0. Obsoleted with warning.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <h3>Example.ClassWithMembersToBeObsoletedWithErrorInNextVersion</h3>
 
 
@@ -42,7 +58,7 @@
 
 <h4>Fields Obsoleted</h4>
 <ul>
-  <li><code>string StringField</code><br/> StringField. Will be removed in version 2.0.0. Obsoleted with error.</li>
+  <li><code>string StringField</code><br/> Use xyz instead. Will be removed in version 2.0.0. Obsoleted with error.</li>
 </ul>
 
 
@@ -52,9 +68,33 @@
 
 <h4>Methods Obsoleted</h4>
 <ul>
-  <li><code>string get_StringProperty()</code><br/> StringProperty. Will be removed in version 2.0.0. Obsoleted with error.</li>
-  <li><code>void Method()</code><br/> Method. Will be removed in version 2.0.0. Obsoleted with error.</li>
-  <li><code>void set_StringProperty(string)</code><br/> StringProperty. Will be removed in version 2.0.0. Obsoleted with error.</li>
+  <li><code>string get_StringProperty()</code><br/> Can safely be removed. Will be removed in version 2.0.0. Obsoleted with error.</li>
+  <li><code>void Method()</code><br/> This is how to do it. Will be removed in version 2.0.0. Obsoleted with error.</li>
+  <li><code>void set_StringProperty(string)</code><br/> Can safely be removed. Will be removed in version 2.0.0. Obsoleted with error.</li>
+</ul>
+
+
+  <h3>Example.ClassWithMembersToBeObsoletedWithWarnInNextVersion</h3>
+
+
+
+
+
+<h4>Fields Obsoleted</h4>
+<ul>
+  <li><code>string StringField</code><br/> Use xyz instead. Will be treated as an error from version 2.0.0. Will be removed in version 3.0.0. Obsoleted with warning.</li>
+</ul>
+
+
+
+
+
+
+<h4>Methods Obsoleted</h4>
+<ul>
+  <li><code>string get_StringProperty()</code><br/> Can safely be removed. Will be treated as an error from version 2.0.0. Will be removed in version 3.0.0. Obsoleted with warning.</li>
+  <li><code>void Method()</code><br/> This is how to do it. Will be treated as an error from version 2.0.0. Will be removed in version 3.0.0. Obsoleted with warning.</li>
+  <li><code>void set_StringProperty(string)</code><br/> Can safely be removed. Will be treated as an error from version 2.0.0. Will be removed in version 3.0.0. Obsoleted with warning.</li>
 </ul>
 
 
@@ -119,6 +159,28 @@
   <li><code>string get_StringProperty()</code></li>
   <li><code>void Method()</code></li>
   <li><code>void set_StringProperty(string)</code></li>
+</ul>
+
+
+
+
+  <h3>Example.MemberObsoleteNextVersion</h3>
+
+
+
+<h4>Fields Removed</h4>
+<ul>
+  <li><code>string NotObsoletedFieldShouldBeIncluded</code></li>
+</ul>
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void NotObsoletedMethodShouldBeIncluded()</code></li>
 </ul>
 
 

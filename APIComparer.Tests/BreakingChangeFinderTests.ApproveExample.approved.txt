@@ -10,3 +10,5 @@ Public field StringField removed from Example.MemberMissingNextVersion
 Method get_StringProperty removed from type Example.MemberMissingNextVersion
 Method Method removed from type Example.MemberMissingNextVersion
 Method set_StringProperty removed from type Example.MemberMissingNextVersion
+Public field NotObsoletedFieldShouldBeIncluded removed from Example.MemberObsoleteNextVersion
+Method NotObsoletedMethodShouldBeIncluded removed from type Example.MemberObsoleteNextVersion

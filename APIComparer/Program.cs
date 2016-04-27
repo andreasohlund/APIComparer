@@ -7,7 +7,7 @@ using APIComparer;
 using APIComparer.BreakingChanges;
 using APIComparer.VersionComparisons;
 
-class Program
+static class Program
 {
     /* 
     Example cmd line
@@ -17,34 +17,48 @@ class Program
      
      * comparing local bin to latest build: --target C:\dev\NServiceBus\binaries\NServiceBus.Core.dll --source nuget:NServiceBus --feeds myget:particular --include-prerelease
          */
-    static void Main(string[] args)
+    static int Main(string[] args)
     {
-        List<CompareSet> compareSets;
+        try
+        {
+            List<CompareSet> compareSets;
 
-        if (args.Any(a => a == "--nuget"))
-        {
-            compareSets = GetNuGetVersionsToCompare(args);
-        }
-        else
-        {
-            compareSets = new List<CompareSet>
+            if (args.Contains("--nuget"))
             {
-                GetExplicitAssembliesToCompare(args)
-            };
-        }
+                compareSets = GetNuGetVersionsToCompare(args);
+            }
+            else
+            {
+                compareSets = new List<CompareSet>
+                {
+                    GetExplicitAssembliesToCompare(args)
+                };
+            }
+            var showAllVersions = !args.Contains("--show-failed-only");
+            var noBreakingChanges = compareSets.All(set => Compare(set, showAllVersions));
 
-        foreach (var set in compareSets)
-        {
-            Compare(set, args.All(a => a != "--show-failed-only"));
-        }
+            if (Debugger.IsAttached)
+            {
+                Console.ReadKey();
+            }
 
-        if (Debugger.IsAttached)
+            return noBreakingChanges
+                ? ExitCode.Ok
+                : ExitCode.BreakingChange;
+        }
+        catch (ApiComparerArgumentException ex)
         {
-            Console.ReadKey();
+            Console.Error.WriteLine("Argument exception: {0}", ex.Message);
+            return ExitCode.InvalidArgument;
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine("Unhandled exception: {0}", ex);
+            return ExitCode.GenericError;
         }
     }
 
-    static void Compare(CompareSet compareSet, bool showAllVersions = true)
+    static bool Compare(CompareSet compareSet, bool showAllVersions = true)
     {
         var engine = new ComparerEngine();
 
@@ -53,35 +67,40 @@ class Program
         var breakingChanges = BreakingChangeFinder.Find(diff)
             .ToList();
 
-        if (showAllVersions || breakingChanges.Any())
+        var hasBreakingChange = breakingChanges.Any();
+
+        if (!showAllVersions && !hasBreakingChange)
         {
-            Console.Out.Write("Checking {0}", compareSet);
-
-            if (breakingChanges.Any())
-            {
-                Console.Out.Write(": {0} Breaking Changes found", breakingChanges.Count);
-            }
-            else
-            {
-                Console.Out.Write(" No breaking changes found");
-            }
-
-            var resultFile = Path.Combine(Path.GetTempPath(), Guid.NewGuid() + ".md");
-
-            using (var fileStream = File.OpenWrite(resultFile))
-            using (var into = new StreamWriter(fileStream))
-            {
-                var formatter = new APIUpgradeToMarkdownFormatter();
-                formatter.WriteOut(ApiChanges.FromDiff(diff), into);
-
-                into.Flush();
-                into.Close();
-                fileStream.Close();
-            }
-
-            Console.Out.WriteLine(resultFile);
-            Process.Start(resultFile);
+            return true;
         }
+
+        Console.Out.Write("Checking {0}", compareSet);
+
+        if (hasBreakingChange)
+        {
+            Console.Out.WriteLine(": {0} Breaking Changes found", breakingChanges.Count);
+        }
+        else
+        {
+            Console.Out.WriteLine(": No breaking changes found");
+        }
+
+        var resultFile = Path.Combine(Path.GetTempPath(), Guid.NewGuid() + ".md");
+
+        using (var fileStream = File.OpenWrite(resultFile))
+        using (var into = new StreamWriter(fileStream))
+        {
+            var formatter = new APIUpgradeToMarkdownFormatter();
+            formatter.WriteOut(ApiChanges.FromDiff(diff), @into);
+
+            @into.Flush();
+            @into.Close();
+            fileStream.Close();
+        }
+
+        Console.Out.WriteLine(resultFile);
+        Process.Start(resultFile);
+        return !hasBreakingChange;
     }
 
     static List<CompareSet> GetNuGetVersionsToCompare(string[] args)
@@ -95,7 +114,7 @@ class Program
 
         if (versionsIndex < 0)
         {
-            throw new Exception("No version range specified, please use --versions {source-version}..{target-version} or --version all");
+            throw new ApiComparerArgumentException("No version range specified, please use --versions {source-version}..{target-version} or --version all");
         }
 
         var versions = args[versionsIndex + 1];
@@ -173,14 +192,14 @@ class Program
 
         if (sourceIndex < 0)
         {
-            throw new Exception("No target assemblies specified, please use --source {asm1};{asm2}...");
+            throw new ApiComparerArgumentException("No target assemblies specified, please use --source {asm1};{asm2}...");
         }
 
         var targetIndex = Array.FindIndex(args, arg => arg == "--target");
 
         if (targetIndex < 0)
         {
-            throw new Exception("No target assemblies specified, please use --target {asm1};{asm2}...");
+            throw new ApiComparerArgumentException("No target assemblies specified, please use --target {asm1};{asm2}...");
         }
 
         var source = args[sourceIndex + 1];

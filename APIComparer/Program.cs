@@ -35,7 +35,10 @@ static class Program
                 };
             }
             var showAllVersions = !args.Contains("--show-failed-only");
-            var noBreakingChanges = compareSets.All(set => Compare(set, showAllVersions));
+            var nonInteractive = args.Contains("--non-interactive");
+            var reportPath = GetReportPath(args);
+
+            var noBreakingChanges = compareSets.All(set => Compare(set, showAllVersions, nonInteractive, reportPath));
 
             if (Debugger.IsAttached)
             {
@@ -58,7 +61,7 @@ static class Program
         }
     }
 
-    static bool Compare(CompareSet compareSet, bool showAllVersions = true)
+    static bool Compare(CompareSet compareSet, bool showAllVersions = true, bool nonInteractive = false, string reportPath = null)
     {
         var engine = new ComparerEngine();
 
@@ -85,7 +88,7 @@ static class Program
             Console.Out.WriteLine(": No breaking changes found");
         }
 
-        var resultFile = Path.Combine(Path.GetTempPath(), Guid.NewGuid() + ".md");
+        var resultFile = reportPath ?? Path.Combine(Path.GetTempPath(), Guid.NewGuid() + ".md");
 
         using (var fileStream = File.OpenWrite(resultFile))
         using (var into = new StreamWriter(fileStream))
@@ -99,7 +102,10 @@ static class Program
         }
 
         Console.Out.WriteLine(resultFile);
-        Process.Start(resultFile);
+        if (!nonInteractive)
+        {
+            Process.Start(resultFile);
+        }
         return !hasBreakingChange;
     }
 
@@ -277,4 +283,25 @@ static class Program
         return feeds;
     }
 
+    static string GetReportPath(IEnumerable<string> args)
+    {
+        var reportPathSpecified = false;
+        var reportPath = args.SkipWhile(arg => arg != "--report-path")
+            .Where(arg=>reportPathSpecified = true)
+            .Skip(1)
+            .Take(1)
+            .FirstOrDefault(arg => !string.IsNullOrWhiteSpace(arg) && !arg.StartsWith("--"));
+
+        if (!string.IsNullOrWhiteSpace(reportPath))
+        {
+            using (File.Create(reportPath))
+            {
+            }
+        }
+        else if (reportPathSpecified)
+        {
+            throw new ApiComparerArgumentException("--report-path is specified, but no valid file path, please use --report-path {report path}");
+        }
+        return reportPath;
+    }
 }

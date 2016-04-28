@@ -74,6 +74,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiComparerArgumentException.cs" />
+    <Compile Include="ExitCode.cs" />
     <Compile Include="NuGetBrowser.cs" />
     <Compile Include="VersionComparisons\CompareAgainstFirstReleaseStrategy.cs" />
     <Compile Include="VersionComparisons\CompareAgainstNextReleaseStrategy.cs" />

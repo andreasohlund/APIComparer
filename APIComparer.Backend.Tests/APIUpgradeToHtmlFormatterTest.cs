@@ -36,6 +36,13 @@
             Approvals.VerifyHtml(HtmlDiff("LibLog", "3.0.0", "4.1.1"));
         }
 
+
+        [Test]
+        public void TestComplianceAutoMapper()
+        {
+            Approvals.VerifyHtml(HtmlDiff("AutoMapper", "4.2.1","5.0.0"));
+        }
+
         [Test]
         public void AppccelerateEventBrokerNoChanges()
         {
@@ -102,7 +109,7 @@
                 Diff = diff,
                 Set = new CompareSet()
             };
-            
+
             formatter.Render(writer, packageDescription, new [] {diffedCompareSet});
 
             Approvals.VerifyHtml(writer.ToString());

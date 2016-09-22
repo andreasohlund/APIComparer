@@ -1,0 +1,3414 @@
+﻿
+<head><link rel="stylesheet" type="text/css" href="/Content/style.css" ></head>
+<body>
+<section id=".NETStandard,Version=v1.6" title=".NETStandard,Version=v1.6">
+<a class="tab" href="#.NETStandard,Version=v1.6">.NETStandard,Version=v1.6</a>
+<div class="content">
+<h1>.NETStandard,Version=v1.6 (Compared To .NETFramework,Version=v4.5)</h1>
+        
+<h2>The following public types have been removed</h2>
+<ul>
+  <li><code>Raven.Abstractions.Connection.HttpRavenRequest</code></li>
+  <li><code>Raven.Abstractions.Connection.HttpRavenRequestFactory</code></li>
+  <li><code>Raven.Abstractions.Connection.HttpRequestHelper</code></li>
+  <li><code>Raven.Abstractions.Counters.CounterChanges</code></li>
+  <li><code>Raven.Abstractions.Counters.CountersDocument</code></li>
+  <li><code>Raven.Abstractions.Counters.CounterStorageReplicationDestination</code></li>
+  <li><code>Raven.Abstractions.Counters.CounterStorageReplicationDocument</code></li>
+  <li><code>Raven.Abstractions.Counters.CounterView</code></li>
+  <li><code>Raven.Abstractions.FileSystem.Notification</code></li>
+  <li><code>Raven.Abstractions.Logging.LogContext</code></li>
+  <li><code>Raven.Abstractions.MEF.OrderedPartCollection&lt;T&gt;</code></li>
+  <li><code>Raven.Abstractions.Smuggler.ExportOperationStatus</code></li>
+  <li><code>Raven.Abstractions.Smuggler.SmugglerDatabaseApiBase</code></li>
+  <li><code>Raven.Abstractions.Smuggler.SmugglerFilesApiBase</code></li>
+  <li><code>Raven.Abstractions.Util.AssemblyHelper</code></li>
+  <li><code>Raven.Abstractions.Util.ConfigurationManager</code></li>
+  <li><code>Raven.Abstractions.Util.IndexPrettyPrinter</code></li>
+  <li><code>Raven.Abstractions.Util.IndexPrettyPrinterEqualityComparer</code></li>
+  <li><code>Raven.Abstractions.Util.MetricsTicker</code></li>
+  <li><code>Raven.Abstractions.Util.PinnableBufferCache</code></li>
+  <li><code>Raven.Client.Changes.RemoteChangesClientBase&lt;TChangesApi, TConnectionState&gt;</code></li>
+  <li><code>Raven.Client.Connection.RavenTransactionAccessor</code></li>
+  <li><code>Raven.Client.Convention</code></li>
+  <li><code>Raven.Client.Counters.Connections.CounterConvention</code></li>
+  <li><code>Raven.Client.Counters.RavenCountersClient</code></li>
+  <li><code>Raven.Client.Document.DTC.IsolatedStorageTransactionRecoveryContext</code></li>
+  <li><code>Raven.Client.Document.DTC.IsolatedStorageTransactionRecoveryStorage</code></li>
+  <li><code>Raven.Client.Document.DTC.ITransactionRecoveryStorage</code></li>
+  <li><code>Raven.Client.Document.DTC.ITransactionRecoveryStorageContext</code></li>
+  <li><code>Raven.Client.Document.DTC.LocalDirectoryTransactionRecoveryStorage</code></li>
+  <li><code>Raven.Client.Document.DTC.PendingTransactionRecovery</code></li>
+  <li><code>Raven.Client.Document.DTC.VolatileOnlyTransactionRecoveryStorage</code></li>
+  <li><code>Raven.Client.Document.RavenClientEnlistment</code></li>
+  <li><code>Raven.Imports.Newtonsoft.Json.Converters.BinaryConverter</code></li>
+  <li><code>Raven.Imports.Newtonsoft.Json.Converters.DataSetConverter</code></li>
+  <li><code>Raven.Imports.Newtonsoft.Json.Converters.DataTableConverter</code></li>
+  <li><code>Raven.Imports.Newtonsoft.Json.Converters.EntityKeyMemberConverter</code></li>
+  <li><code>Raven.Imports.Newtonsoft.Json.Linq.JPropertyDescriptor</code></li>
+  <li><code>Raven.Imports.Newtonsoft.Json.Serialization.DiagnosticsTraceWriter</code></li>
+  <li><code>Raven.Imports.Newtonsoft.Json.Serialization.DynamicValueProvider</code></li>
+  <li><code>Raven.Imports.Newtonsoft.Json.Serialization.JsonISerializableContract</code></li>
+</ul>
+        
+        
+<h2>The following types have differences.</h2>
+
+  <h3>Raven.Abstractions.Connection.WebRequestEventArgs</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>WebRequest get_Request()</code></li>
+  <li><code>void set_Request(WebRequest)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Abstractions.Connection.WebResponseExtensions</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Stream GetResponseStreamWithHttpDecompression(WebResponse)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Abstractions.Counters.CountersStorageMetrics</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Raven.Abstractions.Data.MeterData get_ClientRuqeusts()</code></li>
+  <li><code>Dictionary&lt;string, Raven.Abstractions.Data.MeterData&gt; get_ReplicationDurationMeter()</code></li>
+  <li><code>void set_ClientRuqeusts(Raven.Abstractions.Data.MeterData)</code></li>
+  <li><code>void set_ReplicationDurationMeter(Dictionary&lt;string, Raven.Abstractions.Data.MeterData&gt;)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Abstractions.Counters.CounterStorageStats</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>int get_ApproximateTaskCount()</code></li>
+  <li><code>Decimal get_CounterStorageSizeOnDiskInMB()</code></li>
+  <li><code>long get_ServersCount()</code></li>
+  <li><code>void set_ApproximateTaskCount(int)</code></li>
+  <li><code>void set_CounterStorageSizeOnDiskInMB(Decimal)</code></li>
+  <li><code>void set_ServersCount(long)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Abstractions.Data.Constants</h3>
+
+
+
+<h4>Fields Removed</h4>
+<ul>
+  <li><code>int ChangeHistoryLength</code></li>
+  <li><code>Type DefaultCryptoServiceProvider</code></li>
+  <li><code>Byte GroupSeperator</code></li>
+  <li><code>Char GroupSeperatorChar</code></li>
+  <li><code>string GroupSeperatorString</code></li>
+  <li><code>string IsIndexReplicatedUrlParamName</code></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+  <h3>Raven.Abstractions.Data.DatabaseMetrics</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Raven.Abstractions.Data.MeterData get_JsonDeserializationsPerSecond()</code></li>
+  <li><code>Raven.Abstractions.Data.MeterData get_JsonDeserializedBytesPerSecond()</code></li>
+  <li><code>Raven.Abstractions.Data.MeterData get_JsonSerializationsPerSecond()</code></li>
+  <li><code>Raven.Abstractions.Data.MeterData get_JsonSerializedBytesPerSecond()</code></li>
+  <li><code>void set_JsonDeserializationsPerSecond(Raven.Abstractions.Data.MeterData)</code></li>
+  <li><code>void set_JsonDeserializedBytesPerSecond(Raven.Abstractions.Data.MeterData)</code></li>
+  <li><code>void set_JsonSerializationsPerSecond(Raven.Abstractions.Data.MeterData)</code></li>
+  <li><code>void set_JsonSerializedBytesPerSecond(Raven.Abstractions.Data.MeterData)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Abstractions.Data.IndexStats</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Raven.Abstractions.Data.IndexingPerformanceStats[] get_Performance()</code></li>
+  <li><code>void set_Performance(Raven.Abstractions.Data.IndexingPerformanceStats[])</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Abstractions.Data.IOperationState</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Raven.Json.Linq.RavenJToken get_State()</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Abstractions.Data.PeriodicExportSetup</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Nullable&lt;int&gt; get_FullBackupIntervalMilliseconds()</code></li>
+  <li><code>Nullable&lt;int&gt; get_IntervalMilliseconds()</code></li>
+  <li><code>void set_FullBackupIntervalMilliseconds(Nullable&lt;int&gt;)</code></li>
+  <li><code>void set_IntervalMilliseconds(Nullable&lt;int&gt;)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Abstractions.Data.RavenConnectionStringOptions</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>bool get_EnlistInDistributedTransactions()</code></li>
+  <li><code>void set_EnlistInDistributedTransactions(bool)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Abstractions.Data.TaskBasedOperationState</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void .ctor(Task, Raven.Json.Linq.RavenJToken)</code></li>
+  <li><code>Raven.Json.Linq.RavenJToken get_State()</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Abstractions.Extensions.JsonExtensions</h3>
+
+
+
+<h4>Fields Removed</h4>
+<ul>
+  <li><code>metrics.Core.MeterMetric JsonStreamDeserializationsPerSecond</code></li>
+  <li><code>metrics.Core.MeterMetric JsonStreamDeserializedBytesPerSecond</code></li>
+  <li><code>metrics.Core.MeterMetric JsonStreamSerializationsPerSecond</code></li>
+  <li><code>metrics.Core.MeterMetric JsonStreamSerializedBytesPerSecond</code></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+  <h3>Raven.Abstractions.Indexing.IndexDefinition</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>IDictionary&lt;string, Raven.Abstractions.Indexing.SuggestionOptions&gt; get_Suggestions()</code></li>
+  <li><code>void set_Suggestions(IDictionary&lt;string, Raven.Abstractions.Indexing.SuggestionOptions&gt;)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Abstractions.Logging.LogEventInfo</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>StackTrace get_StackTrace()</code></li>
+  <li><code>void set_StackTrace(StackTrace)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Abstractions.Logging.LogEventInfoFormatted</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>string get_StackTrace()</code></li>
+  <li><code>void set_StackTrace(string)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Abstractions.Logging.LogManager</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Raven.Abstractions.Logging.ILog GetCurrentClassLogger()</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Abstractions.OAuth.AbstractAuthenticator</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Action&lt;HttpWebRequest&gt; DoOAuthRequest(string, string)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Abstractions.OAuth.BasicAuthenticator</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Action&lt;HttpWebRequest&gt; DoOAuthRequest(string, string)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Abstractions.OAuth.SecuredAuthenticator</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Action&lt;HttpWebRequest&gt; DoOAuthRequest(string, string)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Abstractions.Replication.ReplicationDocument</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Raven.Abstractions.Replication.ReplicationClientConfiguration get_ClientConfiguration()</code></li>
+  <li><code>List&lt;Raven.Abstractions.Replication.ReplicationDestination&gt; get_Destinations()</code></li>
+  <li><code>string get_Id()</code></li>
+  <li><code>string get_Source()</code></li>
+  <li><code>void set_ClientConfiguration(Raven.Abstractions.Replication.ReplicationClientConfiguration)</code></li>
+  <li><code>void set_Destinations(List&lt;Raven.Abstractions.Replication.ReplicationDestination&gt;)</code></li>
+  <li><code>void set_Id(string)</code></li>
+  <li><code>void set_Source(string)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Abstractions.Smuggler.ISmugglerDatabaseOperations</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Task&lt;Raven.Abstractions.Data.Etag&gt; ExportDocumentsDeletion(Raven.Imports.Newtonsoft.Json.JsonTextWriter, Raven.Abstractions.Data.Etag, Raven.Abstractions.Data.Etag)</code></li>
+  <li><code>Task&lt;Raven.Abstractions.Util.IAsyncEnumerator&lt;Raven.Json.Linq.RavenJObject&gt;&gt; GetDocuments(Raven.Abstractions.Data.RavenConnectionStringOptions, Raven.Abstractions.Data.Etag, int)</code></li>
+  <li><code>Task&lt;Raven.Json.Linq.RavenJArray&gt; GetIndexes(Raven.Abstractions.Data.RavenConnectionStringOptions, int)</code></li>
+  <li><code>Task&lt;Raven.Json.Linq.RavenJArray&gt; GetTransformers(Raven.Abstractions.Data.RavenConnectionStringOptions, int)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Abstractions.Smuggler.SmugglerDatabaseOptions</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Nullable&lt;long&gt; get_TotalDocumentSizeInChunkLimitInBytes()</code></li>
+  <li><code>void set_TotalDocumentSizeInChunkLimitInBytes(Nullable&lt;long&gt;)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Abstractions.Util.Encryptors.IAsymmetricalEncryptor</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void FromXmlString(string)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Abstractions.Util.Encryptors.IHashEncryptor</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void TransformBlock(Byte[], int, int)</code></li>
+  <li><code>Byte[] TransformFinalBlock()</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Changes.DatabaseConnectionState</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void add_OnError(Action&lt;Exception&gt;)</code></li>
+  <li><code>void Dec()</code></li>
+  <li><code>void Error(Exception)</code></li>
+  <li><code>Task get_Task()</code></li>
+  <li><code>void Inc()</code></li>
+  <li><code>void remove_OnError(Action&lt;Exception&gt;)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Changes.RemoteDatabaseChanges</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void .ctor(string, string, ICredentials, Raven.Client.Connection.HttpJsonRequestFactory, Raven.Client.Document.DocumentConvention, Raven.Client.Connection.IReplicationInformerBase, Action, Func&lt;string, Raven.Abstractions.Data.Etag, String[], Raven.Client.Connection.OperationMetadata, Task&lt;bool&gt;&gt;)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.AdminRequestCreator</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void .ctor(Func&lt;string, string, Raven.Client.Connection.Implementation.HttpJsonRequest&gt;, Func&lt;string, string, Raven.Client.Connection.Implementation.HttpJsonRequest&gt;, Func&lt;string, string, string, Raven.Client.Connection.Implementation.HttpJsonRequest&gt;)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.AdminServerClient</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>string GetIndexingStatus()</code></li>
+  <li><code>void StartBackup(string, Raven.Abstractions.Data.DatabaseDocument, bool, string)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.Async.AsyncAdminServerClient</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Task&lt;string&gt; GetIndexingStatusAsync(CancellationToken)</code></li>
+  <li><code>Task StartBackupAsync(string, Raven.Abstractions.Data.DatabaseDocument, bool, string, CancellationToken)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.Async.AsyncServerClient</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void .ctor(string, Raven.Client.Document.DocumentConvention, Raven.Abstractions.Connection.OperationCredentials, Raven.Client.Connection.HttpJsonRequestFactory, Nullable&lt;Guid&gt;, Func&lt;string, Raven.Client.Connection.IDocumentStoreReplicationInformer&gt;, string, Raven.Client.Listeners.IDocumentConflictListener[], bool)</code></li>
+  <li><code>Task&lt;Raven.Abstractions.Data.BatchResult[]&gt; BatchAsync(IEnumerable&lt;Raven.Abstractions.Commands.ICommandData&gt;, CancellationToken)</code></li>
+  <li><code>Task CommitAsync(string, CancellationToken)</code></li>
+  <li><code>Raven.Client.Connection.Implementation.HttpJsonRequest CreateReplicationAwareRequest(string, string, string, bool, bool, Nullable&lt;TimeSpan&gt;)</code></li>
+  <li><code>Raven.Client.Connection.Implementation.HttpJsonRequest CreateRequest(string, string, bool, bool, Nullable&lt;TimeSpan&gt;)</code></li>
+  <li><code>Task&lt;Raven.Abstractions.Data.JsonDocument&gt; DirectGetAsync(Raven.Client.Connection.OperationMetadata, string, CancellationToken)</code></li>
+  <li><code>Task&lt;string&gt; DirectPutIndexAsync(string, Raven.Abstractions.Indexing.IndexDefinition, bool, Raven.Client.Connection.OperationMetadata, CancellationToken)</code></li>
+  <li><code>Task&lt;string&gt; DirectPutTransformerAsync(string, Raven.Abstractions.Indexing.TransformerDefinition, Raven.Client.Connection.OperationMetadata, CancellationToken)</code></li>
+  <li><code>Raven.Client.Connection.IDocumentStoreReplicationInformer get_ReplicationInformer()</code></li>
+  <li><code>Task&lt;Raven.Json.Linq.RavenJArray&gt; GetDocumentsInternalAsync(Nullable&lt;int&gt;, Raven.Abstractions.Data.Etag, int, Raven.Client.Connection.OperationMetadata, bool, CancellationToken)</code></li>
+  <li><code>Task PrepareTransactionAsync(string, Nullable&lt;Guid&gt;, Byte[], CancellationToken)</code></li>
+  <li><code>Task RollbackAsync(string, CancellationToken)</code></li>
+  <li><code>Task&lt;Raven.Abstractions.Util.IAsyncEnumerator&lt;Raven.Json.Linq.RavenJObject&gt;&gt; StreamDocsAsync(Raven.Abstractions.Data.Etag, string, string, int, int, string, Raven.Client.RavenPagingInformation, string, CancellationToken)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.Async.IAsyncAdminDatabaseCommands</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Task&lt;string&gt; GetIndexingStatusAsync(CancellationToken)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.Async.IAsyncDatabaseCommands</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Task&lt;Raven.Abstractions.Data.BatchResult[]&gt; BatchAsync(IEnumerable&lt;Raven.Abstractions.Commands.ICommandData&gt;, CancellationToken)</code></li>
+  <li><code>Task CommitAsync(string, CancellationToken)</code></li>
+  <li><code>Raven.Client.Connection.Implementation.HttpJsonRequest CreateReplicationAwareRequest(string, string, string, bool, bool, Nullable&lt;TimeSpan&gt;)</code></li>
+  <li><code>Raven.Client.Connection.Implementation.HttpJsonRequest CreateRequest(string, string, bool, bool, Nullable&lt;TimeSpan&gt;)</code></li>
+  <li><code>Task PrepareTransactionAsync(string, Nullable&lt;Guid&gt;, Byte[], CancellationToken)</code></li>
+  <li><code>Task RollbackAsync(string, CancellationToken)</code></li>
+  <li><code>Task&lt;Raven.Abstractions.Util.IAsyncEnumerator&lt;Raven.Json.Linq.RavenJObject&gt;&gt; StreamDocsAsync(Raven.Abstractions.Data.Etag, string, string, int, int, string, Raven.Client.RavenPagingInformation, string, CancellationToken)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.Async.IAsyncGlobalAdminDatabaseCommands</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Task StartBackupAsync(string, Raven.Abstractions.Data.DatabaseDocument, bool, string, CancellationToken)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.ConnectionOptions</h3>
+
+
+
+
+
+
+
+<h4>Methods changed to non-public</h4>
+<ul>
+  <li><code>IDisposable Expect100Continue(Uri)</code></li>
+</ul>
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void .ctor()</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.CreateHttpJsonRequestParams</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void .ctor(Raven.Client.Connection.Profiling.IHoldProfilingInformation, string, string, Raven.Json.Linq.RavenJObject, Raven.Abstractions.Connection.OperationCredentials, Raven.Client.Convention, Nullable&lt;TimeSpan&gt;)</code></li>
+  <li><code>void .ctor(Raven.Client.Connection.Profiling.IHoldProfilingInformation, string, string, Raven.Abstractions.Connection.OperationCredentials, Raven.Client.Convention, Nullable&lt;TimeSpan&gt;)</code></li>
+  <li><code>Raven.Client.Convention get_Convention()</code></li>
+  <li><code>string get_Method()</code></li>
+  <li><code>void set_Convention(Raven.Client.Convention)</code></li>
+  <li><code>void set_Method(string)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.HttpExtensions</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Raven.Abstractions.Data.Etag GetEtagHeader(HttpWebResponse)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.IAdminDatabaseCommands</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>string GetIndexingStatus()</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.IDatabaseCommands</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Raven.Abstractions.Data.BatchResult[] Batch(IEnumerable&lt;Raven.Abstractions.Commands.ICommandData&gt;)</code></li>
+  <li><code>void Commit(string)</code></li>
+  <li><code>Raven.Client.Connection.Implementation.HttpJsonRequest CreateReplicationAwareRequest(string, string, string, bool, bool, Nullable&lt;TimeSpan&gt;)</code></li>
+  <li><code>Raven.Client.Connection.Implementation.HttpJsonRequest CreateRequest(string, string, bool, bool, Nullable&lt;TimeSpan&gt;)</code></li>
+  <li><code>void PrepareTransaction(string, Nullable&lt;Guid&gt;, Byte[])</code></li>
+  <li><code>void Rollback(string)</code></li>
+  <li><code>IEnumerator&lt;Raven.Json.Linq.RavenJObject&gt; StreamDocs(Raven.Abstractions.Data.Etag, string, string, int, int, string, Raven.Client.RavenPagingInformation, string)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.IDocumentStoreReplicationInformer</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Task UpdateReplicationInformationIfNeeded(Raven.Client.Connection.Async.AsyncServerClient)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.IGlobalAdminDatabaseCommands</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void StartBackup(string, Raven.Abstractions.Data.DatabaseDocument, bool, string)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.Implementation.HttpJsonRequest</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Raven.Client.Connection.Implementation.HttpJsonRequest AddReplicationStatusHeaders(string, string, Raven.Client.Connection.IDocumentStoreReplicationInformer, Raven.Abstractions.Replication.FailoverBehavior, Action&lt;NameValueCollection, string, string&gt;)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.IReplicationInformerBase</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Task&lt;T&gt; ExecuteWithReplicationAsync&lt;T&gt;(string, string, Raven.Abstractions.Connection.OperationCredentials, int, int, Func&lt;Raven.Client.Connection.OperationMetadata, Task&lt;T&gt;&gt;, CancellationToken)</code></li>
+  <li><code>void ForceCheck(string, bool)</code></li>
+  <li><code>long GetFailureCount(string)</code></li>
+  <li><code>DateTime GetFailureLastCheck(string)</code></li>
+  <li><code>bool IsHttpStatus(Exception, HttpStatusCode&amp;, HttpStatusCode[])</code></li>
+  <li><code>bool IsServerDown(Exception, Boolean&amp;)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.OperationMetadata</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void .ctor(string, string, string, string, string)</code></li>
+  <li><code>void .ctor(string, Raven.Abstractions.Connection.OperationCredentials)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.Profiling.RequestResultArgs</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>string get_Method()</code></li>
+  <li><code>void set_Method(string)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.ReplicationInformer</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void .ctor(Raven.Client.Convention, Raven.Client.Connection.HttpJsonRequestFactory)</code></li>
+  <li><code>Task UpdateReplicationInformationIfNeeded(Raven.Client.Connection.Async.AsyncServerClient)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.ReplicationInformerBase&lt;TClient&gt;</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Task&lt;T&gt; ExecuteWithReplicationAsync&lt;T&gt;(string, string, Raven.Abstractions.Connection.OperationCredentials, int, int, Func&lt;Raven.Client.Connection.OperationMetadata, Task&lt;T&gt;&gt;, CancellationToken)</code></li>
+  <li><code>void ForceCheck(string, bool)</code></li>
+  <li><code>long GetFailureCount(string)</code></li>
+  <li><code>DateTime GetFailureLastCheck(string)</code></li>
+  <li><code>bool IsHttpStatus(Exception, HttpStatusCode&amp;, HttpStatusCode[])</code></li>
+  <li><code>bool IsServerDown(Exception, Boolean&amp;)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.ReplicationInformerLocalCache</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>IsolatedStorageFile GetIsolatedStorageFileForReplicationInformation()</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.ServerClient</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Raven.Abstractions.Data.BatchResult[] Batch(IEnumerable&lt;Raven.Abstractions.Commands.ICommandData&gt;)</code></li>
+  <li><code>void Commit(string)</code></li>
+  <li><code>Raven.Client.Connection.Implementation.HttpJsonRequest CreateReplicationAwareRequest(string, string, string, bool, bool, Nullable&lt;TimeSpan&gt;)</code></li>
+  <li><code>Raven.Client.Connection.Implementation.HttpJsonRequest CreateRequest(string, string, bool, bool, Nullable&lt;TimeSpan&gt;)</code></li>
+  <li><code>string DirectPutIndex(string, Raven.Client.Connection.OperationMetadata, bool, Raven.Abstractions.Indexing.IndexDefinition)</code></li>
+  <li><code>Raven.Client.Connection.IDocumentStoreReplicationInformer get_ReplicationInformer()</code></li>
+  <li><code>void PrepareTransaction(string, Nullable&lt;Guid&gt;, Byte[])</code></li>
+  <li><code>void Rollback(string)</code></li>
+  <li><code>IEnumerator&lt;Raven.Json.Linq.RavenJObject&gt; StreamDocs(Raven.Abstractions.Data.Etag, string, string, int, int, string, Raven.Client.RavenPagingInformation, string)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Document.AbstractDocumentQuery&lt;T, TSelf&gt;</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Task&lt;int&gt; CountAsync(CancellationToken)</code></li>
+  <li><code>Lazy&lt;int&gt; CountLazily()</code></li>
+  <li><code>void CustomSortUsing(string)</code></li>
+  <li><code>T First()</code></li>
+  <li><code>T FirstOrDefault()</code></li>
+  <li><code>string get_AsyncIndexQueried()</code></li>
+  <li><code>string get_IndexQueried()</code></li>
+  <li><code>Raven.Abstractions.Data.QueryResult get_QueryResult()</code></li>
+  <li><code>IEnumerator&lt;T&gt; GetEnumerator()</code></li>
+  <li><code>Raven.Abstractions.Data.FacetResults GetFacets(string, int, Nullable&lt;int&gt;)</code></li>
+  <li><code>Raven.Abstractions.Data.FacetResults GetFacets(List&lt;Raven.Abstractions.Data.Facet&gt;, int, Nullable&lt;int&gt;)</code></li>
+  <li><code>Task&lt;Raven.Abstractions.Data.FacetResults&gt; GetFacetsAsync(string, int, Nullable&lt;int&gt;, CancellationToken)</code></li>
+  <li><code>Task&lt;Raven.Abstractions.Data.FacetResults&gt; GetFacetsAsync(List&lt;Raven.Abstractions.Data.Facet&gt;, int, Nullable&lt;int&gt;, CancellationToken)</code></li>
+  <li><code>Lazy&lt;IEnumerable&lt;T&gt;&gt; Lazily()</code></li>
+  <li><code>Lazy&lt;IEnumerable&lt;T&gt;&gt; Lazily(Action&lt;IEnumerable&lt;T&gt;&gt;)</code></li>
+  <li><code>Lazy&lt;Task&lt;IEnumerable&lt;T&gt;&gt;&gt; LazilyAsync(Action&lt;IEnumerable&lt;T&gt;&gt;)</code></li>
+  <li><code>Task&lt;Raven.Abstractions.Data.QueryResult&gt; QueryResultAsync(CancellationToken)</code></li>
+  <li><code>T Single()</code></li>
+  <li><code>T SingleOrDefault()</code></li>
+  <li><code>Task&lt;IList&lt;T&gt;&gt; ToListAsync(CancellationToken)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Document.Async.AsyncDocumentSession</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Task Commit(string)</code></li>
+  <li><code>Task PrepareTransaction(string, Nullable&lt;Guid&gt;, Byte[])</code></li>
+  <li><code>Task Rollback(string)</code></li>
+  <li><code>Task&lt;Raven.Abstractions.Util.IAsyncEnumerator&lt;Raven.Abstractions.Data.StreamResult&lt;T&gt;&gt;&gt; StreamAsync&lt;T&gt;(Raven.Abstractions.Data.Etag, int, int, Raven.Client.RavenPagingInformation, CancellationToken)</code></li>
+  <li><code>Task&lt;Raven.Abstractions.Util.IAsyncEnumerator&lt;Raven.Abstractions.Data.StreamResult&lt;T&gt;&gt;&gt; StreamAsync&lt;T&gt;(string, string, int, int, Raven.Client.RavenPagingInformation, string, CancellationToken)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Document.AsyncDocumentQuery&lt;T&gt;</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void SetTransformerParameters(Dictionary&lt;string, Raven.Json.Linq.RavenJToken&gt;)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Document.AsyncShardedDocumentQuery&lt;T&gt;</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Lazy&lt;int&gt; CountLazily()</code></li>
+  <li><code>Lazy&lt;IEnumerable&lt;T&gt;&gt; Lazily(Action&lt;IEnumerable&lt;T&gt;&gt;)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Document.DocumentConvention</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>bool get_PrettifyGeneratedLinqExpressions()</code></li>
+  <li><code>Func&lt;string, Raven.Client.Connection.HttpJsonRequestFactory, Raven.Client.Connection.IDocumentStoreReplicationInformer&gt; get_ReplicationInformerFactory()</code></li>
+  <li><code>void set_PrettifyGeneratedLinqExpressions(bool)</code></li>
+  <li><code>void set_ReplicationInformerFactory(Func&lt;string, Raven.Client.Connection.HttpJsonRequestFactory, Raven.Client.Connection.IDocumentStoreReplicationInformer&gt;)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Document.DocumentQuery&lt;T&gt;</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>bool get_IsDistinct()</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Document.DocumentSession</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Task Commit(string)</code></li>
+  <li><code>Task PrepareTransaction(string, Nullable&lt;Guid&gt;, Byte[])</code></li>
+  <li><code>Task Rollback(string)</code></li>
+  <li><code>IEnumerator&lt;Raven.Abstractions.Data.StreamResult&lt;T&gt;&gt; Stream&lt;T&gt;(Raven.Abstractions.Data.Etag, int, int, Raven.Client.RavenPagingInformation)</code></li>
+  <li><code>IEnumerator&lt;Raven.Abstractions.Data.StreamResult&lt;T&gt;&gt; Stream&lt;T&gt;(string, string, int, int, Raven.Client.RavenPagingInformation, string)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Document.IAbstractDocumentQuery&lt;T&gt;</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>string get_IndexQueried()</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Document.InMemoryDocumentSessionOperations</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Task Commit(string)</code></li>
+  <li><code>Task Rollback(string)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Document.ReplicationBehavior</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Task&lt;int&gt; WaitAsync(Raven.Abstractions.Data.Etag, Nullable&lt;TimeSpan&gt;, string, int)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Document.SessionOperations.MultiLoadOperation</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>T[] Complete&lt;T&gt;(bool)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.DocumentStoreBase</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>bool get_EnlistInDistributedTransactions()</code></li>
+  <li><code>Raven.Client.Document.DTC.ITransactionRecoveryStorage get_TransactionRecoveryStorage()</code></li>
+  <li><code>void set_EnlistInDistributedTransactions(bool)</code></li>
+  <li><code>void set_TransactionRecoveryStorage(Raven.Client.Document.DTC.ITransactionRecoveryStorage)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Exceptions.ConflictException</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void .ctor(bool)</code></li>
+  <li><code>void .ctor(string, bool)</code></li>
+  <li><code>void .ctor(string, Exception, bool)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.FileSystem.AsyncFilesServerClient</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Task UploadAsync(string, Action&lt;Stream&gt;, Action, long, Raven.Json.Linq.RavenJObject, Raven.Abstractions.Data.Etag)</code></li>
+  <li><code>Task UploadRawAsync(string, Stream, Raven.Json.Linq.RavenJObject, long, Raven.Abstractions.Data.Etag)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.FileSystem.Changes.FilesChangesClient</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void .ctor(string, string, ICredentials, Raven.Client.Connection.HttpJsonRequestFactory, Raven.Client.FileSystem.FilesConvention, Raven.Client.Connection.IReplicationInformerBase, Func&lt;string, Raven.Abstractions.FileSystem.FileHeader, string, Action, Task&lt;bool&gt;&gt;, Action)</code></li>
+  <li><code>Raven.Client.Connection.Profiling.ProfilingInformation get_ProfilingInformation()</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.FileSystem.Changes.FilesConnectionState</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void .ctor(Action, Task)</code></li>
+  <li><code>void add_OnError(Action&lt;Exception&gt;)</code></li>
+  <li><code>void Dec()</code></li>
+  <li><code>void Error(Exception)</code></li>
+  <li><code>Task get_Task()</code></li>
+  <li><code>void Inc()</code></li>
+  <li><code>void remove_OnError(Action&lt;Exception&gt;)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.FileSystem.Connection.FilesReplicationInformer</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void .ctor(Raven.Client.Convention, Raven.Client.Connection.HttpJsonRequestFactory)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.FileSystem.FilesQueryStatistics</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>bool get_NonAuthoritativeInformation()</code></li>
+  <li><code>void set_NonAuthoritativeInformation(bool)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.FileSystem.IAsyncFilesAdminCommands</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Task CreateFileSystemAsync(Raven.Abstractions.FileSystem.FileSystemDocument, string)</code></li>
+  <li><code>Task StartBackup(string, Raven.Abstractions.FileSystem.FileSystemDocument, bool, string)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.FileSystem.IAsyncFilesCommands</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Task UploadAsync(string, Action&lt;Stream&gt;, Action, long, Raven.Json.Linq.RavenJObject, Raven.Abstractions.Data.Etag)</code></li>
+  <li><code>Task UploadRawAsync(string, Stream, Raven.Json.Linq.RavenJObject, long, Raven.Abstractions.Data.Etag)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.IAsyncAdvancedSessionOperations</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Task&lt;Raven.Abstractions.Util.IAsyncEnumerator&lt;Raven.Abstractions.Data.StreamResult&lt;T&gt;&gt;&gt; StreamAsync&lt;T&gt;(Raven.Abstractions.Data.Etag, int, int, Raven.Client.RavenPagingInformation, CancellationToken)</code></li>
+  <li><code>Task&lt;Raven.Abstractions.Util.IAsyncEnumerator&lt;Raven.Abstractions.Data.StreamResult&lt;T&gt;&gt;&gt; StreamAsync&lt;T&gt;(string, string, int, int, Raven.Client.RavenPagingInformation, string, CancellationToken)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.IAsyncDocumentQuery&lt;T&gt;</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void SetTransformerParameters(Dictionary&lt;string, Raven.Json.Linq.RavenJToken&gt;)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.IDocumentQueryBase&lt;T, TSelf&gt;</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>T First()</code></li>
+  <li><code>T FirstOrDefault()</code></li>
+  <li><code>T Single()</code></li>
+  <li><code>T SingleOrDefault()</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.IDocumentQueryCustomization</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Raven.Client.IDocumentQueryCustomization RelatesToShape(string, string, Raven.Abstractions.Indexing.SpatialRelation)</code></li>
+  <li><code>Raven.Client.IDocumentQueryCustomization WithinRadiusOf(Double, Double, Double)</code></li>
+  <li><code>Raven.Client.IDocumentQueryCustomization WithinRadiusOf(string, Double, Double, Double)</code></li>
+  <li><code>Raven.Client.IDocumentQueryCustomization WithinRadiusOf(Double, Double, Double, Raven.Abstractions.Indexing.SpatialUnits)</code></li>
+  <li><code>Raven.Client.IDocumentQueryCustomization WithinRadiusOf(string, Double, Double, Double, Raven.Abstractions.Indexing.SpatialUnits)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Indexes.IndexCreation</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void CreateIndexes(ExportProvider, Raven.Client.Connection.IDatabaseCommands, Raven.Client.Document.DocumentConvention)</code></li>
+  <li><code>void CreateIndexes(ExportProvider, Raven.Client.IDocumentStore)</code></li>
+  <li><code>Task CreateIndexesAsync(ExportProvider, Raven.Client.Connection.Async.IAsyncDatabaseCommands, Raven.Client.Document.DocumentConvention)</code></li>
+  <li><code>Task CreateIndexesAsync(ExportProvider, Raven.Client.IDocumentStore)</code></li>
+  <li><code>void SideBySideCreateIndexes(ExportProvider, Raven.Client.Connection.IDatabaseCommands, Raven.Client.Document.DocumentConvention, Raven.Abstractions.Data.Etag, Nullable&lt;DateTime&gt;)</code></li>
+  <li><code>void SideBySideCreateIndexes(ExportProvider, Raven.Client.IDocumentStore, Raven.Abstractions.Data.Etag, Nullable&lt;DateTime&gt;)</code></li>
+  <li><code>Task SideBySideCreateIndexesAsync(ExportProvider, Raven.Client.Connection.Async.IAsyncDatabaseCommands, Raven.Client.Document.DocumentConvention, Raven.Abstractions.Data.Etag, Nullable&lt;DateTime&gt;)</code></li>
+  <li><code>Task SideBySideCreateIndexesAsync(ExportProvider, Raven.Client.IDocumentStore, Raven.Abstractions.Data.Etag, Nullable&lt;DateTime&gt;)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Indexes.IndexDefinitionBuilder&lt;TDocument, TReduceResult&gt;</h3>
+
+
+
+
+
+
+
+
+
+
+
+<h4>Methods Obsoleted</h4>
+<ul>
+  <li><code>System.Collections.Generic.IDictionary&lt;System.Linq.Expressions.Expression&lt;System.Func&lt;TReduceResult, object&gt;&gt;, Raven.Abstractions.Indexing.SuggestionOptions&gt; get_Suggestions()</code><br/> Use SuggestionsOptions. Obsoleted with warning.</li>
+  <li><code>void set_Suggestions(System.Collections.Generic.IDictionary&lt;System.Linq.Expressions.Expression&lt;System.Func&lt;TReduceResult, object&gt;&gt;, Raven.Abstractions.Indexing.SuggestionOptions&gt;)</code><br/> Use SuggestionsOptions. Obsoleted with warning.</li>
+</ul>
+
+
+  <h3>Raven.Client.ISyncAdvancedSessionOperation</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>IEnumerator&lt;Raven.Abstractions.Data.StreamResult&lt;T&gt;&gt; Stream&lt;T&gt;(Raven.Abstractions.Data.Etag, int, int, Raven.Client.RavenPagingInformation)</code></li>
+  <li><code>IEnumerator&lt;Raven.Abstractions.Data.StreamResult&lt;T&gt;&gt; Stream&lt;T&gt;(string, string, int, int, Raven.Client.RavenPagingInformation, string)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.ITransactionalDocumentSession</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Task Commit(string)</code></li>
+  <li><code>Task PrepareTransaction(string, Nullable&lt;Guid&gt;, Byte[])</code></li>
+  <li><code>Task Rollback(string)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Linq.LinqPathProvider</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void .ctor(Raven.Client.Convention)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Shard.AsyncShardedDocumentSession</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Task&lt;Raven.Abstractions.Util.IAsyncEnumerator&lt;Raven.Abstractions.Data.StreamResult&lt;T&gt;&gt;&gt; StreamAsync&lt;T&gt;(Raven.Abstractions.Data.Etag, int, int, Raven.Client.RavenPagingInformation, CancellationToken)</code></li>
+  <li><code>Task&lt;Raven.Abstractions.Util.IAsyncEnumerator&lt;Raven.Abstractions.Data.StreamResult&lt;T&gt;&gt;&gt; StreamAsync&lt;T&gt;(string, string, int, int, Raven.Client.RavenPagingInformation, string, CancellationToken)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Shard.BaseShardedDocumentSession&lt;TDatabaseCommands&gt;</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Task Commit(string)</code></li>
+  <li><code>Task PrepareTransaction(string, Nullable&lt;Guid&gt;, Byte[])</code></li>
+  <li><code>Task Rollback(string)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Shard.ShardedDocumentSession</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>IEnumerator&lt;Raven.Abstractions.Data.StreamResult&lt;T&gt;&gt; Stream&lt;T&gt;(Raven.Abstractions.Data.Etag, int, int, Raven.Client.RavenPagingInformation)</code></li>
+  <li><code>IEnumerator&lt;Raven.Abstractions.Data.StreamResult&lt;T&gt;&gt; Stream&lt;T&gt;(string, string, int, int, Raven.Client.RavenPagingInformation, string)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Spatial.SpatialCriteriaFactory</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Raven.Client.Spatial.SpatialCriteria Contains(object)</code></li>
+  <li><code>Raven.Client.Spatial.SpatialCriteria Disjoint(object)</code></li>
+  <li><code>Raven.Client.Spatial.SpatialCriteria Intersects(object)</code></li>
+  <li><code>Raven.Client.Spatial.SpatialCriteria RelatesToShape(object, Raven.Abstractions.Indexing.SpatialRelation)</code></li>
+  <li><code>Raven.Client.Spatial.SpatialCriteria Within(object)</code></li>
+  <li><code>Raven.Client.Spatial.SpatialCriteria WithinRadius(Double, Double, Double)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Util.DisposableStream</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>IAsyncResult BeginRead(Byte[], int, int, AsyncCallback, object)</code></li>
+  <li><code>IAsyncResult BeginWrite(Byte[], int, int, AsyncCallback, object)</code></li>
+  <li><code>void Close()</code></li>
+  <li><code>ObjRef CreateObjRef(Type)</code></li>
+  <li><code>int EndRead(IAsyncResult)</code></li>
+  <li><code>void EndWrite(IAsyncResult)</code></li>
+  <li><code>object InitializeLifetimeService()</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Imports.Newtonsoft.Json.JsonConvert</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>XmlDocument DeserializeXmlNode(string)</code></li>
+  <li><code>XmlDocument DeserializeXmlNode(string, string)</code></li>
+  <li><code>XmlDocument DeserializeXmlNode(string, string, bool)</code></li>
+  <li><code>string SerializeXmlNode(XmlNode)</code></li>
+  <li><code>string SerializeXmlNode(XmlNode, Raven.Imports.Newtonsoft.Json.Formatting)</code></li>
+  <li><code>string SerializeXmlNode(XmlNode, Raven.Imports.Newtonsoft.Json.Formatting, bool)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Imports.Newtonsoft.Json.JsonException</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void .ctor(SerializationInfo, StreamingContext)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Imports.Newtonsoft.Json.JsonReaderException</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void .ctor(SerializationInfo, StreamingContext)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Imports.Newtonsoft.Json.JsonSerializationException</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void .ctor(SerializationInfo, StreamingContext)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Imports.Newtonsoft.Json.JsonSerializer</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>SerializationBinder get_Binder()</code></li>
+  <li><code>void set_Binder(SerializationBinder)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Imports.Newtonsoft.Json.JsonSerializerSettings</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>SerializationBinder get_Binder()</code></li>
+  <li><code>void set_Binder(SerializationBinder)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Imports.Newtonsoft.Json.JsonWriterException</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void .ctor(SerializationInfo, StreamingContext)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Imports.Newtonsoft.Json.Linq.JContainer</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void add_AddingNew(AddingNewEventHandler)</code></li>
+  <li><code>void add_ListChanged(ListChangedEventHandler)</code></li>
+  <li><code>void remove_AddingNew(AddingNewEventHandler)</code></li>
+  <li><code>void remove_ListChanged(ListChangedEventHandler)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Imports.Newtonsoft.Json.Linq.JObject</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void add_PropertyChanging(PropertyChangingEventHandler)</code></li>
+  <li><code>void remove_PropertyChanging(PropertyChangingEventHandler)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Imports.Newtonsoft.Json.Schema.JsonSchemaException</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void .ctor(SerializationInfo, StreamingContext)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Imports.Newtonsoft.Json.Serialization.DefaultContractResolver</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>bool get_IgnoreSerializableAttribute()</code></li>
+  <li><code>bool get_IgnoreSerializableInterface()</code></li>
+  <li><code>void set_IgnoreSerializableAttribute(bool)</code></li>
+  <li><code>void set_IgnoreSerializableInterface(bool)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Imports.Newtonsoft.Json.Serialization.ITraceWriter</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>TraceLevel get_LevelFilter()</code></li>
+  <li><code>void Trace(TraceLevel, string, Exception)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Imports.Newtonsoft.Json.Serialization.MemoryTraceWriter</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>TraceLevel get_LevelFilter()</code></li>
+  <li><code>void set_LevelFilter(TraceLevel)</code></li>
+  <li><code>void Trace(TraceLevel, string, Exception)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Imports.Newtonsoft.Json.Utilities.ReflectionUtils</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>string GetTypeName(Type, FormatterAssemblyStyle, SerializationBinder)</code></li>
+</ul>
+
+
+
+
+    </div>
+</section>
+
+<section id=".NETFramework,Version=v4.5" title=".NETFramework,Version=v4.5">
+<a class="tab" href="#.NETFramework,Version=v4.5">.NETFramework,Version=v4.5</a>
+<div class="content">
+<h1>.NETFramework,Version=v4.5</h1>
+        
+<h2>The following public types have been removed</h2>
+<ul>
+  <li><code>Raven.Abstractions.Counters.CounterChanges</code></li>
+  <li><code>Raven.Abstractions.Counters.CountersDocument</code></li>
+  <li><code>Raven.Abstractions.Counters.CounterStorageReplicationDestination</code></li>
+  <li><code>Raven.Abstractions.Counters.CounterStorageReplicationDocument</code></li>
+  <li><code>Raven.Abstractions.Counters.CounterView</code></li>
+  <li><code>Raven.Abstractions.FileSystem.Notification</code></li>
+  <li><code>Raven.Abstractions.Smuggler.ExportOperationStatus</code></li>
+  <li><code>Raven.Abstractions.Util.ConfigurationManager</code></li>
+  <li><code>Raven.Abstractions.Util.MetricsTicker</code></li>
+  <li><code>Raven.Client.Changes.RemoteChangesClientBase&lt;TChangesApi, TConnectionState&gt;</code></li>
+  <li><code>Raven.Client.Convention</code></li>
+  <li><code>Raven.Client.Counters.Connections.CounterConvention</code></li>
+  <li><code>Raven.Client.Counters.RavenCountersClient</code></li>
+</ul>
+        
+        
+<h2>The following types have differences.</h2>
+
+  <h3>Raven.Abstractions.Connection.HttpRavenRequest</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void .ctor(string, string, Action&lt;Raven.Abstractions.Data.RavenConnectionStringOptions, HttpWebRequest&gt;, Func&lt;Raven.Abstractions.Data.RavenConnectionStringOptions, WebResponse, Action&lt;HttpWebRequest&gt;&gt;, Raven.Abstractions.Data.RavenConnectionStringOptions, Nullable&lt;bool&gt;)</code></li>
+</ul>
+
+
+
+
+    <h3>Raven.Abstractions.Connection.HttpRavenRequestFactory - Obsoleted</h3>
+    <p>. Obsoleted with warning.</p>
+
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Raven.Abstractions.Connection.HttpRavenRequest Create(string, string, Raven.Abstractions.Data.RavenConnectionStringOptions, Nullable&lt;bool&gt;)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Abstractions.Counters.CountersStorageMetrics</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Raven.Abstractions.Data.MeterData get_ClientRuqeusts()</code></li>
+  <li><code>Dictionary&lt;string, Raven.Abstractions.Data.MeterData&gt; get_ReplicationDurationMeter()</code></li>
+  <li><code>void set_ClientRuqeusts(Raven.Abstractions.Data.MeterData)</code></li>
+  <li><code>void set_ReplicationDurationMeter(Dictionary&lt;string, Raven.Abstractions.Data.MeterData&gt;)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Abstractions.Counters.CounterStorageStats</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>int get_ApproximateTaskCount()</code></li>
+  <li><code>Decimal get_CounterStorageSizeOnDiskInMB()</code></li>
+  <li><code>long get_ServersCount()</code></li>
+  <li><code>void set_ApproximateTaskCount(int)</code></li>
+  <li><code>void set_CounterStorageSizeOnDiskInMB(Decimal)</code></li>
+  <li><code>void set_ServersCount(long)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Abstractions.Data.Constants</h3>
+
+
+
+<h4>Fields Removed</h4>
+<ul>
+  <li><code>int ChangeHistoryLength</code></li>
+  <li><code>Byte GroupSeperator</code></li>
+  <li><code>Char GroupSeperatorChar</code></li>
+  <li><code>string GroupSeperatorString</code></li>
+  <li><code>string IsIndexReplicatedUrlParamName</code></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+  <h3>Raven.Abstractions.Data.DatabaseMetrics</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Raven.Abstractions.Data.MeterData get_JsonDeserializationsPerSecond()</code></li>
+  <li><code>Raven.Abstractions.Data.MeterData get_JsonDeserializedBytesPerSecond()</code></li>
+  <li><code>Raven.Abstractions.Data.MeterData get_JsonSerializationsPerSecond()</code></li>
+  <li><code>Raven.Abstractions.Data.MeterData get_JsonSerializedBytesPerSecond()</code></li>
+  <li><code>void set_JsonDeserializationsPerSecond(Raven.Abstractions.Data.MeterData)</code></li>
+  <li><code>void set_JsonDeserializedBytesPerSecond(Raven.Abstractions.Data.MeterData)</code></li>
+  <li><code>void set_JsonSerializationsPerSecond(Raven.Abstractions.Data.MeterData)</code></li>
+  <li><code>void set_JsonSerializedBytesPerSecond(Raven.Abstractions.Data.MeterData)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Abstractions.Data.IndexStats</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Raven.Abstractions.Data.IndexingPerformanceStats[] get_Performance()</code></li>
+  <li><code>void set_Performance(Raven.Abstractions.Data.IndexingPerformanceStats[])</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Abstractions.Data.IOperationState</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Raven.Json.Linq.RavenJToken get_State()</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Abstractions.Data.PeriodicExportSetup</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Nullable&lt;int&gt; get_FullBackupIntervalMilliseconds()</code></li>
+  <li><code>Nullable&lt;int&gt; get_IntervalMilliseconds()</code></li>
+  <li><code>void set_FullBackupIntervalMilliseconds(Nullable&lt;int&gt;)</code></li>
+  <li><code>void set_IntervalMilliseconds(Nullable&lt;int&gt;)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Abstractions.Data.TaskBasedOperationState</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void .ctor(Task, Raven.Json.Linq.RavenJToken)</code></li>
+  <li><code>Raven.Json.Linq.RavenJToken get_State()</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Abstractions.Extensions.JsonExtensions</h3>
+
+
+
+<h4>Fields Removed</h4>
+<ul>
+  <li><code>metrics.Core.MeterMetric JsonStreamDeserializationsPerSecond</code></li>
+  <li><code>metrics.Core.MeterMetric JsonStreamDeserializedBytesPerSecond</code></li>
+  <li><code>metrics.Core.MeterMetric JsonStreamSerializationsPerSecond</code></li>
+  <li><code>metrics.Core.MeterMetric JsonStreamSerializedBytesPerSecond</code></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+  <h3>Raven.Abstractions.Indexing.IndexDefinition</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>IDictionary&lt;string, Raven.Abstractions.Indexing.SuggestionOptions&gt; get_Suggestions()</code></li>
+  <li><code>void set_Suggestions(IDictionary&lt;string, Raven.Abstractions.Indexing.SuggestionOptions&gt;)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Abstractions.Logging.LogContext</h3>
+
+
+
+<h4>Fields Removed</h4>
+<ul>
+  <li><code>ThreadLocal&lt;string&gt; DatabaseName</code></li>
+</ul>
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>IDisposable WithDatabase(string)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Abstractions.MEF.OrderedPartCollection&lt;T&gt;</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Raven.Abstractions.MEF.OrderedPartCollection&lt;T&gt; Init(ThreadLocal&lt;bool&gt;)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Abstractions.Replication.ReplicationDocument</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Raven.Abstractions.Replication.ReplicationClientConfiguration get_ClientConfiguration()</code></li>
+  <li><code>List&lt;Raven.Abstractions.Replication.ReplicationDestination&gt; get_Destinations()</code></li>
+  <li><code>string get_Id()</code></li>
+  <li><code>string get_Source()</code></li>
+  <li><code>void set_ClientConfiguration(Raven.Abstractions.Replication.ReplicationClientConfiguration)</code></li>
+  <li><code>void set_Destinations(List&lt;Raven.Abstractions.Replication.ReplicationDestination&gt;)</code></li>
+  <li><code>void set_Id(string)</code></li>
+  <li><code>void set_Source(string)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Abstractions.Smuggler.ISmugglerDatabaseOperations</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Task&lt;Raven.Abstractions.Data.Etag&gt; ExportDocumentsDeletion(Raven.Imports.Newtonsoft.Json.JsonTextWriter, Raven.Abstractions.Data.Etag, Raven.Abstractions.Data.Etag)</code></li>
+  <li><code>Task&lt;Raven.Abstractions.Util.IAsyncEnumerator&lt;Raven.Json.Linq.RavenJObject&gt;&gt; GetDocuments(Raven.Abstractions.Data.RavenConnectionStringOptions, Raven.Abstractions.Data.Etag, int)</code></li>
+  <li><code>Task&lt;Raven.Json.Linq.RavenJArray&gt; GetIndexes(Raven.Abstractions.Data.RavenConnectionStringOptions, int)</code></li>
+  <li><code>Task&lt;Raven.Json.Linq.RavenJArray&gt; GetTransformers(Raven.Abstractions.Data.RavenConnectionStringOptions, int)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Abstractions.Smuggler.SmugglerDatabaseApiBase</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Task ExportDeletions(Raven.Imports.Newtonsoft.Json.JsonTextWriter, Raven.Abstractions.Smuggler.Data.OperationState, Raven.Abstractions.Smuggler.Data.LastEtagsInfo)</code></li>
+  <li><code>bool get_IsBulkIdentitiesSmugglingSupported()</code></li>
+  <li><code>bool get_IsDocsStreamingSupported()</code></li>
+  <li><code>bool get_IsIdentitiesSmugglingSupported()</code></li>
+  <li><code>bool get_IsMultiPartExportSupported()</code></li>
+  <li><code>bool get_IsTransformersSupported()</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Abstractions.Smuggler.SmugglerDatabaseOptions</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Nullable&lt;long&gt; get_TotalDocumentSizeInChunkLimitInBytes()</code></li>
+  <li><code>void set_TotalDocumentSizeInChunkLimitInBytes(Nullable&lt;long&gt;)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Changes.DatabaseConnectionState</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void add_OnError(Action&lt;Exception&gt;)</code></li>
+  <li><code>void Dec()</code></li>
+  <li><code>void Error(Exception)</code></li>
+  <li><code>Task get_Task()</code></li>
+  <li><code>void Inc()</code></li>
+  <li><code>void remove_OnError(Action&lt;Exception&gt;)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Changes.RemoteDatabaseChanges</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void .ctor(string, string, ICredentials, Raven.Client.Connection.HttpJsonRequestFactory, Raven.Client.Document.DocumentConvention, Raven.Client.Connection.IReplicationInformerBase, Action, Func&lt;string, Raven.Abstractions.Data.Etag, String[], Raven.Client.Connection.OperationMetadata, Task&lt;bool&gt;&gt;)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.AdminRequestCreator</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void .ctor(Func&lt;string, string, Raven.Client.Connection.Implementation.HttpJsonRequest&gt;, Func&lt;string, string, Raven.Client.Connection.Implementation.HttpJsonRequest&gt;, Func&lt;string, string, string, Raven.Client.Connection.Implementation.HttpJsonRequest&gt;)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.AdminServerClient</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>string GetIndexingStatus()</code></li>
+  <li><code>void StartBackup(string, Raven.Abstractions.Data.DatabaseDocument, bool, string)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.Async.AsyncAdminServerClient</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Task&lt;string&gt; GetIndexingStatusAsync(CancellationToken)</code></li>
+  <li><code>Task StartBackupAsync(string, Raven.Abstractions.Data.DatabaseDocument, bool, string, CancellationToken)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.Async.AsyncServerClient</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void .ctor(string, Raven.Client.Document.DocumentConvention, Raven.Abstractions.Connection.OperationCredentials, Raven.Client.Connection.HttpJsonRequestFactory, Nullable&lt;Guid&gt;, Func&lt;string, Raven.Client.Connection.IDocumentStoreReplicationInformer&gt;, string, Raven.Client.Listeners.IDocumentConflictListener[], bool)</code></li>
+  <li><code>Task&lt;Raven.Abstractions.Data.BatchResult[]&gt; BatchAsync(IEnumerable&lt;Raven.Abstractions.Commands.ICommandData&gt;, CancellationToken)</code></li>
+  <li><code>Raven.Client.Connection.Implementation.HttpJsonRequest CreateReplicationAwareRequest(string, string, string, bool, bool, Nullable&lt;TimeSpan&gt;)</code></li>
+  <li><code>Raven.Client.Connection.Implementation.HttpJsonRequest CreateRequest(string, string, bool, bool, Nullable&lt;TimeSpan&gt;)</code></li>
+  <li><code>Task&lt;Raven.Abstractions.Data.JsonDocument&gt; DirectGetAsync(Raven.Client.Connection.OperationMetadata, string, CancellationToken)</code></li>
+  <li><code>Task&lt;string&gt; DirectPutIndexAsync(string, Raven.Abstractions.Indexing.IndexDefinition, bool, Raven.Client.Connection.OperationMetadata, CancellationToken)</code></li>
+  <li><code>Task&lt;string&gt; DirectPutTransformerAsync(string, Raven.Abstractions.Indexing.TransformerDefinition, Raven.Client.Connection.OperationMetadata, CancellationToken)</code></li>
+  <li><code>Raven.Client.Connection.IDocumentStoreReplicationInformer get_ReplicationInformer()</code></li>
+  <li><code>Task&lt;Raven.Json.Linq.RavenJArray&gt; GetDocumentsInternalAsync(Nullable&lt;int&gt;, Raven.Abstractions.Data.Etag, int, Raven.Client.Connection.OperationMetadata, bool, CancellationToken)</code></li>
+  <li><code>Task&lt;Raven.Abstractions.Util.IAsyncEnumerator&lt;Raven.Json.Linq.RavenJObject&gt;&gt; StreamDocsAsync(Raven.Abstractions.Data.Etag, string, string, int, int, string, Raven.Client.RavenPagingInformation, string, CancellationToken)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.Async.IAsyncAdminDatabaseCommands</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Task&lt;string&gt; GetIndexingStatusAsync(CancellationToken)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.Async.IAsyncDatabaseCommands</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Task&lt;Raven.Abstractions.Data.BatchResult[]&gt; BatchAsync(IEnumerable&lt;Raven.Abstractions.Commands.ICommandData&gt;, CancellationToken)</code></li>
+  <li><code>Raven.Client.Connection.Implementation.HttpJsonRequest CreateReplicationAwareRequest(string, string, string, bool, bool, Nullable&lt;TimeSpan&gt;)</code></li>
+  <li><code>Raven.Client.Connection.Implementation.HttpJsonRequest CreateRequest(string, string, bool, bool, Nullable&lt;TimeSpan&gt;)</code></li>
+  <li><code>Task&lt;Raven.Abstractions.Util.IAsyncEnumerator&lt;Raven.Json.Linq.RavenJObject&gt;&gt; StreamDocsAsync(Raven.Abstractions.Data.Etag, string, string, int, int, string, Raven.Client.RavenPagingInformation, string, CancellationToken)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.Async.IAsyncGlobalAdminDatabaseCommands</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Task StartBackupAsync(string, Raven.Abstractions.Data.DatabaseDocument, bool, string, CancellationToken)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.ConnectionOptions</h3>
+
+
+
+
+
+
+
+<h4>Methods changed to non-public</h4>
+<ul>
+  <li><code>IDisposable Expect100Continue(Uri)</code></li>
+</ul>
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void .ctor()</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.CreateHttpJsonRequestParams</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void .ctor(Raven.Client.Connection.Profiling.IHoldProfilingInformation, string, string, Raven.Json.Linq.RavenJObject, Raven.Abstractions.Connection.OperationCredentials, Raven.Client.Convention, Nullable&lt;TimeSpan&gt;)</code></li>
+  <li><code>void .ctor(Raven.Client.Connection.Profiling.IHoldProfilingInformation, string, string, Raven.Abstractions.Connection.OperationCredentials, Raven.Client.Convention, Nullable&lt;TimeSpan&gt;)</code></li>
+  <li><code>Raven.Client.Convention get_Convention()</code></li>
+  <li><code>string get_Method()</code></li>
+  <li><code>void set_Convention(Raven.Client.Convention)</code></li>
+  <li><code>void set_Method(string)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.IAdminDatabaseCommands</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>string GetIndexingStatus()</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.IDatabaseCommands</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Raven.Abstractions.Data.BatchResult[] Batch(IEnumerable&lt;Raven.Abstractions.Commands.ICommandData&gt;)</code></li>
+  <li><code>Raven.Client.Connection.Implementation.HttpJsonRequest CreateReplicationAwareRequest(string, string, string, bool, bool, Nullable&lt;TimeSpan&gt;)</code></li>
+  <li><code>Raven.Client.Connection.Implementation.HttpJsonRequest CreateRequest(string, string, bool, bool, Nullable&lt;TimeSpan&gt;)</code></li>
+  <li><code>IEnumerator&lt;Raven.Json.Linq.RavenJObject&gt; StreamDocs(Raven.Abstractions.Data.Etag, string, string, int, int, string, Raven.Client.RavenPagingInformation, string)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.IDocumentStoreReplicationInformer</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Task UpdateReplicationInformationIfNeeded(Raven.Client.Connection.Async.AsyncServerClient)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.IGlobalAdminDatabaseCommands</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void StartBackup(string, Raven.Abstractions.Data.DatabaseDocument, bool, string)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.Implementation.HttpJsonRequest</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Raven.Client.Connection.Implementation.HttpJsonRequest AddReplicationStatusHeaders(string, string, Raven.Client.Connection.IDocumentStoreReplicationInformer, Raven.Abstractions.Replication.FailoverBehavior, Action&lt;NameValueCollection, string, string&gt;)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.IReplicationInformerBase</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Task&lt;T&gt; ExecuteWithReplicationAsync&lt;T&gt;(string, string, Raven.Abstractions.Connection.OperationCredentials, int, int, Func&lt;Raven.Client.Connection.OperationMetadata, Task&lt;T&gt;&gt;, CancellationToken)</code></li>
+  <li><code>void ForceCheck(string, bool)</code></li>
+  <li><code>long GetFailureCount(string)</code></li>
+  <li><code>DateTime GetFailureLastCheck(string)</code></li>
+  <li><code>bool IsHttpStatus(Exception, HttpStatusCode&amp;, HttpStatusCode[])</code></li>
+  <li><code>bool IsServerDown(Exception, Boolean&amp;)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.OperationMetadata</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void .ctor(string, string, string, string, string)</code></li>
+  <li><code>void .ctor(string, Raven.Abstractions.Connection.OperationCredentials)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.Profiling.RequestResultArgs</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>string get_Method()</code></li>
+  <li><code>void set_Method(string)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.ReplicationInformer</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void .ctor(Raven.Client.Convention, Raven.Client.Connection.HttpJsonRequestFactory)</code></li>
+  <li><code>Task UpdateReplicationInformationIfNeeded(Raven.Client.Connection.Async.AsyncServerClient)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.ReplicationInformerBase&lt;TClient&gt;</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Task&lt;T&gt; ExecuteWithReplicationAsync&lt;T&gt;(string, string, Raven.Abstractions.Connection.OperationCredentials, int, int, Func&lt;Raven.Client.Connection.OperationMetadata, Task&lt;T&gt;&gt;, CancellationToken)</code></li>
+  <li><code>void ForceCheck(string, bool)</code></li>
+  <li><code>long GetFailureCount(string)</code></li>
+  <li><code>DateTime GetFailureLastCheck(string)</code></li>
+  <li><code>bool IsHttpStatus(Exception, HttpStatusCode&amp;, HttpStatusCode[])</code></li>
+  <li><code>bool IsServerDown(Exception, Boolean&amp;)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.ReplicationInformerLocalCache</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>IsolatedStorageFile GetIsolatedStorageFileForReplicationInformation()</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Connection.ServerClient</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Raven.Abstractions.Data.BatchResult[] Batch(IEnumerable&lt;Raven.Abstractions.Commands.ICommandData&gt;)</code></li>
+  <li><code>Raven.Client.Connection.Implementation.HttpJsonRequest CreateReplicationAwareRequest(string, string, string, bool, bool, Nullable&lt;TimeSpan&gt;)</code></li>
+  <li><code>Raven.Client.Connection.Implementation.HttpJsonRequest CreateRequest(string, string, bool, bool, Nullable&lt;TimeSpan&gt;)</code></li>
+  <li><code>string DirectPutIndex(string, Raven.Client.Connection.OperationMetadata, bool, Raven.Abstractions.Indexing.IndexDefinition)</code></li>
+  <li><code>Raven.Client.Connection.IDocumentStoreReplicationInformer get_ReplicationInformer()</code></li>
+  <li><code>IEnumerator&lt;Raven.Json.Linq.RavenJObject&gt; StreamDocs(Raven.Abstractions.Data.Etag, string, string, int, int, string, Raven.Client.RavenPagingInformation, string)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Document.AbstractDocumentQuery&lt;T, TSelf&gt;</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Task&lt;int&gt; CountAsync(CancellationToken)</code></li>
+  <li><code>Lazy&lt;int&gt; CountLazily()</code></li>
+  <li><code>void CustomSortUsing(string)</code></li>
+  <li><code>T First()</code></li>
+  <li><code>T FirstOrDefault()</code></li>
+  <li><code>string get_AsyncIndexQueried()</code></li>
+  <li><code>string get_IndexQueried()</code></li>
+  <li><code>Raven.Abstractions.Data.QueryResult get_QueryResult()</code></li>
+  <li><code>IEnumerator&lt;T&gt; GetEnumerator()</code></li>
+  <li><code>Raven.Abstractions.Data.FacetResults GetFacets(string, int, Nullable&lt;int&gt;)</code></li>
+  <li><code>Raven.Abstractions.Data.FacetResults GetFacets(List&lt;Raven.Abstractions.Data.Facet&gt;, int, Nullable&lt;int&gt;)</code></li>
+  <li><code>Task&lt;Raven.Abstractions.Data.FacetResults&gt; GetFacetsAsync(string, int, Nullable&lt;int&gt;, CancellationToken)</code></li>
+  <li><code>Task&lt;Raven.Abstractions.Data.FacetResults&gt; GetFacetsAsync(List&lt;Raven.Abstractions.Data.Facet&gt;, int, Nullable&lt;int&gt;, CancellationToken)</code></li>
+  <li><code>Lazy&lt;IEnumerable&lt;T&gt;&gt; Lazily()</code></li>
+  <li><code>Lazy&lt;IEnumerable&lt;T&gt;&gt; Lazily(Action&lt;IEnumerable&lt;T&gt;&gt;)</code></li>
+  <li><code>Lazy&lt;Task&lt;IEnumerable&lt;T&gt;&gt;&gt; LazilyAsync(Action&lt;IEnumerable&lt;T&gt;&gt;)</code></li>
+  <li><code>Task&lt;Raven.Abstractions.Data.QueryResult&gt; QueryResultAsync(CancellationToken)</code></li>
+  <li><code>T Single()</code></li>
+  <li><code>T SingleOrDefault()</code></li>
+  <li><code>Task&lt;IList&lt;T&gt;&gt; ToListAsync(CancellationToken)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Document.Async.AsyncDocumentSession</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Task&lt;Raven.Abstractions.Util.IAsyncEnumerator&lt;Raven.Abstractions.Data.StreamResult&lt;T&gt;&gt;&gt; StreamAsync&lt;T&gt;(Raven.Abstractions.Data.Etag, int, int, Raven.Client.RavenPagingInformation, CancellationToken)</code></li>
+  <li><code>Task&lt;Raven.Abstractions.Util.IAsyncEnumerator&lt;Raven.Abstractions.Data.StreamResult&lt;T&gt;&gt;&gt; StreamAsync&lt;T&gt;(string, string, int, int, Raven.Client.RavenPagingInformation, string, CancellationToken)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Document.AsyncDocumentQuery&lt;T&gt;</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void SetTransformerParameters(Dictionary&lt;string, Raven.Json.Linq.RavenJToken&gt;)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Document.AsyncShardedDocumentQuery&lt;T&gt;</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Lazy&lt;int&gt; CountLazily()</code></li>
+  <li><code>Lazy&lt;IEnumerable&lt;T&gt;&gt; Lazily(Action&lt;IEnumerable&lt;T&gt;&gt;)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Document.DocumentConvention</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Func&lt;string, Raven.Client.Connection.HttpJsonRequestFactory, Raven.Client.Connection.IDocumentStoreReplicationInformer&gt; get_ReplicationInformerFactory()</code></li>
+  <li><code>void set_ReplicationInformerFactory(Func&lt;string, Raven.Client.Connection.HttpJsonRequestFactory, Raven.Client.Connection.IDocumentStoreReplicationInformer&gt;)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Document.DocumentQuery&lt;T&gt;</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>bool get_IsDistinct()</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Document.DocumentSession</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>IEnumerator&lt;Raven.Abstractions.Data.StreamResult&lt;T&gt;&gt; Stream&lt;T&gt;(Raven.Abstractions.Data.Etag, int, int, Raven.Client.RavenPagingInformation)</code></li>
+  <li><code>IEnumerator&lt;Raven.Abstractions.Data.StreamResult&lt;T&gt;&gt; Stream&lt;T&gt;(string, string, int, int, Raven.Client.RavenPagingInformation, string)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Document.IAbstractDocumentQuery&lt;T&gt;</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>string get_IndexQueried()</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Document.ReplicationBehavior</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Task&lt;int&gt; WaitAsync(Raven.Abstractions.Data.Etag, Nullable&lt;TimeSpan&gt;, string, int)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Document.SessionOperations.MultiLoadOperation</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>T[] Complete&lt;T&gt;(bool)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Exceptions.ConflictException</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void .ctor(bool)</code></li>
+  <li><code>void .ctor(string, bool)</code></li>
+  <li><code>void .ctor(string, Exception, bool)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.FileSystem.AsyncFilesServerClient</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Task UploadAsync(string, Action&lt;Stream&gt;, Action, long, Raven.Json.Linq.RavenJObject, Raven.Abstractions.Data.Etag)</code></li>
+  <li><code>Task UploadRawAsync(string, Stream, Raven.Json.Linq.RavenJObject, long, Raven.Abstractions.Data.Etag)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.FileSystem.Changes.FilesChangesClient</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void .ctor(string, string, ICredentials, Raven.Client.Connection.HttpJsonRequestFactory, Raven.Client.FileSystem.FilesConvention, Raven.Client.Connection.IReplicationInformerBase, Func&lt;string, Raven.Abstractions.FileSystem.FileHeader, string, Action, Task&lt;bool&gt;&gt;, Action)</code></li>
+  <li><code>Raven.Client.Connection.Profiling.ProfilingInformation get_ProfilingInformation()</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.FileSystem.Changes.FilesConnectionState</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void .ctor(Action, Task)</code></li>
+  <li><code>void add_OnError(Action&lt;Exception&gt;)</code></li>
+  <li><code>void Dec()</code></li>
+  <li><code>void Error(Exception)</code></li>
+  <li><code>Task get_Task()</code></li>
+  <li><code>void Inc()</code></li>
+  <li><code>void remove_OnError(Action&lt;Exception&gt;)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.FileSystem.Connection.FilesReplicationInformer</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void .ctor(Raven.Client.Convention, Raven.Client.Connection.HttpJsonRequestFactory)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.FileSystem.FilesQueryStatistics</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>bool get_NonAuthoritativeInformation()</code></li>
+  <li><code>void set_NonAuthoritativeInformation(bool)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.FileSystem.IAsyncFilesAdminCommands</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Task CreateFileSystemAsync(Raven.Abstractions.FileSystem.FileSystemDocument, string)</code></li>
+  <li><code>Task StartBackup(string, Raven.Abstractions.FileSystem.FileSystemDocument, bool, string)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.FileSystem.IAsyncFilesCommands</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Task UploadAsync(string, Action&lt;Stream&gt;, Action, long, Raven.Json.Linq.RavenJObject, Raven.Abstractions.Data.Etag)</code></li>
+  <li><code>Task UploadRawAsync(string, Stream, Raven.Json.Linq.RavenJObject, long, Raven.Abstractions.Data.Etag)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.IAsyncAdvancedSessionOperations</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Task&lt;Raven.Abstractions.Util.IAsyncEnumerator&lt;Raven.Abstractions.Data.StreamResult&lt;T&gt;&gt;&gt; StreamAsync&lt;T&gt;(Raven.Abstractions.Data.Etag, int, int, Raven.Client.RavenPagingInformation, CancellationToken)</code></li>
+  <li><code>Task&lt;Raven.Abstractions.Util.IAsyncEnumerator&lt;Raven.Abstractions.Data.StreamResult&lt;T&gt;&gt;&gt; StreamAsync&lt;T&gt;(string, string, int, int, Raven.Client.RavenPagingInformation, string, CancellationToken)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.IAsyncDocumentQuery&lt;T&gt;</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void SetTransformerParameters(Dictionary&lt;string, Raven.Json.Linq.RavenJToken&gt;)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.IDocumentQueryBase&lt;T, TSelf&gt;</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>T First()</code></li>
+  <li><code>T FirstOrDefault()</code></li>
+  <li><code>T Single()</code></li>
+  <li><code>T SingleOrDefault()</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.IDocumentQueryCustomization</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Raven.Client.IDocumentQueryCustomization RelatesToShape(string, string, Raven.Abstractions.Indexing.SpatialRelation)</code></li>
+  <li><code>Raven.Client.IDocumentQueryCustomization WithinRadiusOf(Double, Double, Double)</code></li>
+  <li><code>Raven.Client.IDocumentQueryCustomization WithinRadiusOf(string, Double, Double, Double)</code></li>
+  <li><code>Raven.Client.IDocumentQueryCustomization WithinRadiusOf(Double, Double, Double, Raven.Abstractions.Indexing.SpatialUnits)</code></li>
+  <li><code>Raven.Client.IDocumentQueryCustomization WithinRadiusOf(string, Double, Double, Double, Raven.Abstractions.Indexing.SpatialUnits)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Indexes.IndexDefinitionBuilder&lt;TDocument, TReduceResult&gt;</h3>
+
+
+
+
+
+
+
+
+
+
+
+<h4>Methods Obsoleted</h4>
+<ul>
+  <li><code>IDictionary&lt;Expression&lt;Func&lt;TReduceResult, object&gt;&gt;, Raven.Abstractions.Indexing.SuggestionOptions&gt; get_Suggestions()</code><br/> Use SuggestionsOptions. Obsoleted with warning.</li>
+  <li><code>void set_Suggestions(IDictionary&lt;Expression&lt;Func&lt;TReduceResult, object&gt;&gt;, Raven.Abstractions.Indexing.SuggestionOptions&gt;)</code><br/> Use SuggestionsOptions. Obsoleted with warning.</li>
+</ul>
+
+
+  <h3>Raven.Client.ISyncAdvancedSessionOperation</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>IEnumerator&lt;Raven.Abstractions.Data.StreamResult&lt;T&gt;&gt; Stream&lt;T&gt;(Raven.Abstractions.Data.Etag, int, int, Raven.Client.RavenPagingInformation)</code></li>
+  <li><code>IEnumerator&lt;Raven.Abstractions.Data.StreamResult&lt;T&gt;&gt; Stream&lt;T&gt;(string, string, int, int, Raven.Client.RavenPagingInformation, string)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Linq.LinqPathProvider</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>void .ctor(Raven.Client.Convention)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Shard.AsyncShardedDocumentSession</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Task&lt;Raven.Abstractions.Util.IAsyncEnumerator&lt;Raven.Abstractions.Data.StreamResult&lt;T&gt;&gt;&gt; StreamAsync&lt;T&gt;(Raven.Abstractions.Data.Etag, int, int, Raven.Client.RavenPagingInformation, CancellationToken)</code></li>
+  <li><code>Task&lt;Raven.Abstractions.Util.IAsyncEnumerator&lt;Raven.Abstractions.Data.StreamResult&lt;T&gt;&gt;&gt; StreamAsync&lt;T&gt;(string, string, int, int, Raven.Client.RavenPagingInformation, string, CancellationToken)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Shard.ShardedDocumentSession</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>IEnumerator&lt;Raven.Abstractions.Data.StreamResult&lt;T&gt;&gt; Stream&lt;T&gt;(Raven.Abstractions.Data.Etag, int, int, Raven.Client.RavenPagingInformation)</code></li>
+  <li><code>IEnumerator&lt;Raven.Abstractions.Data.StreamResult&lt;T&gt;&gt; Stream&lt;T&gt;(string, string, int, int, Raven.Client.RavenPagingInformation, string)</code></li>
+</ul>
+
+
+
+
+  <h3>Raven.Client.Spatial.SpatialCriteriaFactory</h3>
+
+
+
+
+
+
+
+
+
+<h4>Methods Removed</h4>
+<ul>
+  <li><code>Raven.Client.Spatial.SpatialCriteria Contains(object)</code></li>
+  <li><code>Raven.Client.Spatial.SpatialCriteria Disjoint(object)</code></li>
+  <li><code>Raven.Client.Spatial.SpatialCriteria Intersects(object)</code></li>
+  <li><code>Raven.Client.Spatial.SpatialCriteria RelatesToShape(object, Raven.Abstractions.Indexing.SpatialRelation)</code></li>
+  <li><code>Raven.Client.Spatial.SpatialCriteria Within(object)</code></li>
+  <li><code>Raven.Client.Spatial.SpatialCriteria WithinRadius(Double, Double, Double)</code></li>
+</ul>
+
+
+
+
+    </div>
+</section>
+</body>

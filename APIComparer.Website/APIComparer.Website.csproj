@@ -183,6 +183,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\Octopus\ApiComparer.Website.nuspec">
+      <Link>ApiComparer.Website.nuspec</Link>
+    </Content>
     <None Include="Properties\PublishProfiles\LocalDir.pubxml" />
     <None Include="Properties\PublishProfiles\particular-apicomparer-live.pubxml" />
     <Content Include="Properties\webjobs-list.json" />

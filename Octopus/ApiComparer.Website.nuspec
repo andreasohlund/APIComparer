@@ -13,6 +13,6 @@
         <releaseNotes>---</releaseNotes>
     </metadata>
     <files>
-        <file src="..\Deploy\**\*.*" target="." />
+        <file src="..\Deploy\**\*.*" target="" />
     </files>
 </package>

@@ -67,7 +67,13 @@
             Approvals.VerifyHtml(HtmlDiff("LibGit2Sharp", "0.21.0.176", "0.22.0-pre20150716071016"));
         }
 
-        private string HtmlDiff(string packageName, string fromVersion, string untilVersion)
+        [Test]//RavenDB.Client/3.0.30155...3.5.0-rc-35169
+        public void TestComplianceRavenDB()
+        {
+            Approvals.VerifyHtml(HtmlDiff("RavenDB.Client", "3.0.30155", "3.5.0-rc-35169"));
+        }
+
+        string HtmlDiff(string packageName, string fromVersion, string untilVersion)
         {
             using (var writer = new StringWriter())
             {

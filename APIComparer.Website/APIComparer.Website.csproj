@@ -183,6 +183,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ApiComparer.Website.nuspec" />
     <None Include="Properties\PublishProfiles\LocalDir.pubxml" />
     <None Include="Properties\PublishProfiles\particular-apicomparer-live.pubxml" />
     <Content Include="Properties\webjobs-list.json" />

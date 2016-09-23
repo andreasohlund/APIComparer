@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>ApiComparer.Website</id>
+        <version>$version$</version>
+        <title>ApiComparer.Website</title>
+        <authors>Particular Software Ltd</authors>
+        <owners>Particular Software Ltd</owners>
+        <licenseUrl>http://www.particular.net/</licenseUrl>
+        <projectUrl>http://www.particular.net/</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>ApiComparer.net</description>
+        <releaseNotes>---</releaseNotes>
+    </metadata>
+    <files>
+        <file src="..\Deploy\**\*.*" target="" />
+    </files>
+</package>

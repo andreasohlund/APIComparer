@@ -8,8 +8,8 @@ namespace APIComparer.Contracts
         public CompareNugetPackage(string packageId, string leftVersion, string rightVersion)
         {
             PackageId = packageId;
-            RightVersion = rightVersion;
-            LeftVersion = leftVersion;
+            RightVersion = rightVersion.ToLower();
+            LeftVersion = leftVersion.ToLower();
         }
 
         public string PackageId { get; set; }

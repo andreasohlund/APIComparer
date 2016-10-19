@@ -2,16 +2,19 @@
 {
     using System.Collections.Generic;
     using Mono.Cecil;
+    using System.Linq;
 
     public class ChangedType
     {
         public List<RemovedMember> RemovedMembers { get; }
         public string Name { get; private set; }
+        public List<ChangedEnumMember> ChangedEnumMembers { get; }
 
-        public ChangedType(TypeDefinition typeDefinition, List<RemovedMember> removedMembers)
+        public ChangedType(TypeDefinition typeDefinition, List<RemovedMember> removedMembers, List<ChangedEnumMember> changedEnumMembers = null)
         {
             Name = typeDefinition.GetName();
-            RemovedMembers = removedMembers;
+            RemovedMembers = removedMembers ?? Enumerable.Empty<RemovedMember>().ToList(); ;
+            ChangedEnumMembers = changedEnumMembers ?? Enumerable.Empty<ChangedEnumMember>().ToList();
 
             //foreach (var removedMethod in typeDiff.PublicMethodsRemoved())
             //{
@@ -104,6 +107,30 @@
 
             public string Name { get;}
             
+            public bool IsMethod => !IsField;
+        }
+
+        public class ChangedEnumMember
+        {
+            public ChangedEnumMember(FieldDefinition fieldDefinitionLeft, FieldDefinition fieldDefinitionRight)
+            {
+                Name = $"{fieldDefinitionLeft.GetName()} Changed value from {fieldDefinitionLeft.Constant} to {fieldDefinitionRight.Constant}";
+                IsField = true;
+
+                if (fieldDefinitionRight.HasObsoleteAttribute())
+                {
+                    var obsoleteInfo = fieldDefinitionRight.GetObsoleteInfo();
+
+                    UpgradeInstructions = obsoleteInfo.Message;
+                }
+            }
+
+            public string UpgradeInstructions { get; }
+
+            public bool IsField { get; }
+
+            public string Name { get; }
+
             public bool IsMethod => !IsField;
         }
     }

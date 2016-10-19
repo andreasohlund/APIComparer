@@ -270,6 +270,7 @@
                 typeDiff.MethodsChangedToNonPublic().Any() ||
                 typeDiff.PublicMethodsObsoleted().Any() ||
                 typeDiff.PublicFieldsObsoleted().Any() ||
+                typeDiff.EnumFieldsWithChangedValue().Any() ||
                 typeDiff.TypeObsoleted();
         }
     }

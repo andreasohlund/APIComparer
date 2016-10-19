@@ -53,6 +53,7 @@
     <Compile Include="ClassWithMembersToBeObsoletedWithWarnInNextVersion.cs" />
     <Compile Include="ClassWithPrivateMembersRemovedShouldNotBeIncluded.cs" />
     <Compile Include="ClassWithReadOnlyPropToBeRemovedInNextMajor.cs" />
+    <Compile Include="EnumWithMemberToBeChangedInNextVersion.cs" />
     <Compile Include="IMethodChangesParametersNextVersion.cs" />
     <Compile Include="InternalNextVersionClass.cs" />
     <Compile Include="MemberInternalNextVersion.cs" />

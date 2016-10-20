@@ -57,7 +57,6 @@ namespace APIComparer
 
         public IEnumerable<MatchingMember<FieldDefinition>> EnumFieldsWithChangedValue()
         {
-            //TODO: we should actually be comparing based on the enum's underlying type
             return MatchingFields.Where(x => x.Left.IsPublic && x.Right.IsPublic && !Equals(x.Left.Constant, x.Right.Constant));
         }
     }

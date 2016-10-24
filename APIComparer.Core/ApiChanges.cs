@@ -113,12 +113,12 @@ namespace APIComparer
                 .ToList();
 
             var changedEnumMembers = typesWithMemberDiffs
-                .SelectMany(td => td.EnumFieldsWithChangedValue().Where(t => t.Left.IsPublic && !t.Left.IsObsoleteWithError()))
+                .SelectMany(td => td.EnumFieldsWithChangedValue().Where(t => t.IsPublic && !t.IsObsoleteWithError()))
                 .Select(fd => new
                 {
                     Version = "Current",
-                    Type = fd.Left.DeclaringType,
-                    ChangedMember = new ChangedType.ChangedEnumMember(fd.Left, fd.Right)
+                    Type = fd.DeclaringType,
+                    ChangedMember = new ChangedType.ChangedEnumMember(fd)
                 })
                 .ToList();
 

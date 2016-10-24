@@ -112,14 +112,13 @@
 
         public class ChangedEnumMember
         {
-            public ChangedEnumMember(FieldDefinition fieldDefinitionLeft, FieldDefinition fieldDefinitionRight)
+            public ChangedEnumMember(FieldDefinition fieldDefinition)
             {
-                Name = $"{fieldDefinitionLeft.GetName()} Changed value from {fieldDefinitionLeft.Constant} to {fieldDefinitionRight.Constant}";
-                IsField = true;
+                Name = fieldDefinition.GetName();
 
-                if (fieldDefinitionRight.HasObsoleteAttribute())
+                if (fieldDefinition.HasObsoleteAttribute())
                 {
-                    var obsoleteInfo = fieldDefinitionRight.GetObsoleteInfo();
+                    var obsoleteInfo = fieldDefinition.GetObsoleteInfo();
 
                     UpgradeInstructions = obsoleteInfo.Message;
                 }
@@ -127,11 +126,7 @@
 
             public string UpgradeInstructions { get; }
 
-            public bool IsField { get; }
-
             public string Name { get; }
-
-            public bool IsMethod => !IsField;
         }
     }
 }

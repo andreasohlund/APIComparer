@@ -4,17 +4,15 @@ namespace APIComparer.BreakingChanges
 {
     public class EnumFieldValueChanged : BreakingChange
     {
-        public EnumFieldValueChanged(TypeDefinition typeDefinition, FieldDefinition leftField, FieldDefinition rightField)
+        public EnumFieldValueChanged(TypeDefinition typeDefinition, FieldDefinition field)
         {
             this.typeDefinition = typeDefinition;
-            this.leftField = leftField;
-            this.rightField = rightField;
+            this.field = field;
         }
 
-        public override string Reason => $"Member {leftField.Name} of type {typeDefinition} value has been changed from {leftField.Constant} to {rightField.Constant}";
+        public override string Reason => $"Member {field.Name} of Enum type {typeDefinition} value has been changed";
 
-        FieldDefinition leftField;
-        FieldDefinition rightField;
+        FieldDefinition field;
         TypeDefinition typeDefinition;
     }
 }

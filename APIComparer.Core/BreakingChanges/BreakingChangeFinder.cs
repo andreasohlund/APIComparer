@@ -41,7 +41,7 @@ namespace APIComparer.BreakingChanges
 
                 if (typeDiff.LeftType.IsEnum)
                 {
-                    breakingChanges.AddRange(typeDiff.EnumFieldsWithChangedValue().Select(field => new EnumFieldValueChanged(typeDiff.LeftType, field.Left, field.Right)));
+                    breakingChanges.AddRange(typeDiff.EnumFieldsWithChangedValue().Select(field => new EnumFieldValueChanged(typeDiff.LeftType, field)));
                 }
             }
 

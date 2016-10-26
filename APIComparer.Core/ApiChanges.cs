@@ -112,6 +112,22 @@ namespace APIComparer
                 })
                 .ToList();
 
+            var changedEnumMembers = typesWithMemberDiffs
+                .SelectMany(td => td.EnumFieldsWithChangedValue().Where(t => t.IsPublic && !t.IsObsoleteWithError()))
+                .Select(fd => new
+                {
+                    Version = "Current",
+                    Type = fd.DeclaringType,
+                    ChangedMember = new ChangedType.ChangedEnumMember(fd)
+                })
+                .ToList();
+
+            var changedEnumMemberChanges = changedEnumMembers
+                .Where(ce => ce.Version == "Current")
+                .GroupBy(ce => ce.Type)
+                .Select(g => new ChangedType(g.Key, null, g.Select(e => e.ChangedMember).ToList()))
+                .ToList();
+
             var removedMembers = removedFields
                 .Concat(removedMethods)
                 .Concat(methodsNotAvailableForUse)
@@ -124,10 +140,9 @@ namespace APIComparer
                 .Select(g => new ChangedType(g.Key, g.Select(r => r.RemovedMember).ToList()))
                 .ToList();
 
-
             var result = new List<ApiChanges>
             {
-                new ApiChanges("Current", removedTypes, changedTypesInCurrentVersion)
+                new ApiChanges("Current", removedTypes, changedTypesInCurrentVersion.Concat(changedEnumMemberChanges).ToList())
             };
 
             var futureChanges = removedMembers

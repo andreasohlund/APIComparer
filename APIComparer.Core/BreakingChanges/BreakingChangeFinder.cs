@@ -38,7 +38,11 @@ namespace APIComparer.BreakingChanges
                 breakingChanges.AddRange(typeDiff.PublicMethodsRemoved().Select(method => new PublicMethodRemoved(typeDiff.LeftType, method)));
                 breakingChanges.AddRange(typeDiff.FieldsChangedToNonPublic().Select(field => new FieldChangedToNonPublic(typeDiff.LeftType, field.Left)));
                 breakingChanges.AddRange(typeDiff.MethodsChangedToNonPublic().Select(method => new MethodChangedToNonPublic(typeDiff.LeftType, method.Left)));
-         
+
+                if (typeDiff.LeftType.IsEnum)
+                {
+                    breakingChanges.AddRange(typeDiff.EnumFieldsWithChangedValue().Select(field => new EnumFieldValueChanged(typeDiff.LeftType, field)));
+                }
             }
 
             return breakingChanges;

@@ -104,12 +104,33 @@ namespace APIComparer
 
                 writer.WriteLine();
             }
+
+            var changedEnumMembers = changedType.ChangedEnumMembers;
+
+            if (changedEnumMembers.Any())
+            {
+                writer.WriteLine($"{new string('#', headingSize + 1)} Changed Enum Members");
+                writer.WriteLine();
+
+                foreach (var typeChange in changedEnumMembers)
+                {
+                    WriteRemovedMember(writer, typeChange);
+                }
+
+                writer.WriteLine();
+            }
         }
 
         static void WriteRemovedMember(TextWriter writer, ChangedType.RemovedMember removedMember)
         {
             var upgradeInstructions = removedMember.UpgradeInstructions ?? "No upgrade instructions provided.";
             writer.WriteLine($"* `{removedMember.Name}` - {upgradeInstructions}");
+        }
+
+        static void WriteRemovedMember(TextWriter writer, ChangedType.ChangedEnumMember changedMember)
+        {
+            var upgradeInstructions = changedMember.UpgradeInstructions ?? "No upgrade instructions provided.";
+            writer.WriteLine($"* `{changedMember.Name}` - {upgradeInstructions}");
         }
     }
 }

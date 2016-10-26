@@ -65,6 +65,7 @@
     <Compile Include="AssemblyGroup.cs" />
     <Compile Include="BreakingChanges\BreakingChange.cs" />
     <Compile Include="BreakingChanges\BreakingChangeFinder.cs" />
+    <Compile Include="BreakingChanges\EnumFieldValueChanged.cs" />
     <Compile Include="CecilExtensions.cs" />
     <Compile Include="ChangedType.cs" />
     <Compile Include="ObsoleteInfo.cs" />

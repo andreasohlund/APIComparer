@@ -55,6 +55,11 @@ namespace APIComparer
             return MatchingFields.Where(x => x.Left.IsPublic && x.Right.IsPublic && !x.Left.HasObsoleteAttribute() && x.Right.HasObsoleteAttribute());
         }
 
-    
+        public IEnumerable<FieldDefinition> EnumFieldsWithChangedValue()
+        {
+            return MatchingFields
+                .Where(x => x.Left.IsPublic && x.Right.IsPublic && !Equals(x.Left.Constant, x.Right.Constant))
+                .Select(x => x.Left);
+        }
     }
 }

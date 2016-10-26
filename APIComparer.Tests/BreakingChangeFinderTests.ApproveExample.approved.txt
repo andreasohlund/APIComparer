@@ -1,6 +1,8 @@
 ﻿Type Example.MissingNextVersionClass removed
 Type Example.InternalNextVersionClass made non public
 Type Example.InternalNextVersionClass made non public
+Public field NonObsoleteValueToBeRemoved removed from Example.EnumWithMemberToBeChangedInNextVersion
+Member ValueToBeChanged of Enum type Example.EnumWithMemberToBeChangedInNextVersion value has been changed
 Method MethodName removed from type Example.IMethodChangesParametersNextVersion
 Field StringField of type Example.MemberInternalNextVersion has been made non public
 Method get_StringProperty of type Example.MemberInternalNextVersion has been made non public

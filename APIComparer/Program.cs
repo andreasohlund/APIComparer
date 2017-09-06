@@ -52,11 +52,15 @@ static class Program
         catch (ApiComparerArgumentException ex)
         {
             Console.Error.WriteLine("Argument exception: {0}", ex.Message);
+
+            Console.ReadKey();
             return ExitCode.InvalidArgument;
         }
         catch (Exception ex)
         {
             Console.Error.WriteLine("Unhandled exception: {0}", ex);
+
+            Console.ReadKey();
             return ExitCode.GenericError;
         }
     }
@@ -122,6 +126,7 @@ static class Program
         {
             throw new ApiComparerArgumentException("No version range specified, please use --versions {source-version}..{target-version} or --version all");
         }
+        var feeds = GetFeedsToUse(args);
 
         var versions = args[versionsIndex + 1];
 
@@ -136,15 +141,15 @@ static class Program
                 compareStrategy = CompareStrategies.Parse(args[strategyIndex + 1]);
             }
 
-            return GetAllNuGetVersions(package, compareStrategy).ToList();
+            return GetAllPackageVersions(feeds, package, compareStrategy).ToList();
         }
 
-        return GetExplicitNuGetVersions(package, versions).ToList();
+        return GetExplicitPackageVersions(feeds, package, versions).ToList();
     }
 
-    static IEnumerable<CompareSet> GetAllNuGetVersions(string package, ICompareStrategy compareStrategy)
+    static IEnumerable<CompareSet> GetAllPackageVersions(List<string> feeds, string package, ICompareStrategy compareStrategy)
     {
-        var browser = new NuGetBrowser(new List<string> { "https://www.nuget.org/api/v2" });
+        var browser = new NuGetBrowser(feeds);
 
         Console.Out.Write("Loading version history for {0}", package);
 
@@ -155,26 +160,24 @@ static class Program
         var semverCompliantVersions = allVersions.Where(v => v.Version.Major > 0)
             .ToList();
 
-
-
         return compareStrategy.GetVersionsToCompare(semverCompliantVersions)
-            .Select(pair => CreateCompareSet(package, pair))
+            .Select(pair => CreateCompareSet(feeds, package, pair))
             .ToList();
     }
 
-    static IEnumerable<CompareSet> GetExplicitNuGetVersions(string nugetName, string versions)
+    static IEnumerable<CompareSet> GetExplicitPackageVersions(List<string> feeds, string nugetName, string versions)
     {
         var versionParts = versions.Split(new[] { ".." }, StringSplitOptions.None);
 
         var leftVersion = versionParts[0];
 
         var rightVersion = versionParts[1];
-        yield return CreateCompareSet(nugetName, new VersionPair(leftVersion, rightVersion));
+        yield return CreateCompareSet(feeds, nugetName, new VersionPair(leftVersion, rightVersion));
     }
 
-    static CompareSet CreateCompareSet(string package, VersionPair versions)
+    static CompareSet CreateCompareSet(List<string> feeds, string package, VersionPair versions)
     {
-        var nugetDownloader = new NuGetDownloader(package, new List<string> { "https://www.nuget.org/api/v2" });
+        var nugetDownloader = new NuGetDownloader(package, feeds);
 
         Console.Out.Write("Preparing {0}-{1}", package, versions);
 
@@ -287,7 +290,7 @@ static class Program
     {
         var reportPathSpecified = false;
         var reportPath = args.SkipWhile(arg => arg != "--report-path")
-            .Where(arg=>reportPathSpecified = true)
+            .Where(arg => reportPathSpecified = true)
             .Skip(1)
             .Take(1)
             .FirstOrDefault(arg => !string.IsNullOrWhiteSpace(arg) && !arg.StartsWith("--"));

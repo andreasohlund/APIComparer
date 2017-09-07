@@ -5,7 +5,6 @@
     using System.Linq;
     using System.Runtime.CompilerServices;
     using Mono.Cecil;
-    using Mono.Cecil.Cil;
     using static System.String;
 
     public static class CecilExtensions
@@ -190,19 +189,7 @@
         {
             return field.FieldType.GetName() + " " + field.Name;
         }
-
-        public static SequencePoint GetValidSequencePoint(this MethodDefinition method)
-        {
-            if (!method.HasBody)
-            {
-                return null;
-            }
-            return method.Body.Instructions
-                .Select(i => i.SequencePoint)
-                .FirstOrDefault(s => s != null && s.StartLine != 16707566);
-        }
-
-
+    
         public static string GetName(this TypeReference self)
         {
             if (self.FullName == "System.Void")

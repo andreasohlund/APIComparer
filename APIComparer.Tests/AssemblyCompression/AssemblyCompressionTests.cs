@@ -90,7 +90,6 @@ public class AssemblyCompressionTests
             {
                 //todo: preserve a single pdb line
                 var body = method.Body;
-                var validSequencePoint = method.GetValidSequencePoint();
                 body.Variables.Clear();
                 body.ExceptionHandlers.Clear();
                 body.Instructions.Clear();
@@ -98,10 +97,7 @@ public class AssemblyCompressionTests
                 body.Instructions.Add(Instruction.Create(OpCodes.Newobj, ctor));
 
                 var instruction = Instruction.Create(OpCodes.Throw);
-                if (validSequencePoint != null)
-                {
-                    instruction.SequencePoint = validSequencePoint;
-                }
+               
                 body.Instructions.Add(instruction);
             }
         }

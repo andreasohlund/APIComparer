@@ -24,6 +24,7 @@
     </NuGetPackageImportStamp>
     <ApplicationInsightsResourceId>/subscriptions/421099c3-b4a3-4955-8fac-b4a9c9abf65a/resourcegroups/Default-ApplicationInsights-CentralUS/providers/microsoft.insights/components/APIComparer.Website</ApplicationInsightsResourceId>
     <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -186,6 +187,10 @@
     <Content Include="..\Octopus\ApiComparer.Website.nuspec">
       <Link>ApiComparer.Website.nuspec</Link>
     </Content>
+    <None Include="Properties\PublishProfiles\apicomparer-preview - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\apicomparer-preview - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\apicomparer-staging - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\apicomparer-staging - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\LocalDir.pubxml" />
     <None Include="Properties\PublishProfiles\particular-apicomparer-live.pubxml" />
     <Content Include="Properties\webjobs-list.json" />
